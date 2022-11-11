@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/Extensions/Raw
+/Libraries.v3.ncrunchsolution.user
+/src/Extensions/bin/Debug/net6.0
+/src/Extensions/obj
+/.vs
+/tests/ExtensionsTests/bin/Debug/net6.0
+/tests/ExtensionsTests/obj
