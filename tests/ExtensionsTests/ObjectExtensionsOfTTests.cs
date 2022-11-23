@@ -103,7 +103,7 @@ namespace ExtensionsTests
                 PhoneNumber = "5555550009",
             };
 
-            var result = customerOne.GetGiffs<Customer>(customerTwo);
+            var result = customerOne.GetPropertyDiffs<Customer>(customerTwo);
 
             result.Should().NotBeNull();
             result.Count.Should().Be(3);

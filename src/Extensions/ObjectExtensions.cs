@@ -1,50 +1,100 @@
-﻿using System;
-using System.Net.NetworkInformation;
-using System.Reflection;
-
-namespace Extensions
+﻿namespace Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.CompilerServices;
+    using System.Text.Json.Serialization.Metadata;
+
     public static class ObjectExtensions
     {
-        public static Dictionary<PropertyInfo, PropertyInfo> GetGiffs<T>(this T source, T target)
+        public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            if (source is null)
+            ValidateParameters(source, target);
+
+            var sourceProps = source.GetType().GetProperties().ToList();
+            var targetProps = target.GetType().GetProperties().ToList();
+
+            //string PropNameSelector(PropertyInfo prop) => prop.Name;
+            //TProp PropValueSelector<TProp>(PropertyInfo prop, TProp resultType) => (TProp)prop.GetValue(prop);
+
+            //List<PropertyInfo> diffs = new List<PropertyInfo>();
+            //object PropValueSelector(PropertyInfo prop) => prop.GetValue(prop);
+
+            bool IsPropMatch(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
             {
-                throw new ArgumentNullException(nameof(source));
-            }
 
-            if (target is null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
-
-            if (source.GetType() != target.GetType())
-            {
-                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
-            }
-
-            Dictionary<PropertyInfo, PropertyInfo> propertyDiffs = new Dictionary<PropertyInfo, PropertyInfo>();
-
-
-            //  TODO: Use LINQ Except() extension method as an alternative.
-
-            foreach (var sourceProp in source.GetType().GetProperties())
-            {
-                foreach (var destProp in target.GetType().GetProperties())
+                if (!sourceProp.Name.Equals(targetProp.Name))
                 {
-                    if (sourceProp.Name == destProp.Name
-                        && sourceProp.GetValue(source) != destProp.GetValue(target))
-                    {            
-                        propertyDiffs.Add(sourceProp, destProp);
+                    return false;
+                }
+
+                Type sourceType = sourceProp.PropertyType;
+                Type targetType = targetProp.PropertyType;
+
+                if (sourceType != targetType)
+                {
+                    return false;
+                }
+
+                //object? sourceValue = Convert.ChangeType(sourceProp.GetValue(sourceProp), sourceType);
+                //object? targetValue = Convert.ChangeType(targetProp.GetValue(targetProp), targetType);
+
+                //  1
+                //Type sType = sourceProp.GetType();
+                //Type sType = Type.GetType(sourceProp.PropertyType.Name);
+                //Type tType = Type.GetType(targetProp.PropertyType.Name);
+
+                object? sValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourceType);
+                object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
+
+                if (sValue != tValue)
+                {
+                    return false;
+                }
+
+                return true;
+
+                //  Try getTypeInfo
+            }
+
+            bool IsPropMismatch(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp) => !IsPropMatch(sourceObject, sourceProp, targetObject, targetProp);
+
+            List<PropertyInfo> matchedProps = new List<PropertyInfo>();
+            List<PropertyInfo> mismatchedProps = new List<PropertyInfo>();
+
+     
+          
+            //  Option 1: Fiind a way to pass the now respondng predicate 
+            //  to Intercept/Except.
+
+            //  Option 2: Pass the negation of the predictate to Except
+
+            //  Option 3: Implement an EqualityComaparer<PropertyInfo> for the Except method.
+            
+
+
+            foreach (var sp in sourceProps)
+            {
+                foreach (var tp in targetProps)
+                {
+                    if (!IsPropMatch(source, sp, target, tp))
+                    {
+                        mismatchedProps.Add(sp);                        
+                    }
+                    else
+                    {
+                        continue;
                     }
                 }
             }
 
-            return propertyDiffs;
-
+            return mismatchedProps;
         }
 
-        public static T ApplyDiffs<T>(this T source, T target)
+        private static void ValidateParameters<T>(T source, T target)
         {
             if (source is null)
             {
@@ -60,6 +110,11 @@ namespace Extensions
             {
                 throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
             }
+        }
+
+        public static T ApplyDiffs<T>(this T source, T target)
+        {
+            ValidateParameters(source, target);
 
             foreach (var sourceProp in source.GetType().GetProperties())
             {
@@ -80,7 +135,7 @@ namespace Extensions
         public static object SendUpdatesTo(this object source, object target)
         {
             return source.ApplyDiffs(target);
-            
+
         }
 
         public static T Patch<T>(this T source, T target)

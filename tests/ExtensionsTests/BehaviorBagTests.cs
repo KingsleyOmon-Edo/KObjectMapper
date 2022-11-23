@@ -1,9 +1,9 @@
-namespace TodoApiUnitTests
-{
-    using ExtensionsTests.Helpers;
-    using FluentAssertions;
-    using TodoApi.Helpers;
+using Extensions.Raw;
+using ExtensionsTests.Helpers;
+using FluentAssertions;
 
+namespace ExtensionsTests
+{
     public class BehaviorBagTests
     {
         [Fact]
