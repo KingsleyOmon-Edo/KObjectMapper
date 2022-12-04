@@ -11,9 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9E8AB76E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionsTests", "tests\ExtensionsTests\ExtensionsTests.csproj", "{E10BAE84-7A8D-413B-9B4A-9B65453A44C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures", "DataStructures\DataStructures.csproj", "{C26433F3-D5DE-4787-ADEA-E52E7708ED0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructures", "DataStructures\DataStructures.csproj", "{C26433F3-D5DE-4787-ADEA-E52E7708ED0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructureTests", "DataStructureTests\DataStructureTests.csproj", "{D94433A6-DAF5-42C1-A180-D7A670B59FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructureTests", "DataStructureTests\DataStructureTests.csproj", "{D94433A6-DAF5-42C1-A180-D7A670B59FE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D6FF692C-96F5-4CE5-9F4E-9EF5AA35DB06}"
+	ProjectSection(SolutionItems) = preProject
+		TestPlan.txt = TestPlan.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
