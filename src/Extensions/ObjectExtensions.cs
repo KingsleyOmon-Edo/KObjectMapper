@@ -9,13 +9,26 @@
     {
         public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            ValidateParameters(source, target);
+            source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target?? throw new ArgumentNullException(nameof(target));
+            
+            if (source.GetType() != target.GetType())
+            {
+                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
+            }
 
             var sourceProps = source.GetType().GetProperties().ToList();
             var targetProps = target.GetType().GetProperties().ToList();
 
-            var diffs = sourceProps.Except(targetProps, (T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp) => ArePropValuesDifferent(sourceObject, sourceProp, targetObject, targetProp), source, target)
-                                  .ToList();
+            var diffs = sourceProps.Except(targetProps, (
+                T sourceObject,
+                PropertyInfo sourceProp,
+                T targetObject,
+                PropertyInfo targetProp) => ArePropValuesDifferent(sourceObject,
+                                                                   sourceProp,
+                                                                   targetObject,
+                                                                   targetProp), source, target)
+                                            .ToList();
 
             return diffs;  
         }
