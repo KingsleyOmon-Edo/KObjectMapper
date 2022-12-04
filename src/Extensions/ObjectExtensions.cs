@@ -3,13 +3,9 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Net.WebSockets;
     using System.Reflection;
-    using System.Runtime.CompilerServices;
-    using System.Text.Json.Serialization.Metadata;
 
     public static class ObjectExtensions
     {
@@ -149,111 +145,14 @@
                     result= false;
                 }
 
-                return result;             
+                return result;
 
-                //Type sourceType = sourceProp.PropertyType;
-                //Type targetType = targetProp.PropertyType;
-
-                //if (sourceType == targetType)
-                //{
-                //    differenceResult = false;
-                //    return differenceResult;
-                //}
-
-                //object? sourceValue = Convert.ChangeType(sourceProp.GetValue(sourceProp), sourceType);
-                //object? targetValue = Convert.ChangeType(targetProp.GetValue(targetProp), targetType);
-
-                //  1
-                //Type sType = sourceProp.GetType();
-                //Type sType = Type.GetType(sourceProp.PropertyType.Name);
-                //Type tType = Type.GetType(targetProp.PropertyType.Name);
-
-                //object? sValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourceType);
-                //object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
-
-                //if (sValue == tValue)
-                //{
-                //    differenceResult = false;
-                //    return differenceResult;
-                //}
-
-                //return differenceResult;
-
-                //  Try getTypeInfo
             }
-
-
-            //var diffs = sourceProps.Except(targetProps, (sProp,  tProp) => ArePropsDifferent(source, sProp, target, tProp))
-            //                       .ToList();
 
             var diffs = sourceProps.Except(targetProps, ArePropValuesDifferent, source, target)
                                   .ToList();
 
-            return diffs;
-
-
-            //var diffs = sourceProps.Except(targetProps, new StructuralEqualityComparer<PropertyInfo>()).ToList();
-
-            //return diffs.ToList();
-
-            //  Algo
-            //  -----
-            //  Given that the PropertyInfo does not expose a public value property
-            //  directly, we use a different, more imperative technique to compare
-            //  two instances
-
-            //List<PropertyInfo> diffs = new List<PropertyInfo>();
-            //object PropValueSelector(PropertyInfo prop) => prop.GetValue(prop);
-
-
-            //var diffs = sourceProps.Where(s =>
-            //{
-            //    var outerResult = false;
-
-            //    targetProps.Where(x =>
-            //    {
-            //        var result = false;
-            //        result = AreDifferentProperties(source, s, target, x);
-            //        outerResult = result;
-            //        return result;
-            //    });
-
-            //    return outerResult;
-            //});
-
-            //return diffs.ToList();
-
-            //bool IsPropMismatch(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp) => !IsPropMatch(sourceObject, sourceProp, targetObject, targetProp);
-
-            //List<PropertyInfo> matchedProps = new List<PropertyInfo>();
-            //List<PropertyInfo> mismatchedProps = new List<PropertyInfo>();
-
-            //  Option 1: Fiind a way to pass the now respondng predicate 
-            //  to Intercept/Except.
-
-            //  Option 2: Pass the negation of the predictate to Except
-
-            //  Option 3: Implement an EqualityComaparer<PropertyInfo> for the Except method.
-
-            //foreach (var sp in sourceProps)
-            //{
-            //    foreach (var tp in targetProps)
-            //    {
-            //        if (!IsPropMatch(source, sp, target, tp))
-            //        {
-            //            mismatchedProps.Add(sp);                        
-            //        }
-            //        else
-            //        {
-            //            continue;
-            //        }
-            //    }
-            //}
-
-            //return mismatchedProps;
-
-            //  Try passing AreDifferentProperties to the constructor
-            //return Enumerable.Empty<PropertyInfo>().ToList();
+            return diffs;  
         }
 
         private static void ValidateParameters<T>(T source, T target)
