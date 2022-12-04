@@ -98,13 +98,13 @@ namespace ExtensionsTests
             var customerTwo = new Customer
             {
                 Id = 1_000,
-                FirstName = "FNqqqq",
+                FirstName = "Jane",
                 LastName = "Ono",
-                PhoneNumber = "5555550009",
-            };
+                PhoneNumber = "6655550009",
+            };      
 
             var result = customerOne.GetPropertyDiffs<Customer>(customerTwo);
-            var actualItemCount = 2;
+            var actualItemCount = 3;
 
             result.Should().NotBeNull();
             result.Count.Should().Be(actualItemCount);

@@ -15,8 +15,7 @@
             var targetProps = target.GetType().GetProperties().ToList();
 
             bool ArePropValuesDifferent(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-            {
-                var result = false;
+            {             
 
                 if (sourceProp is null)
                 {
@@ -45,16 +44,11 @@
                 object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
 
                 if (object.Equals(sValue, tValue) == true)
-                {
-                    result = true;
-                }
-                else
-                {
-                    result= false;
+                {                  
+                    return true;
                 }
 
-                return result;
-
+                return false;
             }
 
             var diffs = sourceProps.Except(targetProps, ArePropValuesDifferent, source, target)
