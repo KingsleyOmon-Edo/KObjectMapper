@@ -15,7 +15,7 @@
             var targetProps = target.GetType().GetProperties().ToList();
 
             bool ArePropValuesDifferent(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-            {             
+            {          
 
                 if (sourceProp is null)
                 {

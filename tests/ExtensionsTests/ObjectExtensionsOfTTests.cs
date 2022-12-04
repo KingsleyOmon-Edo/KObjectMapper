@@ -104,15 +104,26 @@ namespace ExtensionsTests
             };      
 
             var result = customerOne.GetPropertyDiffs<Customer>(customerTwo);
-            var actualItemCount = 3;
+            var expectedItemCount = 3;
 
             result.Should().NotBeNull();
-            result.Count.Should().Be(actualItemCount);
+            result.Count.Should().Be(expectedItemCount);
         }
     }
 
+    //  TEST PLAN
+    //  ----------
+    //  TODO: Test guard clauses for object diff function.
+    //  TODO: Test object diff function happy path.
+    //  TODO: Test object property diff function sad paths
+    //  TODO: Test object property diff function edge cases.
+    //  TODO: Test predicate function guard clauses.
+    //  TODO: Isolate predicate function for reuse.
+    //  TODO: Test predicate function guard clauses
+    //  TODO: Test predicate function happy path
+    //  ToDO: Test predicate function sad path.
+    //  TODO: Test predicate function edge cases
     //  TODO: Objects with some property different
     //  TODO: Objects with all properties fifferent
     //  TODO: Objects with no properties different.
-
 }
