@@ -94,19 +94,25 @@ namespace ExtensionsTests
         [Fact]
         public void Should_correctly_identify_objects_with_different_property_values()
         {
-            var customerOne = ObjectMother.ArbitraryCustomer;
+            var customerOne = ObjectMother.ArbitraryCustomer; 
             var customerTwo = new Customer
             {
                 Id = 1_000,
                 FirstName = "FNqqqq",
-                LastName = "LNqqqqqq",
+                LastName = "Ono",
                 PhoneNumber = "5555550009",
             };
 
+            //Id = 0,
+            //FirstName = "James",
+            //LastName = "Ono",
+            //PhoneNumber = "5555550009"
+
             var result = customerOne.GetPropertyDiffs<Customer>(customerTwo);
+            var actualItemCount = 2;
 
             result.Should().NotBeNull();
-            result.Count.Should().Be(3);
+            result.Count.Should().Be(actualItemCount);
         }
 
         //  TODO: Objects with some property different
