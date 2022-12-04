@@ -14,47 +14,46 @@
             var sourceProps = source.GetType().GetProperties().ToList();
             var targetProps = target.GetType().GetProperties().ToList();
 
-            bool ArePropValuesDifferent(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-            {          
-
-                if (sourceProp is null)
-                {
-                    throw new ArgumentNullException(nameof(sourceProp));
-                }
-
-                if (targetProp is null)
-                {
-                    throw new ArgumentNullException(nameof(targetProp));
-                }
-
-                if (object.Equals(sourceProp.Name, targetProp.Name) == false)
-                {
-                    throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
-                }
-
-                Type sourceType = sourceProp.PropertyType;
-                Type targetType = targetProp.PropertyType;
-
-                if (object.Equals(sourceType,  targetType) == false)
-                {
-                    throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
-                }
-
-                object? sValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourceType);
-                object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
-
-                if (object.Equals(sValue, tValue) == true)
-                {                  
-                    return true;
-                }
-
-                return false;
-            }
-
-            var diffs = sourceProps.Except(targetProps, ArePropValuesDifferent, source, target)
+            var diffs = sourceProps.Except(targetProps, (T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp) => ArePropValuesDifferent(sourceObject, sourceProp, targetObject, targetProp), source, target)
                                   .ToList();
 
             return diffs;  
+        }
+
+        private static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
+        {
+            if (sourceProp is null)
+            {
+                throw new ArgumentNullException(nameof(sourceProp));
+            }
+
+            if (targetProp is null)
+            {
+                throw new ArgumentNullException(nameof(targetProp));
+            }
+
+            if (object.Equals(sourceProp.Name, targetProp.Name) == false)
+            {
+                throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
+            }
+
+            Type sourceType = sourceProp.PropertyType;
+            Type targetType = targetProp.PropertyType;
+
+            if (object.Equals(sourceType, targetType) == false)
+            {
+                throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
+            }
+
+            object? sValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourceType);
+            object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
+
+            if (object.Equals(sValue, tValue) == true)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private static void ValidateParameters<T>(T source, T target)
