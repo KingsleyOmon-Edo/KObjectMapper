@@ -1,6 +1,9 @@
 ﻿using Extensions;
 using ExtensionsTests.Helpers;
 using FluentAssertions;
+using System.Data.Common;
+using System.Net.WebSockets;
+using System.Reflection;
 
 namespace ExtensionsTests
 {
@@ -109,21 +112,84 @@ namespace ExtensionsTests
             result.Should().NotBeNull();
             result.Count.Should().Be(expectedItemCount);
         }
+
+        [Fact]
+        public void Calling_GetPropertyDiff_on_a_null_source_ArgumentNullException()
+        {
+            Product sourceProuduct = null;
+            Product targetProduct = ObjectMother.ArbitraryProduct;
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = sourceProuduct.GetPropertyDiffs<Product>(targetProduct);
+                operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
+            });
+        }
+
+        [Fact]
+        public void Calling_GetPropertyDiff_with_a_null_target_object_throws_ArgumentNullException()
+        {
+            Product sourceProduct = ObjectMother.ArbitraryProduct;
+            Product targetProduct = null;
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = sourceProduct.GetPropertyDiffs<Product>(targetProduct);
+                operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
+            });
+        }
+        
+
+        [Fact]
+        public void Two_objects_with_no_corresponding_properties_different_in_value_should_return_no_items()
+        {
+            //  Arrange
+            var sourceProduct = ObjectMother.ArbitraryProduct;
+            var targetProduct = ObjectMother.ArbitraryProduct;
+
+            //  Act
+            var operationResult = sourceProduct.GetPropertyDiffs<Product>(targetProduct);
+            var actualItemCount = operationResult.Count;
+            var expectedItemCount = 0;
+
+            //  Assert
+            operationResult.Should().NotBeNull();
+            operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
+            actualItemCount.Should().Be(expectedItemCount);
+        }
+
+        [Fact]
+        public void Two_objects_with_all_corresponding_properties_of_the_same_values_should_return_all_items()
+        {
+            //  Arrange
+            var sourceCustomer = ObjectMother.ArbitraryCustomer;
+            var targetCustomer = new Customer
+            {
+                Id = 2_000,
+                FirstName = "Jane",
+                LastName = "Doe",
+                PhoneNumber = "6666888897"
+            };
+
+            //  Act
+            var operationResult = sourceCustomer.GetPropertyDiffs<Customer>(targetCustomer);
+            var expectedItemCount = typeof(Customer).GetProperties().Length;
+            var actualItemCount = operationResult.Count;
+
+            //  Assert
+            operationResult.Should().NotBeNull();
+            operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
+            actualItemCount.Should().Be(expectedItemCount);            
+        }
     }
 
     //  TEST PLAN
-    //  ----------
-    //  TODO: Test guard clauses for object diff function.
-    //  TODO: Test object diff function happy path.
-    //  TODO: Test object property diff function sad paths
-    //  TODO: Test object property diff function edge cases.
+    //  ---------- 
     //  TODO: Test predicate function guard clauses.
     //  TODO: Isolate predicate function for reuse.
     //  TODO: Test predicate function guard clauses
     //  TODO: Test predicate function happy path
     //  ToDO: Test predicate function sad path.
-    //  TODO: Test predicate function edge cases
-    //  TODO: Objects with some property different
-    //  TODO: Objects with all properties fifferent
-    //  TODO: Objects with no properties different.
+    //  TODO: Test predicate function edge cases    
+  
 }
