@@ -1,9 +1,23 @@
-    //  TEST PLAN
-    //  ---------- 
-    //  TODO: Test predicate function guard clauses.
-    //  TODO: Isolate predicate function for reuse. (DONE)
-    //  TODO: Test predicate function guard clauses
+    //  TEST PLAN:
+    //  -----------
     //  TODO: Test predicate function happy path
     //  ToDO: Test predicate function sad path.
     //  TODO: Test predicate function edge cases   
+    //  TODO: Substitute the now functional GetPropertyDiffs method
+    //          for the implementations used in the mutation methods.
     //  Rider
+
+
+
+
+    COMPLETED TASKS
+    ---------------
+    //  TODO: Test predicate function guard clauses.
+    //  private static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
+    //  Test when sourceProp is null (DONE)
+    //  Test when targetProp is null (DONE)
+    //  Test when sourceProp.Name is not equal to targetProp.Name (DONE)
+    //  Test when sourcePropType is not equal to targetPropType (DONE)        
+    //  Test when source object is null (DONe)
+    //  Test when target object is null (DONE)
+    //  TODO: Isolate predicate function for reuse. (DONE)

@@ -33,35 +33,31 @@
             return diffs;  
         }
 
-        private static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
+        public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
         {
-            if (sourceProp is null)
-            {
-                throw new ArgumentNullException(nameof(sourceProp));
-            }
+            sourceObject = sourceObject ?? throw new ArgumentNullException(nameof(sourceObject));
+            targetObject = targetObject ?? throw new ArgumentNullException(nameof(targetObject));
 
-            if (targetProp is null)
-            {
-                throw new ArgumentNullException(nameof(targetProp));
-            }
+            sourceProp = sourceProp ?? throw new ArgumentNullException(nameof(sourceProp));
+            targetProp = targetProp ?? throw new ArgumentNullException(nameof(targetProp));
 
             if (object.Equals(sourceProp.Name, targetProp.Name) == false)
             {
                 throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
             }
 
-            Type sourceType = sourceProp.PropertyType;
-            Type targetType = targetProp.PropertyType;
+            Type sourcePropType = sourceProp.PropertyType;
+            Type targetPropType = targetProp.PropertyType;
 
-            if (object.Equals(sourceType, targetType) == false)
+            if (object.Equals(sourcePropType, targetPropType) == false)
             {
                 throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
             }
 
-            object? sValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourceType);
-            object? tValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetType);
+            object? sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
+            object? targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
 
-            if (object.Equals(sValue, tValue) == true)
+            if (object.Equals(sourcePropValue, targetPropValue) == true)
             {
                 return true;
             }

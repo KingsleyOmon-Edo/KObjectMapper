@@ -1,12 +1,11 @@
-﻿using Extensions;
-using ExtensionsTests.Helpers;
-using FluentAssertions;
-using System.Data.Common;
-using System.Net.WebSockets;
-using System.Reflection;
-
-namespace ExtensionsTests
+﻿namespace ExtensionsTests
 {
+    using Extensions;
+    using ExtensionsTests.Helpers;
+    using FluentAssertions;
+    using System.Reflection;
+    using Xunit.Abstractions;
+
     public class ObjectExtensionsOfTTests
     {
         [Fact]
@@ -104,7 +103,7 @@ namespace ExtensionsTests
                 FirstName = "Jane",
                 LastName = "Ono",
                 PhoneNumber = "6655550009",
-            };      
+            };
 
             var result = customerOne.GetPropertyDiffs<Customer>(customerTwo);
             var expectedItemCount = 3;
@@ -138,7 +137,7 @@ namespace ExtensionsTests
                 operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
             });
         }
-        
+
 
         [Fact]
         public void Two_objects_with_no_corresponding_properties_different_in_value_should_return_no_items()
@@ -179,17 +178,146 @@ namespace ExtensionsTests
             //  Assert
             operationResult.Should().NotBeNull();
             operationResult.Should().BeOfType(typeof(List<PropertyInfo>));
-            actualItemCount.Should().Be(expectedItemCount);            
+            actualItemCount.Should().Be(expectedItemCount);
         }
+
+    
+        [Fact]
+        public void Passing_a_null_source_property_to_predicate_throws_ArgumentNullExceptioin()
+        {
+            var sourceProduct = ObjectMother.ArbitraryProduct;
+            PropertyInfo sourceDescription = null;
+                      
+            var targetProduct = new Product
+            {
+                Id = 10,
+                Description = "New-A nice bag for your stuff",
+                Price = 200.00M,
+                Quantity = 20
+            };
+            var targetDescription = targetProduct.GetType().GetProperties()[1];
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<Product>(sourceProduct, sourceDescription, targetProduct, targetDescription);
+            });
+        }
+
+        [Fact]
+        public void Passing_a_null_target_property_throws_ArgumentNullException()
+        {
+            var sourceCustomer = ObjectMother.ArbitraryCustomer;
+            var sourceLastNameProp = sourceCustomer.GetType().GetProperties()[2];
+            var targetCustomer = new Customer
+            {
+                Id = 200,
+                FirstName = "June",
+                LastName = "Bug",
+                PhoneNumber = "6660002284"
+            };
+
+            PropertyInfo? targetLastNameProp = null;
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<Customer>(sourceCustomer,
+                                                                                        sourceLastNameProp,
+                                                                                        targetCustomer,
+                                                                                        targetLastNameProp); ;
+            });
+
+
+        }
+
+        [Fact]
+        public void Passing_a_two_properties_with_different_names_should_throw_ArgumentException()
+        {
+            var sourceProduct = ObjectMother.ArbitraryProduct;
+            var sourceDescription = sourceProduct.GetType().GetProperties()[1];
+
+            var targetProduct = new Product
+            {
+                Id = 22,
+                Description = "A funky t-shirt",
+                Price = 25.00M,
+                Quantity = 2
+            };
+
+            var targetPrice = targetProduct.GetType().GetProperties()[2];
+
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<Product>(sourceProduct,
+                                                                                       sourceDescription,
+                                                                                       targetProduct,
+                                                                                       targetPrice);
+            });
+        }
+
+        
+        [Fact]
+        public void Passing_two_properties_of_dissimilar_types_should_throws_ArgumentException()
+        {
+            dynamic edward = new { FirstName = "Edward", LastName = "Simon", Salary = 100_000M };
+            var edwardsSalary = edward.GetType().GetProperties()[2];
+
+            dynamic sean = new { FirstName = "Sean", LastName = "Ratchet", Salary = "100000.00" };
+            var seansSalary = sean.GetType().GetProperties()[2];
+
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<dynamic>(sean, seansSalary, edward, edwardsSalary);
+
+            });
+
+        }
+
+        [Fact]
+        public void Passing_a_null_source_object_to_predicate_throws_ArgumentNullException()
+        {
+            Product sourceProduct = null;          
+            var sourceProductDesc = sourceProduct?.GetType().GetProperties()[1];
+
+            var targetProduct = ObjectMother.ArbitraryProduct;
+            var targetProductDesc = targetProduct.GetType().GetProperties()[1];
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<Product>(sourceProduct,
+                                                                                       sourceProductDesc,
+                                                                                       targetProduct,
+                                                                                       targetProductDesc);
+            });
+        }
+
+        [Fact]
+        public void Passing_a_null_target_object_to_predicate_throws_ArgumentNullException()
+        {
+            Product sourceProduct = ObjectMother.ArbitraryProduct;
+            var sourceProductDesc = sourceProduct?.GetType().GetProperties()[1];
+
+            Product targetProduct = null;    
+
+            var targetProductDesc = targetProduct?.GetType().GetProperties()[1];
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                var operationResult = ObjectExtensions.ArePropValuesDifferent<Product>(sourceProduct,
+                                                                                       sourceProductDesc,
+                                                                                       targetProduct,
+                                                                                       targetProductDesc);
+            });
+        }
+
     }
 
     //  TEST PLAN
     //  ---------- 
-    //  TODO: Test predicate function guard clauses.
-    //  TODO: Isolate predicate function for reuse.
-    //  TODO: Test predicate function guard clauses
     //  TODO: Test predicate function happy path
     //  ToDO: Test predicate function sad path.
-    //  TODO: Test predicate function edge cases    
-  
+    //  TODO: Test predicate function edge cases
+    //  TODO: Substitute the now functional GetPropertyDiffs method
+    //          for the implementations used in the mutation methods.
+    //  TODO: Rider
+
 }
