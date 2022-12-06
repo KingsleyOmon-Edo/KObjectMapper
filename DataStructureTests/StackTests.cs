@@ -82,9 +82,6 @@ namespace GenericsDemoTests
             DataStructures.Generics.Stack<Square> squaresOnly = shapes.FilterredStack<Square>();
             squaresOnly.Should().NotBeNull();
             squaresOnly.Count.Should().Be(2);
-        }
-
-        //  ToDo: Test boundary conditions - empty, negative, etc.
-        //  ToDo: Other edge cases.
+        }       
     }
 }

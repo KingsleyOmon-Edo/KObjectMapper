@@ -311,13 +311,4 @@
 
     }
 
-    //  TEST PLAN
-    //  ---------- 
-    //  TODO: Test predicate function happy path
-    //  ToDO: Test predicate function sad path.
-    //  TODO: Test predicate function edge cases
-    //  TODO: Substitute the now functional GetPropertyDiffs method
-    //          for the implementations used in the mutation methods.
-    //  TODO: Rider
-
 }
