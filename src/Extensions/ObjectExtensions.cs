@@ -87,9 +87,12 @@
         {
             ValidateParameters(source, target);
 
-            foreach (var sourceProp in source.GetType().GetProperties())
+            var diffs = source.GetPropertyDiffs<T>(target);
+            var sourceProps = source.GetType().GetProperties();
+
+            foreach (var sourceProp in sourceProps)
             {
-                foreach (var destProp in target.GetType().GetProperties())
+                foreach (var destProp in diffs)
                 {
                     if (sourceProp.Name == destProp.Name
                         && sourceProp.GetValue(source) != destProp.GetValue(target))
@@ -100,6 +103,7 @@
             }
 
             return target;
+
         }
         public static object SendUpdatesTo(this object source, object target)
         {

@@ -14,3 +14,20 @@
 //  ---------------
 //  ToDo: Test boundary conditions - empty, negative, etc.
 //  ToDo: Other edge cases.
+
+/*
+ * 
+ApplyDiffs
+    SendUpdatesTo
+    SendUpdates
+    AcceptUpdates
+PatchTo
+PatchFrom
+SendPatches<T>
+AcceptPatch
+SendChanges
+AcceptChanges
+Patch
+SendUpdatesTo
+ApplyDiffs
+*/

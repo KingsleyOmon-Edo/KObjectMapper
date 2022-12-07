@@ -4,7 +4,6 @@
     using ExtensionsTests.Helpers;
     using FluentAssertions;
     using System.Reflection;
-    using Xunit.Abstractions;
 
     public class ObjectExtensionsOfTTests
     {

@@ -7,7 +7,7 @@ namespace ExtensionsTests
     public class ObjectExtensionsTests
     {
         [Fact]
-        public void Should_correctly_apply_changes_from_source_to_destination_objects()
+        public void ApplyDiffs_should_correctly_apply_changes_from_source_to_destination_objects()
         {
             var sourceTodo = new Todo()
             {

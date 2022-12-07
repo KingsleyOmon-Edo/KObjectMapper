@@ -1,6 +1,4 @@
-﻿
-
-namespace ExtensionsTests
+﻿namespace ExtensionsTests
 {
     using Extensions;
     using FluentAssertions;

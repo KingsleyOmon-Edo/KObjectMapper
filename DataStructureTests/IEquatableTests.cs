@@ -16,6 +16,7 @@ namespace DataStructureTests
             //  Act
             var result = firstBaloon.Equals(secondBaloon);
 
+            //  Assert
             Assert.True(result);
             result.Should().Be(true);
         }
