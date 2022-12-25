@@ -1,13 +1,8 @@
-﻿
-
-namespace ObjectMapperTests
+﻿namespace ObjectMapperTests
 {
     using FluentAssertions;
-    using FluentAssertions.Formatting;
-    using Microsoft.VisualStudio.TestPlatform.Common.DataCollection;
     using ObjectMapper;
     using ObjectMapperTests.Helpers;
-    using System.Net.WebSockets;
     using Xunit;
     public class MapperTests
     {
@@ -139,5 +134,24 @@ namespace ObjectMapperTests
 
             AssertSimilarProducts(sourceProduct, targetProduct);
         }
+
+        [Fact]
+        public void Mapping_with_MapFromOfT_via_type_inference_should_succeed()
+        {
+            var sut = new Mapper();
+            var sourceCustomer = ObjectMother.SampleCustomer;
+            var targetCustomer = new Customer
+            {
+                Id = 2_000,
+                FirstName = "Epicurus",
+                LastName = "Osemede",
+                PhoneNumber = "4027771115"
+            };
+
+            sut.MapFrom(sourceCustomer, targetCustomer);
+                      
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
+        }
+    
     }
 }
