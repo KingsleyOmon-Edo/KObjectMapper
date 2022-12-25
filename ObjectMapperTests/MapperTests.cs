@@ -3,9 +3,11 @@
 namespace ObjectMapperTests
 {
     using FluentAssertions;
+    using FluentAssertions.Formatting;
     using Microsoft.VisualStudio.TestPlatform.Common.DataCollection;
     using ObjectMapper;
     using ObjectMapperTests.Helpers;
+    using System.Net.WebSockets;
     using Xunit;
     public class MapperTests
     {
@@ -45,10 +47,10 @@ namespace ObjectMapperTests
             var sourceProduct = ObjectMother.SampleProduct;
             var targetProduct = new Product
             {
-                Id = 0,
-                Description = "A nice bag for your stuff",
-                Price = 100.00M,
-                Quantity = 10
+                Id = 11,
+                Description = "Good lawn mower",
+                Price = 200.00M,
+                Quantity = 2
             };
 
 
@@ -118,6 +120,24 @@ namespace ObjectMapperTests
             targetCustomer.FirstName.Should().Be(sourceCustomer.FirstName);
             targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
             targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);
+        }
+
+        [Fact]
+        public void Mapping_with_MapTo_via_type_inference_should_succeed()
+        {
+            var sut = new Mapper();
+            var sourceProduct = ObjectMother.SampleProduct;
+            var targetProduct = new Product
+            {
+                Id = 122,
+                Description = "Tenis racket",
+                Price = 25.00M,
+                Quantity = 5
+            };
+
+            sut.MapTo(sourceProduct, targetProduct);
+
+            AssertSimilarProducts(sourceProduct, targetProduct);
         }
     }
 }
