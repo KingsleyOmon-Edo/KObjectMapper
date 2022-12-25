@@ -9,7 +9,7 @@
 
 //  Altenative signatures
 //  ----------------------
-//  MapTo<T>(T target)
+//  MapTo<T>(T target)	--- DONE
 //  MapTo(object source, object target)
 //  MapFrom<T>(T source)
 //  MapFrom(object source)
