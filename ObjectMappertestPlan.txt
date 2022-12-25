@@ -9,7 +9,7 @@
 //  ----------------------
 //  MapTo<T>(T target)	--- DONE
 //  MapFrom<T>(T source) --- DONE
-//  Map(object source, object Target)
+//  Map(object source, object Target) --- DONE
 //  MapTo(object source, object target)
 //  MapFrom(object source)
 

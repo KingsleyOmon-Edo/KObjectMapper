@@ -35,14 +35,7 @@ namespace ObjectMapperTests
             sut.Map<Customer>(firstCustomer, secondCustomer);
 
             //  Assert
-            secondCustomer.Should().NotBeNull();
-            secondCustomer.Id.Should().Be(firstCustomer.Id);
-            secondCustomer.FirstName.Should().Be(firstCustomer.FirstName);
-            secondCustomer.LastName.Should().Be(firstCustomer.LastName);
-            secondCustomer.PhoneNumber.Should().Be(firstCustomer.PhoneNumber);
-
-            secondCustomer.Should().BeEquivalentTo(firstCustomer);
-            secondCustomer.Should().BeOfType<Customer>();
+            AssertSimilarCustomers(firstCustomer, secondCustomer);
         }
 
         [Fact]
@@ -58,9 +51,13 @@ namespace ObjectMapperTests
                 Quantity = 10
             };
 
-            
-            sut.MapTo<Product>(sourceProduct, targetProduct);
 
+            sut.MapTo<Product>(sourceProduct, targetProduct);
+            AssertSimilarProducts(sourceProduct, targetProduct);
+        }
+
+        private static void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
+        {
             targetProduct.Should().NotBeNull();
             targetProduct.Should().BeOfType<Product>();
             targetProduct.Should().BeAssignableTo<Product>();
@@ -89,13 +86,7 @@ namespace ObjectMapperTests
             sut.MapFrom<Customer>(sourceCustomer, targetCustomer);
 
             //  Assert
-            targetCustomer.Should().NotBeNull();
-            targetCustomer.Should().BeOfType<Customer>();
-
-            targetCustomer.Id.Should().Be(sourceCustomer.Id);
-            targetCustomer.FirstName.Should().Be(sourceCustomer.FirstName);
-            targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
-            targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
         }
 
         [Fact]
@@ -115,15 +106,19 @@ namespace ObjectMapperTests
             sut.Map(sourceCustomer, targetCustomer);
 
 
-            //  Assert
+            //  Assert            
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
+        }
+
+        private void AssertSimilarCustomers(Customer sourceCustomer, Customer targetCustomer)
+        {
             targetCustomer.Should().NotBeNull();
             targetCustomer.Should().BeOfType<Customer>();
-
             targetCustomer.Should().BeEquivalentTo<Customer>(sourceCustomer);
             targetCustomer.Id.Should().Be(sourceCustomer.Id);
             targetCustomer.FirstName.Should().Be(sourceCustomer.FirstName);
             targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
-            targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);        }
-    
+            targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);
+        }
     }
 }
