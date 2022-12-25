@@ -3,16 +3,16 @@
 //	Test strongly types mapping
 //	Test loosely typed mapping
 //	Data integrity
-//	- Test guard clauses
-
-
+//	- Test guard clause
 
 //  Altenative signatures
 //  ----------------------
 //  MapTo<T>(T target)	--- DONE
+//  MapFrom<T>(T source) --- DONE
+//  Map(object source, object Target)
 //  MapTo(object source, object target)
-//  MapFrom<T>(T source)
 //  MapFrom(object source)
 
-//  BeAssignableTo
-//  BeOfType
+// //  Shold return the mapped instance instead
+//  Review the semantics of the MapTo<T>() and MapFrom<T>() methods
+//  Extensions

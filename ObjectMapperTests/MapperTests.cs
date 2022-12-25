@@ -97,5 +97,33 @@ namespace ObjectMapperTests
             targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
             targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);
         }
+
+        [Fact]
+        public void Mapping_via_Map_with_type_inference_should_succeed()
+        {
+            var sut = new Mapper();
+            var sourceCustomer = ObjectMother.SampleCustomer;
+            var targetCustomer = new Customer
+            {
+                Id = 55,
+                FirstName = "Remko",
+                LastName = "Zingi",
+                PhoneNumber = "7075554434"
+            };
+
+            //  Act
+            sut.Map(sourceCustomer, targetCustomer);
+
+
+            //  Assert
+            targetCustomer.Should().NotBeNull();
+            targetCustomer.Should().BeOfType<Customer>();
+
+            targetCustomer.Should().BeEquivalentTo<Customer>(sourceCustomer);
+            targetCustomer.Id.Should().Be(sourceCustomer.Id);
+            targetCustomer.FirstName.Should().Be(sourceCustomer.FirstName);
+            targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
+            targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);        }
+    
     }
 }
