@@ -90,14 +90,14 @@
             var diffs = source.GetPropertyDiffs<T>(target);
             var sourceProps = source.GetType().GetProperties();
 
-            foreach (var sourceProp in sourceProps)
+            foreach (var sourceProp in diffs)
             {
-                foreach (var destProp in diffs)
+                foreach (var targetProp in target.GetType().GetProperties())
                 {
-                    if (sourceProp.Name == destProp.Name
-                        && sourceProp.GetValue(source) != destProp.GetValue(target))
+                    if (sourceProp.Name == targetProp.Name
+                        && sourceProp.GetValue(source) != targetProp.GetValue(target))
                     {
-                        destProp.SetValue(target, sourceProp.GetValue(source));
+                        targetProp.SetValue(target, sourceProp.GetValue(source));
                     }
                 }
             }

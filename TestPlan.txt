@@ -8,8 +8,6 @@
     //  Rider
 
 
-
-
     COMPLETED TASKS
     ---------------
     //  TODO: Test predicate function guard clauses.

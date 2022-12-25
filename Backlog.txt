@@ -1,0 +1,6 @@
+1) Develop a library to manage Semantic versions
+	- Creation logic
+	- Validation logic
+	- Parsing
+	- Guards
+2)	Extract ObjectMother Helpers into reusable library
