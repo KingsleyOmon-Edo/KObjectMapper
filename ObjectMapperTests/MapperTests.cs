@@ -54,19 +54,7 @@ namespace ObjectMapperTests
 
             sut.MapTo<Product>(sourceProduct, targetProduct);
             AssertSimilarProducts(sourceProduct, targetProduct);
-        }
-
-        private static void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
-        {
-            targetProduct.Should().NotBeNull();
-            targetProduct.Should().BeOfType<Product>();
-            targetProduct.Should().BeAssignableTo<Product>();
-
-            targetProduct.Id.Should().Be(sourceProduct.Id);
-            targetProduct.Description.Should().Be(sourceProduct.Description);
-            targetProduct.Quantity.Should().Be(sourceProduct.Quantity);
-            targetProduct.Price.Should().Be(sourceProduct.Price);
-        }
+        }        
 
         [Fact]
         public void Mapping_with_the_MapFromOfT_overload_should_sceed()
@@ -110,6 +98,17 @@ namespace ObjectMapperTests
             AssertSimilarCustomers(sourceCustomer, targetCustomer);
         }
 
+        private void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
+        {
+            targetProduct.Should().NotBeNull();
+            targetProduct.Should().BeOfType<Product>();
+            targetProduct.Should().BeAssignableTo<Product>();
+
+            targetProduct.Id.Should().Be(sourceProduct.Id);
+            targetProduct.Description.Should().Be(sourceProduct.Description);
+            targetProduct.Quantity.Should().Be(sourceProduct.Quantity);
+            targetProduct.Price.Should().Be(sourceProduct.Price);
+        }
         private void AssertSimilarCustomers(Customer sourceCustomer, Customer targetCustomer)
         {
             targetCustomer.Should().NotBeNull();
