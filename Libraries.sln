@@ -18,8 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D6FF692C-96F5-4CE5-9F4E-9EF5AA35DB06}"
 	ProjectSection(SolutionItems) = preProject
 		Backlog.txt = Backlog.txt
-		ObjectMappertestPlan.txt = ObjectMappertestPlan.txt
 		TestPlan.txt = TestPlan.txt
+		ObjectMapperBacklog.txt = ObjectMapperBacklog.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMapper", "ObjectMapper\ObjectMapper.csproj", "{E82DAB53-F350-4FF5-9C92-A7C14E4D4444}"
