@@ -152,6 +152,22 @@
                       
             AssertSimilarCustomers(sourceCustomer, targetCustomer);
         }
-    
+
+        [Fact]
+        public void Invoking_MapToOfT_on_an_object_without_mapper_instance_succeeds()
+        {
+            var sourceProduct = ObjectMother.SampleProduct;
+            var targetProduct = new Product
+            {
+                Id = 38,
+                Description = "Nice book",
+                Price = 30.00M,
+                Quantity = 1
+            };
+
+            sourceProduct.MapTo<Product>(targetProduct);
+
+            AssertSimilarProducts(sourceProduct, targetProduct);
+        }
     }
 }
