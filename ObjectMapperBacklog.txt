@@ -1,15 +1,28 @@
 PENDING FEATURES
 -------------------
-1 - Map between two objects of dissimilar types.
+
 2 - Data integrity Tests
-	a) Sad paths
+
+	Identify the new nethods and for each:
+	a) Happy paths 
+	b) Sad paths
 	b) Edge cases
+	c) Where applicable test the types of supplied arguments
+	
+3 - Test new method
+	Remember to cover the newly extracted methods with enough tests.
+	- WriteProperties
+	- ApplyDiffs
+	- Any other dangling method with little or zero code coverage
+
 3 - Test guard clauses
-4 - Surface Map methods to any arbitray object via extension methods
-5 - MapTo(), MapFrom()
 6 - Keep Extensions local
 7 - Should return the mapped instance instead
+	var target = mapper.Map<T>(source);
+	var target = mapper.MapFrom<T>(source)
+	var target = mapper.MapFrom(source);
 8 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
+9 - Mapping collections
 
 
 
@@ -25,3 +38,7 @@ COMPLETED FEATURES
 	4 - MapTo(object source, object target) --- DONE
 	5 - MapFrom(object source) --- DONE
 	6 - Surface MapTo<T> and MapFrom<T> methods to any arbitray object via extension method for the generic variants --- DONE
+
+4 - Map between two objects of dissimilar types.
+5 - MapTo(), MapFrom()
+6 - Surface Map methods to any arbitray object via extension methods

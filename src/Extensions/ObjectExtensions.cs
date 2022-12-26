@@ -16,6 +16,13 @@
             return diffs;   // Shorter
         }
 
+        public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
+        {
+            NullChecks(source, target);
+            List<PropertyInfo> diffs = ComputeDiffs(source, target);
+
+            return diffs;
+        }
         private static List<PropertyInfo> ComputeDiffs<T>(T source, T target)
         {
             var sourceProps = source.GetType().GetProperties().ToList();
@@ -98,20 +105,27 @@
 
         private static void ValidateParameters<T>(T source, T target)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            NullChecks<T>(source, target);
 
-            if (target is null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
+            TypeChecks(source, target);
+        }
 
+        private static void TypeChecks<T>(T source, T target)
+        {
             if (source.GetType() != target.GetType())
             {
                 throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
             }
+        }
+
+        public static object ApplyDiffs(this object source, object target)
+        {
+            NullChecks(source, target);
+            var diffs = source.GetPropertyDiffs(target);
+            var sourceProps = source.GetType().GetProperties();
+            WriteToProperties(source, target, diffs);
+
+            return target;
         }
 
         public static T ApplyDiffs<T>(this T source, T target)
@@ -120,7 +134,14 @@
 
             var diffs = source.GetPropertyDiffs<T>(target);
             var sourceProps = source.GetType().GetProperties();
+            WriteToProperties(source, target, diffs);
 
+            return target;
+
+        }
+
+        private static void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
+        {
             foreach (var sourceProp in diffs)
             {
                 foreach (var targetProp in target.GetType().GetProperties())
@@ -132,14 +153,11 @@
                     }
                 }
             }
-
-            return target;
-
         }
+
         public static object SendUpdatesTo(this object source, object target)
         {
-            return source.ApplyDiffs(target);
-
+            return source.ApplyDiffs<object>(target);
         }
 
         public static T Patch<T>(this T source, T target)
