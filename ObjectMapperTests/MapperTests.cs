@@ -250,8 +250,8 @@
 
             targetCustomer.MapFrom(sourceCustomer);
 
-            AssertSimilarCustomers(sourceCustomer, targetCustomer);                       
-            
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
+
         }
     }
 }

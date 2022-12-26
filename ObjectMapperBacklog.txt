@@ -1,14 +1,15 @@
 PENDING FEATURES
 -------------------
 1 - Map between two objects of dissimilar types.
-2 - Data integrity Tests, sad paths
+2 - Data integrity Tests
+	a) Sad paths
+	b) Edge cases
 3 - Test guard clauses
 4 - Surface Map methods to any arbitray object via extension methods
 5 - MapTo(), MapFrom()
 6 - Keep Extensions local
 7 - Should return the mapped instance instead
 8 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
-
 
 
 
