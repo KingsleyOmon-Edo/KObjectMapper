@@ -52,7 +52,7 @@
 
             sut.MapTo<Product>(sourceProduct, targetProduct);
             AssertSimilarProducts(sourceProduct, targetProduct);
-        }        
+        }
 
         [Fact]
         public void Mapping_with_the_MapFromOfT_overload_should_sceed()
@@ -150,7 +150,7 @@
             };
 
             sut.MapFrom(sourceCustomer, targetCustomer);
-                      
+
             AssertSimilarCustomers(sourceCustomer, targetCustomer);
         }
 
@@ -196,14 +196,14 @@
 
         [Fact]
         public void Calling_MapFromOfT_on_a_satisfactory_object_without_mapper_should_succeed()
-        { 
+        {
             var sourceCustomer = ObjectMother.SampleCustomer;
             var targetCustomer = new Customer
             {
-                Id  = 500,
+                Id = 500,
                 FirstName = "Sean",
                 LastName = "Daniels",
-                PhoneNumber= "1234567890",
+                PhoneNumber = "1234567890",
             };
 
             targetCustomer.MapFrom<Customer>(sourceCustomer);
@@ -239,7 +239,7 @@
 
             sourceProduct.MapTo(targetProduct);
 
-            AssertSimilarProducts(sourceProduct, targetProduct);            
+            AssertSimilarProducts(sourceProduct, targetProduct);
         }
 
         [Fact]
@@ -251,7 +251,94 @@
             targetCustomer.MapFrom(sourceCustomer);
 
             AssertSimilarCustomers(sourceCustomer, targetCustomer);
+        }
 
+        [Fact]
+        public void Mapper_should_successfully_map_any_compatible_properties_between_two_objects_of_different_types()
+        {
+            //  Arrange
+            var sut = new Mapper();
+            var customerJane = ObjectMother.SampleCustomer;
+            var employeeSam = new Employee
+            {
+                EmployeeId = 10,
+                FirstName = "Sam",
+                LastName = "Williams",
+                Salary = 100_000.00M,
+                HireDate = new DateTimeOffset(2021, 3, 15, 6, 30, 25, TimeSpan.Zero)
+            };
+
+            // Act
+            sut.Map(customerJane, employeeSam);
+
+            //  Assert
+            employeeSam.Should().NotBeNull();
+            employeeSam.EmployeeId.Should().Be(10);
+            employeeSam.EmployeeId.Should().NotBe(customerJane.Id);
+            employeeSam.FirstName.Should().Be(customerJane.FirstName);
+            employeeSam.LastName.Should().Be(customerJane.LastName);
+            employeeSam.Salary.Should().Be(100_000.00M);
+        }      
+
+        [Fact]
+        public void Nongeneric_MapTo_should_corrctly_map_compatible_props_of_two_objects_even_of_different_types()
+        {
+            var sut = new Mapper();
+            var testCustomer = ObjectMother.SampleCustomer;
+            var testEmployee = ObjectMother.SampleEmployee;
+
+            sut.MapTo(testEmployee, testCustomer);
+
+            testCustomer.Should().NotBeNull();
+            testCustomer.FirstName.Should().Be(testEmployee.FirstName);
+            testCustomer.LastName.Should().Be(testEmployee.LastName);
+            testCustomer.Id.Should().NotBe(testEmployee.EmployeeId);
+        }
+
+        [Fact]
+        public void Nongeneric_MapFrom_should_correctly_map_compatible_props_of_two_dissimilar_objects()
+        {
+            var sut = new Mapper();
+            var sampleEmployee = ObjectMother.SampleEmployee;
+            var sampleCustomer = ObjectMother.SampleCustomer;
+
+            sut.MapFrom(sampleCustomer, sampleEmployee);
+
+            sampleEmployee.Should().NotBeNull();
+            sampleEmployee.EmployeeId.Should().NotBe(sampleCustomer.Id);
+            sampleEmployee.FirstName.Should().Be(sampleCustomer.FirstName);
+            sampleEmployee.LastName.Should().Be(sampleCustomer.LastName);
+            sampleEmployee.Salary.Should().Be(100_000.00M);
+        }
+
+        [Fact]
+        public void Nongeneric_MapTo_should_be_available_as_an_extension_on_any_object_with_no_need_for_mapper_instance()
+        {
+            var sampleCustomer = ObjectMother.SampleCustomer;
+            var sampleEmployee = ObjectMother.SampleEmployee;
+
+            sampleCustomer.MapTo(sampleEmployee);
+
+            sampleEmployee.Should().NotBeNull();
+            sampleEmployee.EmployeeId.Should().NotBe(sampleCustomer.Id);
+            sampleEmployee.FirstName.Should().Be(sampleCustomer.FirstName);
+            sampleEmployee.LastName.Should().Be(sampleCustomer.LastName);
+            sampleEmployee.Salary.Should().Be(100_000.00M);
+
+        }
+
+        [Fact]
+        public void Nongeneric_MapFrom_should_be_available_as_extension_method_on_any_object_without_a_need_for_a_mapper_instance()
+        {
+            var testCustomer = ObjectMother.SampleCustomer;
+            var testEmployee = ObjectMother.SampleEmployee;
+
+            testCustomer.MapFrom(testEmployee);
+
+            testCustomer.Should().NotBeNull();
+            testCustomer.Id.Should().NotBe(testEmployee.EmployeeId);
+            testCustomer.FirstName.Should().Be(testEmployee.FirstName);
+            testCustomer.LastName.Should().Be(testEmployee.LastName);           
         }
     }
 }
