@@ -3,6 +3,7 @@
     using FluentAssertions;
     using ObjectMapper;
     using ObjectMapperTests.Helpers;
+    using System.Net.WebSockets;
     using Xunit;
     public class MapperTests
     {
@@ -154,7 +155,7 @@
         }
 
         [Fact]
-        public void Invoking_MapToOfT_on_an_object_without_mapper_instance_succeeds()
+        public void Invoking_MapToOfT_on_an_object_without_a_mapper_instance_succeeds()
         {
             var sourceProduct = ObjectMother.SampleProduct;
             var targetProduct = new Product
@@ -168,6 +169,89 @@
             sourceProduct.MapTo<Product>(targetProduct);
 
             AssertSimilarProducts(sourceProduct, targetProduct);
+        }
+
+        [Fact]
+        public void MapToOfT_should_work_when_target_is_a_default_instance()
+        {
+            var sourceCustomer = ObjectMother.SampleCustomer;
+            var targetCustomer = new Customer();
+
+            sourceCustomer.MapTo<Customer>(targetCustomer);
+
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
+        }
+
+        [Fact]
+        public void Invoking_MapOfT_should_work_wnen_source_obhject_is_a_new_default_instance()
+        {
+            var sourceProduct = new Product();
+            var targetProduct = ObjectMother.SampleProduct;
+
+            sourceProduct.MapTo<Product>(targetProduct);
+
+            AssertSimilarProducts(sourceProduct, targetProduct);
+            AssertSimilarProducts(targetProduct, sourceProduct);
+        }
+
+        [Fact]
+        public void Calling_MapFromOfT_on_a_satisfactory_object_without_mapper_should_succeed()
+        { 
+            var sourceCustomer = ObjectMother.SampleCustomer;
+            var targetCustomer = new Customer
+            {
+                Id  = 500,
+                FirstName = "Sean",
+                LastName = "Daniels",
+                PhoneNumber= "1234567890",
+            };
+
+            targetCustomer.MapFrom<Customer>(sourceCustomer);
+
+            AssertSimilarCustomers(targetCustomer, sourceCustomer);
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);
+
+        }
+
+        [Fact]
+        public void Invoking_MapFromOfT_on_a_default_object_instance_should_work()
+        {
+            var sourceProduct = ObjectMother.SampleProduct;
+            var targetProduct = new Product();
+
+            targetProduct.MapFrom<Product>(sourceProduct);
+
+            AssertSimilarProducts(sourceProduct, targetProduct);
+            AssertSimilarProducts(targetProduct, sourceProduct);
+        }
+
+        [Fact]
+        public void Type_inference_should_work_for_MapToOfT()
+        {
+            var sourceProduct = ObjectMother.SampleProduct;
+            var targetProduct = new Product
+            {
+                Id = 21,
+                Description = "Headphones for everyone",
+                Price = 85.00M,
+                Quantity = 1
+            };
+
+            sourceProduct.MapTo(targetProduct);
+
+            AssertSimilarProducts(sourceProduct, targetProduct);            
+        }
+
+        [Fact]
+        public void Type_inference_should_work_for_MapFromOfT()
+        {
+            var sourceCustomer = ObjectMother.SampleCustomer;
+            var targetCustomer = new Customer();
+
+            targetCustomer.MapFrom(sourceCustomer);
+
+            AssertSimilarCustomers(sourceCustomer, targetCustomer);                       
+            
         }
     }
 }
