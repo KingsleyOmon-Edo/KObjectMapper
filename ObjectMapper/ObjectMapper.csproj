@@ -1,13 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>Object Mapper</Title>
+		<PackageId>ObjectMapper</PackageId>
+		<Version>0.0.1-0.0.1.$([System.Guid]::NewGuid().ToString())</Version>
+		<Author>Kingsley Omnon-Edo</Author>
+		<Company>Test Company</Company>
+		<PackageDescription>A simple C# object-to-object mapper</PackageDescription>
+		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/Libraries.git</RepositoryUrl>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\src\Extensions\Extensions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\src\Extensions\Extensions.csproj" />
+	</ItemGroup>
 
 </Project>
