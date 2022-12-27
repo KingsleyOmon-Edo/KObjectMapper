@@ -1,15 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Title>Libraries</Title>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>A library of useful C# extension methods</Title>
+		<PackageId>ExtensionsLibraryMix</PackageId>
+		<Version>0.0.1-0.0.1.$([System.Guid]::NewGuid().ToString())</Version>
+		<Author>Kingsley Omnon-Edo</Author>
+		<Company>Test Company</Company>
+		<PackageDescription>A collection of useful extensioin methods</PackageDescription>
+		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/Libraries.git</RepositoryUrl>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+	</ItemGroup>
 
 </Project>
