@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DataStructures\DataStructures.csproj" />
     <ProjectReference Include="..\..\src\Extensions\Extensions.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
 ﻿namespace ObjectMapper
 {
-    using Extensions;
     using System;
 
     public class Mapper

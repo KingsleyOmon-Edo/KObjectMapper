@@ -1,8 +1,9 @@
 using Extensions.Raw;
-using ExtensionsTests.Helpers;
+using Xunit;
+using DataStructureTests.Helpers;
 using FluentAssertions;
 
-namespace ExtensionsTests
+namespace DataStructureTests
 {
     public class BehaviorBagTests
     {
