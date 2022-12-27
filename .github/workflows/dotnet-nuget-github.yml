@@ -34,19 +34,22 @@ jobs:
       - name: Restoring Nuget packages ...
         run: dotnet restore
 
-      - name: Building ...
-        run: dotnet build -c Release --no-restore
+      # - name: Building ...
+      #   run: dotnet build -c Release --no-restore
+
+      - name: Building Libraries solution
+        run: dotnet build ./Libraries.sln -c Release
 
       - name: Testing ...
         run: dotnet test --no-restore --verbosity normal
 
-      - name: Creating Extensions Nuget package ...
-        run: dotnet pack -c Release ~/src/Extensions/Extensions.csproj
+      # - name: Creating Extensions Nuget package ...
+      #   run: dotnet pack -c Release src/Extensions/Extensions.csproj
 
-      - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
-        run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+      # - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
+      #   env:
+      #     NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+      #   run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # - name: Creating Extensions Nuget package ...
       #   run: dotnet pack -c Release -o ../../ src/Extensions/Extensions.csproj
