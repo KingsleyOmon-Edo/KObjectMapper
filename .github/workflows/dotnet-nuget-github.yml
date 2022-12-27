@@ -41,17 +41,17 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
       - name: Creating Nuget package for Extensions project ...
-        run: dotnet pack -c Release **/Extensions.csproj
+        run: dotnet pack -c Release src/Extensions/Extensions.csproj
 
       - name: Publishing Exensions package to GitHub Packages Registry (GPR) ...
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
         run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
-      - name: Creating Nuget package for Object Mapper project ...
-        run: dotnet pack -c Release **/ObjectMapper.csproj
+      # - name: Creating Nuget package for Object Mapper project ...
+      #   run: dotnet pack -c Release **/ObjectMapper.csproj
 
-      - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
-        run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+      # - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
+      #   env:
+      #     NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+      #   run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
