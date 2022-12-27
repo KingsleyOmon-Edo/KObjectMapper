@@ -46,10 +46,10 @@ jobs:
       - name: Creating Extensions Nuget package ...
         run: dotnet pack -c Release src/Extensions/Extensions.csproj
 
-      # - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
-      #   env:
-      #     NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
-      #   run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+      - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+        run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # - name: Creating Extensions Nuget package ...
       #   run: dotnet pack -c Release -o ../../ src/Extensions/Extensions.csproj
