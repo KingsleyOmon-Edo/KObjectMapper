@@ -1,4 +1,4 @@
-name: CI + packaging for GitHub Package Registry
+name: CI + Nuget Packages for GitHub Package Registry
 
 on:
   push:
