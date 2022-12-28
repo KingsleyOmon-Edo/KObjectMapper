@@ -13,7 +13,7 @@ on:
 
 jobs:
   deploy:
-    name: CI, Nuget packaging for GPR ...
+    name: CI and Nuget packages for GPR ...
     runs-on: ubuntu-latest
     permissions:
       packages: write
