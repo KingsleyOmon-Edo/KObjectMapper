@@ -37,13 +37,13 @@ jobs:
       # - name: Building ...
       #   run: dotnet build -c Release --no-restore
 
-      - name: Building Libraries solution
+      - name: Building the Libraries.sln solution ,,,
         run: dotnet build ./Libraries.sln -c Release
 
-      - name: Testing ...
+      - name: Testing the li ...
         run: dotnet test --no-restore --verbosity normal
 
-      - name: Creating Extensions Nuget package ...
+      - name: Creating the Extensions Nuget package ...
         run: dotnet pack -c Release src/Extensions/Extensions.csproj
 
       - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
@@ -59,10 +59,10 @@ jobs:
       #     NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
       #   run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
-      # - name: Creating Object Mapper Nuget package ...
-      #   run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
+      - name: Creating Object Mapper Nuget package ...
+        run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
 
-      # - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
-      #   env:
-      #     NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
-      #   run: dotnet nuget push */bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+      - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
