@@ -10,7 +10,7 @@
         [Fact]
         public void Crate_a_valid_mapper_class()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
 
             sut.Should().NotBeNull();
         }
@@ -19,7 +19,7 @@
         public void Mappping_between_two_objects_of_the_same_type_succeeds()
         {
             //  Arrange
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var firstCustomer = ObjectMother.SampleCustomer;
             var secondCustomer = new Customer
             {
@@ -39,7 +39,7 @@
         [Fact]
         public void Mapping_with_the_MapToOfT_overload_should_succeed()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sourceProduct = ObjectMother.SampleProduct;
             var targetProduct = new Product
             {
@@ -58,7 +58,7 @@
         public void Mapping_with_the_MapFromOfT_overload_should_sceed()
         {
             //  Arrange
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sourceCustomer = ObjectMother.SampleCustomer;
             var targetCustomer = new Customer
             {
@@ -78,7 +78,7 @@
         [Fact]
         public void Mapping_via_Map_with_type_inference_should_succeed()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sourceCustomer = ObjectMother.SampleCustomer;
             var targetCustomer = new Customer
             {
@@ -121,7 +121,7 @@
         [Fact]
         public void Mapping_with_MapTo_via_type_inference_should_succeed()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sourceProduct = ObjectMother.SampleProduct;
             var targetProduct = new Product
             {
@@ -139,7 +139,7 @@
         [Fact]
         public void Mapping_with_MapFromOfT_via_type_inference_should_succeed()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sourceCustomer = ObjectMother.SampleCustomer;
             var targetCustomer = new Customer
             {
@@ -257,7 +257,7 @@
         public void Mapper_should_successfully_map_any_compatible_properties_between_two_objects_of_different_types()
         {
             //  Arrange
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var customerJane = ObjectMother.SampleCustomer;
             var employeeSam = new Employee
             {
@@ -283,7 +283,7 @@
         [Fact]
         public void Nongeneric_MapTo_should_corrctly_map_compatible_props_of_two_objects_even_of_different_types()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var testCustomer = ObjectMother.SampleCustomer;
             var testEmployee = ObjectMother.SampleEmployee;
 
@@ -298,7 +298,7 @@
         [Fact]
         public void Nongeneric_MapFrom_should_correctly_map_compatible_props_of_two_dissimilar_objects()
         {
-            var sut = new Mapper();
+            var sut = Mapper.Create();
             var sampleEmployee = ObjectMother.SampleEmployee;
             var sampleCustomer = ObjectMother.SampleCustomer;
 

@@ -8,25 +8,25 @@ namespace ObjectMapper
     {
         public static void MapFrom<T>(this T source, T target)
         {
-            var mapper = new Mapper();
+            var mapper = Mapper.Create();
             mapper.Map(target, source);
         }
 
         public static void MapFrom(this object source, object target)
         {
-            var mapper = new Mapper();
+            var mapper = Mapper.Create();
             mapper.MapFrom(source, target);
         }
 
         public static void MapTo<T>(this T source, T target)
         {
-            var mapper = new Mapper();
+            var mapper = Mapper.Create();
             mapper.Map(source, target);
         }
 
         public static void MapTo(this object source, object target)
         {
-            var mapper = new Mapper();
+            var mapper = Mapper.Create();
             mapper.Map(source, target);
         }
     }

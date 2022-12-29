@@ -4,8 +4,13 @@
 
     public class Mapper
     {
-        public Mapper()
+        private Mapper()
         {
+        }
+
+        public static Mapper Create()
+        {
+            return new Mapper();
         }
 
         public void Map<T>(T source, T target)
