@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: CI and Nuget packages for GPR ...
+    name: CI - Restore, build, test ...
     runs-on: ubuntu-latest
     permissions:
       packages: write
