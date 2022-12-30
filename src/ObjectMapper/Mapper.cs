@@ -1,4 +1,6 @@
-﻿namespace ObjectMapper
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace ObjectMapper
 {
     using System;
 
@@ -33,8 +35,10 @@
             target.ApplyDiffs(source);
         }
 
-        public void MapTo<T>(T source, T target)
+        public void MapTo<T>([DisallowNull] T source, T target)
         {
+            source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target ?? throw new ArgumentNullException(nameof(target));
             source.ApplyDiffs(target);
         }
 
