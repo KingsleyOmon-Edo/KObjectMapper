@@ -75,27 +75,27 @@
         [Fact]
         public void Passing_objects_with_identical_property_values_should_cause_no_side_effects()
         {
-            var result = ObjectMother.ArbitraryCustomer.ApplyDiffs(ObjectMother.ArbitraryCustomer);
+            var result = ObjectMother.SampleCustomer.ApplyDiffs(ObjectMother.SampleCustomer);
 
             Assert.IsAssignableFrom<Customer>(result);
             Assert.NotNull(result);
-            Assert.Equivalent(ObjectMother.ArbitraryCustomer, result);
+            Assert.Equivalent(ObjectMother.SampleCustomer, result);
             Assert.IsType<Customer>(result);
 
             //  
             result.Should().NotBeNull();
             result.Should().BeOfType<Customer>();
             result.Should().BeAssignableTo<Customer>();
-            result.Id.Should().Be(ObjectMother.ArbitraryCustomer.Id);
-            result.FirstName.Should().Be(ObjectMother.ArbitraryCustomer.FirstName);
-            result.LastName.Should().Be(ObjectMother.ArbitraryCustomer.LastName);
-            result.PhoneNumber.Should().Be(ObjectMother.ArbitraryCustomer.PhoneNumber);
+            result.Id.Should().Be(ObjectMother.SampleCustomer.Id);
+            result.FirstName.Should().Be(ObjectMother.SampleCustomer.FirstName);
+            result.LastName.Should().Be(ObjectMother.SampleCustomer.LastName);
+            result.PhoneNumber.Should().Be(ObjectMother.SampleCustomer.PhoneNumber);
         }
 
         [Fact]
         public void Should_correctly_identify_objects_with_different_property_values()
         {
-            var customerOne = ObjectMother.ArbitraryCustomer;
+            var customerOne = ObjectMother.SampleCustomer;
             var customerTwo = new Customer
             {
                 Id = 1_000,
@@ -115,7 +115,7 @@
         public void Calling_GetPropertyDiff_on_a_null_source_ArgumentNullException()
         {
             Product sourceProuduct = null;
-            Product targetProduct = ObjectMother.ArbitraryProduct;
+            Product targetProduct = ObjectMother.SampleProduct;
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -127,7 +127,7 @@
         [Fact]
         public void Calling_GetPropertyDiff_with_a_null_target_object_throws_ArgumentNullException()
         {
-            Product sourceProduct = ObjectMother.ArbitraryProduct;
+            Product sourceProduct = ObjectMother.SampleProduct;
             Product targetProduct = null;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -142,8 +142,8 @@
         public void Two_objects_with_no_corresponding_properties_different_in_value_should_return_no_items()
         {
             //  Arrange
-            var sourceProduct = ObjectMother.ArbitraryProduct;
-            var targetProduct = ObjectMother.ArbitraryProduct;
+            var sourceProduct = ObjectMother.SampleProduct;
+            var targetProduct = ObjectMother.SampleProduct;
 
             //  Act
             var operationResult = sourceProduct.GetPropertyDiffs<Product>(targetProduct);
@@ -160,7 +160,7 @@
         public void Two_objects_with_all_corresponding_properties_of_the_same_values_should_return_all_items()
         {
             //  Arrange
-            var sourceCustomer = ObjectMother.ArbitraryCustomer;
+            var sourceCustomer = ObjectMother.SampleCustomer;
             var targetCustomer = new Customer
             {
                 Id = 2_000,
@@ -184,7 +184,7 @@
         [Fact]
         public void Passing_a_null_source_property_to_predicate_throws_ArgumentNullExceptioin()
         {
-            var sourceProduct = ObjectMother.ArbitraryProduct;
+            var sourceProduct = ObjectMother.SampleProduct;
             PropertyInfo sourceDescription = null;
                       
             var targetProduct = new Product
@@ -205,7 +205,7 @@
         [Fact]
         public void Passing_a_null_target_property_throws_ArgumentNullException()
         {
-            var sourceCustomer = ObjectMother.ArbitraryCustomer;
+            var sourceCustomer = ObjectMother.SampleCustomer;
             var sourceLastNameProp = sourceCustomer.GetType().GetProperties()[2];
             var targetCustomer = new Customer
             {
@@ -231,7 +231,7 @@
         [Fact]
         public void Passing_a_two_properties_with_different_names_should_throw_ArgumentException()
         {
-            var sourceProduct = ObjectMother.ArbitraryProduct;
+            var sourceProduct = ObjectMother.SampleProduct;
             var sourceDescription = sourceProduct.GetType().GetProperties()[1];
 
             var targetProduct = new Product
@@ -277,7 +277,7 @@
             Product sourceProduct = null;          
             var sourceProductDesc = sourceProduct?.GetType().GetProperties()[1];
 
-            var targetProduct = ObjectMother.ArbitraryProduct;
+            var targetProduct = ObjectMother.SampleProduct;
             var targetProductDesc = targetProduct.GetType().GetProperties()[1];
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -292,7 +292,7 @@
         [Fact]
         public void Passing_a_null_target_object_to_predicate_throws_ArgumentNullException()
         {
-            Product sourceProduct = ObjectMother.ArbitraryProduct;
+            Product sourceProduct = ObjectMother.SampleProduct;
             var sourceProductDesc = sourceProduct?.GetType().GetProperties()[1];
 
             Product targetProduct = null;    

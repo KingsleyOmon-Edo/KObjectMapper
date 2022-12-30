@@ -6,12 +6,6 @@ namespace ObjectMapperTests;
 
 public class MapToIEnumerableOfTTests
 {
-    //  Algo: Map from on IEnumerable<T> instance to another, given:
-    //  1 - both are valid IEnumerables
-    //  2 - both are not null
-    //  3 - For now, we assume the source contains the items to be mapped
-    //      and the target is an an empty generic collection valid but not null
-
     [Fact]
     public void Mapping_from_one_IEnumerableOfT_to_another_should_succeed()
     {

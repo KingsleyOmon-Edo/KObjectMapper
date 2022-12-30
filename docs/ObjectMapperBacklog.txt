@@ -1,5 +1,5 @@
 PENDING FEATURES
--------------------
+----------------
 - Docs
 
 - Data integrity Tests
@@ -41,9 +41,9 @@ PENDING FEATURES
 
 COMPLETED FEATURES
 -------------------
-1 - POC: Basic mapping between two objects of same type. --- DONE
-2 - Test strongly types mapping --- DONE
-3 - Altenative signatures
+- POC: Basic mapping between two objects of same type. --- DONE
+- Test strongly types mapping --- DONE
+- Altenative signatures
 	1 - MapTo<T>(T target)	--- DONE
 	2 - MapFrom<T>(T source) --- DONE
 	3 - Map(object source, object Target) --- DONE
@@ -51,9 +51,9 @@ COMPLETED FEATURES
 	5 - MapFrom(object source) --- DONE
 	6 - Surface MapTo<T> and MapFrom<T> methods to any arbitray object via extension method for the generic variants --- DONE
 
-4 - Map between two objects of dissimilar types.
-5 - MapTo(), MapFrom()
-6 - Surface Map methods to any arbitray object via extension methods
-7 - Refactoring: Group funtionally related test methods together refactor to separate classes
-8 - Separate MapToOfT from the lot into their own class
+- Map between two objects of dissimilar types.
+- MapTo(), MapFrom()
+- Surface Map methods to any arbitray object via extension methods
+- Refactoring: Group funtionally related test methods together refactor to separate classes
+- Separate MapToOfT from the lot into their own class
 - Mapping collections (Initoal POC)
