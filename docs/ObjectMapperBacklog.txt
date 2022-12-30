@@ -25,8 +25,6 @@ PENDING FEATURES
 9 - Mapping collections
 
 
-
-
 COMPLETED FEATURES
 -------------------
 1 - POC: Basic mapping between two objects of same type. --- DONE
@@ -42,3 +40,4 @@ COMPLETED FEATURES
 4 - Map between two objects of dissimilar types.
 5 - MapTo(), MapFrom()
 6 - Surface Map methods to any arbitray object via extension methods
+7 - Refactoring: Group funtionally related test methods together refactor to separate classes

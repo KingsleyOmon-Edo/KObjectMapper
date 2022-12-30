@@ -19,6 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4182048F-7B7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F3690108-4C6E-4183-AFF7-387F3C687D9E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B8D9276C-7898-46E6-8A3A-E71F846926A1}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Backlog.txt = docs\Backlog.txt
+		docs\ObjectMapperBacklog.txt = docs\ObjectMapperBacklog.txt
+		docs\TestPlan.txt = docs\TestPlan.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,15 +60,15 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2284E36C-4155-4412-A9DA-67241BD83B64}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CFE44F60-2CDE-42AA-BBDC-A40C01D5FFD7} = {4182048F-7B76-4317-AEC2-FD47F85315A8}
-		{A9899831-DF74-4A9F-A0AF-13EA8374EEC1} = {F3690108-4C6E-4183-AFF7-387F3C687D9E}
 		{B522CAA1-60EA-4BEF-9635-1EEC59E64776} = {4182048F-7B76-4317-AEC2-FD47F85315A8}
-		{A1792D61-707D-4E49-90AF-A39AA3A468D9} = {F3690108-4C6E-4183-AFF7-387F3C687D9E}
 		{2DC980C5-9156-4E5E-AA24-CD84BC6B04AC} = {4182048F-7B76-4317-AEC2-FD47F85315A8}
+		{A9899831-DF74-4A9F-A0AF-13EA8374EEC1} = {F3690108-4C6E-4183-AFF7-387F3C687D9E}
+		{A1792D61-707D-4E49-90AF-A39AA3A468D9} = {F3690108-4C6E-4183-AFF7-387F3C687D9E}
 		{0C251E0E-ED31-4E66-BD7A-85944C0E4A05} = {F3690108-4C6E-4183-AFF7-387F3C687D9E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2284E36C-4155-4412-A9DA-67241BD83B64}
 	EndGlobalSection
 EndGlobal
