@@ -206,5 +206,6 @@ namespace ObjectMapper
         {
             return source.ApplyDiffs(target);
         }
+
     }
 }
