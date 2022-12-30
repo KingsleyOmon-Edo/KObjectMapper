@@ -2,7 +2,6 @@ PENDING FEATURES
 -------------------
 
 2 - Data integrity Tests
-
 	Identify the new nethods and for each:
 	a) Happy paths 
 	b) Sad paths
@@ -23,6 +22,7 @@ PENDING FEATURES
 	var target = mapper.MapFrom(source);
 8 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
 9 - Mapping collections
+10 - Separate MapToOfT from the lot into their own class
 
 
 COMPLETED FEATURES

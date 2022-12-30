@@ -5,11 +5,11 @@
     using ObjectMapperTests.Helpers;
     using System.Net.WebSockets;
     using Xunit;
-    public class MapperTests
+    public class MapTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapperTests()
+        public MapTests()
         {
             _commonAsserts = new();
         }
@@ -90,6 +90,27 @@
             employeeSam.LastName.Should().Be(customerJane.LastName);
             employeeSam.Salary.Should().Be(100_000.00M);
         }
-        
+
+        [Fact]
+        public void Mapping_between_two_objects_of_the_same_type_should_succeed()
+        {
+            //  Arrange
+            var sut = Mapper.Create();
+            var firstCustomer = ObjectMother.SampleCustomer;
+            var secondCustomer = new Customer
+            {
+                Id = 5,
+                FirstName = "Jane",
+                LastName = "Doe",
+                PhoneNumber = "5666655598"
+            };
+
+            //  Act
+            sut.Map<Customer>(firstCustomer, secondCustomer);
+
+            //  Assert
+            _commonAsserts.AssertSimilarCustomers(firstCustomer, secondCustomer);
+        }
+
     }
 }

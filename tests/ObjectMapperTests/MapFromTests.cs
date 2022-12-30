@@ -97,5 +97,38 @@ public class MapFromTests
 
         _commonAsserts.AssertSimilarCustomers(sourceCustomer, targetCustomer);
     }
-    
+
+    [Fact]
+    public void Invoking_MapFromOfT_on_a_default_object_instance_should_succeed()
+    {
+        var sourceProduct = ObjectMother.SampleProduct;
+        var targetProduct = new Product();
+
+        targetProduct.MapFrom<Product>(sourceProduct);
+
+        _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
+        _commonAsserts.AssertSimilarProducts(targetProduct, sourceProduct);
+    }
+
+    [Fact]
+    public void Mapping_with_the_MapFromOfT_overload_should_succeed()
+    {
+        //  Arrange
+        var sut = Mapper.Create();
+        var sourceCustomer = ObjectMother.SampleCustomer;
+        var targetCustomer = new Customer
+        {
+            Id = 100,
+            FirstName = "Fred",
+            LastName = "Mark",
+            PhoneNumber = "9305558973"
+        };
+
+        //  Act         
+        sut.MapFrom<Customer>(sourceCustomer, targetCustomer);
+
+        //  Assert
+        _commonAsserts.AssertSimilarCustomers(sourceCustomer, targetCustomer);
+    }
+
 }
