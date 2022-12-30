@@ -9,7 +9,7 @@ public class MapToOfTTests
 
     public MapToOfTTests()
     {
-        _commonAsserts = new();
+        _commonAsserts = CommonAsserts.Create();
     }
 
     [Fact]

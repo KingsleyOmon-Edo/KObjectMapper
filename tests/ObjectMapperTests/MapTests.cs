@@ -11,7 +11,7 @@
 
         public MapTests()
         {
-            _commonAsserts = new();
+            _commonAsserts = CommonAsserts.Create();
         }
 
         [Fact]
