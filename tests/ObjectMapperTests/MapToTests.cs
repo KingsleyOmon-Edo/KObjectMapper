@@ -10,7 +10,7 @@ public class MapToTests
 
     public MapToTests()
     {
-        _commonAsserts = new CommonAsserts();
+        _commonAsserts = CommonAsserts.Create();
     }
 
     

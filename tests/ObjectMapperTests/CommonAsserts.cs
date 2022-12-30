@@ -5,8 +5,13 @@ namespace ObjectMapperTests;
 
 public class CommonAsserts
 {
-    public CommonAsserts()
+    private CommonAsserts()
     {
+    }
+
+    public static CommonAsserts Create()
+    {
+        return new CommonAsserts();
     }
 
     internal void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
