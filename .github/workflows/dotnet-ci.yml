@@ -2,11 +2,9 @@ name: CI + Nuget Packages for GitHub Package Registry
 
 on:
   push:
-    branches:
-      - master
+    branches: ["main"]
   pull_request:
-    branches:
-      - master
+    branches: ["main"]
 
 jobs:
   deploy:
