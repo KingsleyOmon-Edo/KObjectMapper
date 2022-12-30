@@ -87,17 +87,9 @@ public class MapToOfTTests
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
         _commonAsserts.AssertSimilarProducts(targetProduct, sourceProduct);
     }
-
-    //  Map<T> Tests
-    //  -------------
-    //  Null source should throw
-    //  Null target should throw
-    //  If source not of type T throw
-    //  If target not of the common expected type T throw.
-    //  
-
+    
     [Fact]
-    public void Passing_a_null_source_should_throw_a_NullReferenceException()
+    public void Passing_a_null_source_object_should_throw_a_NullReferenceException()
     {
         var sut = Mapper.Create();
         Product sourceProduct = null;
@@ -107,7 +99,6 @@ public class MapToOfTTests
         {
             sut.MapTo<Product>(sourceProduct, targetProduct);
         });
-
     }
     
     [Fact]
