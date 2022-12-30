@@ -6,7 +6,7 @@ namespace ObjectMapperTests;
 
 public class MapFromTests
 {
-    private readonly CommonAsserts _commonAsserts = new();
+    private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
 
     [Fact]
     public void Non_generic_MapFrom_should_be_available_as_extension_method_on_any_object_without_a_need_for_a_mapper_instance()

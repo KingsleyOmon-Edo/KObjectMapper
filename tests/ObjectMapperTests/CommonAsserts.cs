@@ -5,6 +5,15 @@ namespace ObjectMapperTests;
 
 public class CommonAsserts
 {
+    private CommonAsserts()
+    {
+    }
+
+    public static CommonAsserts Create()
+    {
+        return new CommonAsserts();
+    }
+
     internal void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
     {
         targetProduct.Should().NotBeNull();

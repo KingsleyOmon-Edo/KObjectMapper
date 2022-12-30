@@ -1,5 +1,6 @@
 PENDING FEATURES
 -------------------
+9 - Mapping collections
 
 2 - Data integrity Tests
 	Identify the new nethods and for each:
