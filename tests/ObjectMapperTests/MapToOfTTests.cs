@@ -1,4 +1,5 @@
-﻿using ObjectMapper;
+﻿using System.Reflection.PortableExecutable;
+using ObjectMapper;
 using ObjectMapperTests.Helpers;
 
 namespace ObjectMapperTests;
@@ -85,5 +86,32 @@ public class MapToOfTTests
 
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
         _commonAsserts.AssertSimilarProducts(targetProduct, sourceProduct);
+    }
+    
+    [Fact]
+    public void Passing_a_null_source_object_should_throw_a_NullReferenceException()
+    {
+        var sut = Mapper.Create();
+        Product sourceProduct = null;
+        Product targetProduct = ObjectMother.SampleProduct;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapTo<Product>(sourceProduct, targetProduct);
+        });
+    }
+    
+    [Fact]
+    public void Passing_a_null_target_should_throw_a_NullReferenceException()
+    {
+        var sut = Mapper.Create();
+        Customer sourceCustomer = ObjectMother.SampleCustomer;
+        Customer targetCustomer = null;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapTo<Customer>(sourceCustomer, targetCustomer);
+        });
+
     }
 }

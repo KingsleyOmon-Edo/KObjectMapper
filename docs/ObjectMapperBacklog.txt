@@ -8,7 +8,16 @@ PENDING FEATURES
 	b) Sad paths
 	b) Edge cases
 	c) Where applicable test the types of supplied arguments
-	
+
+ //  Map<T> Tests
+    //  -------------
+    //  Null source should throw
+    //  Null target should throw
+    //  If source not of type T throw
+    //  If target not of the common expected type T throw.
+    //  
+
+
 3 - Test new method
 	Remember to cover the newly extracted methods with enough tests.
 	- WriteProperties
