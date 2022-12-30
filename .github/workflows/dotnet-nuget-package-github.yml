@@ -3,9 +3,7 @@ name: CI + Nuget Packages for GitHub Package Registry
 on:
   push:
     branches:
-      - master
       - "releases/*"
-      - "tests/*"
 
   release:
     types:
