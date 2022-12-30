@@ -1,13 +1,18 @@
 PENDING FEATURES
 -------------------
-9 - Mapping collections
+- Docs
 
-2 - Data integrity Tests
+- Data integrity Tests
 	Identify the new nethods and for each:
 	a) Happy paths 
 	b) Sad paths
 	b) Edge cases
 	c) Where applicable test the types of supplied arguments
+
+- Test guard clauses
+
+- Mapping collections (More robust implementation)
+
 
  //  Map<T> Tests
     //  -------------
@@ -17,23 +22,22 @@ PENDING FEATURES
     //  If target not of the common expected type T throw.
     //  
 
-
 3 - Test new method
 	Remember to cover the newly extracted methods with enough tests.
 	- WriteProperties
 	- ApplyDiffs
 	- Any other dangling method with little or zero code coverage
 
-3 - Test guard clauses
-6 - Keep Extensions local
-7 - Should return the mapped instance instead
+- Keep Extensions local
+
+- Should return the mapped instance instead
 	var target = mapper.Map<T>(source);
 	var target = mapper.MapFrom<T>(source)
 	var target = mapper.MapFrom(source);
-8 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
-9 - Mapping collections
 
+- Review the semantics of the MapTo<T>() and MapFrom<T>() methods
 
+- Mapping collections
 
 COMPLETED FEATURES
 -------------------
@@ -52,3 +56,4 @@ COMPLETED FEATURES
 6 - Surface Map methods to any arbitray object via extension methods
 7 - Refactoring: Group funtionally related test methods together refactor to separate classes
 8 - Separate MapToOfT from the lot into their own class
+- Mapping collections (Initoal POC)
