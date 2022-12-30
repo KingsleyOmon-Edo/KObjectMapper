@@ -1,10 +1,10 @@
-name: CI + Nuget Packages for GitHub Package Registry
+name: Dotnet CI
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
   pull_request:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   deploy:
