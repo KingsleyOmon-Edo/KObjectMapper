@@ -20,13 +20,6 @@ public class Mapper
         source.ApplyDiffsTo<T>(target);
     }
 
-    private static T NullChecks<T>(T source, T target)
-    {
-        source = source ?? throw new ArgumentNullException(nameof(source));
-        target = target ?? throw new ArgumentNullException(nameof(target));
-        return source;
-    }
-
 
     public void Map(object source, object target)
     {

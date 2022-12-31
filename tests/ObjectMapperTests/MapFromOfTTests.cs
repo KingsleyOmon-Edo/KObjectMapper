@@ -6,6 +6,12 @@ namespace ObjectMapperTests;
 
 public class MapFromOfTTests
 {
+    //  ToDo: Validate types of source objects
+    //  ToDo: Validate types of target objects
+    //  ToDo: Validate both types when different types are supplied for each Map<TSource, TTarget>(TSource source, TTarget target)
+    //  ToDo: Validate the type ignorance still works.
+    //  ToDo: POC: Setup a sample, install the nuget and test. Fix any issues.
+
     private readonly CommonAsserts _commonAsserts;
 
     public MapFromOfTTests()
