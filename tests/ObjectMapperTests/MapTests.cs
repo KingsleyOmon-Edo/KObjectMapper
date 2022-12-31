@@ -112,5 +112,21 @@
             _commonAsserts.AssertSimilarCustomers(firstCustomer, secondCustomer);
         }
 
+        [Fact]
+        public void Passing_a_null_source_object_should_throw_an_ArgumentNullException()
+        {
+            var sut = Mapper.Create();
+
+            Product sourceProduct = null;
+            Product targetProduct = ObjectMother.SampleProduct;
+
+            Assert.Throws<ArgumentNullException>(() =>
+               {
+                   sut.Map(sourceProduct as object, targetProduct as object);
+               });
+
+        }
+
+        
     }
 }

@@ -21,9 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F3690108
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B8D9276C-7898-46E6-8A3A-E71F846926A1}"
 	ProjectSection(SolutionItems) = preProject
-		docs\Backlog.txt = docs\Backlog.txt
+		CONTRIBUTING.md = CONTRIBUTING.md
 		docs\ObjectMapperBacklog.txt = docs\ObjectMapperBacklog.txt
-		docs\TestPlan.txt = docs\TestPlan.txt
+		docs\ObjectMapperTestPlan.txt = docs\ObjectMapperTestPlan.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global

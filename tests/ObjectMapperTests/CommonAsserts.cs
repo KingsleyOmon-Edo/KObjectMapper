@@ -13,8 +13,7 @@ public class CommonAsserts
     {
         return new CommonAsserts();
     }
-
-
+    
     internal void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
     {
         targetProduct.Should().NotBeNull();
