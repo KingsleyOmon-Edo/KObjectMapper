@@ -20,6 +20,10 @@ namespace ObjectMapper
 
         public static void MapTo<T>(this T source, T target)
         {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
+
+
             var mapper = Mapper.Create();
             mapper.Map(source, target);
         }
