@@ -30,7 +30,7 @@ public class Mapper
 
     public void Map(object source, object target)
     {
-        NullChecks<object>(source, target);
+        Checker.NullChecks<object>(source, target);
 
         source.ApplyDiffsTo(target);
     }
