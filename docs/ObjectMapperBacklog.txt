@@ -16,6 +16,7 @@ PENDING FEATURES
 -------------------
 - Review code and fix any issues in files.
 - Review and cover ALL object extension methods with protective tests.
+9 - Mapping collections
 
 - REFACTOR: Push some of ObjectExtension methods into a service class and consume by object composition.
 - so they don't show up ON all objects globally.
