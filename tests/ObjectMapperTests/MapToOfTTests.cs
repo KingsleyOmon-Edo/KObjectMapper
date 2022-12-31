@@ -1,5 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-using ObjectMapper;
+﻿using ObjectMapper;
 using ObjectMapperTests.Helpers;
 
 namespace ObjectMapperTests;
@@ -25,22 +24,22 @@ public class MapToOfTTests
             Quantity = 1
         };
 
-        sourceProduct.MapTo<Product>(targetProduct);
+        sourceProduct.MapTo(targetProduct);
 
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
     }
-    
+
     [Fact]
     public void MapToOfT_should_work_when_target_is_a_default_instance()
     {
         var sourceCustomer = ObjectMother.SampleCustomer;
         var targetCustomer = new Customer();
 
-        sourceCustomer.MapTo<Customer>(targetCustomer);
+        sourceCustomer.MapTo(targetCustomer);
 
         _commonAsserts.AssertSimilarCustomers(sourceCustomer, targetCustomer);
     }
-    
+
     [Fact]
     public void Type_inference_should_work_for_MapToOfT()
     {
@@ -72,7 +71,7 @@ public class MapToOfTTests
         };
 
 
-        sut.MapTo<Product>(sourceProduct, targetProduct);
+        sut.MapTo(sourceProduct, targetProduct);
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
     }
 
@@ -82,38 +81,31 @@ public class MapToOfTTests
         var sourceProduct = new Product();
         var targetProduct = ObjectMother.SampleProduct;
 
-        sourceProduct.MapTo<Product>(targetProduct);
+        sourceProduct.MapTo(targetProduct);
 
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
         _commonAsserts.AssertSimilarProducts(targetProduct, sourceProduct);
     }
-    
+
     [Fact]
     public void Passing_a_null_source_object_should_throw_an_ArgumentNullException()
     {
         var sut = Mapper.Create();
 
         Product sourceProduct = null;
-        Product targetProduct = ObjectMother.SampleProduct;
+        var targetProduct = ObjectMother.SampleProduct;
 
-        Assert.Throws<ArgumentNullException>(() =>
-        {
-            sut.MapTo<Product>(sourceProduct, targetProduct);
-        });
+        Assert.Throws<ArgumentNullException>(() => { sut.MapTo<Product>(sourceProduct, targetProduct); });
     }
-    
+
     [Fact]
     public void Passing_a_null_target_should_throw_an_ArgumentNullException()
     {
         var sut = Mapper.Create();
 
-        Customer sourceCustomer = ObjectMother.SampleCustomer;
+        var sourceCustomer = ObjectMother.SampleCustomer;
         Customer targetCustomer = null;
 
-        Assert.Throws<ArgumentNullException>(() =>
-        {
-            sut.MapTo<Customer>(sourceCustomer, targetCustomer);
-        });
-
+        Assert.Throws<ArgumentNullException>(() => { sut.MapTo<Customer>(sourceCustomer, targetCustomer); });
     }
 }
