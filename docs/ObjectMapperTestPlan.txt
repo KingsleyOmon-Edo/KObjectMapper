@@ -1,0 +1,30 @@
+    //  TEST PLAN:
+    //  -----------
+
+    - Data integrity Tests
+    -----------------------
+	- Identify the new nethods and for each:
+		a) Happy paths 
+		b) Sad paths
+		b) Edge cases
+		c) Where applicable test the types of supplied arguments
+
+    
+	Test the following methods of ObjectExtensions:
+	----------------------------
+	- ArePropertyValuesDifferent
+	- PropertyTypeCheck
+	- PropertyNameCheck
+	- NullCheck
+	- ValidateParameters
+	- TypeChecks
+	- ApplyDiffs
+	- WriteToProperties
+   
+    //  TODO: Test predicate function happy path
+    //  ToDO: Test predicate function sad path.
+    //  TODO: Test predicate function edge cases   
+    //  TODO: Substitute the now functional GetPropertyDiffs method
+    //          for the implementations used in the mutation methods.
+    //  Rider
+    

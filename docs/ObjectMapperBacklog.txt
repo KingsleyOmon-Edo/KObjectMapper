@@ -1,43 +1,42 @@
+MVP
+----
+- Simple Object-to-object mapping
+	- Similar types 
+	- Dissimilar types
+- Simple collection mapping
+	- Collections of similar types
+	- Collection of dissimilar types
+
+- Good unit test coverage
+- Documentation
+- Code samples and examples
+
+
 PENDING FEATURES
 -------------------
-2 - Data integrity Tests
-	Identify the new nethods and for each:
-	a) Happy paths 
-	b) Sad paths
-	b) Edge cases
-	c) Where applicable test the types of supplied arguments
+- Review code and fix any issues in files.
+- Review and cover ALL object extension methods with protective tests.
 
- //  Map<T> Tests
-    //  -------------
-    //  Null source should throw
-    //  Null target should throw
-    //  If source not of type T throw
-    //  If target not of the common expected type T throw.
-    //  
+- REFACTOR: Push some of ObjectExtension methods into a service class and consume by object composition.
+- so they don't show up ON all objects globally.
 
+- Mapping between collections of dissimilar types
 
-3 - Test new method
-	Remember to cover the newly extracted methods with enough tests.
-	- WriteProperties
-	- ApplyDiffs
-	- Any other dangling method with little or zero code coverage
-
-3 - Test guard clauses
-6 - Keep Extensions local
-7 - Should return the mapped instance instead
+- Test guard clauses
+- Keep Extensions local
+- Should return the mapped instance instead
 	var target = mapper.Map<T>(source);
 	var target = mapper.MapFrom<T>(source)
 	var target = mapper.MapFrom(source);
-8 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
-9 - Mapping collections
-
+- Review the semantics of the MapTo<T>() and MapFrom<T>() methods
+- Mapping collections
 
 
 COMPLETED FEATURES
 -------------------
-1 - POC: Basic mapping between two objects of same type. --- DONE
-2 - Test strongly types mapping --- DONE
-3 - Altenative signatures
+- POC: Basic mapping between two objects of same type. --- DONE
+- Test strongly types mapping --- DONE
+- Altenative signatures
 	1 - MapTo<T>(T target)	--- DONE
 	2 - MapFrom<T>(T source) --- DONE
 	3 - Map(object source, object Target) --- DONE
@@ -45,8 +44,21 @@ COMPLETED FEATURES
 	5 - MapFrom(object source) --- DONE
 	6 - Surface MapTo<T> and MapFrom<T> methods to any arbitray object via extension method for the generic variants --- DONE
 
-4 - Map between two objects of dissimilar types.
-5 - MapTo(), MapFrom()
-6 - Surface Map methods to any arbitray object via extension methods
-7 - Refactoring: Group funtionally related test methods together refactor to separate classes
-8 - Separate MapToOfT from the lot into their own class
+- Map between two objects of dissimilar types.
+- MapTo(), MapFrom()
+- Surface Map methods to any arbitray object via extension methods
+- Refactoring: Group funtionally related test methods together refactor to separate classes
+- Separate MapToOfT from the lot into their own class
+- Remove extra fluff
+
+COMPLETED TASKS
+---------------
+//  TODO: Test predicate function guard clauses.
+//  private static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
+//  Test when sourceProp is null (DONE)
+//  Test when targetProp is null (DONE)
+//  Test when sourceProp.Name is not equal to targetProp.Name (DONE)
+//  Test when sourcePropType is not equal to targetPropType (DONE)        
+//  Test when source object is null (DONe)
+//  Test when target object is null (DONE)
+//  TODO: Isolate predicate function for reuse. (DONE)
