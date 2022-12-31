@@ -112,7 +112,7 @@
 
         private static void TypeChecks<T>(T source, T target)
         {
-            if (source.GetType() != target.GetType())
+            if (source?.GetType() != target?.GetType())
             {
                 throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
             }
