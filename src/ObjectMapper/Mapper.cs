@@ -58,7 +58,7 @@ public class Mapper
 
     public void MapTo(object source, object target)
     {
-        NullChecks<object>(source, target);
+        Checker.NullChecks<object>(source, target);
 
         target.ApplyDiffsTo(source);
     }
