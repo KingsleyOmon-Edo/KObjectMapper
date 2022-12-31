@@ -105,17 +105,9 @@ namespace ObjectMapper
 
         private static void ValidateParameters<T>(T source, T target)
         {
-            NullChecks(source, target);
+            Checker.NullChecks(source, target);
 
-            TypeChecks(source, target);
-        }
-
-        private static void TypeChecks<T>(T source, T target)
-        {
-            if (source.GetType() != target.GetType())
-            {
-                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
-            }
+            Checker.TypeChecks(source, target);
         }
 
         public static object ApplyDiffsTo(this object source, object target)
