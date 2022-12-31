@@ -47,14 +47,6 @@ namespace ObjectMapper
             target = target ?? throw new ArgumentNullException(nameof(target));
         }
 
-        private static void PropertyTypeCheck<T>(T source, T target)
-        {
-            if (source.GetType() != target.GetType())
-            {
-                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
-            }
-        }
-
         public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
         {
             ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
@@ -92,15 +84,6 @@ namespace ObjectMapper
             {
             Checker.NullChecks<T>(sourceObject, targetObject);
             Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
-        }
-
-        private static void NullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-        {
-            sourceObject = sourceObject ?? throw new ArgumentNullException(nameof(sourceObject));
-            targetObject = targetObject ?? throw new ArgumentNullException(nameof(targetObject));
-
-            sourceProp = sourceProp ?? throw new ArgumentNullException(nameof(sourceProp));
-            targetProp = targetProp ?? throw new ArgumentNullException(nameof(targetProp));
         }
 
         private static void ValidateParameters<T>(T source, T target)
