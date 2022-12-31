@@ -11,8 +11,8 @@ namespace ObjectMapper
     {
         public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            NullChecks(source, target);
-            PropertyTypeCheck(source, target);
+            Checker.NullChecks<T>(source, target);
+            Checker.TypeChecks(source, target);
             List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
             return diffs;   // Shorter
@@ -20,7 +20,7 @@ namespace ObjectMapper
 
         public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
         {
-            NullChecks(source, target);
+            Checker.NullChecks(source, target);
             List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
             return diffs;
@@ -47,14 +47,6 @@ namespace ObjectMapper
             target = target ?? throw new ArgumentNullException(nameof(target));
         }
 
-        private static void PropertyTypeCheck<T>(T source, T target)
-        {
-            if (source.GetType() != target.GetType())
-            {
-                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
-            }
-        }
-
         public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
         {
             ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
@@ -62,10 +54,10 @@ namespace ObjectMapper
 
         public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
         {
-            NullChecks(sourceObject, sourceProp, targetObject, targetProp);
-            PropertyNameCheck(sourceProp, targetProp);
+            PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
+            Checker.PropertyNameCheck(sourceProp, targetProp);
             Type sourcePropType, targetPropType;
-            PropertyTypeCheck(sourceProp, targetProp, out sourcePropType, out targetPropType);
+            ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
             object? sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             object? targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
@@ -78,7 +70,7 @@ namespace ObjectMapper
             return false;
         }
 
-        private static void PropertyTypeCheck(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
+        private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
         {
             sourcePropType = sourceProp.PropertyType;
             targetPropType = targetProp.PropertyType;
@@ -88,36 +80,17 @@ namespace ObjectMapper
             }
         }
 
-        private static void PropertyNameCheck(PropertyInfo sourceProp, PropertyInfo targetProp)
-        {
-            if (Object.Equals(sourceProp.Name, targetProp.Name) == false)
+        private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
             {
-                throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
-            }
-        }
-
-        private static void NullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-        {
-            sourceObject = sourceObject ?? throw new ArgumentNullException(nameof(sourceObject));
-            targetObject = targetObject ?? throw new ArgumentNullException(nameof(targetObject));
-
-            sourceProp = sourceProp ?? throw new ArgumentNullException(nameof(sourceProp));
-            targetProp = targetProp ?? throw new ArgumentNullException(nameof(targetProp));
+            Checker.NullChecks<T>(sourceObject, targetObject);
+            Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
         }
 
         private static void ValidateParameters<T>(T source, T target)
         {
-            NullChecks(source, target);
+            Checker.NullChecks(source, target);
 
-            TypeChecks(source, target);
-        }
-
-        private static void TypeChecks<T>(T source, T target)
-        {
-            if (source.GetType() != target.GetType())
-            {
-                throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
-            }
+            Checker.TypeChecks(source, target);
         }
 
         public static object ApplyDiffsTo(this object source, object target)

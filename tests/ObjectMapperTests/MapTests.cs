@@ -127,5 +127,20 @@
 
         }
 
+        [Fact]
+        public void Passing_a_null_target_object_should_throw_an_ArgumentNullException()
+        {
+            var sut = Mapper.Create();
+
+            Customer sourceCustomer = ObjectMother.SampleCustomer;
+            Customer targetCustomer = null;
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                sut.Map(sourceCustomer, targetCustomer);
+            });
+
+
+        }
     }
 }

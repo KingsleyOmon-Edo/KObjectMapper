@@ -64,3 +64,5 @@ COMPLETED TASKS
 //  Test when source object is null (DONe)
 //  Test when target object is null (DONE)
 //  TODO: Isolate predicate function for reuse. (DONE)
+//  ToDo: By TDD implement guard clause for null source object for MapTo().
+//  ToDo: By TDD implement guard clause for null target object for MapTo().
