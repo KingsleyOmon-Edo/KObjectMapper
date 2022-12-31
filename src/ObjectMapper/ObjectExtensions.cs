@@ -34,7 +34,7 @@ namespace ObjectMapper
                 object sourceObject,
                 PropertyInfo sourceProp,
                 object targetObject,
-                PropertyInfo targetProp) => ArePropValuesDifferent(sourceObject,
+                PropertyInfo targetProp) => ArePropValuesDifferent<object>(sourceObject,
                                                                    sourceProp,
                                                                    targetObject,
                                                                    targetProp), source, target)
@@ -55,9 +55,9 @@ namespace ObjectMapper
             }
         }
 
-        public static void ArePropValueDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
+        public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
         {
-            ArePropValuesDifferent(sourceObject, sourceProp, targetObject, targetProp);
+            ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
         }
 
         public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
@@ -65,12 +65,12 @@ namespace ObjectMapper
             NullChecks(sourceObject, sourceProp, targetObject, targetProp);
             PropertyNameCheck(sourceProp, targetProp);
             Type sourcePropType, targetPropType;
-            ProperyTypeCheck(sourceProp, targetProp, out sourcePropType, out targetPropType);
+            PropertyTypeCheck(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
             object? sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             object? targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
 
-            if (Equals(sourcePropValue, targetPropValue) == true)
+            if (Object.Equals(sourcePropValue, targetPropValue) == true)
             {
                 return true;
             }
@@ -78,11 +78,11 @@ namespace ObjectMapper
             return false;
         }
 
-        private static void ProperyTypeCheck(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
+        private static void PropertyTypeCheck(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
         {
             sourcePropType = sourceProp.PropertyType;
             targetPropType = targetProp.PropertyType;
-            if (Equals(sourcePropType, targetPropType) == false)
+            if (Object.Equals(sourcePropType, targetPropType) == false)
             {
                 throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
             }
@@ -90,7 +90,7 @@ namespace ObjectMapper
 
         private static void PropertyNameCheck(PropertyInfo sourceProp, PropertyInfo targetProp)
         {
-            if (Equals(sourceProp.Name, targetProp.Name) == false)
+            if (Object.Equals(sourceProp.Name, targetProp.Name) == false)
             {
                 throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
             }
@@ -120,17 +120,19 @@ namespace ObjectMapper
             }
         }
 
-        public static object ApplyDiffs(this object source, object target)
+        public static object ApplyDiffsTo(this object source, object target)
         {
             NullChecks(source, target);
+            
             var diffs = source.GetPropertyDiffs(target);
             var sourceProps = source.GetType().GetProperties();
+            
             WriteToProperties(source, target, diffs);
 
             return target;
         }
 
-        public static T ApplyDiffs<T>(this T source, T target)
+        public static T ApplyDiffsTo<T>(this T source, T target)
         {
             ValidateParameters(source, target);
 
@@ -159,52 +161,52 @@ namespace ObjectMapper
 
         public static object SendUpdatesTo(this object source, object target)
         {
-            return source.ApplyDiffs<object>(target);
+            return source.ApplyDiffsTo<object>(target);
         }
 
         public static T Patch<T>(this T source, T target)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T AcceptChanges<T>(this T target, T source)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T SendChanges<T>(this T source, T target)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T AcceptPatch<T>(this T target, T source)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T SendPatches<T>(this T source, T target)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T PatchFrom<T>(this T target, T source)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T PatchTo<T>(this T sources, T target)
         {
-            return sources.ApplyDiffs(target);
+            return sources.ApplyDiffsTo(target);
         }
 
         public static T AcceptUpdates<T>(this T target, T source)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
         public static T SendUpdates<T>(this T source, T target)
         {
-            return source.ApplyDiffs(target);
+            return source.ApplyDiffsTo(target);
         }
 
     }

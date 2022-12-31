@@ -20,15 +20,15 @@ public static class MapperExtensions
         mapper.MapFrom(source, target);
     }
 
-    public static void MapTo<T>(this T source, T target)
-    {
+        public static void MapTo<T>(this T source, T target)
+        {
         source = source ?? throw new ArgumentNullException(nameof(source));
         target = target ?? throw new ArgumentNullException(nameof(target));
 
 
-        var mapper = Mapper.Create();
-        mapper.Map(source, target);
-    }
+            var mapper = Mapper.Create();
+            mapper.Map(source, target);
+        }
 
     public static void MapTo(this object source, object target)
     {

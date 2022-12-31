@@ -6,6 +6,11 @@ namespace ObjectMapperTests;
 
 public class MapToIEnumerableOfTTests
 {
+    //  ToDo: MapToEnIEnumerable: By TDD implement guard clauses for source collection.
+    //  Todo: MapToEnIEnumerable: By TDd implement guard clauses for target collection.
+    //  ToDo: MapToEnIEnumerable: By TDD validate that source and target objects are IEnumerable<T> derived instances.
+
+
     [Fact]
     public void Mapping_from_one_IEnumerableOfT_to_another_should_succeed()
     {
