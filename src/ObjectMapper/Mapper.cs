@@ -18,6 +18,8 @@ namespace ObjectMapper
         public void Map<T>(T source, T target)
         {
             source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target ?? throw new ArgumentNullException(nameof(target));
+
             source.ApplyDiffs<T>(target);
         }
 
