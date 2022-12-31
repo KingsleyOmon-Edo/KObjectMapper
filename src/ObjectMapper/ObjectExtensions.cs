@@ -20,7 +20,7 @@ namespace ObjectMapper
 
         public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
         {
-            NullChecks(source, target);
+            Checker.NullChecks(source, target);
             List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
             return diffs;
