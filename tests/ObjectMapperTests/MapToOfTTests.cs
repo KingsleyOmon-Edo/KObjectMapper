@@ -89,9 +89,10 @@ public class MapToOfTTests
     }
     
     [Fact]
-    public void Passing_a_null_source_object_should_throw_a_NullReferenceException()
+    public void Passing_a_null_source_object_should_throw_an_ArgumentNullException()
     {
         var sut = Mapper.Create();
+
         Product sourceProduct = null;
         Product targetProduct = ObjectMother.SampleProduct;
 
