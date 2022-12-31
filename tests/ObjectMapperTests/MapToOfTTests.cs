@@ -103,9 +103,10 @@ public class MapToOfTTests
     }
     
     [Fact]
-    public void Passing_a_null_target_should_throw_a_NullReferenceException()
+    public void Passing_a_null_target_should_throw_an_ArgumentNullException()
     {
         var sut = Mapper.Create();
+
         Customer sourceCustomer = ObjectMother.SampleCustomer;
         Customer targetCustomer = null;
 
