@@ -11,8 +11,8 @@ namespace ObjectMapper
     {
         public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            NullChecks(source, target);
-            PropertyTypeCheck(source, target);
+            Checker.NullChecks<T>(source, target);
+            Checker.PropertyTypeCheck(source, target);
             List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
             return diffs;   // Shorter
