@@ -6,9 +6,6 @@ namespace ObjectMapperTests;
 
 public class MapToTests
 {
-    //  ToDo: By TDD implement guard clause for null source object for MapTo().
-    //  ToDo: By TDD implement guard clause for null target object for MapTo().
-    
     private readonly CommonAsserts _commonAsserts;
 
     public MapToTests()
@@ -16,7 +13,7 @@ public class MapToTests
         _commonAsserts = CommonAsserts.Create();
     }
 
-    
+
     [Fact]
     public void Mapping_with_MapTo_via_type_inference_should_succeed()
     {
@@ -34,7 +31,7 @@ public class MapToTests
 
         _commonAsserts.AssertSimilarProducts(sourceProduct, targetProduct);
     }
-   
+
 
     [Fact]
     public void Non_generic_MapTo_should_correctly_map_compatible_props_of_two_objects_even_of_different_types()
@@ -66,4 +63,35 @@ public class MapToTests
         sampleEmployee.Salary.Should().Be(100_000.00M);
 
     }
+
+
+    [Fact]
+    public void Passing_a_null_source_object_to_non_generic_MapTo_should_throw_ArgumentNullException()
+    {
+        var sut = Mapper.Create();
+
+        Product sourceProduct = null;
+        Product targetProduct = ObjectMother.SampleProduct;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapTo(sourceProduct as object, targetProduct as object);
+        });
+    }
+
+
+    [Fact]
+    public void Passing_a_null_target_object_to_non_generic_MapTo_should_throw_ArgumentNullException()
+    {
+        var sut = Mapper.Create();
+
+        var sourceCustomer = ObjectMother.SampleCustomer;
+        Customer targetCustomer = null;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapTo(sourceCustomer as object, targetCustomer as object);
+        });
+    }
+
 }

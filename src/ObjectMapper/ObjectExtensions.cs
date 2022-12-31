@@ -81,7 +81,7 @@ namespace ObjectMapper
         }
 
         private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-            {
+        {
             Checker.NullChecks<T>(sourceObject, targetObject);
             Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
         }
@@ -92,7 +92,7 @@ namespace ObjectMapper
 
             Checker.TypeChecks(source, target);
         }
-
+        
         public static object ApplyDiffsTo(this object source, object target)
         {
             NullChecks(source, target);
