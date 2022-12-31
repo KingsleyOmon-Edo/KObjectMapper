@@ -38,7 +38,10 @@ namespace ObjectMapper
 
         public void MapFrom(object source, object target)
         {
-            target.ApplyDiffs(source);
+            source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target ?? throw new ArgumentNullException(nameof(target));
+            
+            target.ApplyDiffsTo(source);
         }
 
         public void MapTo<T>([DisallowNull] T source, T target)
