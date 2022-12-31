@@ -20,7 +20,7 @@ namespace ObjectMapper
             source = source ?? throw new ArgumentNullException(nameof(source));
             target = target ?? throw new ArgumentNullException(nameof(target));
 
-            source.ApplyDiffs<T>(target);
+            source.ApplyDiffsTo<T>(target);
         }
 
         public void Map(object source, object target)
@@ -28,7 +28,7 @@ namespace ObjectMapper
             source = source ?? throw new ArgumentNullException(nameof(source));
             target = target ?? throw new ArgumentNullException(nameof(target));
 
-            source.ApplyDiffs(target);
+            source.ApplyDiffsTo(target);
         }
 
         public void MapFrom<T>(T source, T target)
