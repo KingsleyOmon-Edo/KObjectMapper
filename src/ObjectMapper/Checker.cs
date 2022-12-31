@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 ﻿namespace ObjectMapper;
 
+namespace ObjectMapper;
+
 public class Checker
 {
     public static T NullChecks<T>(T source, T target)
@@ -18,7 +20,7 @@ public class Checker
         return source;
     }
 
-    public static void PropertyTypeCheck<T>(T source, T target)
+    public static void TypeChecks<T>(T source, T target)
     {
         ;
         if (!AreSameType(source, target))
