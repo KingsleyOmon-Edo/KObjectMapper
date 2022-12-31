@@ -15,7 +15,7 @@ public class Mapper
 
     public void Map<T>(T source, T target)
     {
-        source = NullChecks<T>(source, target);
+        source = Checker.NullChecks<T>(source, target);
 
         source.ApplyDiffsTo<T>(target);
     }
