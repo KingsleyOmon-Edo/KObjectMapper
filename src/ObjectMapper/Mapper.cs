@@ -17,6 +17,7 @@ namespace ObjectMapper
 
         public void Map<T>(T source, T target)
         {
+            source = source ?? throw new ArgumentNullException(nameof(source));
             source.ApplyDiffs<T>(target);
         }
 
