@@ -65,7 +65,7 @@ namespace ObjectMapper
             NullChecks(sourceObject, sourceProp, targetObject, targetProp);
             PropertyNameCheck(sourceProp, targetProp);
             Type sourcePropType, targetPropType;
-            PropertyTypeCheck(sourceProp, targetProp, out sourcePropType, out targetPropType);
+            ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
             object? sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             object? targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
@@ -78,7 +78,7 @@ namespace ObjectMapper
             return false;
         }
 
-        private static void PropertyTypeCheck(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
+        private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
         {
             sourcePropType = sourceProp.PropertyType;
             targetPropType = targetProp.PropertyType;
