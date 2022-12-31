@@ -19,9 +19,15 @@ public class Checker
 
     public static void PropertyTypeCheck<T>(T source, T target)
     {
-        if (source.GetType() != target.GetType())
+        ;
+        if (!AreSameType(source, target))
         {
             throw new ArgumentException($"{nameof(source)} and {nameof(target)} objects should be of the same type");
         }
+    }
+
+    private static bool AreSameType<T>(T source, T target)
+    {
+        return source?.GetType() == target?.GetType();
     }
 }
