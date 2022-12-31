@@ -131,4 +131,17 @@ public class MapFromTests
         _commonAsserts.AssertSimilarCustomers(sourceCustomer, targetCustomer);
     }
 
+    [Fact]
+    public void Passing_a_null_source_object_to_non_generic_MapFrom_throws_ArgumentNullException()
+    {
+        var sut = Mapper.Create();
+
+        Product sourceProduct = null;
+        Product targetProduct = ObjectMother.SampleProduct;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapFrom(sourceProduct as object, targetProduct as object);
+        });
+    }
 }
