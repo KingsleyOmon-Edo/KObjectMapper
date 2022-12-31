@@ -88,12 +88,10 @@ namespace ObjectMapper
             }
         }
 
-        private static void PropertyNameCheck(PropertyInfo sourceProp, PropertyInfo targetProp)
-        {
-            if (Object.Equals(sourceProp.Name, targetProp.Name) == false)
+        private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
             {
-                throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
-            }
+            Checker.NullChecks<T>(sourceObject, targetObject);
+            Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
         }
 
         private static void NullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
