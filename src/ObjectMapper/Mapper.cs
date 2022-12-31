@@ -37,7 +37,7 @@ public class Mapper
 
     public void MapFrom<T>(T source, T target)
     {
-        NullChecks<T>(source, target);
+        Checker.NullChecks<T>(source, target);
 
         target.ApplyDiffsTo<T>(source);
     }
