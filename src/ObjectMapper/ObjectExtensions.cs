@@ -62,8 +62,8 @@ namespace ObjectMapper
 
         public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
         {
-            NullChecks(sourceObject, sourceProp, targetObject, targetProp);
-            PropertyNameCheck(sourceProp, targetProp);
+            PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
+            Checker.PropertyNameCheck(sourceProp, targetProp);
             Type sourcePropType, targetPropType;
             ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
