@@ -144,4 +144,18 @@ public class MapFromTests
             sut.MapFrom(sourceProduct as object, targetProduct as object);
         });
     }
+
+    [Fact]
+    public void Passing_a_null_target_object_to_non_generic_MapFrom_throws_ArgumentNullException()
+    {
+        var sut = Mapper.Create();
+
+        var sourceCustomer = ObjectMother.SampleCustomer;
+        Customer? targetCustomer = null;
+
+        Assert.Throws<ArgumentNullException>(() =>
+        {
+            sut.MapFrom(sourceCustomer as object, targetCustomer as object);
+        });
+    }
 }
