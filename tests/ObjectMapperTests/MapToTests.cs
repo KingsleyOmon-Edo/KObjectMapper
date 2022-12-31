@@ -6,6 +6,9 @@ namespace ObjectMapperTests;
 
 public class MapToTests
 {
+    //  ToDo: By TDD implement guard clause for null source object for MapTo().
+    //  ToDo: By TDD implement guard clause for null target object for MapTo().
+    
     private readonly CommonAsserts _commonAsserts;
 
     public MapToTests()
@@ -63,5 +66,4 @@ public class MapToTests
         sampleEmployee.Salary.Should().Be(100_000.00M);
 
     }
-
 }

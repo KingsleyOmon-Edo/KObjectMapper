@@ -1,75 +1,81 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ObjectMapper
+namespace ObjectMapper;
+
+public class Mapper
 {
-    using System;
-
-    public class Mapper
+    private Mapper()
     {
-        private Mapper()
+    }
+
+    public static Mapper Create()
+    {
+        return new Mapper();
+    }
+
+    public void Map<T>(T source, T target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
+
+        source.ApplyDiffsTo<T>(target);
+    }
+
+
+    public IEnumerable<T> MapFrom<T>(IEnumerable<T> source)
+        where T : new()
+    {
+        var resultCollection = new List<T>();
+
+        foreach (var sourceElem in source)
         {
+            var targetElem = new T();
+            sourceElem.MapTo(targetElem);
+
+            resultCollection.Add(targetElem);
         }
 
-        public static Mapper Create()
-        {
-            return new Mapper();
-        }
-
-        public void Map<T>(T source, T target)
-        {
-            source.ApplyDiffs<T>(target);
-        }
+        return resultCollection;
+    }
 
 
-        public IEnumerable<T> MapFrom<T>(IEnumerable<T> source)
-            where T: new()
-        {
-            var resultCollection = new List<T>();
+    public void Map(object source, object target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
 
-            foreach (var sourceElem in source)
-            {
-                var targetElem = new T();
-                sourceElem.MapTo(targetElem);
+        source.ApplyDiffsTo(target);
+    }
 
-                resultCollection.Add(targetElem);
-            }
+    public void MapFrom<T>(T source, T target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
 
-            return resultCollection;
+        target.ApplyDiffsTo<T>(source);
+    }
 
-        }
+    public void MapFrom(object source, object target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
 
+        target.ApplyDiffsTo(source);
+    }
 
-        public void Map(object source, object target)
-        {
-            source.ApplyDiffs(target);
-        }
+    public void MapTo<T>([DisallowNull] T source, T target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
 
-        public void MapFrom<T>(T source, T target)
-        {
-            source = source ?? throw new ArgumentNullException(nameof(source));
-            target = target ?? throw new ArgumentNullException(nameof(target));
+        source.ApplyDiffsTo(target);
+    }
 
-            target.ApplyDiffsTo<T>(source);
-        }
+    public void MapTo(object source, object target)
+    {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
 
-        public void MapFrom(object source, object target)
-        {
-            target.ApplyDiffs(source);
-        }
-
-        public void MapTo<T>(T source, T target)
-        {
-            source = source ?? throw new ArgumentNullException(nameof(source));
-            target = target ?? throw new ArgumentNullException(nameof(target));
-            source.ApplyDiffs(target);
-        }
-
-        public void MapTo(object source, object target)
-        {
-            source = source ?? throw new ArgumentNullException(nameof(source));
-            target = target ?? throw new ArgumentNullException(nameof(target));
-
-            target.ApplyDiffsTo(source);
-        }
+        target.ApplyDiffsTo(source);
     }
 }
