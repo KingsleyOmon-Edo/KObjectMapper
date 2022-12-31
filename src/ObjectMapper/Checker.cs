@@ -30,4 +30,12 @@ public class Checker
     {
         return source?.GetType() == target?.GetType();
     }
+
+    public static void PropertyNameCheck(PropertyInfo sourceProp, PropertyInfo targetProp)
+    {
+        if (Object.Equals(sourceProp.Name, targetProp.Name) == false)
+        {
+            throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
+        }
+    }
 }
