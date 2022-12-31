@@ -4,6 +4,14 @@ public class Checker
 {
     public static T NullChecks<T>(T source, T target)
     {
+        source = CoalescedNullCheck<T>(source);
+        target = CoalescedNullCheck<T>(target);
+
+        return source;
+    }
+
+    public static T CoalescedNullCheck<T>(T source)
+    {
         source = source ?? throw new ArgumentNullException(nameof(source));
         target = target ?? throw new ArgumentNullException(nameof(target));
         return source;
