@@ -68,7 +68,7 @@ namespace ExtensionsTests
         [Fact]
         public void Passing_objects_of_dissimilar_types_should_fail()
         {
-            Action applyAction = () => { ObjectMother.ArbitraryProduct.SendUpdatesTo(ObjectMother.ArbitraryCustomer); };
+            Action applyAction = () => { ObjectMother.SampleProduct.SendUpdatesTo(ObjectMother.SampleCustomer); };
 
             Assert.Throws<ArgumentException>(applyAction);
         }
@@ -76,21 +76,21 @@ namespace ExtensionsTests
         [Fact]
         public void Passing_objects_with_identical_property_values_should_cause_no_side_effects()
         {
-            var result = (Customer)ObjectMother.ArbitraryCustomer.ApplyDiffs(ObjectMother.ArbitraryCustomer);
+            var result = (Customer)ObjectMother.SampleCustomer.ApplyDiffs(ObjectMother.SampleCustomer);
 
             Assert.IsAssignableFrom<Customer>(result);
             Assert.NotNull(result);
-            Assert.Equivalent(ObjectMother.ArbitraryCustomer, result);
+            Assert.Equivalent(ObjectMother.SampleCustomer, result);
             Assert.IsType<Customer>(result);
 
             //  
             result.Should().NotBeNull();
             result.Should().BeOfType<Customer>();
             result.Should().BeAssignableTo<Customer>();
-            result.Id.Should().Be(ObjectMother.ArbitraryCustomer.Id);
-            result.FirstName.Should().Be(ObjectMother.ArbitraryCustomer.FirstName);
-            result.LastName.Should().Be(ObjectMother.ArbitraryCustomer.LastName);
-            result.PhoneNumber.Should().Be(ObjectMother.ArbitraryCustomer.PhoneNumber);
+            result.Id.Should().Be(ObjectMother.SampleCustomer.Id);
+            result.FirstName.Should().Be(ObjectMother.SampleCustomer.FirstName);
+            result.LastName.Should().Be(ObjectMother.SampleCustomer.LastName);
+            result.PhoneNumber.Should().Be(ObjectMother.SampleCustomer.PhoneNumber);
         }
     }
 }

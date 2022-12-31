@@ -108,4 +108,5 @@ public class MapToOfTTests
 
         Assert.Throws<ArgumentNullException>(() => { sut.MapTo<Customer>(sourceCustomer, targetCustomer); });
     }
+    
 }

@@ -49,7 +49,10 @@ public class Mapper
 
     public void MapFrom<T>(T source, T target)
     {
-        target.ApplyDiffsTo(source);
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
+
+        target.ApplyDiffsTo<T>(source);
     }
 
     public void MapFrom(object source, object target)
@@ -70,6 +73,9 @@ public class Mapper
 
     public void MapTo(object source, object target)
     {
+        source = source ?? throw new ArgumentNullException(nameof(source));
+        target = target ?? throw new ArgumentNullException(nameof(target));
+
         target.ApplyDiffsTo(source);
     }
 }

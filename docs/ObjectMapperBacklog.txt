@@ -32,6 +32,7 @@ PENDING FEATURES
 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
 - Mapping collections
 
+- Mapping collections
 
 COMPLETED FEATURES
 -------------------
