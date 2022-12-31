@@ -99,7 +99,7 @@ public class MapToOfTTests
     }
 
     [Fact]
-    public void Passing_a_null_target_should_throw_an_ArgumentNullException()
+    public void Passing_a_null_target_object_should_throw_an_ArgumentNullException()
     {
         var sut = Mapper.Create();
 
