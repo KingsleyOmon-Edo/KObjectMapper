@@ -2,7 +2,7 @@
 {
     internal class ObjectMother
     {
-        public static Product SampleProduct => new Product
+        public static Product SampleProduct => new()
         {
             Id = 0,
             Description = "A nice bag for your stuff",
@@ -10,15 +10,22 @@
             Quantity = 10
         };
 
-        public static Customer SampleCustomer => new Customer
+        public static Customer SampleCustomer => new()
         {
             Id = 0,
             FirstName = "James",
             LastName = "Ono",
             PhoneNumber = "5555550009"
         };
-        
-        public static Employee SampleEmployee => new Employee
+
+        public static CustomerDto SampleCustomerDto => new()
+        {
+            Id = 10,
+            FirstName = "Rudolph",
+            PhoneNumber = "5555550009"
+        };
+
+        public static Employee SampleEmployee => new()
         {
             EmployeeId = 10,
             FirstName = "Sam",

@@ -1,7 +1,7 @@
 ﻿//  TEST PLAN
 //  ---------- 
 //  
-//  ObjectExtensionsOfTTests
+//  ToDo:ObjectExtensionsOfTTests
 //  --------------------------
 //  TODO: Test predicate function happy path
 //  ToDO: Test predicate function sad path.
@@ -10,7 +10,7 @@
 //          for the implementations used in the mutation methods.
 //  TODO: Rider
 
-//  StackTests.cs
+//  ToDo:StackTests.cs
 //  ---------------
 //  ToDo: Test boundary conditions - empty, negative, etc.
 //  ToDo: Other edge cases.
@@ -31,3 +31,4 @@ Patch
 SendUpdatesTo
 ApplyDiffs
 */
+

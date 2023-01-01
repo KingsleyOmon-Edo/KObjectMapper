@@ -15,6 +15,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Extensions\Extras\ObjectExtensionsX.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Extensions\Extras\" />
 	  <Folder Include="Helpers\" />
 	</ItemGroup>
 

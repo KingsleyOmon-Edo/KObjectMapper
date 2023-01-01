@@ -1,84 +1,165 @@
-﻿using FluentAssertions;
-using ObjectMapper;
-using ObjectMapper.Extensions;
-using ObjectMapperTests.Helpers;
-
-namespace ObjectMapperTests;
-
-public class MapFromTests
+﻿namespace ObjectMapperTests
 {
-    private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
+    using Helpers;
+    using ObjectMapper;
+    using ObjectMapper.Extensions;
 
-    [Fact]
-    public void Non_generic_MapFrom_should_be_available_as_extension_method_on_any_object_without_a_need_for_a_mapper_instance()
+    public class MapFromTests
     {
-        var testCustomer = ObjectMother.SampleCustomer;
-        var testEmployee = ObjectMother.SampleEmployee;
+        private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
 
-        testCustomer.MapFrom(testEmployee);
 
-        testCustomer.Should().NotBeNull();
-        testCustomer.Id.Should().NotBe(testEmployee.EmployeeId);
-        testCustomer.FirstName.Should().Be(testEmployee.FirstName);
-        testCustomer.LastName.Should().Be(testEmployee.LastName);
-    }
-    
-    [Fact]
-    public void Non_generic_MapFrom_should_correctly_map_compatible_props_of_two_dissimilar_objects()
-    {
-        var sut = Mapper.Create();
-        var sampleEmployee = ObjectMother.SampleEmployee;
-        var sampleCustomer = ObjectMother.SampleCustomer;
-
-        sut.MapFrom(sampleCustomer, sampleEmployee);
-
-        sampleEmployee.Should().NotBeNull();
-        sampleEmployee.EmployeeId.Should().NotBe(sampleCustomer.Id);
-        sampleEmployee.FirstName.Should().Be(sampleCustomer.FirstName);
-        sampleEmployee.LastName.Should().Be(sampleCustomer.LastName);
-        sampleEmployee.Salary.Should().Be(100_000.00M);
-    }
-
-    [Fact]
-    public void Mapping_with_the_MapFromOfT_overload_should_succeed()
-    {
-        //  Arrange
-        var sut = Mapper.Create();
-        var sourceCustomer = ObjectMother.SampleCustomer;
-        var targetCustomer = new Customer
+        [Fact]
+        public void Implicit_forward_mapping_from_a_Customer_entity_to_a_customer_Dto_should_succeed()
         {
-            Id = 100,
-            FirstName = "Fred",
-            LastName = "Mark",
-            PhoneNumber = "9305558973"
-        };
+            //  Arrange
+            var customer = ObjectMother.SampleCustomer;
+            var customerDto = ObjectMother.SampleCustomerDto;
 
-        //  Act         
-        sut.MapFrom(sourceCustomer, targetCustomer);
+            //  Act
+            customerDto.MapFrom(customer);
 
-        //  Assert
-        _commonAsserts.AssertSimilarCustomers(sourceCustomer, targetCustomer);
-    }
-    
-    [Fact]
-    public void Passing_a_null_source_object_to_non_generic_MapFrom_throws_ArgumentNullException()
-    {
-        var sut = Mapper.Create();
+            //  Assert
+            _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
+        }
 
-        Product sourceProduct = null;
-        var targetProduct = ObjectMother.SampleProduct;
+        [Fact]
+        public void Implicit_reverse_mapping_from_a_customerDto_a_Customer_entity_should_succeed()
+        {
+            //  Arrange
+            var customerDto = ObjectMother.SampleCustomerDto;
+            var customer = ObjectMother.SampleCustomer;
 
-        Assert.Throws<ArgumentNullException>(() => { sut.MapFrom(sourceProduct, targetProduct as object); });
-    }
+            //  Act
+            customer.MapFrom(customerDto);
 
-    [Fact]
-    public void Passing_a_null_target_object_to_non_generic_MapFrom_throws_ArgumentNullException()
-    {
-        var sut = Mapper.Create();
+            //  Assert
+            _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
+        }
 
-        var sourceCustomer = ObjectMother.SampleCustomer;
-        Customer? targetCustomer = null;
+        [Fact]
+        public void
+            Explicit_forward_mapping_from_Customer_entity_to_a_CustomerDto_via_mapper_instance_should_succeed()
+        {
+            //  Arrange
+            var mapper = Mapper.Create();
+            var customer = ObjectMother.SampleCustomer;
+            var customerDto = ObjectMother.SampleCustomerDto;
 
-        Assert.Throws<ArgumentNullException>(() => { sut.MapFrom(sourceCustomer, targetCustomer as object); });
+            //  Act
+            mapper.MapFrom(customer, customerDto);
+
+            //  Assert
+            _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
+        }
+
+        [Fact]
+        public void
+            Explicit_reverse_mapping_from_a_CustomerDto_to_a_customer_entity_via_mapper_instance_should_succeed()
+        {
+            var mapper = Mapper.Create();
+
+            var customerDto = ObjectMother.SampleCustomerDto;
+            var customer = ObjectMother.SampleCustomer;
+
+            mapper.MapFrom(customerDto, customer);
+
+            //  Assert
+            _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
+        }
+
+        [Fact]
+        public void
+            Implicit_mapping_of_any_two_dissimilar_types_should_succeed()
+        {
+            var customer = ObjectMother.SampleCustomer;
+            var employee = ObjectMother.SampleEmployee;
+
+            customer.MapFrom(employee);
+
+            _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+        }
+
+        [Fact]
+        public void Implicit_reverse_mapping_of_any_two_dissimilar_types_should_succeed()
+        {
+            var employee = ObjectMother.SampleEmployee;
+            var customer = ObjectMother.SampleCustomer;
+
+            employee.MapFrom(customer);
+
+            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(customer, employee);
+        }
+
+        [Fact]
+        public void Explicit_forward_mapping_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
+        {
+            var mapper = Mapper.Create();
+
+            var customer = ObjectMother.SampleCustomer;
+            var employee = ObjectMother.SampleEmployee;
+
+            mapper.MapFrom(employee, customer);
+
+            _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+        }
+
+        [Fact]
+        public void Explicit_reverse_mapping_via_mapper_instance_of_any_two_dissimilar_types_should_succeed()
+        {
+            var sut = Mapper.Create();
+
+            var employee = ObjectMother.SampleEmployee;
+            var customer = ObjectMother.SampleCustomer;
+
+            sut.MapFrom(customer, employee);
+
+            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(customer, employee);
+        }
+
+        [Fact]
+        public void
+            Passing_a_null_source_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
+        {
+            Customer customer = null;
+            var customerDto = ObjectMother.SampleCustomerDto;
+
+            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom(customer); });
+        }
+
+        [Fact]
+        public void
+            Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
+        {
+            var customer = ObjectMother.SampleCustomer;
+            CustomerDto customerDto = null;
+
+            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom(customer); });
+        }
+
+        [Fact]
+        public void
+            Passing_a_null_source_object_in_explicit_mapping_via_a_mapper_instance_should_throw_ArgumentNullException()
+        {
+            var mapper = Mapper.Create();
+
+            Customer customer = null;
+            var customerDto = ObjectMother.SampleCustomerDto;
+
+            Assert.Throws<ArgumentNullException>(() => { mapper.MapFrom(customer, customerDto); });
+        }
+
+
+        [Fact]
+        public void
+            Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException_when_using_a_mapper_instance()
+        {
+            var sut = Mapper.Create();
+
+            var customer = ObjectMother.SampleCustomer;
+            CustomerDto customerDto = null;
+
+            Assert.Throws<ArgumentNullException>(() => { sut.MapFrom(customer, customerDto); });
+        }
     }
 }

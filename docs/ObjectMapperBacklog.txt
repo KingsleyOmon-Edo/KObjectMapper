@@ -3,8 +3,9 @@ MVP
 Features
 ---------
 - Simple Object-to-object mapping
-	- Similar types 
 	- Dissimilar types
+	- Similar types 
+	
 - Simple collection mapping
 	- Collections of similar types
 	- Collection of dissimilar types
@@ -12,43 +13,15 @@ Features
 - Good unit test coverage
 - Documentation
 - Code samples and examples
+- Support for .NET 6.0
 
 
-Tasks
-------
-//  ToDo: Implement an equivalent MapTo() for IEnumerables
-- Use Checker class in MapperExtensions
-
-Priority	Description	Project	File	
-
-
-Low	TODO: Test predicate function edge cases	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	8
-Low	ToDo: Implement an equivalent MapTo() for IEnumerables	ObjectMapper	C:\vc\git\Projects\Libraries\src\ObjectMapper\Mapper.cs	7
-Low	TODO: Test predicate function happy path	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	6
-Low	ToDO: Test predicate function sad path.	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	7
-Low	TODO: Substitute the now functional GetPropertyDiffs method	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	9
-Low	TODO: Rider	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	11
-Low	ToDo: Test boundary conditions - empty, negative, etc.	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	15
-Low	ToDo: Other edge cases.	ExtensionsTests	C:\vc\git\Projects\Libraries\tests\ExtensionsTests\TaskList.cs	16
-Low	ToDo: Validate types of source objects	ObjectMapperTests	C:\vc\git\Projects\Libraries\tests\ObjectMapperTests\MapFromOfTTests.cs	9
-Low	ToDo: Validate types of target objects	ObjectMapperTests	C:\vc\git\Projects\Libraries\tests\ObjectMapperTests\MapFromOfTTests.cs	10
-Low	ToDo: Validate both types when different types are supplied for each Map<TSource, TTarget>(TSource source, TTarget target)	ObjectMapperTests	C:\vc\git\Projects\Libraries\tests\ObjectMapperTests\MapFromOfTTests.cs	11
-Low	ToDo: Validate the type ignorance still works.	ObjectMapperTests	C:\vc\git\Projects\Libraries\tests\ObjectMapperTests\MapFromOfTTests.cs	12
-Low	ToDo: POC: Setup a sample, install the nuget and test. Fix any issues.	ObjectMapperTests	C:\vc\git\Projects\Libraries\tests\ObjectMapperTests\MapFromOfTTests.cs	13
-
-
-PENDING FEATURES
--------------------
+Product Backlog - (Pending Features)
+-------------------------------------
 - Review code and fix any issues in files.
 - Review and cover ALL object extension methods with protective tests.
-9 - Mapping collections
-
-- REFACTOR: Push some of ObjectExtension methods into a service class and consume by object composition.
-- so they don't show up ON all objects globally.
-
+- Mapping collections (Detailed implementation)
 - Mapping between collections of dissimilar types
-
-- Test guard clauses
 - Keep Extensions local
 - Should return the mapped instance instead
 	var target = mapper.Map<T>(source);
@@ -56,8 +29,7 @@ PENDING FEATURES
 	var target = mapper.MapFrom(source);
 - Review the semantics of the MapTo<T>() and MapFrom<T>() methods
 - Mapping collections
-
-- Mapping collections
+- Support for .NET 5.0, 3.1, 4.0
 
 COMPLETED FEATURES
 -------------------
