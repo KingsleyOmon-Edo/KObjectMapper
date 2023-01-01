@@ -1,10 +1,11 @@
 ﻿namespace ObjectMapperTests
 {
+    using Abstractions;
     using Helpers;
     using ObjectMapper;
     using ObjectMapper.Extensions;
 
-    public class MapFromTests
+    public class MapFromTests : ISimpleMappingTests
     {
         private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
 
@@ -24,7 +25,8 @@
         }
 
         [Fact]
-        public void Implicit_reverse_mapping_via_extension_methods_from_a_customerDto_a_Customer_entity_should_succeed()
+        public void
+            Implicit_reverse_mapping_via_extension_methods_from_a_customerDto_back_to_a_Customer_entity_should_succeed()
         {
             //  Arrange
             var customerDto = ObjectMother.SampleCustomerDto;
@@ -39,7 +41,7 @@
 
         [Fact]
         public void
-            Explicit_forward_mapping_via_mapper_instance_from_Customer_entity_to_a_CustomerDto_via_should_succeed()
+            Explicit_forward_mapping_via_mapper_instance_from_Customer_entity_to_a_CustomerDto_should_succeed()
         {
             //  Arrange
             var mapper = Mapper.Create();
@@ -55,7 +57,7 @@
 
         [Fact]
         public void
-            Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_to_a_customer_entity_should_succeed()
+            Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_back_to_a_customer_entity_should_succeed()
         {
             var mapper = Mapper.Create();
 
@@ -70,7 +72,7 @@
 
         [Fact]
         public void
-            Implicit_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
+            Implicit_forward_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
         {
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
@@ -88,7 +90,7 @@
 
             employee.MapFrom(customer);
 
-            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(customer, employee);
+            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
         }
 
         [Fact]
@@ -115,7 +117,7 @@
 
             sut.MapFrom(customer, employee);
 
-            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(customer, employee);
+            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
         }
 
         [Fact]

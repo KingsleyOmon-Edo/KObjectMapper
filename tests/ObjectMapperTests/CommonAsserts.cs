@@ -57,7 +57,7 @@
             customer.FirstName.Should().Be(customerDto.FirstName);
         }
 
-        public void AssertEmployeeIsCorrectlyMappedFromCustomer(Customer customer, Employee employee)
+        public void AssertEmployeeIsCorrectlyMappedFromCustomer(Employee employee, Customer customer)
         {
             employee.Should().NotBeNull();
             employee.EmployeeId.Should().NotBe(customer.Id);
