@@ -1,6 +1,7 @@
-﻿namespace ObjectMapper
+﻿using System.Reflection;
+
+namespace ObjectMapper.Helpers
 {
-    using System.Reflection;
     public class Checker
     {
         public static T NullChecks<T>(T source, T target)
@@ -50,7 +51,7 @@
 
         public static bool TypeCheckSingle<T>(T testObject)
         {
-            return Object.Equals(testObject.GetType(), typeof(T));
+            return Object.Equals(testObject?.GetType(), typeof(T));
         }
 
         public static bool TypeCheckAll<T>(params T[] parameters)

@@ -1,12 +1,8 @@
-﻿using ObjectMapper.Extensions;
+﻿using System.Reflection;
 
-namespace ObjectMapper
+namespace ObjectMapper.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-
+    using ObjectMapper.Helpers;
     public static partial class ObjectExtensions
     {
         #region "Object Validators - Validators"
@@ -41,7 +37,7 @@ namespace ObjectMapper
 
         #endregion
 
-        #region "Predicates"
+        #region "Predicate logic"
 
         public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
         {
