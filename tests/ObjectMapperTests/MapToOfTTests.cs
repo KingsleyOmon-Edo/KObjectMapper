@@ -1,4 +1,5 @@
 ﻿using ObjectMapper;
+using ObjectMapper.Extensions;
 using ObjectMapperTests.Helpers;
 
 namespace ObjectMapperTests;

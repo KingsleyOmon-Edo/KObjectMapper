@@ -1,7 +1,6 @@
-﻿using System.Transactions;
-using ObjectMapper.Helpers;
+﻿using ObjectMapper.Helpers;
 
-namespace ObjectMapper;
+namespace ObjectMapper.Extensions;
 
 public static class MapperExtensions
 {
