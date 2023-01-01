@@ -10,7 +10,7 @@
 
 
         [Fact]
-        public void Implicit_forward_mapping_from_a_Customer_entity_to_a_customer_Dto_should_succeed()
+        public void Implicit_forward_mapping_via_extensions_from_a_Customer_entity_to_a_customer_Dto_should_succeed()
         {
             //  Arrange
             var customer = ObjectMother.SampleCustomer;
@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public void Implicit_reverse_mapping_from_a_customerDto_a_Customer_entity_should_succeed()
+        public void Implicit_reverse_mapping_via_extension_methods_from_a_customerDto_a_Customer_entity_should_succeed()
         {
             //  Arrange
             var customerDto = ObjectMother.SampleCustomerDto;
@@ -39,7 +39,7 @@
 
         [Fact]
         public void
-            Explicit_forward_mapping_from_Customer_entity_to_a_CustomerDto_via_mapper_instance_should_succeed()
+            Explicit_forward_mapping_via_mapper_instance_from_Customer_entity_to_a_CustomerDto_via_should_succeed()
         {
             //  Arrange
             var mapper = Mapper.Create();
@@ -55,7 +55,7 @@
 
         [Fact]
         public void
-            Explicit_reverse_mapping_from_a_CustomerDto_to_a_customer_entity_via_mapper_instance_should_succeed()
+            Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_to_a_customer_entity_should_succeed()
         {
             var mapper = Mapper.Create();
 
@@ -70,7 +70,7 @@
 
         [Fact]
         public void
-            Implicit_mapping_of_any_two_dissimilar_types_should_succeed()
+            Implicit_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
         {
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
@@ -81,7 +81,7 @@
         }
 
         [Fact]
-        public void Implicit_reverse_mapping_of_any_two_dissimilar_types_should_succeed()
+        public void Implicit_reverse_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
         {
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
@@ -92,7 +92,8 @@
         }
 
         [Fact]
-        public void Explicit_forward_mapping_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
+        public void
+            Explicit_forward_mapping_via_mapper_instance_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
         {
             var mapper = Mapper.Create();
 
