@@ -1,44 +1,32 @@
-﻿using ObjectMapper.Extensions;
+﻿using System.Reflection;
 
-namespace ObjectMapper
+namespace ObjectMapper.Extensions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-
+    using ObjectMapper.Helpers;
     public static partial class ObjectExtensions
     {
-        public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
-        {
-            Checker.NullChecks<T>(source, target);
-            Checker.TypeChecks(source, target);
-            List<PropertyInfo> diffs = ComputeDiffs(source, target);
-
-            return diffs;   // Shorter
-        }
-
-        public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
+        #region "Object Validators - Validators"
+        private static void ValidateParameters<T>(T source, T target)
         {
             Checker.NullChecks(source, target);
-            List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
-            return diffs;
+            Checker.TypeChecks(source, target);
         }
-        private static List<PropertyInfo> ComputeDiffs<T>(T source, T target)
-        {
-            var sourceProps = source.GetType().GetProperties().ToList();
-            var targetProps = target.GetType().GetProperties().ToList();
 
-            return sourceProps.Except(targetProps, (
-                object sourceObject,
-                PropertyInfo sourceProp,
-                object targetObject,
-                PropertyInfo targetProp) => ArePropValuesDifferent<object>(sourceObject,
-                                                                   sourceProp,
-                                                                   targetObject,
-                                                                   targetProp), source, target)
-                                            .ToList();
+        private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
+        {
+            Checker.NullChecks<T>(sourceObject, targetObject);
+            Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
+        }
+
+        private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
+        {
+            sourcePropType = sourceProp.PropertyType;
+            targetPropType = targetProp.PropertyType;
+            if (Object.Equals(sourcePropType, targetPropType) == false)
+            {
+                throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
+            }
         }
 
         private static void NullChecks<T>(T source, T target)
@@ -46,6 +34,10 @@ namespace ObjectMapper
             source = source ?? throw new ArgumentNullException(nameof(source));
             target = target ?? throw new ArgumentNullException(nameof(target));
         }
+
+        #endregion
+
+        #region "Predicate logic"
 
         public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject, PropertyInfo targetProp)
         {
@@ -62,7 +54,7 @@ namespace ObjectMapper
             object? sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             object? targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
 
-            if (Object.Equals(sourcePropValue, targetPropValue) == true)
+            if (Equals(sourcePropValue, targetPropValue) == true)
             {
                 return true;
             }
@@ -70,36 +62,53 @@ namespace ObjectMapper
             return false;
         }
 
-        private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp, out Type sourcePropType, out Type targetPropType)
+        #endregion
+        
+        #region "Object queries - Queries"
+        public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            sourcePropType = sourceProp.PropertyType;
-            targetPropType = targetProp.PropertyType;
-            if (Object.Equals(sourcePropType, targetPropType) == false)
-            {
-                throw new ArgumentException($"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
-            }
+            Checker.NullChecks<T>(source, target);
+            Checker.TypeChecks(source, target);
+            List<PropertyInfo> diffs = ComputeDiffs(source, target);
+
+            return diffs;   // Shorter
         }
 
-        private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject, PropertyInfo targetProp)
-        {
-            Checker.NullChecks<T>(sourceObject, targetObject);
-            Checker.NullChecks<PropertyInfo>(sourceProp, targetProp);
-        }
-
-        private static void ValidateParameters<T>(T source, T target)
+        public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
         {
             Checker.NullChecks(source, target);
+            List<PropertyInfo> diffs = ComputeDiffs(source, target);
 
-            Checker.TypeChecks(source, target);
+            return diffs;
         }
-        
+
+        private static List<PropertyInfo> ComputeDiffs<T>(T source, T target)
+        {
+            var sourceProps = source.GetType().GetProperties().ToList();
+            var targetProps = target.GetType().GetProperties().ToList();
+
+            return sourceProps.Except(targetProps, (
+                    object sourceObject,
+                    PropertyInfo sourceProp,
+                    object targetObject,
+                    PropertyInfo targetProp) => ArePropValuesDifferent<object>(sourceObject,
+                    sourceProp,
+                    targetObject,
+                    targetProp), source, target)
+                .ToList();
+        }
+
+        #endregion
+
+        #region "Object mutators - Commands"
+
         public static object ApplyDiffsTo(this object source, object target)
         {
             NullChecks(source, target);
-            
+
             var diffs = source.GetPropertyDiffs(target);
             var sourceProps = source.GetType().GetProperties();
-            
+
             WriteToProperties(source, target, diffs);
 
             return target;
@@ -181,6 +190,10 @@ namespace ObjectMapper
         {
             return source.ApplyDiffsTo(target);
         }
+
+
+
+        #endregion
 
     }
 }

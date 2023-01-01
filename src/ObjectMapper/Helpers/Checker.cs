@@ -1,8 +1,7 @@
-﻿
+﻿using System.Reflection;
 
-namespace ObjectMapper
+namespace ObjectMapper.Helpers
 {
-    using System.Reflection;
     public class Checker
     {
         public static T NullChecks<T>(T source, T target)
@@ -12,7 +11,7 @@ namespace ObjectMapper
 
             return source;
         }
-
+        
         public static T CoalescedNullCheck<T>(T source)
         {
             source = source ?? throw new ArgumentNullException(nameof(source));
@@ -39,6 +38,25 @@ namespace ObjectMapper
             {
                 throw new ArgumentException($"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
             }
+        }
+
+        public static void NullCheckAll<T>(params T[] parameters)
+        {
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                T current = parameters[i];
+                CoalescedNullCheck<T>(current);
+            }
+        }
+
+        public static bool TypeCheckSingle<T>(T testObject)
+        {
+            return Object.Equals(testObject?.GetType(), typeof(T));
+        }
+
+        public static bool TypeCheckAll<T>(params T[] parameters)
+        {
+            return parameters.All<T>(TypeCheckSingle<T>);
         }
     }
 }

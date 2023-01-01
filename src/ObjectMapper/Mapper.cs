@@ -1,74 +1,73 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using ObjectMapper.Extensions;
 
-namespace ObjectMapper;
-
-public class Mapper
+namespace ObjectMapper
 {
-    private Mapper()
+    using ObjectMapper.Helpers;
+    public class Mapper
     {
-    }
-
-    public static Mapper Create()
-    {
-        return new Mapper();
-    }
-
-    public void Map<T>(T source, T target)
-    {
-        source = Checker.NullChecks<T>(source, target);
-
-        source.ApplyDiffsTo<T>(target);
-    }
-
-
-    public void Map(object source, object target)
-    {
-        Checker.NullChecks<object>(source, target);
-
-        source.ApplyDiffsTo(target);
-    }
-
-    public void MapFrom<T>(T source, T target)
-    {
-        Checker.NullChecks<T>(source, target);
-
-        target.ApplyDiffsTo<T>(source);
-    }
-
-    public void MapFrom(object source, object target)
-    {
-        Checker.NullChecks<object>(source, target);
-
-        target.ApplyDiffsTo(source);
-    }
-
-    public void MapTo<T>(T source, T target)
-    {
-        Checker.NullChecks<T>(source, target);
-
-        source.ApplyDiffsTo(target);
-    }
-
-    public void MapTo(object source, object target)
-    {
-        Checker.NullChecks<object>(source, target);
-
-        target.ApplyDiffsTo(source);
-    }
-
-    public IEnumerable<T> MapFrom<T>(IEnumerable<T> source)
-        where T : new()
-    {
-        var resultCollection = new List<T>();
-
-        foreach (var sourceElem in source)
+        private Mapper()
         {
-            var targetElem = new T();
-            sourceElem.MapTo(targetElem);
-
-            resultCollection.Add(targetElem);
         }
 
-        return resultCollection;
+        public static Mapper Create() => new Mapper();
+
+        public void Map<TCommon>(TCommon source, TCommon target)
+        {
+            source = Checker.NullChecks<TCommon>(source, target);
+
+            source.ApplyDiffsTo<TCommon>(target);
+        }
+        
+        public void Map(object source, object target)
+        {
+            Checker.NullChecks<object>(source, target);
+
+            source.ApplyDiffsTo(target);
+        }
+
+        public void MapFrom<TCommon>(TCommon source, TCommon target)
+        {
+            Checker.NullChecks<TCommon>(source, target);
+
+            target.ApplyDiffsTo<TCommon>(source);
+        }
+
+        public void MapFrom(object source, object target)
+        {
+            Checker.NullChecks<object>(source, target);
+
+            target.ApplyDiffsTo(source);
+        }
+
+        public void MapTo<TCommon>(TCommon source, TCommon target)
+        {
+            Checker.NullChecks<TCommon>(source, target);
+
+            source.ApplyDiffsTo(target);
+        }
+
+        public void MapTo(object source, object target)
+        {
+            Checker.NullChecks<object>(source, target);
+
+            target.ApplyDiffsTo(source);
+        }
+
+        public IEnumerable<TCommon> MapFrom<TCommon>(IEnumerable<TCommon> source)
+            where TCommon : new()
+        {
+            var resultCollection = new List<TCommon>();
+
+            foreach (var sourceElem in source)
+            {
+                var targetElem = new TCommon();
+                sourceElem.MapTo(targetElem);
+
+                resultCollection.Add(targetElem);
+            }
+
+            return resultCollection;
+        }
     }
 }
