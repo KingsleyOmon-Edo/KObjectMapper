@@ -24,8 +24,7 @@ public class TaskList
 
     //  Specific to specific. Which may or may not be the same.
     //  ToDo: public void MapFrom<TSource, TTarget>(TSource source, TTarget target);
-
-
+    
 
     //  COMMON TYPES - SINGLE OBJECTS
     //  ------------------------------
