@@ -63,7 +63,7 @@ namespace ObjectMapper
             return false;
         }
 
-        public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
+        public static List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
         {
             Checker.NullChecks(source, target);
             Checker.TypeChecks(source, target);
@@ -72,7 +72,7 @@ namespace ObjectMapper
             return diffs; // Shorter
         }
 
-        public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
+        public static List<PropertyInfo> GetPropertyDiffs(object source, object target)
         {
             Checker.NullChecks(source, target);
             var diffs = MappingService.ComputeDiffs(source, target);
@@ -100,7 +100,7 @@ namespace ObjectMapper
         {
             MappingService.NullChecks(source, target);
 
-            var diffs = source.GetPropertyDiffs(target);
+            var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
 
             MappingService.WriteToProperties(source, target, diffs);
@@ -112,7 +112,7 @@ namespace ObjectMapper
         {
             MappingService.ValidateParameters(source, target);
 
-            var diffs = source.GetPropertyDiffs(target);
+            var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
             MappingService.WriteToProperties(source, target, diffs);
 
@@ -160,17 +160,17 @@ namespace ObjectMapper
             }
         }
 
-        public static object SendUpdatesTo(this object source, object target) =>
+        public static object SendUpdatesTo(object source, object target) =>
             MappingService.ApplyDiffs<object>(source, target);
 
-        public static T Patch<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T AcceptChanges<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendChanges<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T AcceptPatch<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendPatches<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T PatchFrom<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T PatchTo<T>(this T sources, T target) => MappingService.ApplyDiffs(sources, target);
-        public static T AcceptUpdates<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendUpdates<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T Patch<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T AcceptChanges<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendChanges<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T AcceptPatch<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendPatches<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T PatchFrom<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T PatchTo<T>(T sources, T target) => MappingService.ApplyDiffs(sources, target);
+        public static T AcceptUpdates<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendUpdates<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
     }
 }
