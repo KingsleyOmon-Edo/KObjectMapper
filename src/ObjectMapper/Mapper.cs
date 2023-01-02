@@ -1,8 +1,8 @@
-﻿using ObjectMapper.Extensions;
-using ObjectMapper.Helpers;
-
-namespace ObjectMapper
+﻿namespace ObjectMapper
 {
+    using Extensions;
+    using Helpers;
+
     public class Mapper
     {
         private Mapper()
@@ -18,7 +18,7 @@ namespace ObjectMapper
             source.ApplyDiffsTo(target);
         }
 
-        public void Map(object source, object target)
+        public void MapEx(object source, object target)
         {
             Checker.NullChecks(source, target);
 

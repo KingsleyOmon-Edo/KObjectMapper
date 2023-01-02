@@ -1,18 +1,14 @@
 ﻿namespace ObjectMapperTests
 {
     using FluentAssertions;
+    using Helpers;
     using ObjectMapper;
-    using ObjectMapperTests.Helpers;
-    using System.Net.WebSockets;
-    using Xunit;
+
     public class MapTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapTests()
-        {
-            _commonAsserts = CommonAsserts.Create();
-        }
+        public MapTests() => _commonAsserts = CommonAsserts.Create();
 
         [Fact]
         public void Crate_a_valid_mapper_class()
@@ -37,7 +33,7 @@
             };
 
             //  Act
-            sut.Map<Customer>(firstCustomer, secondCustomer);
+            sut.Map(firstCustomer, secondCustomer);
 
             //  Assert
             _commonAsserts.AssertSimilarCustomers(firstCustomer, secondCustomer);
@@ -80,7 +76,7 @@
             };
 
             // Act
-            sut.Map(customerJane, employeeSam);
+            sut.MapEx(customerJane, employeeSam);
 
             //  Assert
             employeeSam.Should().NotBeNull();
@@ -106,7 +102,7 @@
             };
 
             //  Act
-            sut.Map<Customer>(firstCustomer, secondCustomer);
+            sut.Map(firstCustomer, secondCustomer);
 
             //  Assert
             _commonAsserts.AssertSimilarCustomers(firstCustomer, secondCustomer);
@@ -118,13 +114,9 @@
             var sut = Mapper.Create();
 
             Product sourceProduct = null;
-            Product targetProduct = ObjectMother.SampleProduct;
+            var targetProduct = ObjectMother.SampleProduct;
 
-            Assert.Throws<ArgumentNullException>(() =>
-               {
-                   sut.Map(sourceProduct as object, targetProduct as object);
-               });
-
+            Assert.Throws<ArgumentNullException>(() => { sut.MapEx(sourceProduct, targetProduct); });
         }
 
         [Fact]
@@ -132,15 +124,10 @@
         {
             var sut = Mapper.Create();
 
-            Customer sourceCustomer = ObjectMother.SampleCustomer;
+            var sourceCustomer = ObjectMother.SampleCustomer;
             Customer targetCustomer = null;
 
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                sut.Map(sourceCustomer, targetCustomer);
-            });
-
-
+            Assert.Throws<ArgumentNullException>(() => { sut.Map(sourceCustomer, targetCustomer); });
         }
     }
 }
