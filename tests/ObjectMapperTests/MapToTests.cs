@@ -5,7 +5,7 @@
     using ObjectMapper;
     using ObjectMapper.Extensions;
 
-    public class MapToTests : ISimpleMappingTests
+    public class MapToTests : IMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
@@ -20,7 +20,7 @@
 
             customer.MapTo(customerDto);
 
-            _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
+            _commonAsserts.AssertCustomerCorrectlyMapsToCustomerDto(customer, customerDto);
         }
 
         [Fact]
@@ -32,7 +32,7 @@
 
             customerDto.MapTo(customer);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
+            _commonAsserts.AssertCustomerDtoCorrectlyMapsToCustomer(customerDto, customer);
         }
 
         [Fact]
@@ -46,7 +46,7 @@
 
             mapper.MapTo(customer, customerDto);
 
-            _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
+            _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerToCustomerDto(customer, customerDto);
         }
 
         [Fact]
@@ -60,7 +60,7 @@
 
             mapper.MapTo(customerDto, customer);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
+            _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerDtoToCustomer(customerDto, customer);
         }
 
         [Fact]
@@ -71,7 +71,7 @@
 
             customer.MapTo(employee);
 
-            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
+            _commonAsserts.AssertCustomerCorrectlyMapsToEmployee(customer, employee);
         }
 
         [Fact]
@@ -82,7 +82,7 @@
 
             employee.MapTo(customer);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+            _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
         }
 
         [Fact]
@@ -96,7 +96,7 @@
 
             mapper.MapTo(customer, employee);
 
-            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
+            _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerToEmployee(customer, employee);
         }
 
         [Fact]
@@ -109,7 +109,7 @@
 
             mapper.MapTo(employee, customer);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+            _commonAsserts.AssertMapperObjectCorrectlyMapsEmployeeToCustomer(employee, customer);
         }
 
         [Fact]

@@ -5,7 +5,7 @@
     using ObjectMapper;
     using ObjectMapper.Extensions;
 
-    public class MapFromTests : ISimpleMappingTests
+    public class MapFromTests : IMappingTests
     {
         private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
 

@@ -1,6 +1,6 @@
 ﻿namespace ObjectMapperTests.Abstractions
 {
-    public interface ISimpleMappingTests
+    public interface IMappingTests
     {
         void Implicit_forward_mapping_via_extensions_from_a_Customer_entity_to_a_customer_Dto_should_succeed();
 
