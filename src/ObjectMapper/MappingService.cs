@@ -25,7 +25,7 @@ namespace ObjectMapper
         {
             sourcePropType = sourceProp.PropertyType;
             targetPropType = targetProp.PropertyType;
-            if (object.Equals(sourcePropType, targetPropType) == false)
+            if (Equals(sourcePropType, targetPropType) == false)
             {
                 throw new ArgumentException(
                     $"PropertyTypes: {nameof(sourceProp)} and {targetProp} have dissimilar types");
@@ -55,7 +55,7 @@ namespace ObjectMapper
             var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
 
-            if (object.Equals(sourcePropValue, targetPropValue))
+            if (Equals(sourcePropValue, targetPropValue))
             {
                 return true;
             }
@@ -96,7 +96,7 @@ namespace ObjectMapper
                 .ToList();
         }
 
-        public static object ApplyDiffsTo(object source, object target)
+        public static object ApplyDiffs(object source, object target)
         {
             MappingService.NullChecks(source, target);
 
@@ -108,7 +108,7 @@ namespace ObjectMapper
             return target;
         }
 
-        public static T ApplyDiffsTo<T>(T source, T target)
+        public static T ApplyDiffs<T>(T source, T target)
         {
             MappingService.ValidateParameters(source, target);
 
@@ -161,16 +161,16 @@ namespace ObjectMapper
         }
 
         public static object SendUpdatesTo(this object source, object target) =>
-            MappingService.ApplyDiffsTo<object>(source, target);
+            MappingService.ApplyDiffs<object>(source, target);
 
-        public static T Patch<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T AcceptChanges<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendChanges<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T AcceptPatch<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendPatches<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T PatchFrom<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T PatchTo<T>(this T sources, T target) => MappingService.ApplyDiffsTo(sources, target);
-        public static T AcceptUpdates<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendUpdates<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
+        public static T Patch<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T AcceptChanges<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendChanges<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T AcceptPatch<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendPatches<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T PatchFrom<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T PatchTo<T>(this T sources, T target) => MappingService.ApplyDiffs(sources, target);
+        public static T AcceptUpdates<T>(this T target, T source) => MappingService.ApplyDiffs(source, target);
+        public static T SendUpdates<T>(this T source, T target) => MappingService.ApplyDiffs(source, target);
     }
 }
