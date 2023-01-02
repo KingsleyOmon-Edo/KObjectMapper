@@ -5,7 +5,7 @@
     using ObjectMapper;
     using ObjectMapper.Extensions;
 
-    public class MapToTests : IMappingTests
+    public class MapToTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
@@ -33,6 +33,48 @@
             customerDto.MapTo(customer);
 
             _commonAsserts.AssertCustomerDtoCorrectlyMapsToCustomer(customerDto, customer);
+        }
+
+        [Fact]
+        public void Implicit_forward_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
+        {
+            var customer = ObjectMother.SampleCustomer;
+            var employee = ObjectMother.SampleEmployee;
+
+            customer.MapTo(employee);
+
+            _commonAsserts.AssertCustomerCorrectlyMapsToEmployee(customer, employee);
+        }
+
+        [Fact]
+        public void Implicit_reverse_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
+        {
+            var employee = ObjectMother.SampleEmployee;
+            var customer = ObjectMother.SampleCustomer;
+
+            employee.MapTo(customer);
+
+            _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
+        }
+
+        [Fact]
+        public void
+            Passing_a_null_source_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
+        {
+            Customer customer = null;
+            var customerDto = ObjectMother.SampleCustomerDto;
+
+            Assert.Throws<ArgumentNullException>(() => customer.MapTo(customerDto));
+        }
+
+        [Fact]
+        public void
+            Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
+        {
+            var customer = ObjectMother.SampleCustomer;
+            CustomerDto customerDto = null;
+
+            Assert.Throws<ArgumentNullException>(() => customer.MapTo(customerDto));
         }
 
         [Fact]
@@ -64,28 +106,6 @@
         }
 
         [Fact]
-        public void Implicit_forward_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
-        {
-            var customer = ObjectMother.SampleCustomer;
-            var employee = ObjectMother.SampleEmployee;
-
-            customer.MapTo(employee);
-
-            _commonAsserts.AssertCustomerCorrectlyMapsToEmployee(customer, employee);
-        }
-
-        [Fact]
-        public void Implicit_reverse_mapping_via_extension_methods_of_any_two_dissimilar_types_should_succeed()
-        {
-            var employee = ObjectMother.SampleEmployee;
-            var customer = ObjectMother.SampleCustomer;
-
-            employee.MapTo(customer);
-
-            _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
-        }
-
-        [Fact]
         public void
             Explicit_forward_mapping_via_mapper_instance_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
         {
@@ -110,26 +130,6 @@
             mapper.Map(employee, customer);
 
             _commonAsserts.AssertMapperObjectCorrectlyMapsEmployeeToCustomer(employee, customer);
-        }
-
-        [Fact]
-        public void
-            Passing_a_null_source_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
-        {
-            Customer customer = null;
-            var customerDto = ObjectMother.SampleCustomerDto;
-
-            Assert.Throws<ArgumentNullException>(() => customer.MapTo(customerDto));
-        }
-
-        [Fact]
-        public void
-            Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
-        {
-            var customer = ObjectMother.SampleCustomer;
-            CustomerDto customerDto = null;
-
-            Assert.Throws<ArgumentNullException>(() => customer.MapTo(customerDto));
         }
 
         [Fact]
