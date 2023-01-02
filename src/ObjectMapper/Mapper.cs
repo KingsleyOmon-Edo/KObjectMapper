@@ -15,42 +15,42 @@
         {
             source = Checker.NullChecks(source, target);
 
-            source.ApplyDiffsTo(target);
+            MappingService.Create().ApplyDiffs(source, target);
         }
 
         public void MapEx(object source, object target)
         {
             Checker.NullChecks(source, target);
 
-            source.ApplyDiffsTo(target);
+            MappingService.Create().ApplyDiffs(source, target);
         }
 
         public void MapFrom<TCommon>(TCommon source, TCommon target)
         {
             Checker.NullChecks(source, target);
 
-            target.ApplyDiffsTo(source);
+            MappingService.Create().ApplyDiffs(target, source);
         }
 
         public void MapFrom(object source, object target)
         {
             Checker.NullChecks(source, target);
 
-            target.ApplyDiffsTo(source);
+            MappingService.Create().ApplyDiffs(target, source);
         }
 
         public void MapTo<TCommon>(TCommon source, TCommon target)
         {
             Checker.NullChecks(source, target);
 
-            source.ApplyDiffsTo(target);
+            MappingService.Create().ApplyDiffs(source, target);
         }
 
-        public void MapTo(object source, object target)
+        public void Map(object source, object target)
         {
             Checker.NullChecks(source, target);
 
-            target.ApplyDiffsTo(source);
+            MappingService.Create().ApplyDiffs(target, source);
         }
 
         public IEnumerable<TCommon> MapFrom<TCommon>(IEnumerable<TCommon> source)

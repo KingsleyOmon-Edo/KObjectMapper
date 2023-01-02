@@ -4,11 +4,11 @@
     using Helpers;
     using ObjectMapper;
 
-    public class MapTests
+    public class MapExTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapTests() => _commonAsserts = CommonAsserts.Create();
+        public MapExTests() => _commonAsserts = CommonAsserts.Create();
 
         [Fact]
         public void Crate_a_valid_mapper_class()
