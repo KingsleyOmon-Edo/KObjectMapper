@@ -46,7 +46,7 @@
             source.ApplyDiffsTo(target);
         }
 
-        public void MapTo(object source, object target)
+        public void Map(object source, object target)
         {
             Checker.NullChecks(source, target);
 

@@ -44,7 +44,7 @@
             var customer = ObjectMother.SampleCustomer;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            mapper.MapTo(customer, customerDto);
+            mapper.Map(customer, customerDto);
 
             _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerToCustomerDto(customer, customerDto);
         }
@@ -58,7 +58,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.MapTo(customerDto, customer);
+            mapper.Map(customerDto, customer);
 
             _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerDtoToCustomer(customerDto, customer);
         }
@@ -94,7 +94,7 @@
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
 
-            mapper.MapTo(customer, employee);
+            mapper.Map(customer, employee);
 
             _commonAsserts.AssertMapperObjectCorrectlyMapsCustomerToEmployee(customer, employee);
         }
@@ -107,7 +107,7 @@
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.MapTo(employee, customer);
+            mapper.Map(employee, customer);
 
             _commonAsserts.AssertMapperObjectCorrectlyMapsEmployeeToCustomer(employee, customer);
         }
@@ -141,7 +141,7 @@
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => mapper.MapTo(customer, customerDto));
+            Assert.Throws<ArgumentNullException>(() => mapper.Map(customer, customerDto));
         }
 
         [Fact]
