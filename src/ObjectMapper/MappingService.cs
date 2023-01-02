@@ -4,8 +4,14 @@ namespace ObjectMapper
     using Extensions;
     using Helpers;
 
-    internal static class MappingService
+    public class MappingService
     {
+        private MappingService()
+        {
+        }
+
+        public static MappingService Create() => new();
+
         private static void ValidateParameters<T>(T source, T target)
         {
             Checker.NullChecks(source, target);
@@ -96,7 +102,7 @@ namespace ObjectMapper
                 .ToList();
         }
 
-        public static object ApplyDiffs(object source, object target)
+        public object ApplyDiffs(object source, object target)
         {
             MappingService.NullChecks(source, target);
 
@@ -108,7 +114,7 @@ namespace ObjectMapper
             return target;
         }
 
-        public static T ApplyDiffs<T>(T source, T target)
+        public T ApplyDiffs<T>(T source, T target)
         {
             MappingService.ValidateParameters(source, target);
 
@@ -161,16 +167,29 @@ namespace ObjectMapper
         }
 
         public static object SendUpdatesTo(object source, object target) =>
-            MappingService.ApplyDiffs<object>(source, target);
+            MappingService.Create().ApplyDiffs(source, target);
 
-        public static T Patch<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T AcceptChanges<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendChanges<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T AcceptPatch<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendPatches<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
-        public static T PatchFrom<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T PatchTo<T>(T sources, T target) => MappingService.ApplyDiffs(sources, target);
-        public static T AcceptUpdates<T>(T target, T source) => MappingService.ApplyDiffs(source, target);
-        public static T SendUpdates<T>(T source, T target) => MappingService.ApplyDiffs(source, target);
+        public static T Patch<T>(T source, T target) => MappingService.Create().ApplyDiffs(source, target);
+
+        public static T AcceptChanges<T>(T target, T source) =>
+            MappingService.Create().ApplyDiffs(source, target);
+
+        public static T SendChanges<T>(T source, T target) =>
+            MappingService.Create().ApplyDiffs(source, target);
+
+        public static T AcceptPatch<T>(T target, T source) =>
+            MappingService.Create().ApplyDiffs(source, target);
+
+        public static T SendPatches<T>(T source, T target) =>
+            MappingService.Create().ApplyDiffs(source, target);
+
+        public static T PatchFrom<T>(T target, T source) => MappingService.Create().ApplyDiffs(source, target);
+        public static T PatchTo<T>(T sources, T target) => MappingService.Create().ApplyDiffs(sources, target);
+
+        public static T AcceptUpdates<T>(T target, T source) =>
+            MappingService.Create().ApplyDiffs(source, target);
+
+        public static T SendUpdates<T>(T source, T target) =>
+            MappingService.Create().ApplyDiffs(source, target);
     }
 }
