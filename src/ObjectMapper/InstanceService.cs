@@ -1,10 +1,10 @@
-namespace ObjectMapper
+﻿namespace ObjectMapper
 {
     using System.Reflection;
     using Extensions;
     using Helpers;
 
-    internal static class MappingService
+    public static class InstanceService
     {
         private static void ValidateParameters<T>(T source, T target)
         {
@@ -41,16 +41,16 @@ namespace ObjectMapper
         public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject,
             PropertyInfo targetProp)
         {
-            MappingService.ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
+            InstanceService.ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
         }
 
         public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
             PropertyInfo targetProp)
         {
-            MappingService.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
+            InstanceService.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
             Checker.PropertyNameCheck(sourceProp, targetProp);
             Type sourcePropType, targetPropType;
-            MappingService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
+            InstanceService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
             var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
             var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
@@ -67,7 +67,7 @@ namespace ObjectMapper
         {
             Checker.NullChecks(source, target);
             Checker.TypeChecks(source, target);
-            var diffs = MappingService.ComputeDiffs(source, target);
+            var diffs = InstanceService.ComputeDiffs(source, target);
 
             return diffs; // Shorter
         }
@@ -75,7 +75,7 @@ namespace ObjectMapper
         public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
         {
             Checker.NullChecks(source, target);
-            var diffs = MappingService.ComputeDiffs(source, target);
+            var diffs = InstanceService.ComputeDiffs(source, target);
 
             return diffs;
         }
@@ -89,32 +89,32 @@ namespace ObjectMapper
                     object sourceObject,
                     PropertyInfo sourceProp,
                     object targetObject,
-                    PropertyInfo targetProp) => MappingService.ArePropValuesDifferent<object>(sourceObject,
+                    PropertyInfo targetProp) => InstanceService.ArePropValuesDifferent<object>(sourceObject,
                     sourceProp,
                     targetObject,
                     targetProp), source, target)
                 .ToList();
         }
 
-        public static object ApplyDiffsTo(object source, object target)
+        public static object ApplyDiffsTo(this object source, object target)
         {
-            MappingService.NullChecks(source, target);
+            InstanceService.NullChecks(source, target);
 
             var diffs = source.GetPropertyDiffs(target);
             var sourceProps = source.GetType().GetProperties();
 
-            MappingService.WriteToProperties(source, target, diffs);
+            InstanceService.WriteToProperties(source, target, diffs);
 
             return target;
         }
 
-        public static T ApplyDiffsTo<T>(T source, T target)
+        public static T ApplyDiffsTo<T>(this T source, T target)
         {
-            MappingService.ValidateParameters(source, target);
+            InstanceService.ValidateParameters(source, target);
 
             var diffs = source.GetPropertyDiffs(target);
             var sourceProps = source.GetType().GetProperties();
-            MappingService.WriteToProperties(source, target, diffs);
+            InstanceService.WriteToProperties(source, target, diffs);
 
             return target;
         }
@@ -160,17 +160,11 @@ namespace ObjectMapper
             }
         }
 
-        public static object SendUpdatesTo(this object source, object target) =>
-            MappingService.ApplyDiffsTo<object>(source, target);
-
-        public static T Patch<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T AcceptChanges<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendChanges<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T AcceptPatch<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendPatches<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
-        public static T PatchFrom<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T PatchTo<T>(this T sources, T target) => MappingService.ApplyDiffsTo(sources, target);
-        public static T AcceptUpdates<T>(this T target, T source) => MappingService.ApplyDiffsTo(source, target);
-        public static T SendUpdates<T>(this T source, T target) => MappingService.ApplyDiffsTo(source, target);
+        public static object SendUpdatesTo(this object source, object target) => source.ApplyDiffsTo<object>(target);
+        public static T Patch<T>(this T source, T target) => source.ApplyDiffsTo(target);
+        public static T AcceptChanges<T>(this T target, T source) => source.ApplyDiffsTo(target);
+        public static T SendChanges<T>(this T source, T target) => source.ApplyDiffsTo(target);
+        public static T AcceptPatch<T>(this T target, T source) => source.ApplyDiffsTo(target);
+        public static T SendPatches<T>(this T source, T target) => source.ApplyDiffsTo(target);
     }
 }

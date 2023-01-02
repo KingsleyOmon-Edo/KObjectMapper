@@ -16,6 +16,7 @@
 
 	<ItemGroup>
 	  <Compile Remove="Extensions\Extras\ObjectExtensionsX.cs" />
+	  <Compile Remove="InstanceService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
