@@ -5,9 +5,10 @@
 
     public class Mapper : IMapper
     {
-        //private Mapper()
-        //{
-        //}
+        public Mapper()
+        {
+        }
+
 
         //public void Map<TCommon>(TCommon source, TCommon target)
         //{
