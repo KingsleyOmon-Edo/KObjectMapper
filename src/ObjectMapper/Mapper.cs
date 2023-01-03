@@ -5,6 +5,8 @@
 
     public class Mapper : IMapper
     {
+        private readonly MappingService _mappingService = MappingService.Create();
+
         public Mapper()
         {
         }
@@ -67,7 +69,9 @@
         {
             Checker.NullChecks(source, target);
 
-            MappingService.Create().ApplyDiffs(source, target);
+            _mappingService.ApplyDiffs(source, target);
         }
+
+        public Mapper Create() => new();
     }
 }

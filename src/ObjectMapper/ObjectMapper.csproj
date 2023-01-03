@@ -15,12 +15,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Extensions\Extras\ObjectExtensionsX.cs" />
+	  <Compile Remove="Extensions\Extras\**" />
+	  <EmbeddedResource Remove="Extensions\Extras\**" />
+	  <None Remove="Extensions\Extras\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Remove="InstanceService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Extensions\Extras\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Abstractions\" />
 	</ItemGroup>
