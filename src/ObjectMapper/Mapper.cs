@@ -4,9 +4,9 @@
 
     public class Mapper
     {
-        private Mapper()
-        {
-        }
+        //private Mapper()
+        //{
+        //}
 
         public static Mapper Create() => new();
 
