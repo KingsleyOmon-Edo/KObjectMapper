@@ -3,6 +3,7 @@
     using Abstractions;
     using Helpers;
     using ObjectMapper;
+    using ObjectMapper.Abstractions;
 
     public class MapperTests : IExplicitMappingTests
     {
@@ -28,7 +29,7 @@
         public void
             Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_back_to_a_customer_entity_should_succeed()
         {
-            var mapper = new Mapper();
+            IMapper mapper = new Mapper();
 
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
