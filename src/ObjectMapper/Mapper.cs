@@ -1,8 +1,9 @@
 ﻿namespace ObjectMapper
 {
+    using Abstractions;
     using Helpers;
 
-    public class Mapper
+    public class Mapper : IMapper
     {
         //private Mapper()
         //{
