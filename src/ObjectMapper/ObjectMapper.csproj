@@ -22,6 +22,7 @@
 	<ItemGroup>
 	  <Folder Include="Extensions\Extras\" />
 	  <Folder Include="Helpers\" />
+	  <Folder Include="Abstractions\" />
 	</ItemGroup>
 
 </Project>

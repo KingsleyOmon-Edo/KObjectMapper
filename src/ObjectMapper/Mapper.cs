@@ -8,8 +8,6 @@
         //{
         //}
 
-        public static Mapper Create() => new();
-
         //public void Map<TCommon>(TCommon source, TCommon target)
         //{
         //    source = Checker.NullChecks(source, target);

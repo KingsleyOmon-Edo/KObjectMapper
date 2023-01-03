@@ -27,7 +27,7 @@
         {
             Checker.NullCheckAll(source, target);
 
-            var mapper = Mapper.Create();
+            var mapper = new Mapper();
             mapper.Map(source, target);
         }
 
@@ -35,7 +35,7 @@
         {
             Checker.NullCheckAll(source, target);
 
-            var mapper = Mapper.Create();
+            var mapper = new Mapper();
             mapper.MapFrom(source, target);
         }
     }
