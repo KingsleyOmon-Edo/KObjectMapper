@@ -76,7 +76,7 @@
             };
 
             // Act
-            sut.MapEx(customerJane, employeeSam);
+            sut.Map(customerJane, employeeSam);
 
             //  Assert
             employeeSam.Should().NotBeNull();
@@ -116,7 +116,7 @@
             Product sourceProduct = null;
             var targetProduct = ObjectMother.SampleProduct;
 
-            Assert.Throws<ArgumentNullException>(() => { sut.MapEx(sourceProduct, targetProduct); });
+            Assert.Throws<ArgumentNullException>(() => { sut.Map(sourceProduct, targetProduct); });
         }
 
         [Fact]
