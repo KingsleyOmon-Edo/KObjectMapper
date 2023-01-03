@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Title>Object Mapper</Title>
 		<PackageId>ObjectMapper</PackageId>
-		<Version>0.0.1-0.0.1.$([System.DateTime]::Now.ToString("yyyyMMddhhmmssmmm"))</Version>
+		<Version>0.0.1-0.0.1.$([System.DateTime]::Now.ToString("yyyyMMddhhmmss"))</Version>
 		<Author>Kingsley Omnon-Edo</Author>
 		<Company>Test Company</Company>
 		<PackageDescription>A simple C# object-to-object mapper</PackageDescription>
@@ -15,13 +15,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Extensions\Extras\ObjectExtensionsX.cs" />
+	  <Compile Remove="Extensions\Extras\**" />
+	  <EmbeddedResource Remove="Extensions\Extras\**" />
+	  <None Remove="Extensions\Extras\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Remove="InstanceService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Extensions\Extras\" />
 	  <Folder Include="Helpers\" />
+	  <Folder Include="Abstractions\" />
 	</ItemGroup>
 
 </Project>
