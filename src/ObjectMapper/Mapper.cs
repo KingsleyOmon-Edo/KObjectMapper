@@ -18,20 +18,6 @@
             Map(source, target);
         }
 
-        public void MapFrom(object source, object target)
-        {
-            Checker.NullChecks(source, target);
-
-            Map(target, source);
-        }
-
-        public void Map(object source, object target)
-        {
-            Checker.NullChecks(source, target);
-
-            _mappingService.ApplyDiffs(source, target);
-        }
-
         public void MapTo<TSource, TTarget>(TSource source, TTarget target)
         {
             Checker.CoalescedNullCheck(source);
@@ -39,6 +25,31 @@
 
             Checker.TypeCheck(source);
             Checker.TypeCheck(target);
+
+            _mappingService.ApplyDiffs(source, target);
+        }
+
+        public void MapFrom(object source, object target)
+        {
+            Checker.NullChecks(source, target);
+
+            Map(target, source);
+        }
+
+        public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
+        {
+            Checker.CoalescedNullCheck(source);
+            Checker.CoalescedNullCheck(target);
+
+            Checker.TypeCheck(source);
+            Checker.TypeCheck(target);
+
+            _mappingService.ApplyDiffs(source, target);
+        }
+
+        public void Map(object source, object target)
+        {
+            Checker.NullChecks(source, target);
 
             _mappingService.ApplyDiffs(source, target);
         }
@@ -56,34 +67,6 @@
             //  Mapping.
             _mappingService.ApplyDiffs(source, target);
         }
-
-        public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
-        {
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
-
-            Checker.TypeCheck(source);
-            Checker.TypeCheck(target);
-
-            _mappingService.ApplyDiffs(source, target);
-        }
-
-        //public void MapTo<TSource, TTarget>(TSource source, TTarget target)
-        //{
-        //    //var mapper = Mapper.Create();
-        //    //mapper.Map(source, target);
-        //    //  Mapping.
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
-
-        //public static void MapFrom<TSource>(this object target, TSource source)
-        //{
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
-
 
         public static Mapper Create() => new();
     }
