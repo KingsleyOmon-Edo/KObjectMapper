@@ -1,4 +1,5 @@
-﻿namespace ObjectMapper.Extensions
+﻿// ReSharper disable All
+namespace ObjectMapper.Extensions
 {
     using Helpers;
 
@@ -28,11 +29,11 @@
 
 
             // Null check both
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
+            Checker.CoalescedNullCheck<object>(source);
+            Checker.CoalescedNullCheck<TTarget>(target);
 
             //  Type check TTarget only
-            Checker.TypeCheck(target);
+            Checker.TypeCheck<TTarget>(target);
 
             var svc = MappingService.Create();
             svc.ApplyDiffs(source, target);
@@ -41,11 +42,11 @@
         public static void MapFrom<TSource>(this object target, TSource source)
         {
             //  Null check both
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
+            Checker.CoalescedNullCheck<TSource>(source);
+            Checker.CoalescedNullCheck<object>(target);
 
             //  Type check only the source object
-            Checker.TypeCheck(source);
+            Checker.TypeCheck<TSource>(source);
 
             var svc = MappingService.Create();
             svc.ApplyDiffs(source, target);
