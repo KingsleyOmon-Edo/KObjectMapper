@@ -1,6 +1,5 @@
 MVP
 ----
-
 Features
 ---------
 
@@ -9,7 +8,13 @@ Check:
 Object => Mapper => MappingService
 
 - Simple Object-to-object mapping
-	- Dissimilar types
+	- Dissimilar types DONE
+	- MapTo()
+	- MapTo<TTarget>()
+	- MapFrom()
+	- MapFrom<TSource>()
+	- Map()
+	- Map<TSource, TTarget>() 
 	
 - Simple collection mapping
 	- Collection of dissimilar types
@@ -18,6 +23,18 @@ Object => Mapper => MappingService
 - Documentation
 - Code samples and examples
 - Support for .NET 6.0
+
+
+//  ToDo: Tests for MapFrom<TSource>(TSource source)
+//	TTarget target = _mapper.MapFrom<TSource>(TSource source)
+//	TSource source = _mapper.MapTo<TTarget>(TTarget target)
+
+
+//  ToDo: Tests for MapFrom<TSource, TTarget>(TSource source, TTarget), MapTo(o,o)
+//  ToDo: Tests for MapTo(object source, object target)
+//  ToDo: Tests for MapTo<TSource, TTarget>(TSource source, TTarget target)
+//  Todo: Review the ApplyDiffs signature to support two different types arguments.
+
 
 
 Product Backlog - (Pending Features)
@@ -73,4 +90,5 @@ COMPLETED TASKS
 //  ToDo: Validate types of source objects
 //  ToDo: Validate types of target objects
 //  ToDo: Validate both types when different types are supplied for each Map<TSource, TTarget>(TSource source, TTarget target)
-        //  ToDo: Validate the type ignorance still works.
+//  ToDo: Validate the type ignorance still works.
+//  ToDo: Tests for MapFrom<TSource>(TSource source)

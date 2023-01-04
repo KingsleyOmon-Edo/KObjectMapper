@@ -20,7 +20,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var mapper = Mapper.Create();
 
-            mapper.Map(customer, customerDto);
+            mapper.Map<Customer, CustomerDto>(customer, customerDto);
 
             _commonAsserts.AssertCustomerCorrectlyMapsToCustomerDto(customer, customerDto);
         }
@@ -33,7 +33,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.Map(customerDto, customer);
+            mapper.Map<CustomerDto, Customer>(customerDto, customer);
 
             _commonAsserts.AssertCustomerDtoCorrectlyMapsToCustomer(customerDto, customer);
         }
@@ -46,7 +46,7 @@
             var employee = ObjectMother.SampleEmployee;
             var mapper = Mapper.Create();
 
-            mapper.Map(customer, employee);
+            mapper.Map<Customer, Employee>(customer, employee);
 
             _commonAsserts.AssertCustomerCorrectlyMapsToEmployee(customer, employee);
         }
@@ -58,7 +58,7 @@
             var customer = ObjectMother.SampleCustomer;
             var mapper = Mapper.Create();
 
-            mapper.Map(employee, customer);
+            mapper.Map<Employee, Customer>(employee, customer);
 
             _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
         }
@@ -71,7 +71,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var mapper = Mapper.Create();
 
-            Assert.Throws<ArgumentNullException>(() => { mapper.Map(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { mapper.Map<Customer?, CustomerDto>(customer, customerDto); });
         }
 
         [Fact]
@@ -82,7 +82,7 @@
             CustomerDto customerDto = null;
             var mapper = Mapper.Create();
 
-            Assert.Throws<ArgumentNullException>(() => { mapper.Map(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { mapper.Map<Customer, CustomerDto?>(customer, customerDto); });
         }
 
         [Fact]

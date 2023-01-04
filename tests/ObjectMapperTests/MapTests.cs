@@ -19,7 +19,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
 
             //  Act
-            mapper.MapFrom(customer, customerDto);
+            mapper.Map(customer, customerDto);
 
             //  Assert
             _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
@@ -34,7 +34,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.MapFrom(customerDto, customer);
+            mapper.Map((object)customerDto, (object)customer);
 
             //  Assert
             _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
@@ -49,7 +49,7 @@
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
 
-            mapper.MapFrom(employee, customer);
+            mapper.Map(employee, customer);
 
             _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
         }
@@ -62,7 +62,7 @@
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
 
-            sut.MapFrom(customer, employee);
+            sut.Map(customer, employee);
 
             _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
         }
@@ -76,7 +76,7 @@
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => { mapper.MapFrom(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { mapper.Map(customer, customerDto); });
         }
 
         [Fact]
@@ -88,7 +88,7 @@
             var customer = ObjectMother.SampleCustomer;
             CustomerDto customerDto = null;
 
-            Assert.Throws<ArgumentNullException>(() => { sut.MapFrom(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { sut.Map(customer, customerDto); });
         }
     }
 }

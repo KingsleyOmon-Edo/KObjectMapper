@@ -2,6 +2,10 @@
 {
     public class TaskList
     {
+        //  ToDo: Tests for MapFrom<TSource, TTarget>(TSource source, TTarget), MapTo(o,o)
+        //  ToDo: Tests for MapTo(object source, object target)
+        //  ToDo: Tests for MapTo<TSource, TTarget>(TSource source, TTarget target)
+
         //  ToDo: Refactoring - Explicit dependencies principle
 
         //  INVOCATION TARGETS
