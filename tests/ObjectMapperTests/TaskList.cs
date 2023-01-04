@@ -2,6 +2,8 @@
 {
     public class TaskList
     {
+        /// Add type checking tests
+        /// 
         //  TEST SCENARIOS
         //  -----------------
         //  Implicit 
@@ -83,7 +85,6 @@
         //  ToDo: Validate types of target objects
         //  ToDo: Validate both types when different types are supplied for each Map<TSource, TTarget>(TSource source, TTarget target)
         //  ToDo: Validate the type ignorance still works.
-        //  ToDo: POC: Setup a sample, install the nuget and test. Fix any issues.
 
         //  ===================================================
         //  ToDo: MapToEnIEnumerable: By TDD implement guard clauses for source collection.
