@@ -32,6 +32,20 @@
             _mappingService.ApplyDiffs(source, target);
         }
 
-        public Mapper Create() => new();
+        public void Map<TSource, TTarget>(TSource source, TTarget target)
+        {
+            //  Null checks
+            Checker.CoalescedNullCheck(source);
+            Checker.CoalescedNullCheck(target);
+
+            //  Type checks
+            Checker.TypeCheck(source);
+            Checker.TypeCheck(target);
+
+            //  Mapping.
+            _mappingService.ApplyDiffs(source, target);
+        }
+
+        public static Mapper Create() => new();
     }
 }

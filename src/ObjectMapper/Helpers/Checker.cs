@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-
-namespace ObjectMapper.Helpers
+﻿namespace ObjectMapper.Helpers
 {
+    using System.Reflection;
+
     public class Checker
     {
         public static T NullChecks<T>(T source, T target)
@@ -20,7 +20,6 @@ namespace ObjectMapper.Helpers
 
         public static void TypeChecks<T>(T source, T target)
         {
-            ;
             if (!Checker.AreSameType(source, target))
             {
                 throw new ArgumentException(
@@ -32,7 +31,7 @@ namespace ObjectMapper.Helpers
 
         public static void PropertyNameCheck(PropertyInfo sourceProp, PropertyInfo targetProp)
         {
-            if (Equals(sourceProp.Name, targetProp.Name) == false)
+            if (object.Equals(sourceProp.Name, targetProp.Name) == false)
             {
                 throw new ArgumentException(
                     $"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
@@ -48,7 +47,15 @@ namespace ObjectMapper.Helpers
             }
         }
 
-        public static bool TypeCheckSingle<T>(T testObject) => Equals(testObject?.GetType(), typeof(T));
+        public static void TypeCheck<T>(T testObj)
+        {
+            if (testObj is not null && testObj.GetType() != typeof(T))
+            {
+                throw new ArgumentException($"Parameter {nameof(testObj)} has an incompatible type with {nameof(T)}");
+            }
+        }
+
+        public static bool TypeCheckSingle<T>(T testObject) => object.Equals(testObject?.GetType(), typeof(T));
 
         public static bool TypeCheckAll<T>(params T[] parameters) => parameters.All(Checker.TypeCheckSingle);
     }

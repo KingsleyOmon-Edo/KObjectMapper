@@ -63,3 +63,5 @@ COMPLETED TASKS
 //  TODO: Isolate predicate function for reuse. (DONE)
 //  ToDo: By TDD implement guard clause for null source object for MapTo().
 //  ToDo: By TDD implement guard clause for null target object for MapTo().
+
+//  ToDo: POC: Setup a sample, install the nuget and test. Fix any issues. DONE.

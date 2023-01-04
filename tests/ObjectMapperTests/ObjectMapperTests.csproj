@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="MapExTests.cs" />
-    <Compile Remove="MapFromOfTTests.cs" />
-    <Compile Remove="MapToIEnumerableOfTTests.cs" />
-    <Compile Remove="MapToOfTTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
