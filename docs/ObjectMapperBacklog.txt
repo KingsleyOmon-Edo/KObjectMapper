@@ -1,13 +1,17 @@
 MVP
 ----
+
 Features
 ---------
+
+Check:
+------
+Object => Mapper => MappingService
+
 - Simple Object-to-object mapping
 	- Dissimilar types
-	- Similar types 
 	
 - Simple collection mapping
-	- Collections of similar types
 	- Collection of dissimilar types
 
 - Good unit test coverage
@@ -65,3 +69,8 @@ COMPLETED TASKS
 //  ToDo: By TDD implement guard clause for null target object for MapTo().
 
 //  ToDo: POC: Setup a sample, install the nuget and test. Fix any issues. DONE.
+//  ToDo: REFACTOR: Push some of ObjectExtension methods into a service class and consume by object composition.
+//  ToDo: Validate types of source objects
+//  ToDo: Validate types of target objects
+//  ToDo: Validate both types when different types are supplied for each Map<TSource, TTarget>(TSource source, TTarget target)
+        //  ToDo: Validate the type ignorance still works.

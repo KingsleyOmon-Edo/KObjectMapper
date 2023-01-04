@@ -5,12 +5,12 @@
     using Microsoft.CSharp.RuntimeBinder;
     using ObjectMapper;
 
-    public class MapperOfTTests : IExplicitMappingTests, ITypedMappingTest
+    public class MapOfTTests : IExplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
 
-        public MapperOfTTests() => _commonAsserts = CommonAsserts.Create();
+        public MapOfTTests() => _commonAsserts = CommonAsserts.Create();
 
 
         [Fact]

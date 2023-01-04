@@ -32,6 +32,17 @@
             _mappingService.ApplyDiffs(source, target);
         }
 
+        public void MapTo<TSource, TTarget>(TSource source, TTarget target)
+        {
+            Checker.CoalescedNullCheck(source);
+            Checker.CoalescedNullCheck(target);
+
+            Checker.TypeCheck(source);
+            Checker.TypeCheck(target);
+
+            _mappingService.ApplyDiffs(source, target);
+        }
+
         public void Map<TSource, TTarget>(TSource source, TTarget target)
         {
             //  Null checks

@@ -89,6 +89,11 @@
             AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
         }
 
+        public void AssertThatEmployeeCorrectlyMapsToCustomer(Employee employee, Customer customer)
+        {
+            AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+        }
+
         public void AssertMapperObjectCorrectlyMapsCustomerToCustomerDto(Customer customer, CustomerDto customerDto)
         {
             AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
