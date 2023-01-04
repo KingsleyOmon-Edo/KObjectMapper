@@ -34,7 +34,7 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.MapFrom(customerDto, customer);
+            mapper.MapFrom((object)customerDto, (object)customer);
 
             //  Assert
             _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
