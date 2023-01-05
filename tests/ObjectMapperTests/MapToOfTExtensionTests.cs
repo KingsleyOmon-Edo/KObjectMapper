@@ -4,11 +4,11 @@
     using Helpers;
     using ObjectMapper.Extensions;
 
-    public class MapToOfTTests : IImplicitMappingTests
+    public class MapToOfTExtensionTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapToOfTTests() => _commonAsserts = CommonAsserts.Create();
+        public MapToOfTExtensionTests() => _commonAsserts = CommonAsserts.Create();
 
         [Fact]
         public void Implicit_forward_mapping_via_extensions_from_a_Customer_entity_to_a_customer_Dto_should_succeed()

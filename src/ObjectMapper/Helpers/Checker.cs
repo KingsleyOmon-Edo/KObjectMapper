@@ -4,6 +4,7 @@
 
     public class Checker
     {
+        private bool CheckCollection<T>(T parameter) => parameter is IEnumerable<T>;
         public static T NullChecks<T>(T source, T target)
         {
             source = Checker.CoalescedNullCheck(source);

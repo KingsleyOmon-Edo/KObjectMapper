@@ -20,7 +20,9 @@ Object => Mapper => MappingService
 	- Collection of dissimilar types
 
 - Good unit test coverage
+
 - Documentation
+
 - Code samples and examples
 - Support for .NET 6.0
 

@@ -1,4 +1,6 @@
-﻿namespace ObjectMapper
+﻿using ObjectMapper.Extensions;
+
+namespace ObjectMapper
 {
     using Abstractions;
     using Helpers;
@@ -66,6 +68,26 @@
 
             //  Mapping.
             _mappingService.ApplyDiffs(source, target);
+        }
+
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)
+            where TTarget : new()
+            where TSource : new()
+        {
+            source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target ?? throw new ArgumentNullException(nameof(target));
+           
+            var resultCollection = new List<TTarget>();
+
+            foreach (var sourceElement in source)
+            {
+                var targetElem = new TTarget();
+                _mappingService.ApplyDiffs(sourceElement, targetElem);
+                
+                resultCollection.Add(targetElem);
+            }
+
+            return resultCollection;
         }
 
         public static Mapper Create() => new();

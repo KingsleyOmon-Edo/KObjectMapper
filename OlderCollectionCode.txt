@@ -1,0 +1,15 @@
+public IEnumerable<TCommon> MapFrom<TCommon>(IEnumerable<TCommon> source)
+            where TCommon : new()
+        {
+            var resultCollection = new List<TCommon>();
+
+            foreach (var sourceElem in source)
+            {
+                var targetElem = new TCommon();
+                sourceElem.MapTo(targetElem);
+
+                resultCollection.Add(targetElem);
+            }
+
+            return resultCollection;
+        }
