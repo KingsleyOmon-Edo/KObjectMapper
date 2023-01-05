@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B8D9276C-7
 		CONTRIBUTING.md = CONTRIBUTING.md
 		docs\ObjectMapperBacklog.txt = docs\ObjectMapperBacklog.txt
 		docs\ObjectMapperTestPlan.txt = docs\ObjectMapperTestPlan.txt
+		OlderCollectionCode.txt = OlderCollectionCode.txt
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable All
+
 namespace ObjectMapper.Extensions
 {
     using Helpers;
@@ -50,6 +51,23 @@ namespace ObjectMapper.Extensions
 
             var svc = MappingService.Create();
             svc.ApplyDiffs(source, target);
+        }
+
+        public static IEnumerable<TTarget> MapFrom<TSource, TTarget>(this IEnumerable<TTarget> target,
+            IEnumerable<TSource> source)
+            where TTarget : new()
+        {
+            var resultCollection = new List<TTarget>();
+
+            foreach (var sourceElem in source)
+            {
+                var targetElem = new TTarget();
+                sourceElem.MapTo(targetElem);
+
+                resultCollection.Add(targetElem);
+            }
+
+            return resultCollection;
         }
     }
 }
