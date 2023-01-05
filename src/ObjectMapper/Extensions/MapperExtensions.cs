@@ -57,10 +57,16 @@ namespace ObjectMapper.Extensions
             IEnumerable<TSource> source)
             where TTarget : new()
         {
+            Checker.NullCheckAll<TSource>(source.ToArray());
+            Checker.NullCheckAll<TTarget>(target.ToArray());
+
             var resultCollection = new List<TTarget>();
 
             foreach (var sourceElem in source)
             {
+                // var targetElem = new TTarget();
+                // sourceElem.MapTo(targetElem);
+
                 var targetElem = new TTarget();
                 sourceElem.MapTo(targetElem);
 
@@ -69,5 +75,7 @@ namespace ObjectMapper.Extensions
 
             return resultCollection;
         }
+        
+        //  Implement MapTo
     }
 }

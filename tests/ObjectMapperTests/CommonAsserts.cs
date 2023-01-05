@@ -1,4 +1,6 @@
-﻿namespace ObjectMapperTests
+﻿using ObjectMapper.Extensions;
+
+namespace ObjectMapperTests
 {
     using FluentAssertions;
     using Helpers;
@@ -125,5 +127,35 @@
         }
 
         #endregion
+
+        public void AssertCustomerDtoDataCorrectlyMapsFromCustomerData(List<CustomerDto> customerDtos, List<Customer> customers)
+        {
+            customerDtos.Should().NotBeNull();
+            customerDtos.Count.Should().Be(customers.Count);
+            customerDtos[1].FirstName.Should().Be(customers[1].FirstName);
+            customerDtos[1].PhoneNumber.Should().Be(customers[1].PhoneNumber);
+        }
+
+        public void AssertCustomerDataIsCorrectlyMappedFromCustomerDtoData(List<Customer> customers, List<CustomerDto> customerDtos)
+        {
+            customers = customers.MapFrom<CustomerDto, Customer>(customerDtos).ToList();
+            customers.Count.Should().Be(customerDtos.Count);
+            customers[0].Id.Should().Be(customerDtos[0].Id);
+            customers[0].FirstName.Should().Be(customerDtos[0].FirstName);
+        }
+
+        public void AssertCustomerDataIsCorrectlyMappedFromEmployeeData(List<Customer> customers, List<Employee> employees)
+        {
+            customers.Should().NotBeNull();
+            customers[1].FirstName.Should().Be(employees[1].FirstName);
+            customers[1].LastName.Should().Be(employees[1].LastName);
+        }
+
+        public void AssertEmployeeDataIsCorrectlyMappedFromCustomerData(List<Employee> employees, List<Customer> customers)
+        {
+            employees.Should().NotBeNull();
+            employees[1].FirstName.Should().Be(customers[1].FirstName);
+            employees[1].LastName.Should().Be(customers[1].LastName);
+        }
     }
 }

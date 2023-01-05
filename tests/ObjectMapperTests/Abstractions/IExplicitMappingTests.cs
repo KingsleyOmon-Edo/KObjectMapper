@@ -17,6 +17,6 @@
             Passing_a_null_source_object_in_explicit_mapping_via_a_mapper_instance_should_throw_ArgumentNullException();
 
         public void
-            Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException_when_using_a_mapper_instance();
+            Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException();
     }
 }

@@ -74,16 +74,5 @@
 
             Assert.Throws<ArgumentNullException>(() => { customer.MapTo<CustomerDto>(customerDto); });
         }
-
-        //[Fact]
-        //public void Passing_a_source_object_incompatible_with_the_source_type_parameter_should_fail()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Pass_a_target_object_incompatible_with_the_target_type_parameter_should_fail()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
