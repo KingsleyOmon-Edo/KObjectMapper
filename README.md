@@ -1,27 +1,26 @@
 # Object Mapper
 
-ObjectMapper is an Open Source simple, intuitive, yet effective object-to-object mapper library written in C# .NET. It is relatively easy to set up and use, especially in implicit mapping mode, described below, which completely obviates the need to new up a Mapper instance.
+ObjectMapper is an Open Source simple, intuitive, yet effective object-to-object mapper library written in C# .NET. It is relatively easy to set up.  Usage is just as easy with its "Implicit" mode that allows its use, without a mapping object. Obviating the need to instantiate one
 
-For now, the project is in the very early stages of development and I am not accepting contributions for now.
+The project is in very early stages of development and as such, I am not accepting contributions for now.
 
-Currently, the project supports .NET 6 the current LTS version, out of the box. Plans are underway to add support to previous versions of the .NET framework and runtime in the upcoming days.
+The library supports .NET 6.0, the current LTS version of the .NET SDK out of the. Plans are underway to target other other versions of .NET.
 
 ## Features
 
-The core of an Object mapper is to copy properties from one object to another. Ditto that for collections. The basics of this feature are already in place and will be augmented as the days go by.
-
-But here is a brief description of what has been implemented so far: summary of the features:
+Basic testable features are already in place. Some of these include.
 
 - Object to Object mapping
 - Collection mapping
 
 #### Object to object mapping
 
-ObjectMapper can map between any two "mutable" objects regardless of type. By default, it can successfully map public writable properties. Support for immutable objects is in the works.
+ObjectMapper can map between any two "mutable" objects regardless of type. It currently supports writig to  public properties of mutable objects. Support for immutable objects is in the works.
 
 #### Collection mapping
 
-ObjetMapper can map an IEnumerable<T> or any collection derived from it. The engineering of this feature is in progress and I hope to have a useful and more complete implementation at release. But for now, out of the box, it can map any collection of mutable objects that meets the above constraints.
+ObjetMapper can map an IEnumerable<T> or any collection derived from it. The engineering of this feature is in progress The plane is to have usedul collection mapping at release.
+.
 
 ## Installation
 
