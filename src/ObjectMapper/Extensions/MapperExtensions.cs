@@ -10,8 +10,8 @@ namespace ObjectMapper.Extensions
         //{
         //    Checker.NullCheckAll(source, target);
 
-        //    var mapper = new Mapper();
-        //    mapper.MapTo(source, target);
+        //    var objectMapper = new ObjectMapper();
+        //    objectMapper.MapTo(source, target);
         //}
 
         public static object MapTo(this object source, object target)
@@ -28,22 +28,22 @@ namespace ObjectMapper.Extensions
         //{
         //    Checker.NullCheckAll(source, target);
 
-        //    var mapper = new Mapper();
-        //    mapper.MapFrom(source, target);
+        //    var objectMapper = new ObjectMapper();
+        //    objectMapper.MapFrom(source, target);
         //}
         //public static void MapFrom(this object target, object source)
         //{
         //    Checker.NullCheckAll(source, target);
 
-        //    var mapper = new Mapper();
-        //    mapper.MapFrom(source, target);
+        //    var objectMapper = new ObjectMapper();
+        //    objectMapper.MapFrom(source, target);
         //}
         public static object MapFrom(this object target, object source)
         {
             Checker.NullCheckAll(source, target);
 
-            //var mapper = new Mapper();
-            //mapper.MapFrom(source, target);
+            //var objectMapper = new ObjectMapper();
+            //objectMapper.MapFrom(source, target);
 
             var mappingService = MappingService.Create();
             mappingService.ApplyDiffs(source, target);
@@ -78,7 +78,7 @@ namespace ObjectMapper.Extensions
         //    return target;
         //}
 
-        //  Delegate to the Mapper
+        //  Delegate to the ObjectMapper
         public static TTarget MapTo<TTarget>(this object source, TTarget target)
         {
             // Null check both
