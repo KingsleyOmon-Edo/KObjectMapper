@@ -18,8 +18,8 @@ namespace ObjectMapper.Extensions
         {
             Checker.NullCheckAll(source, target);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
@@ -45,8 +45,8 @@ namespace ObjectMapper.Extensions
             //var mapper = new Mapper();
             //mapper.MapFrom(source, target);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
@@ -88,8 +88,8 @@ namespace ObjectMapper.Extensions
             //  Type check TTarget only
             Checker.TypeCheck<TTarget>(target);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
@@ -116,8 +116,8 @@ namespace ObjectMapper.Extensions
             //  Type check only the source object
             Checker.TypeCheck<TSource>(source);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
@@ -130,16 +130,18 @@ namespace ObjectMapper.Extensions
             Checker.NullCheckAll<TTarget>(target.ToArray());
 
             var resultCollection = new List<TTarget>();
-
-            foreach (var sourceElem in source)
+            var mappingService = MappingService.Create();
+            foreach (var sourceElement in source)
             {
                 // var targetElem = new TTarget();
                 // sourceElem.MapTo(targetElem);
 
-                var targetElem = new TTarget();
-                sourceElem.MapTo(targetElem);
+                var targetElement = new TTarget();
+                //sourceElem.MapTo(targetElem);
 
-                resultCollection.Add(targetElem);
+                mappingService.ApplyDiffs(sourceElement, targetElement);
+
+                resultCollection.Add(targetElement);
             }
 
             return resultCollection;
@@ -147,20 +149,22 @@ namespace ObjectMapper.Extensions
 
         public static IEnumerable<TTarget> MapTo<TSource, TTarget>(this IEnumerable<TSource> source,
             IEnumerable<TTarget> target)
-            where TSource : new()
             where TTarget : new()
         {
             Checker.NullCheckAll<TSource>(source.ToArray());
             Checker.NullCheckAll<TTarget>(target.ToArray());
 
             var resultCollection = new List<TTarget>();
+            var mappingService = MappingService.Create();
 
-            foreach (var sourceElem in source)
+            foreach (var sourceElement in source)
             {
-                var targetElem = new TTarget();
-                sourceElem.MapTo(targetElem);
+                var targetElement = new TTarget();
+                //sourceElement.MapTo(targetElement);
 
-                resultCollection.Add(targetElem);
+                mappingService.ApplyDiffs(sourceElement, targetElement);
+
+                resultCollection.Add(targetElement);
             }
 
             return resultCollection;
