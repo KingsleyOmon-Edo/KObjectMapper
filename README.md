@@ -1,10 +1,10 @@
 # Object Mapper
 
-ObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapper library written in C# .NET.
+ObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapping library written in C# .NET.
 
-**Please note that this project is in its early stages and so we are not accepting contributions at this time. Besides the code though functional is not suitable for production use. Tnaks you. **
+**_Please note that this project is in its early stages and so we are not accepting contributions at this time._**
 
-ObjectMapper is relatively easy to set up and may be used in two modes - _Implicit_ and _Explicit_ The implicit mode for example, leverages extension methods, and performs mapping transparently without the need for a mapping object.
+ObjectMapper is relatively easy to set up and may be used in two modes - **Implicit** and **Explicit** The implicit mode for example, leverages C$ extension methods, and performs OO mapping transparently without the need for a mapping object.
 
 ## Installation
 
@@ -16,9 +16,9 @@ ObjectMapper is relatively easy to set up and may be used in two modes - _Implic
 
 #### Implicit, or transparent mapping
 
-**_Implicit mapping_**, also called Transparent mapping, is intended to take all the ceremony and set up out using an OO mapper.
+**_Implicit mapping_**, also called Transparent mapping, is intended to take all the ceremony and set up out of using an Object to Object mapper.
 
-The operations utilize **MapTo** and **MapFrom** semantics to make the directionality of the mapping obvious. For example, to map a "Customer" object to a "CustomerDto" one could use the MapTo() method as shown below:
+The operations utilize **MapTo** and **MapFrom** semantics to make the directionality of the mapping obvious. For example, to map a "Customer" object to a "CustomerDto" one could use the _MapTo()_ method as shown below:
 
 <span style="font-size:1.15em">
 
@@ -33,41 +33,36 @@ customer.MapTo(customerDto);
 
 </span>
 
-Conversely, the _MapFrom()_ method may be used to achieve the same objective in the opposite direction. Hence, peceeding code may be written as:
+Conversely, the _MapFrom()_ method may be used to achieve the same objective in the opposite direction. Hence, preceeding code may be written as:
 
 ```
-
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
-
 CustomerDto customerDto = new();
-
 customerDto.MapFrom(customer);
-
 ```
 
-Furthermore, the observant may have noticed that you could use one method to achieve both use cases. So, you may decide to stick with one method, and swap the source and target objects as necessary, when needed.
+The observant may have noticed that you could use one method to achieve both use cases. So, you may decide to stick with one method, and swap the source and target objects back and forht as necessary, when needed.
 
 Hence mapping a "Customer" to a "CustomerDto" would be:
 
 ```
-
-    customer.MapTo(customerDto);
-
-```
-
-Mapping from CustomerDto to Customer would be:
+customer.MapTo(customerDto);
 
 ```
 
-    customerDto.MapTo(customer);
+Mapping from a CustomerDto to Customer would be:
 
 ```
 
-That's all there is to it folks. No need to manually instantiate or inject a Mapper via DI.
+customerDto.MapTo(customer);
+
+```
+
+That's all there is to it folks! No need to manually instantiate or inject a Mapper via DI.
 
 #### Explicit or conventional mapping
 
-For completeness, I provided what I call "Explicit Mapping". Or what some may call conventional mapping.
+For completeness, I provided what I call "Explicit Mapping". Or what some may be used to as conventional mapping.
 
 This is the usual mode conventionally employed in the utilization of Object to Object Mappers. Using either direct manual instantiation, or using a Dependency Injection container.
 
@@ -136,7 +131,6 @@ mapper.Map<Customer, CustomerDto>(customer, customerDto);
 
 - 7. You may then proceed to use the mapper as usual, like so:
 
-
 ```
 
      var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
@@ -150,6 +144,10 @@ mapper.Map<Customer, CustomerDto>(customer, customerDto);
 As this project is in the early stages, we are not taking any contributions are this time.
 
 Please see our contributing page for details.
+
+```
+
+```
 
 ```
 
