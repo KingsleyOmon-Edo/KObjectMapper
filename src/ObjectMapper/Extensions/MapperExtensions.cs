@@ -6,14 +6,6 @@ namespace ObjectMapper.Extensions
 
     public static class MapperExtensions
     {
-        //public static void MapTo(this object source, object target)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var objectMapper = new ObjectMapper();
-        //    objectMapper.MapTo(source, target);
-        //}
-
         public static object MapTo(this object source, object target)
         {
             Checker.NullCheckAll(source, target);
@@ -24,60 +16,16 @@ namespace ObjectMapper.Extensions
             return target;
         }
 
-        //public static void MapFrom(this object source, object target)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var objectMapper = new ObjectMapper();
-        //    objectMapper.MapFrom(source, target);
-        //}
-        //public static void MapFrom(this object target, object source)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var objectMapper = new ObjectMapper();
-        //    objectMapper.MapFrom(source, target);
-        //}
         public static object MapFrom(this object target, object source)
         {
             Checker.NullCheckAll(source, target);
-
-            //var objectMapper = new ObjectMapper();
-            //objectMapper.MapFrom(source, target);
 
             var mappingService = MappingService.Create();
             mappingService.ApplyDiffs(source, target);
 
             return target;
         }
-
-        //public static void MapTo<TTarget>(this object source, TTarget target)
-        //{
-        //    // Null check both
-        //    Checker.CoalescedNullCheck<object>(source);
-        //    Checker.CoalescedNullCheck<TTarget>(target);
-
-        //    //  Type check TTarget only
-        //    Checker.TypeCheck<TTarget>(target);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
-        //public static TTarget MapTo<TTarget>(this object source, TTarget target)
-        //{
-        //    // Null check both
-        //    Checker.CoalescedNullCheck<object>(source);
-        //    Checker.CoalescedNullCheck<TTarget>(target);
-
-        //    //  Type check TTarget only
-        //    Checker.TypeCheck<TTarget>(target);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-
-        //    return target;
-        //}
-
+        
         //  Delegate to the ObjectMapper
         public static TTarget MapTo<TTarget>(this object source, TTarget target)
         {
@@ -93,19 +41,7 @@ namespace ObjectMapper.Extensions
 
             return target;
         }
-
-        //public static void MapFrom<TSource>(this object target, TSource source)
-        //{
-        //    //  Null check both
-        //    Checker.CoalescedNullCheck<TSource>(source);
-        //    Checker.CoalescedNullCheck<object>(target);
-
-        //    //  Type check only the source object
-        //    Checker.TypeCheck<TSource>(source);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
+   
 
         public static object MapFrom<TSource>(this object target, TSource source)
         {
@@ -133,12 +69,8 @@ namespace ObjectMapper.Extensions
             var mappingService = MappingService.Create();
             foreach (var sourceElement in source)
             {
-                // var targetElem = new TTarget();
-                // sourceElem.MapTo(targetElem);
-
                 var targetElement = new TTarget();
-                //sourceElem.MapTo(targetElem);
-
+          
                 mappingService.ApplyDiffs(sourceElement, targetElement);
 
                 resultCollection.Add(targetElement);
@@ -160,8 +92,7 @@ namespace ObjectMapper.Extensions
             foreach (var sourceElement in source)
             {
                 var targetElement = new TTarget();
-                //sourceElement.MapTo(targetElement);
-
+                
                 mappingService.ApplyDiffs(sourceElement, targetElement);
 
                 resultCollection.Add(targetElement);

@@ -75,7 +75,7 @@ namespace ObjectMapper
             Checker.TypeChecks(source, target);
             var diffs = MappingService.ComputeDiffs(source, target);
 
-            return diffs; // Shorter
+            return diffs; 
         }
 
         public static List<PropertyInfo> GetPropertyDiffs(object source, object target)
