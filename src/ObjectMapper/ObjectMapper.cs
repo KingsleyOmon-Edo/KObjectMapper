@@ -3,11 +3,11 @@
     using Abstractions;
     using Helpers;
 
-    public class Mapper : IMapper
+    public class ObjectMapper : IObjectMapper
     {
         private readonly MappingService _mappingService = MappingService.Create();
 
-        public Mapper()
+        public ObjectMapper()
         {
         }
 
@@ -28,18 +28,7 @@
 
             _mappingService.ApplyDiffs(source, target);
         }
-
-        //public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
-        //{
-        //    Checker.CoalescedNullCheck(source);
-        //    Checker.CoalescedNullCheck(target);
-
-        //    Checker.TypeCheck(source);
-        //    Checker.TypeCheck(target);
-
-        //    _mappingService.ApplyDiffs(source, target);
-        //}
-
+        
         public void MapFrom(object source, object target)
         {
             Checker.NullChecks(source, target);
@@ -99,6 +88,6 @@
             return resultCollection;
         }
 
-        public static Mapper Create() => new();
+        public static ObjectMapper Create() => new();
     }
 }

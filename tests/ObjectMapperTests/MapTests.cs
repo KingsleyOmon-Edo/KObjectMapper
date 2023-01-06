@@ -14,7 +14,7 @@
             Explicit_forward_mapping_via_mapper_instance_from_Customer_entity_to_a_CustomerDto_should_succeed()
         {
             //  Arrange
-            var mapper = new Mapper();
+            var mapper = new ObjectMapper();
             var customer = ObjectMother.SampleCustomer;
             var customerDto = ObjectMother.SampleCustomerDto;
 
@@ -29,12 +29,12 @@
         public void
             Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_back_to_a_customer_entity_should_succeed()
         {
-            IMapper mapper = new Mapper();
+            IObjectMapper objectMapper = new ObjectMapper();
 
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            mapper.Map((object)customerDto, (object)customer);
+            objectMapper.Map((object)customerDto, (object)customer);
 
             //  Assert
             _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
@@ -44,7 +44,7 @@
         public void
             Explicit_forward_mapping_via_mapper_instance_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
         {
-            var mapper = new Mapper();
+            var mapper = new ObjectMapper();
 
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
@@ -57,7 +57,7 @@
         [Fact]
         public void Explicit_reverse_mapping_via_mapper_instance_of_any_two_dissimilar_types_should_succeed()
         {
-            var sut = new Mapper();
+            var sut = new ObjectMapper();
 
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
@@ -71,7 +71,7 @@
         public void
             Passing_a_null_source_object_in_explicit_mapping_via_a_mapper_instance_should_throw_ArgumentNullException()
         {
-            var mapper = new Mapper();
+            var mapper = new ObjectMapper();
 
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
@@ -83,7 +83,7 @@
         public void
             Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException()
         {
-            var sut = new Mapper();
+            var sut = new ObjectMapper();
 
             var customer = ObjectMother.SampleCustomer;
             CustomerDto customerDto = null;

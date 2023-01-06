@@ -6,79 +6,27 @@ namespace ObjectMapper.Extensions
 
     public static class MapperExtensions
     {
-        //public static void MapTo(this object source, object target)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var mapper = new Mapper();
-        //    mapper.MapTo(source, target);
-        //}
-
         public static object MapTo(this object source, object target)
         {
             Checker.NullCheckAll(source, target);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
 
-        //public static void MapFrom(this object source, object target)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var mapper = new Mapper();
-        //    mapper.MapFrom(source, target);
-        //}
-        //public static void MapFrom(this object target, object source)
-        //{
-        //    Checker.NullCheckAll(source, target);
-
-        //    var mapper = new Mapper();
-        //    mapper.MapFrom(source, target);
-        //}
         public static object MapFrom(this object target, object source)
         {
             Checker.NullCheckAll(source, target);
 
-            //var mapper = new Mapper();
-            //mapper.MapFrom(source, target);
-
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
-
-        //public static void MapTo<TTarget>(this object source, TTarget target)
-        //{
-        //    // Null check both
-        //    Checker.CoalescedNullCheck<object>(source);
-        //    Checker.CoalescedNullCheck<TTarget>(target);
-
-        //    //  Type check TTarget only
-        //    Checker.TypeCheck<TTarget>(target);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
-        //public static TTarget MapTo<TTarget>(this object source, TTarget target)
-        //{
-        //    // Null check both
-        //    Checker.CoalescedNullCheck<object>(source);
-        //    Checker.CoalescedNullCheck<TTarget>(target);
-
-        //    //  Type check TTarget only
-        //    Checker.TypeCheck<TTarget>(target);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-
-        //    return target;
-        //}
-
-        //  Delegate to the Mapper
+        
+        //  Delegate to the ObjectMapper
         public static TTarget MapTo<TTarget>(this object source, TTarget target)
         {
             // Null check both
@@ -88,24 +36,12 @@ namespace ObjectMapper.Extensions
             //  Type check TTarget only
             Checker.TypeCheck<TTarget>(target);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
-
-        //public static void MapFrom<TSource>(this object target, TSource source)
-        //{
-        //    //  Null check both
-        //    Checker.CoalescedNullCheck<TSource>(source);
-        //    Checker.CoalescedNullCheck<object>(target);
-
-        //    //  Type check only the source object
-        //    Checker.TypeCheck<TSource>(source);
-
-        //    var svc = MappingService.Create();
-        //    svc.ApplyDiffs(source, target);
-        //}
+   
 
         public static object MapFrom<TSource>(this object target, TSource source)
         {
@@ -116,8 +52,8 @@ namespace ObjectMapper.Extensions
             //  Type check only the source object
             Checker.TypeCheck<TSource>(source);
 
-            var svc = MappingService.Create();
-            svc.ApplyDiffs(source, target);
+            var mappingService = MappingService.Create();
+            mappingService.ApplyDiffs(source, target);
 
             return target;
         }
@@ -130,16 +66,14 @@ namespace ObjectMapper.Extensions
             Checker.NullCheckAll<TTarget>(target.ToArray());
 
             var resultCollection = new List<TTarget>();
-
-            foreach (var sourceElem in source)
+            var mappingService = MappingService.Create();
+            foreach (var sourceElement in source)
             {
-                // var targetElem = new TTarget();
-                // sourceElem.MapTo(targetElem);
+                var targetElement = new TTarget();
+          
+                mappingService.ApplyDiffs(sourceElement, targetElement);
 
-                var targetElem = new TTarget();
-                sourceElem.MapTo(targetElem);
-
-                resultCollection.Add(targetElem);
+                resultCollection.Add(targetElement);
             }
 
             return resultCollection;
@@ -147,20 +81,21 @@ namespace ObjectMapper.Extensions
 
         public static IEnumerable<TTarget> MapTo<TSource, TTarget>(this IEnumerable<TSource> source,
             IEnumerable<TTarget> target)
-            where TSource : new()
             where TTarget : new()
         {
             Checker.NullCheckAll<TSource>(source.ToArray());
             Checker.NullCheckAll<TTarget>(target.ToArray());
 
             var resultCollection = new List<TTarget>();
+            var mappingService = MappingService.Create();
 
-            foreach (var sourceElem in source)
+            foreach (var sourceElement in source)
             {
-                var targetElem = new TTarget();
-                sourceElem.MapTo(targetElem);
+                var targetElement = new TTarget();
+                
+                mappingService.ApplyDiffs(sourceElement, targetElement);
 
-                resultCollection.Add(targetElem);
+                resultCollection.Add(targetElement);
             }
 
             return resultCollection;

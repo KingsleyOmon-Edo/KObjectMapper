@@ -18,7 +18,7 @@
         {
             var customer = ObjectMother.SampleCustomer;
             var customerDto = ObjectMother.SampleCustomerDto;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             mapper.Map<Customer, CustomerDto>(customer, customerDto);
 
@@ -29,7 +29,7 @@
         public void
             Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_back_to_a_customer_entity_should_succeed()
         {
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
@@ -44,7 +44,7 @@
         {
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             mapper.Map<Customer, Employee>(customer, employee);
 
@@ -56,7 +56,7 @@
         {
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             mapper.Map<Employee, Customer>(employee, customer);
 
@@ -69,7 +69,7 @@
         {
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             Assert.Throws<ArgumentNullException>(() => { mapper.Map<Customer?, CustomerDto>(customer, customerDto); });
         }
@@ -80,7 +80,7 @@
         {
             var customer = ObjectMother.SampleCustomer;
             CustomerDto customerDto = null;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             Assert.Throws<ArgumentNullException>(() => { mapper.Map<Customer, CustomerDto?>(customer, customerDto); });
         }
@@ -91,7 +91,7 @@
             dynamic pseudoCustomer = ObjectMother.SampleEmployee;
             var customerDto = new CustomerDto();
 
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             Assert.Throws<RuntimeBinderException>(() =>
             {
@@ -104,7 +104,7 @@
         {
             var customer = ObjectMother.SampleCustomer;
             dynamic pseudoCustomerDto = ObjectMother.SampleProduct;
-            var mapper = Mapper.Create();
+            var mapper = ObjectMapper.Create();
 
             Assert.Throws<RuntimeBinderException>(() =>
             {

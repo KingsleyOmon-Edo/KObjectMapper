@@ -1,6 +1,6 @@
 ﻿namespace ObjectMapper.Abstractions
 {
-    public interface IMapper
+    public interface IObjectMapper
     {
         void MapTo(object source, object target);
         void MapTo<TSource, TTarget>(TSource source, TTarget target);
