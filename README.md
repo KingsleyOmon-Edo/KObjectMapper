@@ -1,26 +1,10 @@
 # Object Mapper
 
-ObjectMapper is an Open Source simple, intuitive, yet effective object-to-object mapper library written in C# .NET. It is relatively easy to set up.  Usage is just as easy with its "Implicit" mode that allows its use, without a mapping object. Obviating the need to instantiate one
+ObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapper library written in C# .NET.
 
-The project is in very early stages of development and as such, I am not accepting contributions for now.
+**Please note that this project is in its early stages and so we are not accepting contributions at this time. Besides the code though functional is not suitable for production use. Tnaks you. **
 
-The library supports .NET 6.0, the current LTS version of the .NET SDK out of the. Plans are underway to target other other versions of .NET.
-
-## Features
-
-Basic testable features are already in place. Some of these include.
-
-- Object to Object mapping
-- Collection mapping
-
-#### Object to object mapping
-
-ObjectMapper can map between any two "mutable" objects regardless of type. It currently supports writig to  public properties of mutable objects. Support for immutable objects is in the works.
-
-#### Collection mapping
-
-ObjetMapper can map an IEnumerable<T> or any collection derived from it. The engineering of this feature is in progress The plane is to have usedul collection mapping at release.
-.
+ObjectMapper is relatively easy to set up and may be used in two modes - _Implicit_ and _Explicit_ The implicit mode for example, leverages extension methods, and performs mapping transparently without the need for a mapping object.
 
 ## Installation
 
@@ -30,13 +14,13 @@ ObjetMapper can map an IEnumerable<T> or any collection derived from it. The eng
 
 ## Usage scenarios
 
-### Implicit, or transparent mapping
+#### Implicit, or transparent mapping
 
-"Implicit mapping", also called Transparent mapping, is intended to take all the ceremony and set up, usually needed to use an Object to Object Mapper.
+**_Implicit mapping_**, also called Transparent mapping, is intended to take all the ceremony and set up out using an OO mapper.
 
-ObjectMapper accomplishes this by attaching mapping behaviors to all objects in scope, after the installation of the ObjectMapper Nuget package. To perform mapping, you just invoke the applicable map method on the current object as the invocation subject. This is also called the "source" object. The mapping is effectuated via a mediating mapping service over to the receiving object, called the "target".
+The operations utilize **MapTo** and **MapFrom** semantics to make the directionality of the mapping obvious. For example, to map a "Customer" object to a "CustomerDto" one could use the MapTo() method as shown below:
 
-The operations utilize "MapTo" and "MapFrom" semantics to make the directionality of the mapping obvious. For example, to map a "Customer" object to a "CustomerDto" one could use either the MapTo() or MapFrom() methods, as described below:
+<span style="font-size:1.15em">
 
 ```
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
@@ -47,9 +31,12 @@ customer.MapTo(customerDto);
 
 ```
 
-Conversely, the MapFrom() method could be used to achieve the same objective in the opposite direction. Hence the above, could be re-written as:
+</span>
+
+Conversely, the _MapFrom()_ method may be used to achieve the same objective in the opposite direction. Hence, peceeding code may be written as:
 
 ```
+
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 
 CustomerDto customerDto = new();
@@ -63,18 +50,22 @@ Furthermore, the observant may have noticed that you could use one method to ach
 Hence mapping a "Customer" to a "CustomerDto" would be:
 
 ```
+
     customer.MapTo(customerDto);
+
 ```
 
 Mapping from CustomerDto to Customer would be:
 
 ```
+
     customerDto.MapTo(customer);
+
 ```
 
 That's all there is to it folks. No need to manually instantiate or inject a Mapper via DI.
 
-### Explicit or conventional mapping
+#### Explicit or conventional mapping
 
 For completeness, I provided what I call "Explicit Mapping". Or what some may call conventional mapping.
 
@@ -86,31 +77,38 @@ Here is how to accomplish the above using manual instantiation of the ObjectMapp
 
 - Create a Mapper instance with the Create() factory method.
 
-  ```
+```
+
     var mapper = Mapper.Create();
-  ```
+
+```
 
 - Setup the objects that need mapping.
 
 ```
+
     var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
     CustomerDto customerDto = new();
+
 ```
 
 - Call the mapper's Map<TSource, TTareget>() with the right signature, to effect the mapping.
 
-  ```
-  mapper.Map<Customer, CustomerDto>(customer, customerDto);
+```
 
-  ```
+mapper.Map<Customer, CustomerDto>(customer, customerDto);
 
-###### 2. Instantiation using the ASP.NET Dependency Inversion container.
+```
+
+###### 2. Instantiation using the ASP.NET Dependency Inversion container
 
 - Ensure the ObjectMapper Nuget package has been installed in your project as described above.
 - In Program.cs register the IObjectMapper interface as the "abstraction", and the concrete Mapper class as the "implementation". as shown below:
 
 ```
+
     builder.Services.AddScoped<IObjectMapper, Mapper>();
+
 ```
 
 - In the controller class, define a private readonly member variable of type IObjectMapper called \_mapper or anything you prefer, like so:
@@ -118,26 +116,41 @@ Here is how to accomplish the above using manual instantiation of the ObjectMapp
 - Declare a private readonly member variable like so:
 
 ```
+
     private readonly IObjectMapper _mapper;
+
 ```
 
 - 5. Initialize the variable from the constructor, like so:
 
 ```
+
     CustomersController(IObjectMapper mapper)
     {
         _mapper = mapper;
     }
+
 ```
 
 - 6. Now, whenever an IObjectMapper instance is required within the class, in harmony with the Hollywood principle, the DI container will auto-instantiate, and make one available for you.
 
 - 7. You may then proceed to use the mapper as usual, like so:
 
+
 ```
+
      var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 
     CustomerDto customerDto = new();
 
     _mapper.Map<Customer, CustomerDto>(customer, customerDto);
+
+```
+
+As this project is in the early stages, we are not taking any contributions are this time.
+
+Please see our contributing page for details.
+
+```
+
 ```
