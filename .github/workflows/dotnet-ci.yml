@@ -30,7 +30,7 @@ jobs:
         run: dotnet restore
 
       - name: Building the Libraries.sln solution ,,,
-        run: dotnet build ./Libraries.sln -c Release
+        run: dotnet build ./ObjectMapper.sln -c Release
 
       - name: Testing with the dotnet CLI ...
         run: dotnet test --no-restore --verbosity normal

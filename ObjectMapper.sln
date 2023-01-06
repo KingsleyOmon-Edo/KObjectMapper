@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectMapper", "src\ObjectM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectMapperTests", "tests\ObjectMapperTests\ObjectMapperTests.csproj", "{1C81A84F-DB50-42E1-AF80-0F65757AA4DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FB7119E5-7DBF-4D05-BBD1-856DA6FB954C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C813956D-E177-4BE0-A730-70C7E43C2517}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F47D800E-1AE8-4F67-B55F-B0C209F961FC} = {FB7119E5-7DBF-4D05-BBD1-856DA6FB954C}
+		{1C81A84F-DB50-42E1-AF80-0F65757AA4DC} = {C813956D-E177-4BE0-A730-70C7E43C2517}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D75ED90-53B0-416B-9CBD-9A3D26E1AB1B}

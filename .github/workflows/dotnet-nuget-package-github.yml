@@ -1,4 +1,4 @@
-name: CI + Nuget Packages for GitHub Package Registry
+name: CI + Nuget Packages for Nuget and GitHub
 
 on:
   push:
@@ -37,18 +37,10 @@ jobs:
         run: dotnet restore
 
       - name: Building the Libraries.sln solution ,,,
-        run: dotnet build ./Libraries.sln -c Release
+        run: dotnet build ./ObjectMapper.sln -c Release
 
       - name: Testing the li ...
         run: dotnet test --no-restore --verbosity normal
-
-      - name: Creating the Extensions Nuget package ...
-        run: dotnet pack -c Release src/Extensions/Extensions.csproj
-
-      - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
-        run: dotnet nuget push src/Extensions/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       - name: Creating Object Mapper Nuget package ...
         run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj

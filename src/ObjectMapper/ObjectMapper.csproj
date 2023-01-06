@@ -10,7 +10,7 @@
 		<Author>Kingsley Omnon-Edo</Author>
 		<Company>Software Engineer</Company>
 		<PackageDescription>A simple C# object-to-object mapper</PackageDescription>
-		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/Libraries.git</RepositoryUrl>
+		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/ObjectMapper.git</RepositoryUrl>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
 
