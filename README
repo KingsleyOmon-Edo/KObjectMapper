@@ -24,7 +24,7 @@ ObjetMapper can map an IEnumerable<T> or any collection derived from it. The eng
 
 ## Installation
 
-```cs
+```
     dotnet add package ObjectMapper
 ```
 
