@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Object Mapper
 
 ObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapping library written in C# .NET.
@@ -152,3 +153,6 @@ Please see our contributing page for details.
 ```
 
 ```
+=======
+# ObjectMapper
+>>>>>>> e6f1a506346725ca6e152c98a4d3e8313f077050
