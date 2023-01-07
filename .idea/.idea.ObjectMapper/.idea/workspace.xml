@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Renamed the ObjectMapperTests project to KObjectMapperTests">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KObjectMapper.sln" beforeDir="false" afterPath="$PROJECT_DIR$/KObjectMapper.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Abstractions/IObjectMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Abstractions/IObjectMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/EqualityComparers/LambdaComparer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/EqualityComparers/LambdaComparer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/EqualityComparers/PropertyInfoComparer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/EqualityComparers/PropertyInfoComparer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/EqualityComparers/PropertyValueComparer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/EqualityComparers/PropertyValueComparer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/EqualityComparers/StructuralEqualityComparer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/EqualityComparers/StructuralEqualityComparer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/Extras/ObjectExtensionsX.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/Extras/ObjectExtensionsX.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/LinqExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/LinqExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Extensions/MapperExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Extensions/MapperExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/Helpers/Checker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Helpers/Checker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/InstanceService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/InstanceService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/KObjectObjectMapper.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/KObjectMapper.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/MappingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/MappingService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KObjectObjectMapper/ObjectMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/KObjectMapper/Mapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/CommonAsserts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/CommonAsserts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/KObjectMapperTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/KObjectMapperTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapFromOfIEnumerableOfTTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapFromIEnumerableOfTTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapFromOfTExtensionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapFromOfTExtensionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapFromOfTTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapFromOfTTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapFromTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapFromTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapOfIEnumerableOfTTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ExplicitMapping/MapOfIEnumerableOfTTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapOfTTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ExplicitMapping/MapOfTTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ExplicitMapping/MapTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapToOfTExtensionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapToOfTExtensionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapToOfTTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapToOfTTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/KObjectMapperTests/MapToTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/KObjectMapperTests/ImplicitMapping/MapToTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +62,7 @@
       <workItem from="1673012287001" duration="956000" />
       <workItem from="1673013346118" duration="109000" />
       <workItem from="1673113420641" duration="6000" />
-      <workItem from="1673113629052" duration="1497000" />
+      <workItem from="1673113629052" duration="1661000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed Libraries.sln to ObjectMapper">
       <created>1673012335277</created>
@@ -323,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673114559103</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Refactoring: Moved unit tests into more semantically apt namespaces&#10;&#10;Renamed the ObjectMapper class to the shorted Mapper form&#10;&#10;No regressions.">
+      <created>1673115276931</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1673115276931</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +323,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Renamed Libraries.sln to ObjectMapper" />
     <MESSAGE value="UPDATE yml with more information" />
     <MESSAGE value="Update CI YAML" />
     <MESSAGE value="More .NET versions" />
@@ -369,6 +347,7 @@
     <MESSAGE value="Renamed the solution from ObjectMapper to KObjectMapper" />
     <MESSAGE value="Renamed the ObjectMapper project to KObjectMapper" />
     <MESSAGE value="Renamed the ObjectMapperTests project to KObjectMapperTests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed the ObjectMapperTests project to KObjectMapperTests" />
+    <MESSAGE value="Refactoring: Moved unit tests into more semantically apt namespaces&#10;&#10;Renamed the ObjectMapper class to the shorted Mapper form&#10;&#10;No regressions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring: Moved unit tests into more semantically apt namespaces&#10;&#10;Renamed the ObjectMapper class to the shorted Mapper form&#10;&#10;No regressions." />
   </component>
 </project>

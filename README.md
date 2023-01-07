@@ -9,7 +9,7 @@ KObjectMapper is relatively easy to set up and may be used in two modes - **Impl
 ## Installation
 
 ```
-dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230107102023
+dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230107122710
 ```
 
 ## Usage scenarios
