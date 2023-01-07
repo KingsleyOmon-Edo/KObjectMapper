@@ -1,6 +1,6 @@
 ﻿// ReSharper disable All
 
-namespace ObjectMapper.Extensions
+namespace KObjectObjectMapper.Extensions
 {
     using Helpers;
 
@@ -26,7 +26,7 @@ namespace ObjectMapper.Extensions
             return target;
         }
         
-        //  Delegate to the ObjectMapper
+        //  Delegate to the KObjectObjectMapper
         public static TTarget MapTo<TTarget>(this object source, TTarget target)
         {
             // Null check both

@@ -1,4 +1,4 @@
-﻿using ObjectMapper.Extensions;
+﻿using KObjectObjectMapper.Extensions;
 
 namespace ObjectMapperTests
 {

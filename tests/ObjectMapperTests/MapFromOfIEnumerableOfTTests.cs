@@ -6,7 +6,7 @@ namespace ObjectMapperTests
     using Abstractions;
     using FluentAssertions;
     using Helpers;
-    using ObjectMapper.Extensions;
+    using KObjectObjectMapper.Extensions;
 
     public class MapFromIEnumerableOfTTests : IImplicitMappingTests
     {

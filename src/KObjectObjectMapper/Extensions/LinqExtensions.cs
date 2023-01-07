@@ -1,4 +1,4 @@
-﻿namespace ObjectMapper.Extensions
+﻿namespace KObjectObjectMapper.Extensions
 {
     public static class LinqExtensions
     {

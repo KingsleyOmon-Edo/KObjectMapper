@@ -3,7 +3,7 @@
     using Abstractions;
     using Helpers;
     using Microsoft.CSharp.RuntimeBinder;
-    using ObjectMapper;
+    using KObjectObjectMapper;
 
     public class MapOfTTests : IExplicitMappingTests
     {

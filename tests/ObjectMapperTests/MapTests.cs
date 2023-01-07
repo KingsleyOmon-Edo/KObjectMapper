@@ -2,8 +2,8 @@
 {
     using Abstractions;
     using Helpers;
-    using ObjectMapper;
-    using ObjectMapper.Abstractions;
+    using KObjectObjectMapper;
+    using KObjectObjectMapper.Abstractions;
 
     public class MapTests : IExplicitMappingTests
     {

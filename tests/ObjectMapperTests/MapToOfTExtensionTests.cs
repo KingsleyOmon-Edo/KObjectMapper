@@ -2,7 +2,7 @@
 {
     using Abstractions;
     using Helpers;
-    using ObjectMapper.Extensions;
+    using KObjectObjectMapper.Extensions;
 
     public class MapToOfTExtensionTests : IImplicitMappingTests
     {

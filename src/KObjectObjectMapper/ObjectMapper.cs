@@ -1,4 +1,4 @@
-﻿namespace ObjectMapper
+﻿namespace KObjectObjectMapper
 {
     using Abstractions;
     using Helpers;
