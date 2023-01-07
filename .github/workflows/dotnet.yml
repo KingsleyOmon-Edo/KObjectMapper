@@ -10,7 +10,7 @@ on:
   pull_request:
     branches: [ "main","dev","test-packages/*" ]
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   deploy:
@@ -27,13 +27,19 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: dotnet build --configuration Release src/ObjectMapper/ObjectMapper.csproj
-      - name: Create the package
-        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
-      - name: Publish the package to GPR
+      - name: Creating Object Mapper Nuget package ...
+        run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
+      - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME}}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN        
+          NUGET_AUTH_TOKEN: ${{ secrets.B49ED4045422444FAF4CA36C41F2A373 }}
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
+#      - name: Create the package
+#        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
+#      - name: Publish the package to GPR
+#        env:
+#          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME}}
+#        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN        
 
 
 #name: Upload .NET Package
