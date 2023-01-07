@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Dev upate">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/dotnet-package-upload.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" afterDir="false" />
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="CI update">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +235,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673088718850</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="workflow updates">
+      <created>1673090794649</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1673090794649</updated>
+    </task>
+    <task id="LOCAL-00027" summary="CI update">
+      <created>1673090877455</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1673090877455</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +287,8 @@
     <MESSAGE value="Renamed from ObjectMapper to KObjectMapper" />
     <MESSAGE value="Fix the nuget package link" />
     <MESSAGE value="Dev upate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dev upate" />
+    <MESSAGE value="workflow updates" />
+    <MESSAGE value="CI update" />
+    <option name="LAST_COMMIT_MESSAGE" value="CI update" />
   </component>
 </project>
