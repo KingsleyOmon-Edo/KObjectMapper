@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML Dev: Update YAML file" />
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Dev update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +163,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673085515995</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Update">
+      <created>1673085922073</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085922073</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Dev update">
+      <created>1673086102502</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086102502</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Dev update">
+      <created>1673086381395</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086381395</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +217,8 @@
     <MESSAGE value="YAML dev: Update GPR YAML" />
     <MESSAGE value="YAML Dev: Update workflow file" />
     <MESSAGE value="YAML Dev: Update YAML file" />
-    <option name="LAST_COMMIT_MESSAGE" value="YAML Dev: Update YAML file" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Dev update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dev update" />
   </component>
 </project>
