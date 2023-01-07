@@ -4,13 +4,13 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Title>Object Mapper</Title>
+		<Title>KObjectMapper</Title>
 		<PackageId>KObjectMapper</PackageId>
 		<Version>0.0.0-0.0.1.$([System.DateTime]::Now.ToString("yyyyMMddhhmmss"))</Version>
-		<Author>Kingsley Omnon-Edo</Author>
+		<Author>Kingsley Omon-Edo</Author>
 		<Company>Software Engineer</Company>
-		<PackageDescription>A simple C# object-to-object mapper</PackageDescription>
-		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/ObjectMapper.git</RepositoryUrl>
+		<PackageDescription>An elegant and effective C# Object to Object Mapper</PackageDescription>
+		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/KObjectMapper.git</RepositoryUrl>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
 
