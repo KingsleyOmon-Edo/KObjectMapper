@@ -1,10 +1,10 @@
-name: Dotnet CI
+name: Dotnet CI Build
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main","dev","test-packages/*"]
   pull_request:
-    branches: ["main"]
+    branches: ["main","dev","test-packages/*"]
 
 jobs:
   deploy:
@@ -21,16 +21,13 @@ jobs:
       - name: Setting up the .NET Core SDK ...
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
-          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME }}
+          dotnet-version: 6.0.x      
 
       - name: Restoring Nuget packages ...
         run: dotnet restore
 
       - name: Building the Libraries.sln solution ,,,
-        run: dotnet build ./Libraries.sln -c Release
+        run: dotnet build ./ObjectMapper.sln -c Release
 
       - name: Testing with the dotnet CLI ...
         run: dotnet test --no-restore --verbosity normal
