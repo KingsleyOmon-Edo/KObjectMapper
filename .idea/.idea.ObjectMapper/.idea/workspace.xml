@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML dev: Update GPR YAML">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML Dev: Update YAML file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673083980678</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="YAML Dev: Update workflow file">
+      <created>1673085080165</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085080166</updated>
+    </task>
+    <task id="LOCAL-00014" summary="YAML Dev: Update YAML file">
+      <created>1673085252894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085252894</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +187,8 @@
     <MESSAGE value="Update YAML" />
     <MESSAGE value="YAML Debug: Update YAML" />
     <MESSAGE value="YAML dev: Update GPR YAML" />
-    <option name="LAST_COMMIT_MESSAGE" value="YAML dev: Update GPR YAML" />
+    <MESSAGE value="YAML Dev: Update workflow file" />
+    <MESSAGE value="YAML Dev: Update YAML file" />
+    <option name="LAST_COMMIT_MESSAGE" value="YAML Dev: Update YAML file" />
   </component>
 </project>

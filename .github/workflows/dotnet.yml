@@ -37,10 +37,10 @@ jobs:
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       - name: Publish the package to nuget.org
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NG_DF0D5A672ABA4BD69DB2929F0CE94A56 }}
-
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        
 #      - name: Create the package
 #        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
 #      - name: Publish the package to GPR
