@@ -5,7 +5,6 @@ name: .NET CI restore, build and test workflow
 
 on:
   push:
-#    branches: [ "main","dev","test-packages/*" ]
     branches: [ "*" ]
   pull_request:
     branches: [ "*" ]
@@ -15,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x', '6.0.x', '7.0.x' ]
+        dotnet-version: ['2.1.x', '3.1.x', '6.0.x', '7.0.x' ]
 
     steps:
     - uses: actions/checkout@v3
