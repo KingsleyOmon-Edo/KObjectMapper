@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="CI update">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" afterDir="false" />
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="workflow testing">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673090877455</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="workflow testing">
+      <created>1673091604804</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1673091604804</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +296,7 @@
     <MESSAGE value="Dev upate" />
     <MESSAGE value="workflow updates" />
     <MESSAGE value="CI update" />
-    <option name="LAST_COMMIT_MESSAGE" value="CI update" />
+    <MESSAGE value="workflow testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="workflow testing" />
   </component>
 </project>
