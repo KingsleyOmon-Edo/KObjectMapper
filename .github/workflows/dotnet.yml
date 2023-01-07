@@ -32,7 +32,7 @@ jobs:
       - name: Publish the package to GPR
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg        
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN        
 
 
 
