@@ -30,6 +30,8 @@ jobs:
       - name: Create the package
         run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
       - name: Publish the package to GPR
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg        
 
 
