@@ -1,10 +1,8 @@
-﻿using System.Runtime.InteropServices;
-using FluentAssertions;
+﻿using FluentAssertions;
 using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
-using KObjectObjectMapper;
 
-namespace KObjectMapperTests;
+namespace KObjectMapperTests.ExplicitMapping;
 
 public class MapOfIEnumerableOfTTests : IExplicitMappingTests
 {
@@ -18,7 +16,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     [Fact]
     public void Explicit_forward_mapping_via_mapper_instance_from_Customer_entity_to_a_CustomerDto_should_succeed()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
 
         List<Customer> customers = ObjectMother.SampleCustomerData;
         List<CustomerDto> customerDtos = new();
@@ -32,7 +30,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     public void
         Explicit_reverse_mapping_via_mapper_instance_from_a_CustomerDto_back_to_a_customer_entity_should_succeed()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
         List<CustomerDto> customerDtos = ObjectMother.SampleCustomerDtoData;
         List<Customer> customers = new();
 
@@ -45,7 +43,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     public void
         Explicit_forward_mapping_via_mapper_instance_of_any_two_dissimilar_types_via_mapper_instance_should_succeed()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
 
         List<Customer> customers = ObjectMother.SampleCustomerData;
         List<Employee> employees = new();
@@ -58,7 +56,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     [Fact]
     public void Explicit_reverse_mapping_via_mapper_instance_of_any_two_dissimilar_types_should_succeed()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
         
         List<Employee> employees = ObjectMother.SampleEmployeeData;
         List<Customer> customers = new();
@@ -72,7 +70,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     public void
         Passing_a_null_source_object_in_explicit_mapping_via_a_mapper_instance_should_throw_ArgumentNullException()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
         
         List<Customer> customers = null;
         List<CustomerDto> customerDtos = ObjectMother.SampleCustomerDtoData;
@@ -87,7 +85,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     public void
         Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException()
     {
-        var mapper = KObjectObjectMapper.ObjectMapper.Create();
+        var mapper = KObjectMapper.Mapper.Create();
         
         List<Customer> customers = ObjectMother.SampleCustomerData;
         List<CustomerDto> customerDtos = null;

@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KObjectObjectMapper\KObjectObjectMapper.csproj" />
+    <ProjectReference Include="..\..\src\KObjectMapper\KObjectMapper.csproj" />
   </ItemGroup>
 
 </Project>

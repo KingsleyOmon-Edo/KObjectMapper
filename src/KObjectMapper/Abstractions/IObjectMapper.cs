@@ -1,4 +1,4 @@
-﻿namespace KObjectObjectMapper.Abstractions
+﻿namespace KObjectMapper.Abstractions
 {
     public interface IObjectMapper
     {

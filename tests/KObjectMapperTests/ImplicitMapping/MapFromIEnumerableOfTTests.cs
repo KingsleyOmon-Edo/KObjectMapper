@@ -1,13 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Helpers;
+using KObjectMapper.Extensions;
 
-namespace KObjectMapperTests
+namespace KObjectMapperTests.ImplicitMapping
 {
-    using System.Collections;
-    using Abstractions;
-    using FluentAssertions;
-    using Helpers;
-    using KObjectObjectMapper.Extensions;
-
     public class MapFromIEnumerableOfTTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;

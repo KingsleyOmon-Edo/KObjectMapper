@@ -1,13 +1,13 @@
-﻿namespace KObjectObjectMapper
+﻿namespace KObjectMapper
 {
     using Abstractions;
     using Helpers;
 
-    public class ObjectMapper : IObjectMapper
+    public class Mapper : IObjectMapper
     {
         private readonly MappingService _mappingService = MappingService.Create();
 
-        public ObjectMapper()
+        public Mapper()
         {
         }
 
@@ -88,6 +88,6 @@
             return resultCollection;
         }
 
-        public static ObjectMapper Create() => new();
+        public static Mapper Create() => new();
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace KObjectObjectMapper.Extensions.EqualityComparers
+namespace KObjectMapper.Extensions.EqualityComparers
 {
     public static partial class ObjectExtensions
     {

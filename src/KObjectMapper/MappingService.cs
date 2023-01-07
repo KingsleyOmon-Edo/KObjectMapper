@@ -1,4 +1,4 @@
-namespace KObjectObjectMapper
+namespace KObjectMapper
 {
     using System.Reflection;
     using Extensions;

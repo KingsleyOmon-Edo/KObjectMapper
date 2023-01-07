@@ -1,14 +1,14 @@
-﻿namespace KObjectMapperTests
-{
-    using Abstractions;
-    using Helpers;
-    using KObjectObjectMapper.Extensions;
+﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Helpers;
+using KObjectMapper.Extensions;
 
-    public class MapFromOfTTests : IImplicitMappingTests
+namespace KObjectMapperTests.ImplicitMapping
+{
+    public class MapFromOfTExtensionTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapFromOfTTests() => _commonAsserts = CommonAsserts.Create();
+        public MapFromOfTExtensionTests() => _commonAsserts = CommonAsserts.Create();
 
 
         [Fact]

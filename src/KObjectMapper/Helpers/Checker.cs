@@ -1,4 +1,4 @@
-﻿namespace KObjectObjectMapper.Helpers
+﻿namespace KObjectMapper.Helpers
 {
     using System.Reflection;
 

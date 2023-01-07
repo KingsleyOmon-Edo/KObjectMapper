@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
-namespace KObjectObjectMapper.Extensions.EqualityComparers
+namespace KObjectMapper.Extensions.EqualityComparers
 {
     public static partial class ObjectExtensions
     {
-        public class StructuralEqualityComparer<T> : IEqualityComparer<T>
+        public class PropertyInfoComparer : EqualityComparer<PropertyInfo>
         {
-            public bool Equals(T x, T y)
-            {
+            public override bool Equals(PropertyInfo? x, PropertyInfo? y)
+            {            
+
                 return StructuralComparisons.StructuralEqualityComparer.Equals(x, y);
             }
 
-            public int GetHashCode([DisallowNull] T obj)
+            public override int GetHashCode([DisallowNull] PropertyInfo obj)
             {
                 return StructuralComparisons.StructuralEqualityComparer.GetHashCode(obj);
             }
