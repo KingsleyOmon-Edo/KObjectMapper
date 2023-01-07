@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Title>Object Mapper</Title>
 		<PackageId>ObjectMapper</PackageId>
-		<Version>0.0.1-0.0.1.$([System.DateTime]::Now.ToString("yyyyMMddhhmmss"))</Version>
+		<Version>0.0.0-0.0.1.$([System.DateTime]::Now.ToString("yyyyMMddhhmmss"))</Version>
 		<Author>Kingsley Omnon-Edo</Author>
 		<Company>Software Engineer</Company>
 		<PackageDescription>A simple C# object-to-object mapper</PackageDescription>

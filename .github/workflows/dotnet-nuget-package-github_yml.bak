@@ -1,4 +1,4 @@
-name: CI amd Nuget Packages for Nuget and GitHub
+name: CI + Nuget Packages for GitHub Package Registry
 
 on:
   push:
@@ -15,8 +15,11 @@ on:
 
 jobs:
   deploy:
-    name: CI and Nuget packages for Nuget and GPR ...
+    name: CI and Nuget packages for GPR ...
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
 
     steps:
       - name: Checking out source code from repo ...
@@ -28,28 +31,29 @@ jobs:
           dotnet-version: 6.0.x
           source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME }}
 
       - name: Restoring Nuget packages ...
         run: dotnet restore
 
-      - name: Building solution ...
-        run: dotnet build ./ObjectMapper.sln -c Release
+      - name: Building the Libraries.sln solution ,,,
+        run: dotnet build ./Libraries.sln -c Release
 
-      - name: Testing with dotnet CLI ...
+      - name: Testing the li ...
         run: dotnet test --no-restore --verbosity normal
+
+      - name: Creating the Extensions Nuget package ...
+        run: dotnet pack -c Release src/Extensions/Extensions.csproj
+
+      - name: Publishing Extensions package to GitHub Packages Registry (GPR) ...
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+        run: dotnet nuget push src/Extensions/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       - name: Creating Object Mapper Nuget package ...
         run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
 
-      # GitHub Package Registry (GPR)
-      - name: Publishing the ObjectMapper package to GitHub Package Registry...
+      - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
-
-      # nuget.org
-      - name: Publishing the package to Nuget.org ...
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
