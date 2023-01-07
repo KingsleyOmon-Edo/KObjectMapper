@@ -1,16 +1,15 @@
-<<<<<<< HEAD
-# Object Mapper
+# KObjectMapper
 
-ObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapping library written in C# .NET.
+KObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapping library written in C# .NET.
 
 **_Please note that this project is in its early stages and so we are not accepting contributions at this time._**
 
-ObjectMapper is relatively easy to set up and may be used in two modes - **Implicit** and **Explicit** The implicit mode for example, leverages C$ extension methods, and performs OO mapping transparently without the need for a mapping object.
+KObjectMapper is relatively easy to set up and may be used in two modes - **Implicit** and **Explicit** The implicit mode for example, leverages C$ extension methods, and performs OO mapping transparently without the need for a mapping object.
 
 ## Installation
 
 ```
-    dotnet add package ObjectMapper
+dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230107102023
 ```
 
 ## Usage scenarios
@@ -67,7 +66,7 @@ For completeness, I provided what I call "Explicit Mapping". Or what some may be
 
 This is the usual mode conventionally employed in the utilization of Object to Object Mappers. Using either direct manual instantiation, or using a Dependency Injection container.
 
-Here is how to accomplish the above using manual instantiation of the ObjectMapper's Mapper class, with the provided factory method.
+Here is how to accomplish the above using manual instantiation of the KObjectMapper's Mapper class, with the provided factory method.
 
 ###### 1. Instantiation by hand
 
@@ -98,7 +97,7 @@ mapper.Map<Customer, CustomerDto>(customer, customerDto);
 
 ###### 2. Instantiation using the ASP.NET Dependency Inversion container
 
-- Ensure the ObjectMapper Nuget package has been installed in your project as described above.
+- Ensure the KObjectMapper Nuget package has been installed in your project as described above.
 - In Program.cs register the IObjectMapper interface as the "abstraction", and the concrete Mapper class as the "implementation". as shown below:
 
 ```
@@ -154,5 +153,5 @@ Please see our contributing page for details.
 
 ```
 =======
-# ObjectMapper
+# KObjectMapper
 >>>>>>> e6f1a506346725ca6e152c98a4d3e8313f077050

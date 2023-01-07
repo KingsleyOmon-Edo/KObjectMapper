@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML Debug: Update YAML">
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Fix the nuget package link">
       <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -138,7 +138,98 @@
       <option name="project" value="LOCAL" />
       <updated>1673082430584</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="YAML dev: Update GPR YAML">
+      <created>1673083980678</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1673083980678</updated>
+    </task>
+    <task id="LOCAL-00013" summary="YAML Dev: Update workflow file">
+      <created>1673085080165</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085080166</updated>
+    </task>
+    <task id="LOCAL-00014" summary="YAML Dev: Update YAML file">
+      <created>1673085252894</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085252894</updated>
+    </task>
+    <task id="LOCAL-00015" summary="YAML Dev: Update YAML file">
+      <created>1673085515995</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085515995</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Update">
+      <created>1673085922073</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673085922073</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Dev update">
+      <created>1673086102502</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086102502</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Dev update">
+      <created>1673086381395</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086381395</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Dev update">
+      <created>1673086506430</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086506430</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Dev update">
+      <created>1673086561422</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086561422</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Dev update">
+      <created>1673086791808</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1673086791808</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Dev update">
+      <created>1673087248665</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1673087248665</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Renamed from ObjectMapper to KObjectMapper">
+      <created>1673088155516</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673088155516</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fix the nuget package link">
+      <created>1673088300654</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1673088300654</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +259,13 @@
     <MESSAGE value="Update GPR yaml" />
     <MESSAGE value="Update YAML" />
     <MESSAGE value="YAML Debug: Update YAML" />
-    <option name="LAST_COMMIT_MESSAGE" value="YAML Debug: Update YAML" />
+    <MESSAGE value="YAML dev: Update GPR YAML" />
+    <MESSAGE value="YAML Dev: Update workflow file" />
+    <MESSAGE value="YAML Dev: Update YAML file" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Dev update" />
+    <MESSAGE value="Renamed from ObjectMapper to KObjectMapper" />
+    <MESSAGE value="Fix the nuget package link" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the nuget package link" />
   </component>
 </project>
