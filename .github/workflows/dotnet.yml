@@ -15,23 +15,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x', '6.0.x', 7'.0.x' ]
+
     permissions:
       packages: write
       contents: read
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x' # SDK Version to use.
+        with:         
           source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: dotnet build --configuration Release src/ObjectMapper/ObjectMapper.csproj
       
-      - name: Creating Object Mapper Nuget package ...
+      - name: Creating KObjectMapper Nuget package ...
         run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
       
-      - name: Publishing the ObjectMapper package to GitHub Packages Registry (GPR) ...
+      - name: Publishing the KObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.B49ED4045422444FAF4CA36C41F2A373 }}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
