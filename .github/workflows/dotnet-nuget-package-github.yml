@@ -48,7 +48,7 @@ jobs:
       # GitHub Package Registry (GPR)
       - name: Publishing the ObjectMapper package to GitHub Package Registry...
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # nuget.org
