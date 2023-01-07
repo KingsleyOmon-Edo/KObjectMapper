@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="More .NET versions">
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Fix file">
       <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -96,7 +96,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673079542493</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update YAML">
+      <created>1673080371788</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673080371788</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix file">
+      <created>1673080674126</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673080674126</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,8 +134,9 @@
     <MESSAGE value="Renamed Libraries.sln to ObjectMapper" />
     <MESSAGE value="UPDATE yml with more information" />
     <MESSAGE value="Update CI YAML" />
-    <MESSAGE value="Update YAML" />
     <MESSAGE value="More .NET versions" />
-    <option name="LAST_COMMIT_MESSAGE" value="More .NET versions" />
+    <MESSAGE value="Update YAML" />
+    <MESSAGE value="Fix file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix file" />
   </component>
 </project>

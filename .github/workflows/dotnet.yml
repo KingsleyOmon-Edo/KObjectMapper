@@ -1,13 +1,46 @@
 # This workflow will build a .NET project ...
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Upload .NET Package
+
+name: Upload dotnet package
 
 on:
   push:
     branches: [ "main","dev","test-packages/*" ]
   pull_request:
     branches: [ "main","dev","test-packages/*" ]
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x' # SDK Version to use.
+          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - run: dotnet build --configuration Release src/ObjectMapper/ObjectMapper.csproj
+      - name: Create the package
+        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
+      - name: Publish the package to GPR
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg        
+
+
+
+#name: Upload .NET Package
+#
+#on:
+#  push:
+#    branches: [ "main","dev","test-packages/*" ]
+#  pull_request:
+#    branches: [ "main","dev","test-packages/*" ]
 
 #jobs:
 #  build:
@@ -27,40 +60,40 @@ on:
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
 
-jobs:
-  build:
-    
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x', '6.0.x', 7'.0.x' ]
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
-          env:
-            NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-            
-#      Install dependencies    
-      - name: Install dependencies
-        run: dotnet restore
-      
-#      Build  
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-        
-#        Test
-      - name: Test
-        run: dotnet test --no-restore --verbosity normal 
-        
-#        Create the package
-      - name: Create the package
-        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
-      
-#        Publish to GitHub Package Registry
-      - name: Publish the package to GPR
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg
+#jobs:
+#  build:
+#    
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x', '6.0.x', 7'.0.x' ]
+#
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+#        uses: actions/setup-dotnet@v3
+#        with:
+#          dotnet-version: ${{ matrix.dotnet-version }}
+#          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
+#          env:
+#            NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#            
+##      Install dependencies    
+#      - name: Install dependencies
+#        run: dotnet restore
+#      
+##      Build  
+#      - name: Build
+#        run: dotnet build --configuration Release --no-restore
+#        
+##        Test
+#      - name: Test
+#        run: dotnet test --no-restore --verbosity normal 
+#        
+##        Create the package
+#      - name: Create the package
+#        run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
+#      
+##        Publish to GitHub Package Registry
+#      - name: Publish the package to GPR
+#        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg
