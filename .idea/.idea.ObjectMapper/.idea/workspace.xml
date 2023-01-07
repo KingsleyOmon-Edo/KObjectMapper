@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML Debug: Update YAML">
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML dev: Update GPR YAML">
       <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -138,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673082430584</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="YAML dev: Update GPR YAML">
+      <created>1673083980678</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1673083980678</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +175,7 @@
     <MESSAGE value="Update GPR yaml" />
     <MESSAGE value="Update YAML" />
     <MESSAGE value="YAML Debug: Update YAML" />
-    <option name="LAST_COMMIT_MESSAGE" value="YAML Debug: Update YAML" />
+    <MESSAGE value="YAML dev: Update GPR YAML" />
+    <option name="LAST_COMMIT_MESSAGE" value="YAML dev: Update GPR YAML" />
   </component>
 </project>
