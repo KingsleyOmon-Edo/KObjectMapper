@@ -31,7 +31,7 @@ jobs:
           dotnet-version: 6.0.x
           source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME }}
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Restoring Nuget packages ...
         run: dotnet restore
@@ -45,12 +45,13 @@ jobs:
       - name: Creating Object Mapper Nuget package ...
         run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
 
+      # nuget.org
       - name: Publishing the ObjectMapper package to GitHub Package Registry...
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.BIKENAME }}
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       - name: Publishing the package to Nuget.org ...
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.CARNAME }}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
