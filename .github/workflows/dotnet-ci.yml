@@ -25,7 +25,6 @@ jobs:
         
       - name: Building the Libraries.sln solution ,,,
         run: dotnet build ./ObjectMapper.sln -c Release
-\
-
+        
       - name: Testing ...
         run: dotnet test --no-restore --verbosity normal
