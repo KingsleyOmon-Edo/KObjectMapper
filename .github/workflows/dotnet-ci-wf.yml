@@ -1,4 +1,17 @@
-name: Dotnet CI
+<<<<<<<<< Temporary merge branch 1:.github/workflows/dotnet-ci.yml
+name: Dotnet Core CI
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  dotnet-core-ci:
+    name: Executing Dotnet Core CI steps ...
+    runs-on: ubuntu-latest
+=========
+name: Dotnet CI Build
 
 on:
   push:
@@ -9,10 +22,8 @@ on:
 jobs:
   deploy:
     name: CI - Restore, build, test ...
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
+    runs-on: ubuntu-latest   
+>>>>>>>>> Temporary merge branch 2:.github/workflows/dotnet-ci-wf.yml
 
     steps:
       - name: Checking out source code from repo ...
@@ -21,16 +32,22 @@ jobs:
       - name: Setting up the .NET Core SDK ...
         uses: actions/setup-dotnet@v3
         with:
+<<<<<<<<< Temporary merge branch 1:.github/workflows/dotnet-ci.yml
           dotnet-version: 6.0.x
-          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME }}
+=========
+          dotnet-version: 6.0.x      
+>>>>>>>>> Temporary merge branch 2:.github/workflows/dotnet-ci-wf.yml
 
       - name: Restoring Nuget packages ...
         run: dotnet restore
 
+<<<<<<<<< Temporary merge branch 1:.github/workflows/dotnet-ci.yml
+      - name: Building ...
+        run: dotnet build -c Release --no-restore
+=========
       - name: Building the Libraries.sln solution ,,,
-        run: dotnet build ./ObjectMapper.sln -c Release
+        run: dotnet build ObjectMapper.sln -c Release
+>>>>>>>>> Temporary merge branch 2:.github/workflows/dotnet-ci-wf.yml
 
-      - name: Testing with the dotnet CLI ...
+      - name: Testing ...
         run: dotnet test --no-restore --verbosity normal
