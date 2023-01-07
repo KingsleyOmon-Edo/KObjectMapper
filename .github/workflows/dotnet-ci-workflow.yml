@@ -1,0 +1,39 @@
+# This workflow will build a .NET project ...
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+
+name: .NET CI restore, build and test workflow
+
+on:
+  push:
+#    branches: [ "main","dev","test-packages/*" ]
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x', '6.0.x', 7'.0.x' ]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        #dotnet-version: 6.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+        
+    # Install dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    # Build
+    - name: Build
+      run: dotnet build --no-restore
+    
+    # Test
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

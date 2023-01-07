@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Fix the nuget package link">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Dev upate">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/dotnet-package-upload.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet-ci-workflow.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673088300654</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Dev upate">
+      <created>1673088718849</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1673088718850</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +273,7 @@
     <MESSAGE value="Dev update" />
     <MESSAGE value="Renamed from ObjectMapper to KObjectMapper" />
     <MESSAGE value="Fix the nuget package link" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the nuget package link" />
+    <MESSAGE value="Dev upate" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dev upate" />
   </component>
 </project>
