@@ -17,9 +17,6 @@ jobs:
   deploy:
     name: CI and Nuget packages for Nuget and GPR ...
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
       - name: Checking out source code from repo ...
