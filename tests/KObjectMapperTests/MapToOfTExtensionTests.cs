@@ -1,15 +1,14 @@
-﻿namespace ObjectMapperTests
+﻿namespace KObjectMapperTests
 {
     using Abstractions;
     using Helpers;
     using KObjectObjectMapper.Extensions;
 
-    public class MapToTests : IImplicitMappingTests
+    public class MapToOfTExtensionTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapToTests() => _commonAsserts = CommonAsserts.Create();
-
+        public MapToOfTExtensionTests() => _commonAsserts = CommonAsserts.Create();
 
         [Fact]
         public void Implicit_forward_mapping_via_extensions_from_a_Customer_entity_to_a_customer_Dto_should_succeed()
@@ -53,7 +52,7 @@
 
             employee.MapTo<Customer>(customer);
 
-            _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
+            _commonAsserts.AssertThatEmployeeCorrectlyMapsToCustomer(employee, customer);
         }
 
         [Fact]
@@ -63,7 +62,7 @@
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => customer.MapTo<CustomerDto>(customerDto));
+            Assert.Throws<ArgumentNullException>(() => { customer.MapTo<CustomerDto>(customerDto); });
         }
 
         [Fact]
@@ -73,7 +72,7 @@
             var customer = ObjectMother.SampleCustomer;
             CustomerDto customerDto = null;
 
-            Assert.Throws<ArgumentNullException>(() => customer.MapTo<CustomerDto?>(customerDto));
+            Assert.Throws<ArgumentNullException>(() => { customer.MapTo<CustomerDto>(customerDto); });
         }
     }
 }

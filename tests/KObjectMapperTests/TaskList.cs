@@ -1,4 +1,4 @@
-﻿namespace ObjectMapperTests
+﻿namespace KObjectMapperTests
 {
     public class TaskList
     {

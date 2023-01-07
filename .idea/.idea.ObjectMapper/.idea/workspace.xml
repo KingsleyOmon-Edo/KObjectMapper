@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Renamed the solution from ObjectMapper to KObjectMapper" />
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="Renamed the ObjectMapper project to KObjectMapper" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +47,7 @@
     ]
   }
 }</component>
+  <component name="RunManager" selected="13d52c59-9a15-4199-b82e-c6ffc23fda08" />
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +59,7 @@
       <workItem from="1673012287001" duration="956000" />
       <workItem from="1673013346118" duration="109000" />
       <workItem from="1673113420641" duration="6000" />
-      <workItem from="1673113629052" duration="466000" />
+      <workItem from="1673113629052" duration="778000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed Libraries.sln to ObjectMapper">
       <created>1673012335277</created>
@@ -277,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673113841508</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Renamed the ObjectMapper project to KObjectMapper">
+      <created>1673114401404</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1673114401404</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +329,7 @@
     <MESSAGE value="Update .NET versions used in build" />
     <MESSAGE value="Refactoring: Rename CONTRIBUTING To CONTRIBUTING.md" />
     <MESSAGE value="Renamed the solution from ObjectMapper to KObjectMapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed the solution from ObjectMapper to KObjectMapper" />
+    <MESSAGE value="Renamed the ObjectMapper project to KObjectMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed the ObjectMapper project to KObjectMapper" />
   </component>
 </project>

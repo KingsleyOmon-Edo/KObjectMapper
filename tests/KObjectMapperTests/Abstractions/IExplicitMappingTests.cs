@@ -1,4 +1,4 @@
-﻿namespace ObjectMapperTests.Abstractions
+﻿namespace KObjectMapperTests.Abstractions
 {
     public interface IExplicitMappingTests
     {

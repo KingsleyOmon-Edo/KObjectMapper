@@ -1,4 +1,4 @@
-﻿namespace ObjectMapperTests.Helpers
+﻿namespace KObjectMapperTests.Helpers
 {
     public class Employee
     {

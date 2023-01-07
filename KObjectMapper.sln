@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KObjectObjectMapper", "src\KObjectObjectMapper\KObjectObjectMapper.csproj", "{364BC62A-E519-4659-9C04-331841DCA65C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectMapperTests", "tests\ObjectMapperTests\ObjectMapperTests.csproj", "{7BCEF1C5-F132-42E0-807F-12C61DB62456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KObjectMapperTests", "tests\KObjectMapperTests\KObjectMapperTests.csproj", "{7BCEF1C5-F132-42E0-807F-12C61DB62456}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

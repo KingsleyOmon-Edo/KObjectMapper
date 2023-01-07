@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices;
 using FluentAssertions;
+using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Helpers;
 using KObjectObjectMapper;
-using ObjectMapperTests.Abstractions;
-using ObjectMapperTests.Helpers;
 
-namespace ObjectMapperTests;
+namespace KObjectMapperTests;
 
 public class MapOfIEnumerableOfTTests : IExplicitMappingTests
 {

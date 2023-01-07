@@ -1,14 +1,14 @@
-﻿namespace ObjectMapperTests
+﻿namespace KObjectMapperTests
 {
     using Abstractions;
     using Helpers;
     using KObjectObjectMapper.Extensions;
 
-    public class MapFromOfTTests : IImplicitMappingTests
+    public class MapToTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
 
-        public MapFromOfTTests() => _commonAsserts = CommonAsserts.Create();
+        public MapToTests() => _commonAsserts = CommonAsserts.Create();
 
 
         [Fact]
@@ -17,9 +17,9 @@
             var customer = ObjectMother.SampleCustomer;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            customerDto.MapFrom<Customer>(customer);
+            customer.MapTo<CustomerDto>(customerDto);
 
-            _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
+            _commonAsserts.AssertCustomerCorrectlyMapsToCustomerDto(customer, customerDto);
         }
 
         [Fact]
@@ -29,9 +29,9 @@
             var customerDto = ObjectMother.SampleCustomerDto;
             var customer = ObjectMother.SampleCustomer;
 
-            customer.MapFrom<CustomerDto>(customerDto);
+            customerDto.MapTo<Customer>(customer);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromCustomerDto(customer, customerDto);
+            _commonAsserts.AssertCustomerDtoCorrectlyMapsToCustomer(customerDto, customer);
         }
 
         [Fact]
@@ -40,9 +40,9 @@
             var customer = ObjectMother.SampleCustomer;
             var employee = ObjectMother.SampleEmployee;
 
-            customer.MapFrom<Employee>(employee);
+            customer.MapTo<Employee>(employee);
 
-            _commonAsserts.AssertCustomerIsCorrectlyMappedFromEmployee(customer, employee);
+            _commonAsserts.AssertCustomerCorrectlyMapsToEmployee(customer, employee);
         }
 
         [Fact]
@@ -51,9 +51,9 @@
             var employee = ObjectMother.SampleEmployee;
             var customer = ObjectMother.SampleCustomer;
 
-            employee.MapFrom<Customer>(customer);
+            employee.MapTo<Customer>(customer);
 
-            _commonAsserts.AssertEmployeeIsCorrectlyMappedFromCustomer(employee, customer);
+            _commonAsserts.AssertEmployeeCorrectlyMapsToCustomer(employee, customer);
         }
 
         [Fact]
@@ -63,7 +63,7 @@
             Customer customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom<Customer>(customer); });
+            Assert.Throws<ArgumentNullException>(() => customer.MapTo<CustomerDto>(customerDto));
         }
 
         [Fact]
@@ -73,7 +73,7 @@
             var customer = ObjectMother.SampleCustomer;
             CustomerDto customerDto = null;
 
-            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom<Customer>(customer); });
+            Assert.Throws<ArgumentNullException>(() => customer.MapTo<CustomerDto?>(customerDto));
         }
     }
 }

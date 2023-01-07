@@ -1,6 +1,6 @@
 ﻿using KObjectObjectMapper.Extensions;
 
-namespace ObjectMapperTests
+namespace KObjectMapperTests
 {
     using FluentAssertions;
     using Helpers;

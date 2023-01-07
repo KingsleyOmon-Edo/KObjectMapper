@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ObjectMapperTests
+namespace KObjectMapperTests
 {
     using System.Collections;
     using Abstractions;

@@ -1,4 +1,4 @@
-﻿namespace ObjectMapperTests
+﻿namespace KObjectMapperTests
 {
     using Abstractions;
     using Helpers;
