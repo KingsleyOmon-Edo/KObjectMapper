@@ -5,7 +5,6 @@ name: .NET CI restore, build and test workflow
 
 on:
   push:
-#    branches: [ "main","dev","test-packages/*" ]
     branches: [ "*" ]
   pull_request:
     branches: [ "*" ]
