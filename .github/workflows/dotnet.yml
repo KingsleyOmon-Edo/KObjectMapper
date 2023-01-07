@@ -61,6 +61,6 @@ jobs:
       - name: Create the package
         run: dotnet pack --configuration Release src/ObjectMapper/ObjectMapper.csproj
       
-#        Plublish to GitHub Package Registry
+#        Publish to GitHub Package Registry
       - name: Publish the package to GPR
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg
