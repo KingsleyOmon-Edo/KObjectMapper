@@ -54,5 +54,5 @@ jobs:
       # nuget.org
       - name: Publishing the package to Nuget.org ...
         env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
         run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
