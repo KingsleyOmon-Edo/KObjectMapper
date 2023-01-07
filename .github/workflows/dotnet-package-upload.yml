@@ -27,20 +27,20 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       # Build
-      - run: dotnet build --configuration Release src/ObjectMapper/ObjectMapper.csproj
+      - run: dotnet build --configuration Release src/KObjectMapper/KObjectMapper.csproj
 
       # Package
-      - name: Creating Object Mapper Nuget package ...
-        run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
+      - name: Creating KObject Mapper Nuget package ...
+        run: dotnet pack -c Release src/KObjectMapper/KObjectMapper.csproj
 
       # Publish to (GPR)
       - name: Publishing the KObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.B49ED4045422444FAF4CA36C41F2A373 }}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+        run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # Publish (nuget.org)
       - name: Publish the package to nuget.org
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NG_DF0D5A672ABA4BD69DB2929F0CE94A56 }}
-        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
