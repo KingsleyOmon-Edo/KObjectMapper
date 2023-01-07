@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="More .NET versions">
+    <list default="true" id="a05082d6-4238-49a7-8ab6-90197b08f46f" name="Changes" comment="YAML Debug: Update YAML">
       <change beforePath="$PROJECT_DIR$/.github/workflows/dotnet.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/dotnet.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObjectMapper/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -96,7 +96,49 @@
       <option name="project" value="LOCAL" />
       <updated>1673079542493</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update YAML">
+      <created>1673080371788</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673080371788</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix file">
+      <created>1673080674126</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673080674126</updated>
+    </task>
+    <task id="LOCAL-00008" summary="GitHub Package Registry nuget workflow">
+      <created>1673081833542</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673081833542</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update GPR yaml">
+      <created>1673082016403</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673082016403</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update YAML">
+      <created>1673082231770</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673082231770</updated>
+    </task>
+    <task id="LOCAL-00011" summary="YAML Debug: Update YAML">
+      <created>1673082430584</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673082430584</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,8 +162,12 @@
     <MESSAGE value="Renamed Libraries.sln to ObjectMapper" />
     <MESSAGE value="UPDATE yml with more information" />
     <MESSAGE value="Update CI YAML" />
-    <MESSAGE value="Update YAML" />
     <MESSAGE value="More .NET versions" />
-    <option name="LAST_COMMIT_MESSAGE" value="More .NET versions" />
+    <MESSAGE value="Fix file" />
+    <MESSAGE value="GitHub Package Registry nuget workflow" />
+    <MESSAGE value="Update GPR yaml" />
+    <MESSAGE value="Update YAML" />
+    <MESSAGE value="YAML Debug: Update YAML" />
+    <option name="LAST_COMMIT_MESSAGE" value="YAML Debug: Update YAML" />
   </component>
 </project>
