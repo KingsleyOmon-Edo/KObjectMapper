@@ -1,0 +1,55 @@
+name: CI amd Nuget Packages for Nuget and GitHub
+
+on:
+  push:
+    branches:
+      - "releases/*"
+      - "test-packages/*"
+
+  release:
+    types:
+      - "created"
+
+  pull_request:
+    branches: ["test-packages/*"]
+
+jobs:
+  deploy:
+    name: CI and Nuget packages for Nuget and GPR ...
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checking out source code from repo ...
+        uses: actions/checkout@v3
+
+      - name: Setting up the .NET Core SDK ...
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Restoring Nuget packages ...
+        run: dotnet restore
+
+      - name: Building solution ...
+        run: dotnet build ./ObjectMapper.sln -c Release
+
+      - name: Testing with dotnet CLI ...
+        run: dotnet test --no-restore --verbosity normal
+
+      - name: Creating Object Mapper Nuget package ...
+        run: dotnet pack -c Release src/ObjectMapper/ObjectMapper.csproj
+
+      # GitHub Package Registry (GPR)
+      - name: Publishing the ObjectMapper package to GitHub Package Registry...
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
+
+      # nuget.org
+      - name: Publishing the package to Nuget.org ...
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push src/ObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json

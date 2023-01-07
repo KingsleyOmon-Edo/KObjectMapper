@@ -1,18 +1,15 @@
-name: Dotnet CI
+name: Dotnet Core CI
 
 on:
   push:
-    branches: ["main", "dev-wf"]
+    branches: ["main",dev,"dev-wf"]
   pull_request:
-    branches: ["main", "dev-wf"]
+    branches: ["main",dev,"dev-wf"]
 
 jobs:
-  deploy:
-    name: CI - Restore, build, test ...
+  dotnet-core-ci:
+    name: Executing Dotnet Core CI steps ...
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
 
     steps:
       - name: Checking out source code from repo ...
@@ -22,15 +19,13 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.BIKENAME }}
 
       - name: Restoring Nuget packages ...
         run: dotnet restore
-
+        
       - name: Building the Libraries.sln solution ,,,
         run: dotnet build ./ObjectMapper.sln -c Release
+\
 
-      - name: Testing with the dotnet CLI ...
+      - name: Testing ...
         run: dotnet test --no-restore --verbosity normal
