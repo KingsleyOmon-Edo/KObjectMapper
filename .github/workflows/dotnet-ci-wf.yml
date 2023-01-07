@@ -2,9 +2,9 @@ name: Dotnet CI Build
 
 on:
   push:
-    branches: ["main","dev","test-packages/*"]
+    branches: ["main","dev"]
   pull_request:
-    branches: ["main","dev","test-packages/*"]
+    branches: ["main","dev"]
 
 jobs:
   deploy:
