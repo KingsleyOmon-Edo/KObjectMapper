@@ -9,10 +9,7 @@ on:
 jobs:
   deploy:
     name: CI - Restore, build, test ...
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
+    runs-on: ubuntu-latest   
 
     steps:
       - name: Checking out source code from repo ...
@@ -27,7 +24,7 @@ jobs:
         run: dotnet restore
 
       - name: Building the Libraries.sln solution ,,,
-        run: dotnet build ./ObjectMapper.sln -c Release
+        run: dotnet build ObjectMapper.sln -c Release
 
       - name: Testing with the dotnet CLI ...
         run: dotnet test --no-restore --verbosity normal
