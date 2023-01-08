@@ -2,7 +2,7 @@
 
 KObjectMapper is a simple and intuitive, yet effective Open Source Object to object mapping library written in C# .NET.
 
-**_Please note that this project is in its early stages and so we are not accepting contributions at this time._**
+**_Please note that this project is in its early stages and so I Kingsley, I am not accepting contributions at this time._**
 
 KObjectMapper is relatively easy to set up and may be used in two modes - **Implicit** and **Explicit** The implicit mode for example, leverages C$ extension methods, and performs OO mapping transparently without the need for a mapping object.
 
