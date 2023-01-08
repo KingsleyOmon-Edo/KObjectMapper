@@ -2,7 +2,6 @@ MVP
 ----
 Features
 ---------
-
 Check:
 ------
 Object => Mapper => MappingService
@@ -31,12 +30,10 @@ Object => Mapper => MappingService
 //	TTarget target = _mapper.MapFrom<TSource>(TSource source)
 //	TSource source = _mapper.MapTo<TTarget>(TTarget target)
 
-
 //  ToDo: Tests for MapFrom<TSource, TTarget>(TSource source, TTarget), MapTo(o,o)
 //  ToDo: Tests for MapTo(object source, object target)
 //  ToDo: Tests for MapTo<TSource, TTarget>(TSource source, TTarget target)
 //  Todo: Review the ApplyDiffs signature to support two different types arguments.
-
 
 
 Product Backlog - (Pending Features)
@@ -58,7 +55,7 @@ COMPLETED FEATURES
 -------------------
 - POC: Basic mapping between two objects of same type. --- DONE
 - Test strongly types mapping --- DONE
-- Altenative signatures
+- Alternative signatures
 	1 - MapTo<T>(T target)	--- DONE
 	2 - MapFrom<T>(T source) --- DONE
 	3 - Map(object source, object Target) --- DONE
