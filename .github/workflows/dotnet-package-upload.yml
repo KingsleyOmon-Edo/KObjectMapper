@@ -36,7 +36,7 @@ jobs:
       # Publish to (GPR)
       - name: Publishing the KObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets._G_59BC31E56B824A249700FBA81108B0BF }}
+          NUGET_AUTH_TOKEN: ${{ secrets.___G_AE1E3E2FBABB49A5965C71FBA6818F08 }}
         run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # Publish (nuget.org)
