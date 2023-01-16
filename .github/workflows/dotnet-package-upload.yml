@@ -5,23 +5,23 @@ name: Upload dotnet package
 
 on:
   push:
-    branches: [ "main","dev","test-packages/*" ]
+    branches: ["main", "dev", "test-packages/*"]
   pull_request:
-    branches: [ "main","dev","test-packages/*" ]
+    branches: ["main", "dev", "test-packages/*"]
   release:
-    types: [ created ]
+    types: [created]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-#      packages: write
+      #      packages: write
       contents: read
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x' # SDK Version to use.
+          dotnet-version: "6.0.x" # SDK Version to use.
           source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -36,11 +36,11 @@ jobs:
       # Publish to (GPR)
       - name: Publishing the KObjectMapper package to GitHub Packages Registry (GPR) ...
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.B49ED4045422444FAF4CA36C41F2A373 }}
+          NUGET_AUTH_TOKEN: ${{ secrets._G_59BC31E56B824A249700FBA81108B0BF }}
         run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # Publish (nuget.org)
       - name: Publish the package to nuget.org
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NG_DF0D5A672ABA4BD69DB2929F0CE94A56 }}
+          NUGET_AUTH_TOKEN: ${{ secrets._N_88C9270CE70442E8AF4905DEC356088A }}
         run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
