@@ -2,26 +2,9 @@ MVP
 ----
 Features
 ---------
-Check:
-------
-Object => Mapper => MappingService
-
-- Simple Object-to-object mapping
-	- Dissimilar types DONE
-	- MapTo()
-	- MapTo<TTarget>()
-	- MapFrom()
-	- MapFrom<TSource>()
-	- Map()
-	- Map<TSource, TTarget>() 
-	
-- Simple collection mapping
-	- Collection of dissimilar types
-
-- Good unit test coverage
-
-- Documentation
-
+- Update README
+- Setup issues list
+- 
 - Code samples and examples
 - Support for .NET 6.0
 
@@ -69,6 +52,27 @@ COMPLETED FEATURES
 - Refactoring: Group funtionally related test methods together refactor to separate classes
 - Separate MapToOfT from the lot into their own class
 - Remove extra fluff
+
+Check:
+------
+Object => Mapper => MappingService
+
+- Simple Object-to-object mapping
+	- Dissimilar types DONE
+	- MapTo()
+	- MapTo<TTarget>()
+	- MapFrom()
+	- MapFrom<TSource>()
+	- Map()
+	- Map<TSource, TTarget>() 
+	
+- Simple collection mapping
+	- Collection of dissimilar types
+
+- Good unit test coverage
+
+- Documentation
+
 
 COMPLETED TASKS
 ---------------
