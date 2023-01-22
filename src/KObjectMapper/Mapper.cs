@@ -138,5 +138,18 @@
         }
 
         public static Mapper Create() => new();
+
+        public TTarget Map<TSource, TTarget>(TSource customer)
+        {
+            //  Algo
+            //  ======
+            //  Using reflections => possibly Activator.CreateInstance, 
+            //  dynamically create an innstace of the specified destination
+            //  Map to the props
+            //  Return it.
+            TTarget newInstance = Activator.CreateInstance<TTarget>();
+            _mappingService.ApplyDiffs(customer, newInstance);
+            return newInstance;
+        }
     }
 }
