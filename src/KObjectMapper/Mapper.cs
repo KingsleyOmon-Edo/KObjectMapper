@@ -139,7 +139,7 @@
 
         public static Mapper Create() => new();
 
-        public TTarget Map<TSource, TTarget>(TSource customer)
+        public TTarget Map<TSource, TTarget>(TSource source)
         {
             //  Algo
             //  ======
@@ -147,9 +147,26 @@
             //  dynamically create an innstace of the specified destination
             //  Map to the props
             //  Return it.
-            TTarget newInstance = Activator.CreateInstance<TTarget>();
-            _mappingService.ApplyDiffs(customer, newInstance);
-            return newInstance;
+            TTarget target = Activator.CreateInstance<TTarget>();
+            _mappingService.ApplyDiffs(source, target);
+            return target;
+        }
+        
+        // Map<IEnumerable<Customer>, IEnumerable<CustomerDto>(customers);
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sourcesInstances)
+            where TSource : new()
+        {
+            // return Enumerable.Empty<TTarget>();
+            List<TTarget> targets = new();
+            foreach (var source in sourcesInstances)
+            {
+                TTarget newTargetInstance = Activator.CreateInstance<TTarget>();
+                _mappingService.ApplyDiffs(source, newTargetInstance);
+
+                targets.Add(newTargetInstance);
+            }
+
+            return targets;
         }
     }
 }
