@@ -4,10 +4,13 @@ Features
 ---------
 - Update README
 - Setup issues list
-- 
 - Code samples and examples
 - Support for .NET 6.0
 
+- Mapping to new, non-existent instances
+    - Review other overloads - for single and collection mapping.
+    - Augment with logic to map from a single existing type instance
+    - to a dynamically created and mapped target type instance.
 
 //  ToDo: Tests for MapFrom<TSource>(TSource source)
 //	TTarget target = _mapper.MapFrom<TSource>(TSource source)
@@ -52,6 +55,7 @@ COMPLETED FEATURES
 - Refactoring: Group funtionally related test methods together refactor to separate classes
 - Separate MapToOfT from the lot into their own class
 - Remove extra fluff
+- - POC of mapping to new type. DONE
 
 Check:
 ------

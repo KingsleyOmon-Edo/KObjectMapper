@@ -11,7 +11,7 @@ Implicit mode leverages C# extension methods, and performs object mappings trans
 ## Installation
 
 ```
-dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230116084130
+dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230117061233
 ```
 
 ## Usage scenarios
