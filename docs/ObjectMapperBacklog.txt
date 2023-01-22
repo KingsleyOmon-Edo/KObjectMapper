@@ -7,10 +7,12 @@ Features
 - Code samples and examples
 - Support for .NET 6.0
 
-- Mapping to new, non-existent instances
-    - Review other overloads - for single and collection mapping.
-    - Augment with logic to map from a single existing type instance
-    - to a dynamically created and mapped target type instance.
+- Mapping to new, non-existent instances - SINGLE OBJECTS
+- Mapping to new, non-existent instances - COLLECTIONS (IEnumerable<T>)
+    - Do more robust implementations following the POCs - Single and colletion instances.
+    - Unit test thoroughly
+    - As we are still in prerelease, review or redesign the APIs if needed
+  
 
 //  ToDo: Tests for MapFrom<TSource>(TSource source)
 //	TTarget target = _mapper.MapFrom<TSource>(TSource source)
@@ -47,7 +49,7 @@ COMPLETED FEATURES
 	3 - Map(object source, object Target) --- DONE
 	4 - MapTo(object source, object target) --- DONE
 	5 - MapFrom(object source) --- DONE
-	6 - Surface MapTo<T> and MapFrom<T> methods to any arbitray object via extension method for the generic variants --- DONE
+	6 - Surface MapTo<T> and MapFrom<T> methods to any arbitrary object via extension method for the generic variants --- DONE
 
 - Map between two objects of dissimilar types.
 - MapTo(), MapFrom()
@@ -55,7 +57,8 @@ COMPLETED FEATURES
 - Refactoring: Group funtionally related test methods together refactor to separate classes
 - Separate MapToOfT from the lot into their own class
 - Remove extra fluff
-- - POC of mapping to new type. DONE
+- POC of mapping to new object instances. DONE
+- POC of mapping to to new IEnumeable<T> instances. DONE
 
 Check:
 ------

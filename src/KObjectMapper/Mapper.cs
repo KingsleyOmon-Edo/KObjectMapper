@@ -151,5 +151,22 @@
             _mappingService.ApplyDiffs(source, target);
             return target;
         }
+        
+        // Map<IEnumerable<Customer>, IEnumerable<CustomerDto>(customers);
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sourcesInstances)
+            where TSource : new()
+        {
+            // return Enumerable.Empty<TTarget>();
+            List<TTarget> targets = new();
+            foreach (var source in sourcesInstances)
+            {
+                TTarget newTargetInstance = Activator.CreateInstance<TTarget>();
+                _mappingService.ApplyDiffs(source, newTargetInstance);
+
+                targets.Add(newTargetInstance);
+            }
+
+            return targets;
+        }
     }
 }
