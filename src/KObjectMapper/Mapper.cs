@@ -43,8 +43,8 @@
 
             _mappingService.ApplyDiffs(source, target);
         }
-        
-        
+
+
         /// <summary>
         /// Maps or read property data from a specified source object to a specified target object.
         /// </summary>
@@ -53,7 +53,7 @@
         public void MapFrom(object source, object target)
         {
             Checker.NullChecks(source, target);
-            
+
             Map(target, source);
         }
 
@@ -86,7 +86,7 @@
 
             _mappingService.ApplyDiffs(source, target);
         }
-        
+
         /// <summary>
         /// A generic overload that reads identical properties from a source object and writes them to a target object
         /// </summary>
@@ -141,24 +141,15 @@
 
         public TTarget Map<TSource, TTarget>(TSource source)
         {
-            //  Algo
-            //  ======
-            //  Using reflections => possibly Activator.CreateInstance, 
-            //  dynamically create an innstace of the specified destination
-            //  Map to the props
-            //  Return it.
             TTarget target = Activator.CreateInstance<TTarget>();
             _mappingService.ApplyDiffs(source, target);
             return target;
         }
-        
-        // Map<IEnumerable<Customer>, IEnumerable<CustomerDto>(customers);
-        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sourcesInstances)
-            where TSource : new()
+
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sources)
         {
-            // return Enumerable.Empty<TTarget>();
             List<TTarget> targets = new();
-            foreach (var source in sourcesInstances)
+            foreach (var source in sources)
             {
                 TTarget newTargetInstance = Activator.CreateInstance<TTarget>();
                 _mappingService.ApplyDiffs(source, newTargetInstance);
