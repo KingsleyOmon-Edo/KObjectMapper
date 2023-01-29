@@ -44,13 +44,13 @@ namespace KObjectMapper
             target = target ?? throw new ArgumentNullException(nameof(target));
         }
 
-        public static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject,
+        private static void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject,
             PropertyInfo targetProp)
         {
             MappingService.ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
         }
 
-        public static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
+        private static bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
             PropertyInfo targetProp)
         {
             MappingService.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
@@ -69,7 +69,7 @@ namespace KObjectMapper
             return false;
         }
 
-        public static List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
+        private static List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
         {
             Checker.NullChecks(source, target);
             Checker.TypeChecks(source, target);
@@ -78,7 +78,7 @@ namespace KObjectMapper
             return diffs; 
         }
 
-        public static List<PropertyInfo> GetPropertyDiffs(object source, object target)
+        private static List<PropertyInfo> GetPropertyDiffs(object source, object target)
         {
             Checker.NullChecks(source, target);
             var diffs = MappingService.ComputeDiffs(source, target);
@@ -114,7 +114,7 @@ namespace KObjectMapper
             return target;
         }
 
-        public T ApplyDiffs<T>(T source, T target)
+        private T ApplyDiffs<T>(T source, T target)
         {
             MappingService.ValidateParameters(source, target);
 
@@ -125,6 +125,22 @@ namespace KObjectMapper
             return target;
         }
 
+        //  Algo
+        //  Might need to convert MappingService methods from stateless static class to one with instance methods
+        //  =================================================================
+        //  1) By extract interface refactoring, move WriteToProperties to an interface, IMutator
+        //  to model the behavior of an object mutator.
+        //  2) Test for regressions.
+        //  2) Via "Move to another type" or "method object" refactoring, MutableWriterStrategy, make this new type,
+        //  the default implementation of IMutator.WriteToProperties<T>(). Test for regressions.
+        //  3) Modify the signature to relax the constraint that source and target types should be of the same type  T
+        //  4) Test for regressions. Fix if necessary
+        //  5) Take with the interface and default implementation, as a guide provide another implementation for immutable types.
+        //  Call this ImmutableWriterStrategy
+        //  6) Test to confirm that the above object model could effectively write props for all common types.
+        //  7) Test that collections - IEnumerable<T> also work.
+        //  8) Now implement a factory that uses C#'s new type switching switch statement, to select based on types what strategy to supply at runtime
+        //  based on the type of the "target" type. Use the MutableWriterStrategy as the default case or discard.
         private static void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
         {
             //  LIKELY LOCATION OF CHANGES
@@ -137,10 +153,10 @@ namespace KObjectMapper
              *  ----------
              *  So using the "strategy design" pattern encapsulate the
              *  respective write algorithms, one each for classes, records,
-             *  structs, etc. Of if I choose to classify types as mutable
+             *  structs, etc. Or if I choose to classify types as mutable
              *  and immutable, then one each for mutable types and immutable types.
              *
-             *  Then next we need a means of dynamically selecting form amongst these
+             *  Then next we need a means of dynamically selecting from amongst these
              *  respective strategies. We could use the "factory design pattern" for this.
              *  The factory would implement the strategy selection logic thus fulfilling the
              *  selector responsibility.
@@ -166,30 +182,30 @@ namespace KObjectMapper
             }
         }
 
-        public static object SendUpdatesTo(object source, object target) =>
+        private static object SendUpdatesTo(object source, object target) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T Patch<T>(T source, T target) => MappingService.Create().ApplyDiffs(source, target);
+        private static T Patch<T>(T source, T target) => MappingService.Create().ApplyDiffs(source, target);
 
-        public static T AcceptChanges<T>(T target, T source) =>
+        private static T AcceptChanges<T>(T target, T source) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T SendChanges<T>(T source, T target) =>
+        private static T SendChanges<T>(T source, T target) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T AcceptPatch<T>(T target, T source) =>
+        private static T AcceptPatch<T>(T target, T source) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T SendPatches<T>(T source, T target) =>
+        private static T SendPatches<T>(T source, T target) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T PatchFrom<T>(T target, T source) => MappingService.Create().ApplyDiffs(source, target);
-        public static T PatchTo<T>(T sources, T target) => MappingService.Create().ApplyDiffs(sources, target);
+        private static T PatchFrom<T>(T target, T source) => MappingService.Create().ApplyDiffs(source, target);
+        private static T PatchTo<T>(T sources, T target) => MappingService.Create().ApplyDiffs(sources, target);
 
-        public static T AcceptUpdates<T>(T target, T source) =>
+        private static T AcceptUpdates<T>(T target, T source) =>
             MappingService.Create().ApplyDiffs(source, target);
 
-        public static T SendUpdates<T>(T source, T target) =>
+        private static T SendUpdates<T>(T source, T target) =>
             MappingService.Create().ApplyDiffs(source, target);
     }
 }
