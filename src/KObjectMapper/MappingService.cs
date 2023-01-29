@@ -6,11 +6,11 @@ namespace KObjectMapper
 
     public class MappingService
     {
-        private readonly MutableWriteStrategy _mutableWriteStrategy;
+        private readonly MutableTypesStrategy _mutableTypesStrategy;
 
         private MappingService()
         {
-            _mutableWriteStrategy = new MutableWriteStrategy();
+            _mutableTypesStrategy = new MutableTypesStrategy();
         }
 
         public static MappingService Create() => new();
@@ -112,7 +112,7 @@ namespace KObjectMapper
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
             
-            _mutableWriteStrategy.WriteToProperties(source, target, diffs);
+            _mutableTypesStrategy.WriteToProperties(source, target, diffs);
 
             return target;
         }
@@ -123,7 +123,7 @@ namespace KObjectMapper
 
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
-            new MappingService()._mutableWriteStrategy.WriteToProperties(source, target, diffs);
+            new MappingService()._mutableTypesStrategy.WriteToProperties(source, target, diffs);
 
             return target;
         }

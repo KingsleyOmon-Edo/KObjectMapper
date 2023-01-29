@@ -2,7 +2,7 @@
 
 namespace KObjectMapper.Abstractions;
 
-public interface IMutationStrategy
+public interface IObjectMutationStrategy
 {
     void WriteToProperties(object source, object target, List<PropertyInfo> diffs);
 }

@@ -3,9 +3,9 @@ using KObjectMapper.Abstractions;
 
 namespace KObjectMapper.Helpers;
 
-public class MutableWriteStrategy : IMutationStrategy
+public class MutableTypesStrategy : IObjectMutationStrategy
 {
-    public MutableWriteStrategy()
+    public MutableTypesStrategy()
     {
     }
     

@@ -14,11 +14,7 @@
         //  7) Test that collections - IEnumerable<T> also work.
         //  8) Now implement a factory that uses C#'s new type switching switch statement, to select based on types what strategy to supply at runtime
         //  based on the type of the "target" type. Use the MutableWriterStrategy as the default case or discard.
-
-         
-        
-        
-        
+                       
         //  LIKELY LOCATION OF CHANGES
         //  ----------------------------
         /*  Given there are different ways to alter types based on
