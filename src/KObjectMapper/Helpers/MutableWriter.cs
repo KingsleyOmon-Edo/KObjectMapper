@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
+using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Helpers;
 
-public class MutableWriter
+public class MutableWriter : IObjectMutator
 {
     public MutableWriter()
     {
