@@ -8,7 +8,7 @@ public class MutableWriter
     {
     }
     
-    public void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
+    public void WriteToProperties(object source, object target, List<PropertyInfo> diffs)
     {
         foreach (var sourceProp in diffs)
         {
