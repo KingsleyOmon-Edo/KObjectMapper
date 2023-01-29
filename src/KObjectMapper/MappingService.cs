@@ -12,7 +12,7 @@ namespace KObjectMapper
 
         public static MappingService Create() => new();
 
-        private static void ValidateParameters<T>(T source, T target)
+        private void ValidateParameters<T>(T source, T target)
         {
             Checker.NullChecks(source, target);
 
@@ -109,18 +109,18 @@ namespace KObjectMapper
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
 
-            MappingService.WriteToProperties(source, target, diffs);
+            new MappingService().WriteToProperties(source, target, diffs);
 
             return target;
         }
 
         private T ApplyDiffs<T>(T source, T target)
         {
-            MappingService.ValidateParameters(source, target);
+            new MappingService().ValidateParameters(source, target);
 
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
-            MappingService.WriteToProperties(source, target, diffs);
+            new MappingService().WriteToProperties(source, target, diffs);
 
             return target;
         }
@@ -131,17 +131,17 @@ namespace KObjectMapper
         //  1) By extract interface refactoring, move WriteToProperties to an interface, IMutator
         //  to model the behavior of an object mutator.
         //  2) Test for regressions.
-        //  2) Via "Move to another type" or "method object" refactoring, MutableWriterStrategy, make this new type,
+        //  2) Via "Move to another type" or "method object" refactoring, MutableWriteStrategy, make this new type,
         //  the default implementation of IMutator.WriteToProperties<T>(). Test for regressions.
         //  3) Modify the signature to relax the constraint that source and target types should be of the same type  T
         //  4) Test for regressions. Fix if necessary
         //  5) Take with the interface and default implementation, as a guide provide another implementation for immutable types.
-        //  Call this ImmutableWriterStrategy
+        //  Call this ImmutableWriteStrategy
         //  6) Test to confirm that the above object model could effectively write props for all common types.
         //  7) Test that collections - IEnumerable<T> also work.
         //  8) Now implement a factory that uses C#'s new type switching switch statement, to select based on types what strategy to supply at runtime
         //  based on the type of the "target" type. Use the MutableWriterStrategy as the default case or discard.
-        private static void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
+        private void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
         {
             //  LIKELY LOCATION OF CHANGES
             //  ----------------------------
