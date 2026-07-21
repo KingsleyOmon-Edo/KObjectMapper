@@ -1,7 +1,6 @@
-﻿namespace KObjectMapper
+namespace KObjectMapper
 {
     using Abstractions;
-    using Helpers;
 
     /// <summary>
     /// The Mapper class that holds the core mapping algorithms
@@ -21,8 +20,11 @@
         /// <param name="target">The object to which identical properties will be written</param>
         public void MapTo(object source, object target)
         {
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            var safeSource = source!;
+            var safeTarget = target!;
 
             Map(safeSource, safeTarget);
         }
@@ -36,11 +38,21 @@
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         public void MapTo<TSource, TTarget>(TSource source, TTarget target)
         {
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            Checker.TypeCheck(safeSource);
-            Checker.TypeCheck(safeTarget);
+            object safeSource = source!;
+            object safeTarget = target!;
+
+            if (safeSource.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeSource)} has an incompatible type with {nameof(TSource)}");
+            }
+
+            if (safeTarget.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeTarget)} has an incompatible type with {nameof(TTarget)}");
+            }
 
             _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
@@ -52,8 +64,11 @@
         /// <param name="target">The target object to which property values are to be written</param>
         public void MapFrom(object source, object target)
         {
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            var safeSource = source!;
+            var safeTarget = target!;
 
             Map(safeTarget, safeSource);
         }
@@ -67,11 +82,21 @@
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
         {
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            Checker.TypeCheck(safeSource);
-            Checker.TypeCheck(safeTarget);
+            object safeSource = source!;
+            object safeTarget = target!;
+
+            if (safeSource.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeSource)} has an incompatible type with {nameof(TSource)}");
+            }
+
+            if (safeTarget.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeTarget)} has an incompatible type with {nameof(TTarget)}");
+            }
 
             _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
@@ -84,10 +109,10 @@
         /// <param name="target">The object to which property values are written</param>
         public void Map(object source, object target)
         {
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            _mappingService.ApplyDiffs(safeSource, safeTarget);
+            _mappingService.ApplyDiffs(source!, target!);
         }
 
         /// <summary>
@@ -99,16 +124,20 @@
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         public void Map<TSource, TTarget>(TSource source, TTarget target)
         {
-            //  Null checks
-            var safeSource = Checker.CoalescedNullCheck(source)!;
-            var safeTarget = Checker.CoalescedNullCheck(target)!;
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            //  Type checks
-            Checker.TypeCheck(safeSource);
-            Checker.TypeCheck(safeTarget);
+            if (source is not null && source.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(source)} has an incompatible type with {nameof(TSource)}");
+            }
 
-            //  Mapping.
-            _mappingService.ApplyDiffs(safeSource, safeTarget);
+            if (target is not null && target.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(target)} has an incompatible type with {nameof(TTarget)}");
+            }
+
+            _mappingService.ApplyDiffs(source!, target!);
         }
 
         /// <summary>

@@ -1,22 +1,22 @@
 # Code review: KObjectMapper
 
 ## Scope and review method
-This review covers the full solution under `src/KObjectMapper` and `tests/KObjectMapperTests`, including the runtime implementation, extension APIs, test coverage, and project configuration for the current .NET 6 solution.
+This review covers the current .NET 8 solution under `src/KObjectMapper` and `tests/KObjectMapperTests`, including the runtime implementation, extension APIs, mapper surface area, and the current test project structure. The review focuses on correctness, API clarity, maintainability, and areas that would affect real-world usage.
 
 ## Validation summary
 - Build status: successful
-- Test status: 64 tests passed, 0 failed
-- Overall impression: the library is functional for simple, name-based property mapping and the test suite covers the main happy paths, but the implementation has a few correctness issues and several areas where the API design is likely to surprise consumers.
+- Test status: 66 tests passed, 0 failed
+- Overall impression: the library remains functional for simple, name-based property copying and the test suite covers the main happy paths. The core behavior is stable, but several correctness and API-design issues remain that can still surprise consumers or make the library harder to evolve.
 
 ## What is working well
-- The solution is small, focused, and easy to navigate.
-- The public API is straightforward: `Mapper` and extension methods provide explicit and implicit mapping entry points.
-- The test project is well organized into behavior-focused test groups (`ExplicitMapping`, `ImplicitMapping`, `CharacterizationTests`).
-- The current implementation handles straightforward property-to-property copying for simple objects well.
+- The solution remains compact and easy to navigate.
+- The `Mapper` type and extension methods provide clear entry points for common mapping scenarios.
+- The tests are organized by behavior and cover explicit, implicit, and characterization-style cases.
+- The core mapping flow works well for straightforward property-to-property copying.
 
 ## Findings and recommendations
 
-### 1. Collection mapping overloads do not behave as their signatures suggest
+### 1. Collection mapping overloads still do not honor the supplied target collection
 Severity: High
 
 Files:
@@ -24,97 +24,85 @@ Files:
 - `src/KObjectMapper/Extensions/MapperExtensions.cs`
 
 Issue:
-The collection-based overloads accept an existing `target` collection, but the implementation ignores it in practice and instead creates new target instances. This makes the API misleading and can lead to unexpected behavior for callers who expect the supplied target collection to be populated or updated.
-
-Examples:
-- `Mapper.Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)` creates a new `List<TTarget>` and never uses the `target` argument.
-- `MapperExtensions.MapFrom<TSource, TTarget>(this IEnumerable<TTarget> target, IEnumerable<TSource> source)` similarly creates new instances rather than mapping into the provided target collection.
+The collection overloads that accept an existing target collection still create new target instances instead of populating the provided collection. This is misleading and violates expectations for overloads that appear to update existing state.
 
 Impact:
-- The overload is semantically incorrect.
-- Consumers may believe they are updating an existing collection when they are actually generating a new one.
-- This is a likely source of subtle bugs in real applications.
+- The API is semantically surprising.
+- Consumers may believe they are updating an existing collection when they are actually creating a new one.
 
 Recommendation:
-- Either remove the collection overloads that take an existing target collection, or implement them correctly by mapping into the provided collection.
-- If the intent is to generate a new collection, rename the API or document it more clearly to avoid confusion.
+- Either remove these overloads or implement them so they fill the supplied collection.
+- If the intent is to create a new collection, rename the API or document it clearly.
 
-### 2. Null handling is inconsistent and can throw the wrong exception type
+### 2. Null handling for collection overloads remains inconsistent
 Severity: High
 
 Files:
 - `src/KObjectMapper/Extensions/MapperExtensions.cs`
-- `src/KObjectMapper/Helpers/Checker.cs`
 
 Issue:
-Several extension methods call `.ToArray()` on supplied enumerables before doing any null checks. If the source or target collection is null, this can surface as `NullReferenceException` instead of the expected `ArgumentNullException`.
-
-Examples:
-- `MapperExtensions.MapFrom<TSource, TTarget>(this IEnumerable<TTarget> target, IEnumerable<TSource> source)`
-- `MapperExtensions.MapTo<TSource, TTarget>(this IEnumerable<TSource> source, IEnumerable<TTarget> target)`
+The collection-based extension methods still enumerate input sequences before they consistently validate null input. If the source or target collection is null, callers can still hit a `NullReferenceException` instead of a clear `ArgumentNullException`.
 
 Impact:
 - Error handling is inconsistent with the rest of the API.
-- Consumers may see less clear exceptions when supplying null collections.
+- Consumers receive less clear exceptions when supplying invalid input.
 
 Recommendation:
-- Perform null checks before enumeration.
-- For example, validate `source` and `target` first, then enumerate them.
-- Prefer a single, consistent validation helper for collection overloads.
+- Validate the source and target enumerables before any enumeration.
+- Prefer a small shared validation pattern for all collection-based entry points.
 
-### 3. Mapping does not guard against non-writable target properties
+### 3. The mapper writes to any matching property name without checking writability
 Severity: High
 
 File:
 - `src/KObjectMapper/MappingService.cs`
 
 Issue:
-`WriteToProperties` copies values to every matching property name without checking whether the target property is writable. Read-only properties, properties with private setters, or properties that should be excluded from mapping will fail or behave unexpectedly when `SetValue` is called.
+`WriteToProperties` assigns values to every matching property name without checking whether the target property is writable. Read-only properties, properties with non-public setters, or properties that should be excluded from mapping will fail or behave unexpectedly at runtime.
 
 Impact:
 - The library is fragile in the presence of common property patterns such as read-only wrapper properties or non-public setters.
-- Errors will surface at runtime rather than during validation.
+- Failures surface during execution rather than validation.
 
 Recommendation:
-- Filter properties using `PropertyInfo.CanWrite` and the setter presence before assigning values.
-- Consider skipping properties that are not settable and optionally logging or surfacing a warning.
-- This would make the mapper safer and easier to reason about.
+- Filter candidates using `PropertyInfo.CanWrite` and setter availability before calling `SetValue`.
+- Optionally skip or surface a warning for non-writable members.
 
-### 4. The comparison logic has misleading semantics and a confusing name
+### 4. The property-comparison API name and semantics are still misleading
 Severity: Medium
 
 File:
 - `src/KObjectMapper/MappingService.cs`
 
 Issue:
-`MappingService.ArePropValuesDifferent` returns `true` when the values are equal and `false` when they differ. The name suggests the opposite behavior. This makes the code harder to read and easier to misuse.
+`ArePropValuesDifferent` returns `true` when the values are equal and `false` when they differ. The name suggests the opposite behavior and makes maintenance harder.
 
 Impact:
 - The method is easy to misuse in future maintenance work.
-- The current implementation works only because the surrounding logic relies on this inverted behavior implicitly.
+- The current implementation depends on an inverted interpretation that is not obvious from the name.
 
 Recommendation:
-- Rename the method to something like `ArePropValuesSame` or `ArePropValuesEqual` and make the semantics match the name.
-- Or, if the purpose is to detect differences, reverse the implementation and update all call sites accordingly.
+- Rename the method to something like `ArePropValuesSame` or `ArePropValuesEqual`, or invert the implementation and update all call sites to match the name.
 
-### 5. Type checks are overly strict and do not behave like standard assignability checks
+### 5. Type checks are still exact and too strict for polymorphic usage
 Severity: Medium
 
-File:
+Files:
 - `src/KObjectMapper/Helpers/Checker.cs`
+- `src/KObjectMapper/MappingService.cs`
 
 Issue:
-`Checker.TypeCheck<T>` compares the runtime type of the object to `typeof(T)` exactly. That means assignable types such as derived classes or interface-typed objects can be rejected even when they are valid for the operation.
+The current validation compares runtime types with `typeof(T)` exactly, so valid assignable types such as derived classes or interface-typed objects are rejected even when they should be acceptable for the operation.
 
 Impact:
 - The API is more restrictive than it needs to be.
-- Consumers may hit runtime `ArgumentException`s for valid polymorphic usage.
+- Consumers may hit runtime `ArgumentException` failures for valid polymorphic use cases.
 
 Recommendation:
-- Replace exact type comparison with an assignability check such as `typeof(T).IsAssignableFrom(testObj.GetType())` when appropriate.
-- Review whether the current behavior is intentional; if it is, document it clearly.
+- Use assignability checks such as `typeof(T).IsAssignableFrom(instance.GetType())` where the semantics allow it.
+- Document any intentional strictness if exact-type matching is still required.
 
-### 6. Reflection is used heavily and repeated on every mapping operation
+### 6. Reflection is still repeated on every mapping operation
 Severity: Medium
 
 Files:
@@ -122,18 +110,33 @@ Files:
 - `src/KObjectMapper/Mapper.cs`
 
 Issue:
-The mapper repeatedly reflects over properties and re-evaluates metadata during each mapping. The property-diff work also loops over source and target properties with O(n^2) behavior in the worst case.
+Property metadata is still resolved repeatedly during mapping and the diffing logic uses a nested loop that is effectively O(n^2) for larger sets of properties. This is acceptable for small objects, but it will scale poorly as usage grows.
 
 Impact:
 - Performance will degrade for larger object graphs or high-frequency mapping.
 - The implementation is more complex than necessary for a library that could reasonably be expected to operate on many objects.
 
 Recommendation:
-- Cache property metadata per type.
-- Consider using a strategy that resolves a type’s mapping plan once and reuses it for subsequent mappings.
-- This would also improve clarity and make it easier to add features later.
+- Introduce a cached mapping plan or property-metadata cache per type so that repeated mappings avoid repeated reflection and repeated work.
 
-### 7. The library supports only a very narrow mapping model
+### 7. The codebase still contains overlapping implementation variants
+Severity: Medium
+
+Files:
+- `src/KObjectMapper/InstanceService.cs`
+- `src/KObjectMapper/Extensions/Extras/ObjectExtensionsX.cs`
+
+Issue:
+The repository still contains alternate or experimental implementations that duplicate much of the same logic as `MappingService` and `Mapper`. These variants increase maintenance risk and make it harder to know which implementation is authoritative.
+
+Impact:
+- The library surface is harder to reason about.
+- Changes may need to be applied in several places to keep behavior consistent.
+
+Recommendation:
+- Consolidate the active implementation into a single path, remove or archive the duplicate variants, and leave only the supported API surface.
+
+### 8. The public mapping model remains narrow
 Severity: Medium
 
 Files:
@@ -141,6 +144,36 @@ Files:
 - `src/KObjectMapper/Mapper.cs`
 
 Issue:
+The current library only supports simple, name-based mapping of public, mutable properties. It does not support nested mapping, custom value transformations, or richer conventions without additional code.
+
+Impact:
+- The library is suitable for basic scenarios but may feel limiting in more complex object graphs.
+
+Recommendation:
+- If the library is intended to remain lightweight, document these restrictions clearly.
+- If broader use is desired, consider a plan for custom resolvers, nested mapping, and configurable ignore/include rules.
+
+### 9. Validation logic is still spread across helper classes and call sites
+Severity: Low
+
+Files:
+- `src/KObjectMapper/Helpers/Checker.cs`
+- `src/KObjectMapper/Mapper.cs`
+- `src/KObjectMapper/Extensions/MapperExtensions.cs`
+
+Issue:
+Guard and validation logic is still distributed across a helper class and several entry points. This adds indirection and makes it easier for behavior to drift between overloads.
+
+Impact:
+- The code is slightly harder to follow and maintain.
+- New overloads are more likely to introduce inconsistent validation.
+
+Recommendation:
+- Continue consolidating validation into the methods that use it, or at least centralize the shared checks in a small, focused helper rather than a general-purpose checker.
+
+## Updated note
+Some earlier recommendations, such as simplifying the validation path inside `MappingService`, have been partially addressed, but the remaining findings above still represent the most valuable follow-up work for the library.
+
 The current implementation is limited to simple property name-based mapping of public, writable properties. It does not support:
 - nested object mapping
 - collection element mapping

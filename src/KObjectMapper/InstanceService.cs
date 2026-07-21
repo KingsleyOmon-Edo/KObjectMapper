@@ -1,23 +1,29 @@
-﻿namespace ObjectMapper
+namespace ObjectMapper
 {
     using System.Reflection;
     using Extensions;
-    using Helpers;
 
     public static class InstanceService
     {
         private static void ValidateParameters<T>(T source, T target)
         {
-            Checker.NullChecks(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            Checker.TypeChecks(source, target);
+            if (source.GetType() != target.GetType())
+            {
+                throw new ArgumentException(
+                    $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+            }
         }
 
         private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
             PropertyInfo targetProp)
         {
-            Checker.NullChecks(sourceObject, targetObject);
-            Checker.NullChecks(sourceProp, targetProp);
+            ArgumentNullException.ThrowIfNull(sourceObject);
+            ArgumentNullException.ThrowIfNull(targetObject);
+            ArgumentNullException.ThrowIfNull(sourceProp);
+            ArgumentNullException.ThrowIfNull(targetProp);
         }
 
         private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp,
@@ -48,7 +54,13 @@
             PropertyInfo targetProp)
         {
             InstanceService.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
-            Checker.PropertyNameCheck(sourceProp, targetProp);
+
+            if (!string.Equals(sourceProp.Name, targetProp.Name, StringComparison.Ordinal))
+            {
+                throw new ArgumentException(
+                    $"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
+            }
+
             Type sourcePropType, targetPropType;
             InstanceService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
@@ -65,8 +77,15 @@
 
         public static List<PropertyInfo> GetPropertyDiffs<T>(this T source, T target)
         {
-            Checker.NullChecks(source, target);
-            Checker.TypeChecks(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            if (source.GetType() != target.GetType())
+            {
+                throw new ArgumentException(
+                    $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+            }
+
             var diffs = InstanceService.ComputeDiffs(source, target);
 
             return diffs; // Shorter
@@ -74,7 +93,9 @@
 
         public static List<PropertyInfo> GetPropertyDiffs(this object source, object target)
         {
-            Checker.NullChecks(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
             var diffs = InstanceService.ComputeDiffs(source, target);
 
             return diffs;

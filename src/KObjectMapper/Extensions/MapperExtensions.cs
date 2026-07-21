@@ -1,9 +1,7 @@
-﻿// ReSharper disable All
+// ReSharper disable All
 
 namespace KObjectMapper.Extensions
 {
-    using Helpers;
-
     public static class MapperExtensions
     {
         /// <summary>
@@ -19,7 +17,8 @@ namespace KObjectMapper.Extensions
         /// <returns>Returns the mapped target object instance</returns>
         public static object MapTo(this object source, object target)
         {
-            Checker.NullCheckAll(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
             var mappingService = MappingService.Create();
             var safeSource = source!;
@@ -42,7 +41,8 @@ namespace KObjectMapper.Extensions
         /// <returns>The already mapped target object.</returns>
         public static object MapFrom(this object target, object source)
         {
-            Checker.NullCheckAll(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
             var mappingService = MappingService.Create();
             var safeSource = source!;
@@ -63,12 +63,13 @@ namespace KObjectMapper.Extensions
         /// <returns></returns>
         public static TTarget MapTo<TTarget>(this object source, TTarget target)
         {
-            // Null check both
-            Checker.CoalescedNullCheck<object>(source);
-            Checker.CoalescedNullCheck<TTarget>(target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            //  Type check TTarget only
-            Checker.TypeCheck<TTarget>(target);
+            if (target is not null && target.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(target)} has an incompatible type with {nameof(TTarget)}");
+            }
 
             var mappingService = MappingService.Create();
             var safeSource = source!;
@@ -89,12 +90,13 @@ namespace KObjectMapper.Extensions
         /// <returns>Returns the already mapped target object instance</returns>
         public static object MapFrom<TSource>(this object target, TSource source)
         {
-            //  Null check both
-            Checker.CoalescedNullCheck<TSource>(source);
-            Checker.CoalescedNullCheck<object>(target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            //  Type check only the source object
-            Checker.TypeCheck<TSource>(source);
+            if (source is not null && source.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(source)} has an incompatible type with {nameof(TSource)}");
+            }
 
             var mappingService = MappingService.Create();
             var safeSource = source!;
@@ -122,16 +124,19 @@ namespace KObjectMapper.Extensions
             IEnumerable<TSource> source)
             where TTarget : new()
         {
-            Checker.NullCheckAll<TSource>(source.ToArray());
-            Checker.NullCheckAll<TTarget>(target.ToArray());
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
             var resultCollection = new List<TTarget>();
             var mappingService = MappingService.Create();
             foreach (var sourceElement in source)
             {
-                var targetElement = new TTarget();
+                ArgumentNullException.ThrowIfNull(sourceElement);
 
-                mappingService.ApplyDiffs(sourceElement!, targetElement);
+                var targetElement = new TTarget();
+                var safeSourceElement = sourceElement!;
+
+                mappingService.ApplyDiffs(safeSourceElement, targetElement);
 
                 resultCollection.Add(targetElement);
             }
@@ -154,17 +159,20 @@ namespace KObjectMapper.Extensions
             IEnumerable<TTarget> target)
             where TTarget : new()
         {
-            Checker.NullCheckAll<TSource>(source.ToArray());
-            Checker.NullCheckAll<TTarget>(target.ToArray());
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
             var resultCollection = new List<TTarget>();
             var mappingService = MappingService.Create();
 
             foreach (var sourceElement in source)
             {
-                var targetElement = new TTarget();
+                ArgumentNullException.ThrowIfNull(sourceElement);
 
-                mappingService.ApplyDiffs(sourceElement!, targetElement);
+                var targetElement = new TTarget();
+                var safeSourceElement = sourceElement!;
+
+                mappingService.ApplyDiffs(safeSourceElement, targetElement);
 
                 resultCollection.Add(targetElement);
             }
