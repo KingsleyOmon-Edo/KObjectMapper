@@ -4,10 +4,7 @@
 name: Upload dotnet package
 
 on:
-  push:
-    branches: ["main", "dev", "test-packages/*"]
-  pull_request:
-    branches: ["main", "dev", "test-packages/*"]
+  workflow_dispatch:
   release:
     types: [created]
 
@@ -15,23 +12,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      #      packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x" # SDK Version to use.
+          dotnet-version: "8.0.x"
 
-      # Build
-      - run: dotnet build --configuration Release src/KObjectMapper/KObjectMapper.csproj
+      - name: Build
+        run: dotnet build --configuration Release src/KObjectMapper/KObjectMapper.csproj
 
-      # Package
-      - name: Creating KObject Mapper Nuget package ...
-        run: dotnet pack -c Release src/KObjectMapper/KObjectMapper.csproj
+      - name: Create package
+        run: dotnet pack --configuration Release src/KObjectMapper/KObjectMapper.csproj --no-build
 
-      # Publish (nuget.org)
-      - name: Publish the package to nuget.org
+      - name: Publish package to NuGet.org
+        if: github.event_name == 'release' || github.event_name == 'workflow_dispatch'
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets._N_88C9270CE70442E8AF4905DEC356088A }}
-        run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "NUGET_API_KEY is not configured." >&2
+            exit 1
+          fi
+          dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
