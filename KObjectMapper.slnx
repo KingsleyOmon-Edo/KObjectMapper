@@ -1,7 +1,5 @@
 <Solution>
-  <Folder Name="/docs/">
-    <File Path="docs/run-log.txt" />
-  </Folder>
+  <Folder Name="/docs/" />
   <Project Path="src/KObjectMapper/KObjectMapper.csproj" />
   <Project Path="tests/KObjectMapperTests/KObjectMapperTests.csproj" />
 </Solution>
