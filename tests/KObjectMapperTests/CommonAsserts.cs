@@ -1,7 +1,7 @@
 // Copyright (c) KObjectMapper contributors. All rights reserved.
-using FluentAssertions;
 using KObjectMapper.Extensions;
 using KObjectMapperTests.Helpers;
+using Shouldly;
 
 namespace KObjectMapperTests;
 
@@ -15,56 +15,56 @@ public class CommonAsserts
 
     internal static void AssertSimilarProducts(Product sourceProduct, Product targetProduct)
     {
-        targetProduct.Should().NotBeNull();
-        targetProduct.Should().BeOfType<Product>();
-        targetProduct.Should().BeAssignableTo<Product>();
+        targetProduct.ShouldNotBeNull();
+        targetProduct.ShouldBeOfType<Product>();
+        targetProduct.ShouldBeAssignableTo<Product>();
 
-        targetProduct.Id.Should().Be(sourceProduct.Id);
-        targetProduct.Description.Should().Be(sourceProduct.Description);
-        targetProduct.Quantity.Should().Be(sourceProduct.Quantity);
-        targetProduct.Price.Should().Be(sourceProduct.Price);
+        targetProduct.Id.ShouldBe(sourceProduct.Id);
+        targetProduct.Description.ShouldBe(sourceProduct.Description);
+        targetProduct.Quantity.ShouldBe(sourceProduct.Quantity);
+        targetProduct.Price.ShouldBe(sourceProduct.Price);
     }
 
     internal static void AssertSimilarCustomers(Customer sourceCustomer, Customer targetCustomer)
     {
-        targetCustomer.Should().NotBeNull();
-        targetCustomer.Should().BeOfType<Customer>();
-        targetCustomer.Should().BeEquivalentTo(sourceCustomer);
-        targetCustomer.Id.Should().Be(sourceCustomer.Id);
-        targetCustomer.FirstName.Should().Be(sourceCustomer.FirstName);
-        targetCustomer.LastName.Should().Be(sourceCustomer.LastName);
-        targetCustomer.PhoneNumber.Should().Be(sourceCustomer.PhoneNumber);
+        targetCustomer.ShouldNotBeNull();
+        targetCustomer.ShouldBeOfType<Customer>();
+        targetCustomer.ShouldBeEquivalentTo(sourceCustomer);
+        targetCustomer.Id.ShouldBe(sourceCustomer.Id);
+        targetCustomer.FirstName.ShouldBe(sourceCustomer.FirstName);
+        targetCustomer.LastName.ShouldBe(sourceCustomer.LastName);
+        targetCustomer.PhoneNumber.ShouldBe(sourceCustomer.PhoneNumber);
     }
 
     public void AssertCustomerIsCorrectlyMappedFromEmployee(Customer customer, Employee employee)
     {
-        customer.Should().NotBeNull();
-        customer.Id.Should().NotBe(employee.EmployeeId);
-        customer.FirstName.Should().Be(employee.FirstName);
-        customer.LastName.Should().Be(employee.LastName);
+        customer.ShouldNotBeNull();
+        customer.Id.ShouldNotBe(employee.EmployeeId);
+        customer.FirstName.ShouldBe(employee.FirstName);
+        customer.LastName.ShouldBe(employee.LastName);
     }
 
     public void AssertCustomerDtoIsCorrectlyMappedFromCustomer(CustomerDto customerDto, Customer customer)
     {
-        customerDto.Should().NotBeNull();
-        customerDto.Id.Should().Be(customer.Id);
-        customerDto.FirstName.Should().Be(customer.FirstName);
+        customerDto.ShouldNotBeNull();
+        customerDto.Id.ShouldBe(customer.Id);
+        customerDto.FirstName.ShouldBe(customer.FirstName);
     }
 
     public void AssertCustomerIsCorrectlyMappedFromCustomerDto(Customer customer, CustomerDto customerDto)
     {
-        customer.Should().NotBeNull();
-        customer.Id.Should().Be(customerDto.Id);
-        customer.FirstName.Should().Be(customerDto.FirstName);
+        customer.ShouldNotBeNull();
+        customer.Id.ShouldBe(customerDto.Id);
+        customer.FirstName.ShouldBe(customerDto.FirstName);
     }
 
     public void AssertEmployeeIsCorrectlyMappedFromCustomer(Employee employee, Customer customer)
     {
-        employee.Should().NotBeNull();
-        employee.EmployeeId.Should().NotBe(customer.Id);
-        employee.FirstName.Should().Be(customer.FirstName);
-        employee.LastName.Should().Be(customer.LastName);
-        employee.Salary.Should().Be(100_000.00M);
+        employee.ShouldNotBeNull();
+        employee.EmployeeId.ShouldNotBe(customer.Id);
+        employee.FirstName.ShouldBe(customer.FirstName);
+        employee.LastName.ShouldBe(customer.LastName);
+        employee.Salary.ShouldBe(100_000.00M);
     }
 
     public void AssertCustomerCorrectlyMapsToCustomerDto(Customer customer, CustomerDto customerDto)
@@ -114,31 +114,31 @@ public class CommonAsserts
 
     public void AssertCustomerDtoDataCorrectlyMapsFromCustomerData(List<CustomerDto> customerDtos, List<Customer> customers)
     {
-        customerDtos.Should().NotBeNull();
-        customerDtos.Count.Should().Be(customers.Count);
-        customerDtos[1].FirstName.Should().Be(customers[1].FirstName);
-        customerDtos[1].PhoneNumber.Should().Be(customers[1].PhoneNumber);
+        customerDtos.ShouldNotBeNull();
+        customerDtos.Count.ShouldBe(customers.Count);
+        customerDtos[1].FirstName.ShouldBe(customers[1].FirstName);
+        customerDtos[1].PhoneNumber.ShouldBe(customers[1].PhoneNumber);
     }
 
     public void AssertCustomerDataIsCorrectlyMappedFromCustomerDtoData(List<Customer> customers, List<CustomerDto> customerDtos)
     {
         customers = customers.MapFrom<CustomerDto, Customer>(customerDtos).ToList();
-        customers.Count.Should().Be(customerDtos.Count);
-        customers[0].Id.Should().Be(customerDtos[0].Id);
-        customers[0].FirstName.Should().Be(customerDtos[0].FirstName);
+        customers.Count.ShouldBe(customerDtos.Count);
+        customers[0].Id.ShouldBe(customerDtos[0].Id);
+        customers[0].FirstName.ShouldBe(customerDtos[0].FirstName);
     }
 
     public void AssertCustomerDataIsCorrectlyMappedFromEmployeeData(List<Customer> customers, List<Employee> employees)
     {
-        customers.Should().NotBeNull();
-        customers[1].FirstName.Should().Be(employees[1].FirstName);
-        customers[1].LastName.Should().Be(employees[1].LastName);
+        customers.ShouldNotBeNull();
+        customers[1].FirstName.ShouldBe(employees[1].FirstName);
+        customers[1].LastName.ShouldBe(employees[1].LastName);
     }
 
     public void AssertEmployeeDataIsCorrectlyMappedFromCustomerData(List<Employee> employees, List<Customer> customers)
     {
-        employees.Should().NotBeNull();
-        employees[1].FirstName.Should().Be(customers[1].FirstName);
-        employees[1].LastName.Should().Be(customers[1].LastName);
+        employees.ShouldNotBeNull();
+        employees[1].FirstName.ShouldBe(customers[1].FirstName);
+        employees[1].LastName.ShouldBe(customers[1].LastName);
     }
 }

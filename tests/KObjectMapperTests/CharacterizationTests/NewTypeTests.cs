@@ -1,7 +1,7 @@
-﻿using KObjectMapper.Extensions;
+using KObjectMapper.Extensions;
 using KObjectMapperTests.Helpers;
-using FluentAssertions;
 using KObjectMapper;
+using Shouldly;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ public class NewTypeTests
         Customer customer = ObjectMother.SampleCustomer;
 
         CustomerDto customerDto = sut.Map<Customer, CustomerDto>(customer);
-        customerDto.Should().NotBeNull();
+        customerDto.ShouldNotBeNull();
 
         _commonAsserts.AssertCustomerDtoIsCorrectlyMappedFromCustomer(customerDto, customer);
     }
@@ -36,7 +36,7 @@ public class NewTypeTests
         IEnumerable<Customer> customers = ObjectMother.SampleCustomerData;
         IEnumerable<CustomerDto> customerDtos = sut.Map<Customer, CustomerDto>(customers);
 
-        customerDtos.Should().NotBeNull();
+        customerDtos.ShouldNotBeNull();
         
         _commonAsserts.AssertCustomerDtoDataCorrectlyMapsFromCustomerData(customerDtos.ToList(), customers.ToList());
     }

@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
 using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
+using Shouldly;
 
 namespace KObjectMapperTests.ExplicitMapping;
 
@@ -94,9 +94,7 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
         {
             customerDtos = mapper.Map<Customer, CustomerDto>(customers, customerDtos!).ToList();
         };
-        mapperInvocation.Should()
-            .Throw<ArgumentNullException>()
-            .WithParameterName("target");
+        Should.Throw<ArgumentNullException>(mapperInvocation).ParamName.ShouldBe("target");
 
     }
 }
