@@ -22,6 +22,8 @@ insert_final_newline = true
 [*.cs]
 indent_size = 4
 dotnet_sort_system_directives_first = true
+file_header_template = // Copyright (c) KObjectMapper contributors. All rights reserved.
+dotnet_diagnostic.IDE0073.severity = none
 
 # Don't use this. qualifier
 dotnet_style_qualification_for_field = false:suggestion
