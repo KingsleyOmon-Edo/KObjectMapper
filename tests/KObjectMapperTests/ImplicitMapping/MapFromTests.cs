@@ -65,10 +65,10 @@ namespace KObjectMapperTests.ImplicitMapping
         public void
             Passing_a_null_source_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
         {
-            Customer customer = null;
+            Customer? customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom(customer); });
+            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom(customer!); });
         }
 
         [Fact]
@@ -76,9 +76,9 @@ namespace KObjectMapperTests.ImplicitMapping
             Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
         {
             var customer = ObjectMother.SampleCustomer;
-            CustomerDto customerDto = null;
+            CustomerDto? customerDto = null;
 
-            Assert.Throws<ArgumentNullException>(() => { customerDto.MapFrom(customer); });
+            Assert.Throws<ArgumentNullException>(() => { customerDto!.MapFrom(customer); });
         }
     }
 }

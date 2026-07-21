@@ -67,7 +67,7 @@ namespace KObjectMapperTests.ExplicitMapping
         public void
             Passing_a_null_source_object_in_explicit_mapping_via_a_mapper_instance_should_throw_ArgumentNullException()
         {
-            Customer customer = null;
+            Customer? customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
             var mapper = Mapper.Create();
 
@@ -79,7 +79,7 @@ namespace KObjectMapperTests.ExplicitMapping
             Passing_a_null_target_object_in_explicit_mapping_via_mapper_instance_throws_ArgumentNullException()
         {
             var customer = ObjectMother.SampleCustomer;
-            CustomerDto customerDto = null;
+            CustomerDto? customerDto = null;
             var mapper = Mapper.Create();
 
             Assert.Throws<ArgumentNullException>(() => { mapper.Map<Customer, CustomerDto?>(customer, customerDto); });

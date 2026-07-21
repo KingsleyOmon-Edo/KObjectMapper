@@ -46,16 +46,8 @@
 - Validate the "type ignorance" still works.
 - Tests for MapFrom<TSource>(TSource source)
 
-## Test Plan
-
-### Data integrity Tests
-For each new method identify and test:
-- Happy paths
-- Sad paths (invalid inputs)
-- Edge cases
-- Where applicable test the types of supplied arguments
-
 ### Methods to test (ObjectExtensions / MappingService)
+
 - ArePropertyValuesDifferent
 - PropertyTypeCheck
 - PropertyNameCheck
@@ -64,13 +56,6 @@ For each new method identify and test:
 - TypeChecks
 - ApplyDiffs
 - WriteToProperties
-
-TODOs for tests:
-- Test predicate function happy path
-- Test predicate function sad path
-- Test predicate function edge cases
-- Substitute the now functional GetPropertyDiffs method for the implementations used in the mutation methods.
-
 
 ---
 

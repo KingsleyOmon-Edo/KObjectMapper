@@ -72,12 +72,12 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
     {
         var mapper = KObjectMapper.Mapper.Create();
         
-        List<Customer> customers = null;
+        List<Customer>? customers = null;
         List<CustomerDto> customerDtos = ObjectMother.SampleCustomerDtoData;
 
         Assert.Throws<ArgumentNullException>(() =>
         {
-            customerDtos = mapper.Map<Customer, CustomerDto>(customers, customerDtos).ToList();
+            customerDtos = mapper.Map<Customer, CustomerDto>(customers!, customerDtos).ToList();
         });
     }
 
@@ -88,11 +88,11 @@ public class MapOfIEnumerableOfTTests : IExplicitMappingTests
         var mapper = KObjectMapper.Mapper.Create();
         
         List<Customer> customers = ObjectMother.SampleCustomerData;
-        List<CustomerDto> customerDtos = null;
+        List<CustomerDto>? customerDtos = null;
 
         Action mapperInvocation = () =>
         {
-            customerDtos = mapper.Map<Customer, CustomerDto>(customers, customerDtos).ToList();
+            customerDtos = mapper.Map<Customer, CustomerDto>(customers, customerDtos!).ToList();
         };
         mapperInvocation.Should()
             .Throw<ArgumentNullException>()

@@ -22,8 +22,8 @@ namespace KObjectMapper
         private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
             PropertyInfo targetProp)
         {
-            Checker.NullChecks(sourceObject, targetObject);
-            Checker.NullChecks(sourceProp, targetProp);
+            _ = Checker.NullChecks(sourceObject, targetObject);
+            _ = Checker.NullChecks(sourceProp, targetProp);
         }
 
         private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp,
@@ -58,8 +58,8 @@ namespace KObjectMapper
             Type sourcePropType, targetPropType;
             MappingService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
-            var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
-            var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
+            var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType)!;
+            var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType)!;
 
             if (Equals(sourcePropValue, targetPropValue))
             {
@@ -109,6 +109,7 @@ namespace KObjectMapper
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
 
+            _ = sourceProps;
             MappingService.WriteToProperties(source, target, diffs);
 
             return target;
@@ -120,6 +121,7 @@ namespace KObjectMapper
 
             var diffs = MappingService.GetPropertyDiffs(source, target);
             var sourceProps = source.GetType().GetProperties();
+            _ = sourceProps;
             MappingService.WriteToProperties(source, target, diffs);
 
             return target;
