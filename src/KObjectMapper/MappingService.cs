@@ -1,4 +1,5 @@
 // Copyright (c) KObjectMapper contributors. All rights reserved.
+using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Extensions;
@@ -7,6 +8,8 @@ namespace KObjectMapper;
 
 public class MappingService
 {
+    private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyCache = new();
+
     private MappingService()
     {
     }
@@ -19,10 +22,10 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        if (source.GetType() != target.GetType())
+        if (!typeof(T).IsAssignableFrom(source.GetType()) || !typeof(T).IsAssignableFrom(target.GetType()))
         {
             throw new ArgumentException(
-                $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+                $"{nameof(source)} and {nameof(target)} objects should be compatible with the supplied generic type");
         }
     }
 
@@ -55,10 +58,14 @@ public class MappingService
     public void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject,
         PropertyInfo targetProp)
     {
-        this.ArePropValuesDifferent<object>(sourceObject, sourceProp, targetObject, targetProp);
+        _ = this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
     }
 
-    public bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
+    public bool ArePropValuesSame(object sourceObject, PropertyInfo sourceProp, object targetObject,
+        PropertyInfo targetProp)
+        => this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
+
+    public bool ArePropValuesSame<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
     {
         this.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
@@ -86,15 +93,19 @@ public class MappingService
         return Equals(sourceValue, targetValue);
     }
 
+    public bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
+        PropertyInfo targetProp)
+        => !this.ArePropValuesSame(sourceObject, sourceProp, targetObject, targetProp);
+
     public List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        if (source.GetType() != target.GetType())
+        if (!typeof(T).IsAssignableFrom(source.GetType()) || !typeof(T).IsAssignableFrom(target.GetType()))
         {
             throw new ArgumentException(
-                $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+                $"{nameof(source)} and {nameof(target)} objects should be compatible with the supplied generic type");
         }
 
         var diffs = this.ComputeDiffs(source, target);
@@ -117,14 +128,14 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        var sourceProps = source.GetType().GetProperties().ToList();
-        var targetProps = target.GetType().GetProperties().ToList();
+        var sourceProps = MappingService.GetCachedProperties(source.GetType()).ToList();
+        var targetProps = MappingService.GetCachedProperties(target.GetType()).ToList();
 
         return sourceProps.Except(targetProps, (
                 object sourceObject,
                 PropertyInfo sourceProp,
                 object targetObject,
-                PropertyInfo targetProp) => this.ArePropValuesDifferent<object>(sourceObject,
+                PropertyInfo targetProp) => this.ArePropValuesSame<object>(sourceObject,
                 sourceProp,
                 targetObject,
                 targetProp), source, target)
@@ -140,9 +151,6 @@ public class MappingService
         object safeTarget = target;
 
         var diffs = this.GetPropertyDiffs(safeSource, safeTarget);
-        var sourceProps = safeSource.GetType().GetProperties();
-
-        _ = sourceProps;
         this.WriteToProperties(safeSource, safeTarget, diffs);
 
         return safeTarget;
@@ -159,8 +167,6 @@ public class MappingService
         this.ValidateParameters(safeSource, safeTarget);
 
         var diffs = this.GetPropertyDiffs(safeSource, safeTarget);
-        var sourceProps = safeSource.GetType().GetProperties();
-        _ = sourceProps;
         this.WriteToProperties(safeSource, safeTarget, diffs);
 
         return safeTarget;
@@ -172,11 +178,13 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
+        var targetProperties = MappingService.GetCachedProperties(target.GetType());
+
         foreach (var sourceProp in diffs)
         {
-            foreach (var targetProp in target.GetType().GetProperties())
+            foreach (var targetProp in targetProperties)
             {
-                if (sourceProp.Name == targetProp.Name)
+                if (sourceProp.Name == targetProp.Name && targetProp.CanWrite && targetProp.SetMethod is not null)
                 {
                     object? sourceValue = sourceProp.GetValue(source);
                     object? targetValue = targetProp.GetValue(target);
@@ -189,6 +197,9 @@ public class MappingService
             }
         }
     }
+
+    private static PropertyInfo[] GetCachedProperties(Type type)
+        => PropertyCache.GetOrAdd(type, static currentType => currentType.GetProperties());
 
     public object SendUpdatesTo(object source, object target) =>
         this.ApplyDiffs(source, target);
