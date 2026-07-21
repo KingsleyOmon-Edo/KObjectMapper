@@ -17,19 +17,24 @@ namespace KObjectMapper.Extensions.EqualityComparers
                                          TPropContainer rightPropContainer)
             {
                 _predicate = predicate ?? throw new ArgumentNullException(nameof(predicate));
-                
+
                 this._leftPropContainer = leftPropContainer;
                 this._rightPropContainer = rightPropContainer;
             }
 
             public bool Equals(PropertyInfo? x, PropertyInfo? y)
             {
-                return _predicate(_leftPropContainer, x, _rightPropContainer, y);             
+                if (x is null || y is null)
+                {
+                    return x is null && y is null;
+                }
+
+                return _predicate(_leftPropContainer, x, _rightPropContainer, y);
             }
 
-            public int GetHashCode([DisallowNull] PropertyInfo obj)
+            public int GetHashCode([DisallowNull] PropertyInfo? obj)
             {
-                return obj.GetHashCode();
+                return obj?.GetHashCode() ?? 0;
             }
         }
     }

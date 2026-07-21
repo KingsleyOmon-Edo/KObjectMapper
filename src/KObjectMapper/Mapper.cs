@@ -132,7 +132,7 @@
             foreach (var sourceElement in source)
             {
                 var targetElem = new TTarget();
-                _mappingService.ApplyDiffs(sourceElement, targetElem);
+                _mappingService.ApplyDiffs(sourceElement!, targetElem);
 
                 resultCollection.Add(targetElem);
             }
@@ -145,7 +145,9 @@
         public TTarget Map<TSource, TTarget>(TSource source)
         {
             TTarget target = Activator.CreateInstance<TTarget>();
-            _mappingService.ApplyDiffs(source, target);
+            object safeSource = source!;
+            object safeTarget = target!;
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
             return target;
         }
 
@@ -155,7 +157,9 @@
             foreach (var source in sources)
             {
                 TTarget newTargetInstance = Activator.CreateInstance<TTarget>();
-                _mappingService.ApplyDiffs(source, newTargetInstance);
+                object safeSource = source!;
+                object safeTarget = newTargetInstance!;
+                _mappingService.ApplyDiffs(safeSource, safeTarget);
 
                 targets.Add(newTargetInstance);
             }

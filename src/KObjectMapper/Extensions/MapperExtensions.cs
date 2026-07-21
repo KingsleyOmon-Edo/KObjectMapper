@@ -22,9 +22,11 @@ namespace KObjectMapper.Extensions
             Checker.NullCheckAll(source, target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source!, target!);
+            var safeSource = source!;
+            var safeTarget = target!;
+            mappingService.ApplyDiffs(safeSource, safeTarget);
 
-            return target;
+            return safeTarget;
         }
 
         /// <summary>
@@ -43,9 +45,11 @@ namespace KObjectMapper.Extensions
             Checker.NullCheckAll(source, target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source!, target!);
+            var safeSource = source!;
+            var safeTarget = target!;
+            mappingService.ApplyDiffs(safeSource, safeTarget);
 
-            return target;
+            return safeTarget;
         }
 
         /// <summary>
@@ -67,9 +71,11 @@ namespace KObjectMapper.Extensions
             Checker.TypeCheck<TTarget>(target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source!, target!);
+            var safeSource = source!;
+            var safeTarget = target!;
+            mappingService.ApplyDiffs(safeSource, safeTarget);
 
-            return target;
+            return safeTarget;
         }
 
         /// <summary>
@@ -91,9 +97,11 @@ namespace KObjectMapper.Extensions
             Checker.TypeCheck<TSource>(source);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source!, target!);
+            var safeSource = source!;
+            var safeTarget = target!;
+            mappingService.ApplyDiffs(safeSource, safeTarget);
 
-            return target;
+            return safeTarget;
         }
         
         /// <summary>
@@ -122,8 +130,8 @@ namespace KObjectMapper.Extensions
             foreach (var sourceElement in source)
             {
                 var targetElement = new TTarget();
-          
-                mappingService.ApplyDiffs(sourceElement, targetElement);
+
+                mappingService.ApplyDiffs(sourceElement!, targetElement);
 
                 resultCollection.Add(targetElement);
             }
@@ -155,8 +163,8 @@ namespace KObjectMapper.Extensions
             foreach (var sourceElement in source)
             {
                 var targetElement = new TTarget();
-                
-                mappingService.ApplyDiffs(sourceElement, targetElement);
+
+                mappingService.ApplyDiffs(sourceElement!, targetElement);
 
                 resultCollection.Add(targetElement);
             }

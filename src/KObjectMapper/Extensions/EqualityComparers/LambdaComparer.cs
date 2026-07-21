@@ -17,12 +17,17 @@ namespace KObjectMapper.Extensions.EqualityComparers
 
             public bool Equals(T? x, T? y)
             {
+                if (x is null || y is null)
+                {
+                    return x is null && y is null;
+                }
+
                 return _predicate(x, y);
             }
 
-            public int GetHashCode([DisallowNull] T obj)
+            public int GetHashCode([DisallowNull] T? obj)
             {
-                return obj.GetHashCode();
+                return obj?.GetHashCode() ?? 0;
             }
         }
     }

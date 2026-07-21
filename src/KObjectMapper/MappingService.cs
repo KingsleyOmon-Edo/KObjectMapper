@@ -58,15 +58,18 @@ namespace KObjectMapper
             Type sourcePropType, targetPropType;
             MappingService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
-            var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType)!;
-            var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType)!;
+            object? sourcePropValue = sourceProp.GetValue(sourceObject);
+            object? targetPropValue = targetProp.GetValue(targetObject);
 
-            if (Equals(sourcePropValue, targetPropValue))
+            if (sourcePropValue is null || targetPropValue is null)
             {
-                return true;
+                return Equals(sourcePropValue, targetPropValue);
             }
 
-            return false;
+            object sourceValue = Convert.ChangeType(sourcePropValue, sourcePropType)!;
+            object targetValue = Convert.ChangeType(targetPropValue, targetPropType)!;
+
+            return Equals(sourceValue, targetValue);
         }
 
         public static List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
@@ -88,6 +91,9 @@ namespace KObjectMapper
 
         private static List<PropertyInfo> ComputeDiffs<T>(T source, T target)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
             var sourceProps = source.GetType().GetProperties().ToList();
             var targetProps = target.GetType().GetProperties().ToList();
 
@@ -104,31 +110,44 @@ namespace KObjectMapper
 
         public object ApplyDiffs(object source, object target)
         {
-            MappingService.NullChecks(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            var diffs = MappingService.GetPropertyDiffs(source, target);
-            var sourceProps = source.GetType().GetProperties();
+            object safeSource = source;
+            object safeTarget = target;
+
+            var diffs = MappingService.GetPropertyDiffs(safeSource, safeTarget);
+            var sourceProps = safeSource.GetType().GetProperties();
 
             _ = sourceProps;
-            MappingService.WriteToProperties(source, target, diffs);
+            MappingService.WriteToProperties(safeSource, safeTarget, diffs);
 
-            return target;
+            return safeTarget;
         }
 
         public T ApplyDiffs<T>(T source, T target)
         {
-            MappingService.ValidateParameters(source, target);
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
 
-            var diffs = MappingService.GetPropertyDiffs(source, target);
-            var sourceProps = source.GetType().GetProperties();
+            T safeSource = source;
+            T safeTarget = target;
+
+            MappingService.ValidateParameters(safeSource, safeTarget);
+
+            var diffs = MappingService.GetPropertyDiffs(safeSource, safeTarget);
+            var sourceProps = safeSource.GetType().GetProperties();
             _ = sourceProps;
-            MappingService.WriteToProperties(source, target, diffs);
+            MappingService.WriteToProperties(safeSource, safeTarget, diffs);
 
-            return target;
+            return safeTarget;
         }
 
         private static void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
             //  LIKELY LOCATION OF CHANGES
             //  ----------------------------
             /*  Given there are different ways to alter types based on
@@ -159,10 +178,15 @@ namespace KObjectMapper
             {
                 foreach (var targetProp in target.GetType().GetProperties())
                 {
-                    if (sourceProp.Name == targetProp.Name
-                        && sourceProp.GetValue(source) != targetProp.GetValue(target))
+                    if (sourceProp.Name == targetProp.Name)
                     {
-                        targetProp.SetValue(target, sourceProp.GetValue(source));
+                        object? sourceValue = sourceProp.GetValue(source);
+                        object? targetValue = targetProp.GetValue(target);
+
+                        if (!Equals(sourceValue, targetValue))
+                        {
+                            targetProp.SetValue(target, sourceValue);
+                        }
                     }
                 }
             }

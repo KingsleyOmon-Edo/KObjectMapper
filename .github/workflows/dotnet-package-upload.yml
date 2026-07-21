@@ -21,10 +21,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: "6.0.x" # SDK Version to use.
-          source-url: https://nuget.pkg.github.com/KingsleyOmon-Edo/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          dotnet-version: "8.0.x" # SDK Version to use.
 
       # Build
       - run: dotnet build --configuration Release src/KObjectMapper/KObjectMapper.csproj
@@ -32,12 +29,6 @@ jobs:
       # Package
       - name: Creating KObject Mapper Nuget package ...
         run: dotnet pack -c Release src/KObjectMapper/KObjectMapper.csproj
-
-      # Publish to (GPR)
-      - name: Publishing the KObjectMapper package to GitHub Packages Registry (GPR) ...
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.___G_AE1E3E2FBABB49A5965C71FBA6818F08 }}
-        run: dotnet nuget push src/KObjectMapper/bin/Release/*.nupkg --api-key $NUGET_AUTH_TOKEN
 
       # Publish (nuget.org)
       - name: Publish the package to nuget.org
