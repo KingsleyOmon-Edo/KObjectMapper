@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Extensions;
-using KObjectMapper.Helpers;
 
 namespace KObjectMapper;
 
@@ -17,22 +16,33 @@ public class MappingService
     private void ValidateParameters<T>(T source, T target)
     {
         _ = this.GetHashCode();
-        Checker.NullChecks(source, target);
-        Checker.TypeChecks(source, target);
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(target);
+
+        if (source.GetType() != target.GetType())
+        {
+            throw new ArgumentException(
+                $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+        }
     }
 
     private void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
     {
         _ = this.GetHashCode();
-        _ = Checker.NullChecks(sourceObject, targetObject);
-        _ = Checker.NullChecks(sourceProp, targetProp);
+        ArgumentNullException.ThrowIfNull(sourceObject);
+        ArgumentNullException.ThrowIfNull(targetObject);
+        ArgumentNullException.ThrowIfNull(sourceProp);
+        ArgumentNullException.ThrowIfNull(targetProp);
     }
 
     private void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp,
         out Type sourcePropType, out Type targetPropType)
     {
         _ = this.GetHashCode();
+        ArgumentNullException.ThrowIfNull(sourceProp);
+        ArgumentNullException.ThrowIfNull(targetProp);
+
         sourcePropType = sourceProp.PropertyType;
         targetPropType = targetProp.PropertyType;
         if (Equals(sourcePropType, targetPropType) == false)
@@ -52,7 +62,13 @@ public class MappingService
         PropertyInfo targetProp)
     {
         this.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
-        Checker.PropertyNameCheck(sourceProp, targetProp);
+
+        if (!string.Equals(sourceProp.Name, targetProp.Name, StringComparison.Ordinal))
+        {
+            throw new ArgumentException(
+                $"PropertyNames: {nameof(sourceProp)} and {targetProp} have dissimilar names");
+        }
+
         Type sourcePropType, targetPropType;
         this.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
@@ -72,8 +88,15 @@ public class MappingService
 
     public List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
     {
-        Checker.NullChecks(source, target);
-        Checker.TypeChecks(source, target);
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(target);
+
+        if (source.GetType() != target.GetType())
+        {
+            throw new ArgumentException(
+                $"{nameof(source)} and {nameof(target)} objects should be of the same type");
+        }
+
         var diffs = this.ComputeDiffs(source, target);
 
         return diffs;
@@ -81,7 +104,9 @@ public class MappingService
 
     public List<PropertyInfo> GetPropertyDiffs(object source, object target)
     {
-        Checker.NullChecks(source, target);
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(target);
+
         var diffs = this.ComputeDiffs(source, target);
 
         return diffs;
