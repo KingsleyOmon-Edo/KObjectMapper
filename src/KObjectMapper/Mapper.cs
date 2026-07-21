@@ -21,9 +21,10 @@
         /// <param name="target">The object to which identical properties will be written</param>
         public void MapTo(object source, object target)
         {
-            Checker.NullChecks(source, target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
-            Map(source, target);
+            Map(safeSource, safeTarget);
         }
 
         /// <summary>
@@ -35,15 +36,14 @@
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         public void MapTo<TSource, TTarget>(TSource source, TTarget target)
         {
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
-            Checker.TypeCheck(source);
-            Checker.TypeCheck(target);
+            Checker.TypeCheck(safeSource);
+            Checker.TypeCheck(safeTarget);
 
-            _mappingService.ApplyDiffs(source, target);
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
-
 
         /// <summary>
         /// Maps or read property data from a specified source object to a specified target object.
@@ -52,9 +52,10 @@
         /// <param name="target">The target object to which property values are to be written</param>
         public void MapFrom(object source, object target)
         {
-            Checker.NullChecks(source, target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
-            Map(target, source);
+            Map(safeTarget, safeSource);
         }
 
         /// <summary>
@@ -66,14 +67,15 @@
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
         {
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
-            Checker.TypeCheck(source);
-            Checker.TypeCheck(target);
+            Checker.TypeCheck(safeSource);
+            Checker.TypeCheck(safeTarget);
 
-            _mappingService.ApplyDiffs(source, target);
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
+
 
         /// <summary>
         /// Writes identical, public, mutable properties from a source object to a target object
@@ -82,9 +84,10 @@
         /// <param name="target">The object to which property values are written</param>
         public void Map(object source, object target)
         {
-            Checker.NullChecks(source, target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
-            _mappingService.ApplyDiffs(source, target);
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
 
         /// <summary>
@@ -97,15 +100,15 @@
         public void Map<TSource, TTarget>(TSource source, TTarget target)
         {
             //  Null checks
-            Checker.CoalescedNullCheck(source);
-            Checker.CoalescedNullCheck(target);
+            var safeSource = Checker.CoalescedNullCheck(source)!;
+            var safeTarget = Checker.CoalescedNullCheck(target)!;
 
             //  Type checks
-            Checker.TypeCheck(source);
-            Checker.TypeCheck(target);
+            Checker.TypeCheck(safeSource);
+            Checker.TypeCheck(safeTarget);
 
             //  Mapping.
-            _mappingService.ApplyDiffs(source, target);
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
 
         /// <summary>

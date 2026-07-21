@@ -73,10 +73,10 @@ namespace KObjectMapperTests.ExplicitMapping
         {
             var mapper = new Mapper();
 
-            Customer customer = null;
+            Customer? customer = null;
             var customerDto = ObjectMother.SampleCustomerDto;
 
-            Assert.Throws<ArgumentNullException>(() => { mapper.Map(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { mapper.Map(customer!, customerDto); });
         }
 
         [Fact]
@@ -86,9 +86,9 @@ namespace KObjectMapperTests.ExplicitMapping
             var sut = new Mapper();
 
             var customer = ObjectMother.SampleCustomer;
-            CustomerDto customerDto = null;
+            CustomerDto? customerDto = null;
 
-            Assert.Throws<ArgumentNullException>(() => { sut.Map(customer, customerDto); });
+            Assert.Throws<ArgumentNullException>(() => { sut.Map(customer, customerDto!); });
         }
     }
 }

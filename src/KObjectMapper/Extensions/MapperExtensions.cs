@@ -22,7 +22,7 @@ namespace KObjectMapper.Extensions
             Checker.NullCheckAll(source, target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source, target);
+            mappingService.ApplyDiffs(source!, target!);
 
             return target;
         }
@@ -43,7 +43,7 @@ namespace KObjectMapper.Extensions
             Checker.NullCheckAll(source, target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source, target);
+            mappingService.ApplyDiffs(source!, target!);
 
             return target;
         }
@@ -67,7 +67,7 @@ namespace KObjectMapper.Extensions
             Checker.TypeCheck<TTarget>(target);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source, target);
+            mappingService.ApplyDiffs(source!, target!);
 
             return target;
         }
@@ -91,7 +91,7 @@ namespace KObjectMapper.Extensions
             Checker.TypeCheck<TSource>(source);
 
             var mappingService = MappingService.Create();
-            mappingService.ApplyDiffs(source, target);
+            mappingService.ApplyDiffs(source!, target!);
 
             return target;
         }

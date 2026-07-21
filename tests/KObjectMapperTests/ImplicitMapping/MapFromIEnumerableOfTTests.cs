@@ -61,12 +61,12 @@ namespace KObjectMapperTests.ImplicitMapping
         public void
             Passing_a_null_source_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
         {
-            List<Customer> customers = null;
+            List<Customer>? customers = null;
             List<Employee> employees = ObjectMother.SampleEmployeeData;
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                employees = employees.MapFrom<Customer, Employee>(customers).ToList();
+                employees = employees.MapFrom<Customer, Employee>(customers!).ToList();
             });
         }
 
@@ -75,11 +75,11 @@ namespace KObjectMapperTests.ImplicitMapping
             Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException()
         {
             List<Customer> customers = ObjectMother.SampleCustomerData;
-            List<Employee> employees = null;
+            List<Employee>? employees = null;
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                employees = employees.MapFrom<Customer, Employee>(customers).ToList();
+                employees = employees!.MapFrom<Customer, Employee>(customers).ToList();
             });
         }
     }
