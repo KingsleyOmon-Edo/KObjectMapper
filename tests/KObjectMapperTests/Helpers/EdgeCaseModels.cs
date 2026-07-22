@@ -59,3 +59,33 @@ internal sealed class NoDefaultConstructorTarget
         Name = name;
     }
 }
+
+internal sealed class ConstructorNameMismatchSource
+{
+    public string FirstName { get; set; } = string.Empty;
+}
+
+internal sealed class ConstructorNameMismatchTarget
+{
+    public string Name { get; }
+
+    public ConstructorNameMismatchTarget(string name)
+    {
+        Name = name;
+    }
+}
+
+internal sealed class ConstructorConversionFailureSource
+{
+    public string Quantity { get; set; } = string.Empty;
+}
+
+internal sealed class ConstructorConversionFailureTarget
+{
+    public int Quantity { get; }
+
+    public ConstructorConversionFailureTarget(int quantity)
+    {
+        Quantity = quantity;
+    }
+}

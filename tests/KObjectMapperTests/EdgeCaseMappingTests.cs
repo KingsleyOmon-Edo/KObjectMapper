@@ -163,4 +163,80 @@ public class EdgeCaseMappingTests
         target.Quantity.ShouldBe(42L);
     }
 
+    [Fact]
+    public void Map_CollectionTargetIsNotIList_ReturnsNewMappedCollection()
+    {
+        Mapper mapper = Mapper.Create();
+
+        List<CustomerDto> source =
+        [
+            new CustomerDto
+            {
+                Id = 10,
+                FirstName = "James",
+                PhoneNumber = "5555550009"
+            }
+        ];
+
+        IEnumerable<Customer> target = new Customer[]
+        {
+            new Customer
+            {
+                Id = 1,
+                FirstName = "Before",
+                LastName = "StillHere",
+                PhoneNumber = "0000000000"
+            }
+        };
+
+        IEnumerable<Customer> mapped = mapper.Map<CustomerDto, Customer>(source, target);
+        List<Customer> mappedList = mapped.ToList();
+
+        mapped.ShouldNotBeSameAs(target);
+        mappedList.Count.ShouldBe(1);
+        mappedList[0].Id.ShouldBe(10);
+        mappedList[0].FirstName.ShouldBe("James");
+        mappedList[0].PhoneNumber.ShouldBe("5555550009");
+    }
+
+    [Fact]
+    public void Map_CollectionTargetIsReadOnlyList_ReturnsNewMappedCollectionWithoutMutatingOriginal()
+    {
+        Mapper mapper = Mapper.Create();
+
+        List<CustomerDto> source =
+        [
+            new CustomerDto
+            {
+                Id = 10,
+                FirstName = "James",
+                PhoneNumber = "5555550009"
+            }
+        ];
+
+        List<Customer> backingList =
+        [
+            new Customer
+            {
+                Id = 1,
+                FirstName = "Before",
+                LastName = "StillHere",
+                PhoneNumber = "0000000000"
+            }
+        ];
+
+        IReadOnlyList<Customer> readOnlyTarget = backingList.AsReadOnly();
+
+        IEnumerable<Customer> mapped = mapper.Map<CustomerDto, Customer>(source, readOnlyTarget);
+        List<Customer> mappedList = mapped.ToList();
+
+        mapped.ShouldNotBeSameAs(readOnlyTarget);
+        backingList[0].Id.ShouldBe(1);
+        backingList[0].FirstName.ShouldBe("Before");
+        mappedList.Count.ShouldBe(1);
+        mappedList[0].Id.ShouldBe(10);
+        mappedList[0].FirstName.ShouldBe("James");
+        mappedList[0].PhoneNumber.ShouldBe("5555550009");
+    }
+
 }
