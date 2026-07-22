@@ -1,5 +1,4 @@
 <Solution>
-  <Folder Name="/docs/" />
   <Project Path="src/KObjectMapper/KObjectMapper.csproj" />
   <Project Path="tests/KObjectMapperTests/KObjectMapperTests.csproj" />
 </Solution>
