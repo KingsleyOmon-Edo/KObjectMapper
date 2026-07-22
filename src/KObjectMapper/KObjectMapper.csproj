@@ -19,11 +19,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="InstanceService.cs" />
+		<Compile Remove="InstanceService.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Helpers\" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Helpers\" />
 	</ItemGroup>
 
 </Project>
