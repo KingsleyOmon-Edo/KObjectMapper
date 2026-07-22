@@ -169,7 +169,7 @@ public class MappingService
                 continue;
             }
 
-            this.WritePropertyValue(source!, sourceProp, target!, targetProp);
+            this.WritePropertyValue(source, sourceProp, target, targetProp);
         }
     }
 
