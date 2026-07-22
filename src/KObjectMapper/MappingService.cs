@@ -194,14 +194,7 @@ public class MappingService
 
         if (CanMapNestedObjects(sourceProp.PropertyType, targetProp.PropertyType))
         {
-            object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
-            this.ApplyDiffs(sourceValue, nestedTarget);
-
-            if (targetValue is null)
-            {
-                targetProp.SetValue(target, nestedTarget);
-            }
-
+            WriteNestedPropertyValue(sourceValue, target, targetProp, targetValue);
             return;
         }
 
@@ -210,6 +203,18 @@ public class MappingService
         if (!Equals(mappedValue, targetValue))
         {
             targetProp.SetValue(target, mappedValue);
+        }
+    }
+
+    private void WriteNestedPropertyValue(object sourceValue, object target, PropertyInfo targetProp,
+        object? targetValue)
+    {
+        object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
+        this.ApplyDiffs(sourceValue, nestedTarget);
+
+        if (targetValue is null)
+        {
+            targetProp.SetValue(target, nestedTarget);
         }
     }
 
