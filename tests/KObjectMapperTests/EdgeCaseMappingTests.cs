@@ -163,16 +163,4 @@ public class EdgeCaseMappingTests
         target.Quantity.ShouldBe(42L);
     }
 
-    [Fact]
-    public void Map_TargetTypeLacksParameterlessConstructor_ThrowsMissingMethodException()
-    {
-        Mapper mapper = Mapper.Create();
-
-        NoDefaultConstructorSource source = new()
-        {
-            Name = "James"
-        };
-
-        Should.Throw<MissingMethodException>(() => mapper.Map<NoDefaultConstructorSource, NoDefaultConstructorTarget>(source));
-    }
 }

@@ -193,6 +193,7 @@ Recommendation:
 
 ### 11. The test suite covers the primary happy paths but misses important edge cases
 
+[x]
 Severity: Medium
 
 Files:
@@ -239,6 +240,8 @@ Recommendation:
 
 - Use `dotnet pack` in CI explicitly instead of generating packages on every build.
 - Use deterministic versioning for release builds and reserve timestamped versions for local development if needed.
+
+[x]
 
 ## Suggested priority order
 

@@ -211,6 +211,7 @@ namespace KObjectMapper;
         public static Mapper Create() => new();
 
         public TTarget Map<TSource, TTarget>(TSource source)
+            where TTarget : new()
         {
             TTarget target = Activator.CreateInstance<TTarget>();
             object safeSource = source!;
@@ -220,6 +221,7 @@ namespace KObjectMapper;
         }
 
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sources)
+            where TTarget : new()
         {
             List<TTarget> targets = new();
             foreach (var source in sources)
