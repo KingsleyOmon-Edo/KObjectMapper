@@ -7,7 +7,7 @@ namespace KObjectMapperTests;
 public class MapperConstructorConstraintTests
 {
     [Fact]
-    public void Map_SingleObjectCreationOverload_DeclaresNewConstraintOnTargetType()
+    public void Map_SingleObjectCreationOverload_DoesNotDeclareNewConstraintOnTargetType()
     {
         MethodInfo method = typeof(Mapper)
             .GetMethods(BindingFlags.Instance | BindingFlags.Public)
@@ -20,11 +20,11 @@ public class MapperConstructorConstraintTests
 
         GenericParameterAttributes targetAttributes = method.GetGenericArguments()[1].GenericParameterAttributes;
 
-        targetAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint).ShouldBeTrue();
+        targetAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint).ShouldBeFalse();
     }
 
     [Fact]
-    public void Map_CollectionCreationOverload_DeclaresNewConstraintOnTargetType()
+    public void Map_CollectionCreationOverload_DoesNotDeclareNewConstraintOnTargetType()
     {
         MethodInfo method = typeof(Mapper)
             .GetMethods(BindingFlags.Instance | BindingFlags.Public)
@@ -38,6 +38,6 @@ public class MapperConstructorConstraintTests
 
         GenericParameterAttributes targetAttributes = method.GetGenericArguments()[1].GenericParameterAttributes;
 
-        targetAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint).ShouldBeTrue();
+        targetAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint).ShouldBeFalse();
     }
 }

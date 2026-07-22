@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Reflection;
 using KObjectMapper.Abstractions;
 
 namespace KObjectMapper;
@@ -224,10 +226,11 @@ public class Mapper : IObjectMapper
         /// <param name="source">The source object.</param>
         /// <returns>The mapped destination object.</returns>
         public TTarget Map<TSource, TTarget>(TSource source)
-            where TTarget : new()
         {
-            TTarget target = Activator.CreateInstance<TTarget>();
-            object safeSource = source!;
+            ArgumentNullException.ThrowIfNull(source);
+
+            TTarget target = CreateTargetInstance<TSource, TTarget>(source);
+            object safeSource = source;
             object safeTarget = target!;
             _mappingService.ApplyDiffs(safeSource, safeTarget);
             return target;
@@ -241,19 +244,119 @@ public class Mapper : IObjectMapper
         /// <param name="sources">The source collection.</param>
         /// <returns>The mapped destination collection.</returns>
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sources)
-            where TTarget : new()
         {
-            List<TTarget> targets = new();
-            foreach (var source in sources)
-            {
-                TTarget newTargetInstance = Activator.CreateInstance<TTarget>();
-                object safeSource = source!;
-                object safeTarget = newTargetInstance!;
-                _mappingService.ApplyDiffs(safeSource, safeTarget);
+            ArgumentNullException.ThrowIfNull(sources);
 
+            List<TTarget> targets = new();
+            foreach (TSource source in sources)
+            {
+                ArgumentNullException.ThrowIfNull(source);
+
+                TTarget newTargetInstance = Map<TSource, TTarget>(source);
                 targets.Add(newTargetInstance);
             }
 
             return targets;
+        }
+
+        private static TTarget CreateTargetInstance<TSource, TTarget>(TSource source)
+        {
+            Type targetType = typeof(TTarget);
+            ConstructorInfo? parameterlessConstructor = targetType.GetConstructor(Type.EmptyTypes);
+
+            if (parameterlessConstructor is not null)
+            {
+                return (TTarget)parameterlessConstructor.Invoke(null);
+            }
+
+            object instance = CreateTargetFromConstructor(source!, targetType);
+            return (TTarget)instance;
+        }
+
+        private static object CreateTargetFromConstructor<TSource>(TSource source, Type targetType)
+        {
+            ConstructorInfo[] constructors = targetType.GetConstructors()
+                .OrderByDescending(constructor => constructor.GetParameters().Length)
+                .ToArray();
+
+            foreach (ConstructorInfo constructor in constructors)
+            {
+                ParameterInfo[] parameters = constructor.GetParameters();
+                if (parameters.Length == 0)
+                {
+                    continue;
+                }
+
+                if (TryBuildConstructorArguments(source, parameters, out object?[] arguments))
+                {
+                    return constructor.Invoke(arguments);
+                }
+            }
+
+            throw new InvalidOperationException(
+                $"Could not create an instance of '{targetType.Name}'. Ensure it has either a public parameterless constructor or a public constructor whose parameter names and types are mappable from the source object.");
+        }
+
+        private static bool TryBuildConstructorArguments<TSource>(
+            TSource source,
+            IReadOnlyList<ParameterInfo> parameters,
+            out object?[] arguments)
+        {
+            Dictionary<string, PropertyInfo> sourceProperties = source!.GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .ToDictionary(property => property.Name, StringComparer.OrdinalIgnoreCase);
+
+            arguments = new object?[parameters.Count];
+
+            for (int index = 0; index < parameters.Count; index++)
+            {
+                ParameterInfo parameter = parameters[index];
+                if (parameter.Name is null || !sourceProperties.TryGetValue(parameter.Name, out PropertyInfo? sourceProperty))
+                {
+                    return false;
+                }
+
+                object? sourceValue = sourceProperty.GetValue(source);
+                if (!TryConvertValue(sourceValue, parameter.ParameterType, out object? convertedValue))
+                {
+                    return false;
+                }
+
+                arguments[index] = convertedValue;
+            }
+
+            return true;
+        }
+
+        private static bool TryConvertValue(object? sourceValue, Type targetType, out object? convertedValue)
+        {
+            if (sourceValue is null)
+            {
+                if (!targetType.IsValueType || Nullable.GetUnderlyingType(targetType) is not null)
+                {
+                    convertedValue = null;
+                    return true;
+                }
+
+                convertedValue = null;
+                return false;
+            }
+
+            if (targetType.IsInstanceOfType(sourceValue))
+            {
+                convertedValue = sourceValue;
+                return true;
+            }
+
+            try
+            {
+                convertedValue = Convert.ChangeType(sourceValue, targetType, CultureInfo.InvariantCulture);
+                return true;
+            }
+            catch
+            {
+                convertedValue = null;
+                return false;
+            }
         }
     }
