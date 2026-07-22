@@ -134,13 +134,10 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        object safeSource = source;
-        object safeTarget = target;
+        var diffs = this.GetPropertyDiffsInternal(source, target);
+        this.WriteToProperties(source, target, diffs);
 
-        var diffs = this.GetPropertyDiffsInternal(safeSource, safeTarget);
-        this.WriteToProperties(safeSource, safeTarget, diffs);
-
-        return safeTarget;
+        return target;
     }
 
     public T ApplyDiffs<T>(T source, T target)
@@ -148,15 +145,12 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        T safeSource = source;
-        T safeTarget = target;
+        ValidateParameters(source, target);
 
-        ValidateParameters(safeSource, safeTarget);
+        var diffs = this.GetPropertyDiffsInternal(source, target);
+        this.WriteToProperties(source, target, diffs);
 
-        var diffs = this.GetPropertyDiffsInternal(safeSource, safeTarget);
-        this.WriteToProperties(safeSource, safeTarget, diffs);
-
-        return safeTarget;
+        return target;
     }
 
     private void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
@@ -185,11 +179,6 @@ public class MappingService
 
     private void WritePropertyValue(object source, PropertyInfo sourceProp, object target, PropertyInfo targetProp)
     {
-        if (sourceProp.Name != targetProp.Name || !targetProp.CanWrite || targetProp.SetMethod is null)
-        {
-            return;
-        }
-
         object? sourceValue = sourceProp.GetValue(source);
         object? targetValue = targetProp.GetValue(target);
 
