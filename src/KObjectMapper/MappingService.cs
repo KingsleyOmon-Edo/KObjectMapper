@@ -105,9 +105,7 @@ public class MappingService
                 $"{nameof(source)} and {nameof(target)} objects should be compatible with the supplied generic type");
         }
 
-        var diffs = this.ComputeDiffs(source, target);
-
-        return diffs;
+        return this.GetPropertyDiffsInternal(source, target);
     }
 
     public List<PropertyInfo> GetPropertyDiffs(object source, object target)
@@ -115,29 +113,21 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        var diffs = this.ComputeDiffs(source, target);
-
-        return diffs;
+        return this.GetPropertyDiffsInternal(source, target);
     }
 
-    private List<PropertyInfo> ComputeDiffs<T>(T source, T target)
+    private List<PropertyInfo> GetPropertyDiffsInternal(object source, object target)
     {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(target);
-
         var sourceProps = MappingService.GetCachedProperties(source.GetType()).ToList();
         var targetProps = MappingService.GetCachedProperties(target.GetType()).ToList();
 
-        return sourceProps.Except(targetProps, (
-                object sourceObject,
-                PropertyInfo sourceProp,
-                object targetObject,
-                PropertyInfo targetProp) => this.ArePropValuesSame<object>(sourceObject,
-                sourceProp,
-                targetObject,
-                targetProp), source, target)
+        return sourceProps.Except(targetProps, this.ArePropValuesSameForDiffs, source, target)
             .ToList();
     }
+
+    private bool ArePropValuesSameForDiffs(object sourceObject, PropertyInfo sourceProp, object targetObject,
+        PropertyInfo targetProp)
+        => this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
 
     public object ApplyDiffs(object source, object target)
     {
@@ -147,7 +137,7 @@ public class MappingService
         object safeSource = source;
         object safeTarget = target;
 
-        var diffs = this.GetPropertyDiffs(safeSource, safeTarget);
+        var diffs = this.GetPropertyDiffsInternal(safeSource, safeTarget);
         this.WriteToProperties(safeSource, safeTarget, diffs);
 
         return safeTarget;
@@ -163,7 +153,7 @@ public class MappingService
 
         ValidateParameters(safeSource, safeTarget);
 
-        var diffs = this.GetPropertyDiffs(safeSource, safeTarget);
+        var diffs = this.GetPropertyDiffsInternal(safeSource, safeTarget);
         this.WriteToProperties(safeSource, safeTarget, diffs);
 
         return safeTarget;
