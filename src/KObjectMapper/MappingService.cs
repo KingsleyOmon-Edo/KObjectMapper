@@ -168,12 +168,20 @@ public class MappingService
 
         foreach (PropertyInfo sourceProp in diffs)
         {
-            foreach (PropertyInfo targetProp in targetProperties)
+            PropertyInfo? targetProp = GetMatchingTargetProperty(sourceProp, targetProperties);
+
+            if (targetProp is null)
             {
-                this.WritePropertyValue(source!, sourceProp, target!, targetProp);
+                continue;
             }
+
+            this.WritePropertyValue(source!, sourceProp, target!, targetProp);
         }
     }
+
+    private static PropertyInfo? GetMatchingTargetProperty(PropertyInfo sourceProp, IEnumerable<PropertyInfo> targetProperties)
+        => targetProperties.FirstOrDefault(targetProp =>
+            sourceProp.Name == targetProp.Name && targetProp.CanWrite && targetProp.SetMethod is not null);
 
     private void WritePropertyValue(object source, PropertyInfo sourceProp, object target, PropertyInfo targetProp)
     {
