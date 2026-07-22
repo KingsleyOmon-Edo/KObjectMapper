@@ -243,29 +243,4 @@ public class MappingService
     private static PropertyInfo[] GetCachedProperties(Type type)
         => PropertyCache.GetOrAdd(type, static currentType => currentType.GetProperties());
 
-    public object SendUpdatesTo(object source, object target) =>
-        this.ApplyDiffs(source, target);
-
-    public T Patch<T>(T source, T target) => this.ApplyDiffs(source, target);
-
-    public T AcceptChanges<T>(T target, T source) =>
-        this.ApplyDiffs(source, target);
-
-    public T SendChanges<T>(T source, T target) =>
-        this.ApplyDiffs(source, target);
-
-    public T AcceptPatch<T>(T target, T source) =>
-        this.ApplyDiffs(source, target);
-
-    public T SendPatches<T>(T source, T target) =>
-        this.ApplyDiffs(source, target);
-
-    public T PatchFrom<T>(T target, T source) => this.ApplyDiffs(source, target);
-    public T PatchTo<T>(T sources, T target) => this.ApplyDiffs(sources, target);
-
-    public T AcceptUpdates<T>(T target, T source) =>
-        this.ApplyDiffs(source, target);
-
-    public T SendUpdates<T>(T source, T target) =>
-        this.ApplyDiffs(source, target);
 }
