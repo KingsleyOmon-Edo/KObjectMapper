@@ -16,9 +16,8 @@ public class MappingService
 
     public static MappingService Create() => new();
 
-    private void ValidateParameters<T>(T source, T target)
+    private static void ValidateParameters<T>(T source, T target)
     {
-        _ = this.GetHashCode();
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
@@ -29,20 +28,18 @@ public class MappingService
         }
     }
 
-    private void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
+    private static void PropertyNullChecks<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
     {
-        _ = this.GetHashCode();
         ArgumentNullException.ThrowIfNull(sourceObject);
         ArgumentNullException.ThrowIfNull(targetObject);
         ArgumentNullException.ThrowIfNull(sourceProp);
         ArgumentNullException.ThrowIfNull(targetProp);
     }
 
-    private void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp,
+    private static void ComparePropertyTypes(PropertyInfo sourceProp, PropertyInfo targetProp,
         out Type sourcePropType, out Type targetPropType)
     {
-        _ = this.GetHashCode();
         ArgumentNullException.ThrowIfNull(sourceProp);
         ArgumentNullException.ThrowIfNull(targetProp);
 
@@ -68,7 +65,7 @@ public class MappingService
     public bool ArePropValuesSame<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
     {
-        this.PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
+        PropertyNullChecks(sourceObject, sourceProp, targetObject, targetProp);
 
         if (!string.Equals(sourceProp.Name, targetProp.Name, StringComparison.Ordinal))
         {
@@ -77,7 +74,7 @@ public class MappingService
         }
 
         Type sourcePropType, targetPropType;
-        this.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
+        ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
         object? sourcePropValue = sourceProp.GetValue(sourceObject);
         object? targetPropValue = targetProp.GetValue(targetObject);
@@ -164,7 +161,7 @@ public class MappingService
         T safeSource = source;
         T safeTarget = target;
 
-        this.ValidateParameters(safeSource, safeTarget);
+        ValidateParameters(safeSource, safeTarget);
 
         var diffs = this.GetPropertyDiffs(safeSource, safeTarget);
         this.WriteToProperties(safeSource, safeTarget, diffs);
@@ -174,54 +171,58 @@ public class MappingService
 
     private void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
     {
-        _ = this.GetHashCode();
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        var targetProperties = MappingService.GetCachedProperties(target.GetType());
+        PropertyInfo[] targetProperties = MappingService.GetCachedProperties(target.GetType());
 
-        foreach (var sourceProp in diffs)
+        foreach (PropertyInfo sourceProp in diffs)
         {
-            foreach (var targetProp in targetProperties)
+            foreach (PropertyInfo targetProp in targetProperties)
             {
-                if (sourceProp.Name != targetProp.Name || !targetProp.CanWrite || targetProp.SetMethod is null)
-                {
-                    continue;
-                }
-
-                object? sourceValue = sourceProp.GetValue(source);
-                object? targetValue = targetProp.GetValue(target);
-
-                if (sourceValue is null)
-                {
-                    if (targetValue is not null)
-                    {
-                        targetProp.SetValue(target, null);
-                    }
-
-                    continue;
-                }
-
-                if (CanMapNestedObjects(sourceProp.PropertyType, targetProp.PropertyType))
-                {
-                    object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
-                    this.ApplyDiffs(sourceValue, nestedTarget);
-
-                    if (targetValue is null)
-                    {
-                        targetProp.SetValue(target, nestedTarget);
-                    }
-
-                    continue;
-                }
-
-                object mappedValue = ConvertValue(sourceValue, targetProp.PropertyType);
-
-                if (!Equals(mappedValue, targetValue))
-                {
-                    targetProp.SetValue(target, mappedValue);
-                }
+                this.WritePropertyValue(source!, sourceProp, target!, targetProp);
             }
+        }
+    }
+
+    private void WritePropertyValue(object source, PropertyInfo sourceProp, object target, PropertyInfo targetProp)
+    {
+        if (sourceProp.Name != targetProp.Name || !targetProp.CanWrite || targetProp.SetMethod is null)
+        {
+            return;
+        }
+
+        object? sourceValue = sourceProp.GetValue(source);
+        object? targetValue = targetProp.GetValue(target);
+
+        if (sourceValue is null)
+        {
+            if (targetValue is not null)
+            {
+                targetProp.SetValue(target, null);
+            }
+
+            return;
+        }
+
+        if (CanMapNestedObjects(sourceProp.PropertyType, targetProp.PropertyType))
+        {
+            object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
+            this.ApplyDiffs(sourceValue, nestedTarget);
+
+            if (targetValue is null)
+            {
+                targetProp.SetValue(target, nestedTarget);
+            }
+
+            return;
+        }
+
+        object mappedValue = ConvertValue(sourceValue, targetProp.PropertyType);
+
+        if (!Equals(mappedValue, targetValue))
+        {
+            targetProp.SetValue(target, mappedValue);
         }
     }
 
