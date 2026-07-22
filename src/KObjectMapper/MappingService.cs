@@ -184,18 +184,67 @@ public class MappingService
         {
             foreach (var targetProp in targetProperties)
             {
-                if (sourceProp.Name == targetProp.Name && targetProp.CanWrite && targetProp.SetMethod is not null)
+                if (sourceProp.Name != targetProp.Name || !targetProp.CanWrite || targetProp.SetMethod is null)
                 {
-                    object? sourceValue = sourceProp.GetValue(source);
-                    object? targetValue = targetProp.GetValue(target);
+                    continue;
+                }
 
-                    if (!Equals(sourceValue, targetValue))
+                object? sourceValue = sourceProp.GetValue(source);
+                object? targetValue = targetProp.GetValue(target);
+
+                if (sourceValue is null)
+                {
+                    if (targetValue is not null)
                     {
-                        targetProp.SetValue(target, sourceValue);
+                        targetProp.SetValue(target, null);
                     }
+
+                    continue;
+                }
+
+                if (CanMapNestedObjects(sourceProp.PropertyType, targetProp.PropertyType))
+                {
+                    object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
+                    this.ApplyDiffs(sourceValue, nestedTarget);
+
+                    if (targetValue is null)
+                    {
+                        targetProp.SetValue(target, nestedTarget);
+                    }
+
+                    continue;
+                }
+
+                object mappedValue = ConvertValue(sourceValue, targetProp.PropertyType);
+
+                if (!Equals(mappedValue, targetValue))
+                {
+                    targetProp.SetValue(target, mappedValue);
                 }
             }
         }
+    }
+
+    private static bool CanMapNestedObjects(Type sourceType, Type targetType)
+        => sourceType.IsClass && sourceType != typeof(string)
+           && targetType.IsClass && targetType != typeof(string);
+
+    private static object CreateNestedTarget(Type targetType)
+    {
+        object? instance = Activator.CreateInstance(targetType);
+
+        return instance ?? throw new InvalidOperationException(
+            $"Target type '{targetType.Name}' must have a parameterless constructor to map nested objects.");
+    }
+
+    private static object ConvertValue(object sourceValue, Type targetType)
+    {
+        if (targetType.IsInstanceOfType(sourceValue))
+        {
+            return sourceValue;
+        }
+
+        return Convert.ChangeType(sourceValue, targetType, CultureInfo.InvariantCulture)!;
     }
 
     private static PropertyInfo[] GetCachedProperties(Type type)

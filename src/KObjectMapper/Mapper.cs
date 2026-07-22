@@ -1,10 +1,10 @@
-namespace KObjectMapper
-{
-    using Abstractions;
+using KObjectMapper.Abstractions;
 
-    /// <summary>
-    /// The Mapper class that holds the core mapping algorithms
-    /// </summary>
+namespace KObjectMapper;
+
+/// <summary>
+/// The Mapper class that holds the core mapping algorithms
+/// </summary>
     public class Mapper : IObjectMapper
     {
         private readonly MappingService _mappingService = MappingService.Create();
@@ -101,7 +101,6 @@ namespace KObjectMapper
             _mappingService.ApplyDiffs(safeSource, safeTarget);
         }
 
-
         /// <summary>
         /// Writes identical, public, mutable properties from a source object to a target object
         /// </summary>
@@ -156,11 +155,51 @@ namespace KObjectMapper
             source = source ?? throw new ArgumentNullException(nameof(source));
             target = target ?? throw new ArgumentNullException(nameof(target));
 
-            var resultCollection = new List<TTarget>();
+            List<TSource> sourceItems = source.ToList();
 
-            foreach (var sourceElement in source)
+            if (target is IList<TTarget> targetList && !targetList.IsReadOnly)
             {
-                var targetElem = new TTarget();
+                int index = 0;
+
+                foreach (TSource sourceElement in sourceItems)
+                {
+                    TTarget targetElement;
+
+                    if (index < targetList.Count && targetList[index] is not null)
+                    {
+                        targetElement = targetList[index]!;
+                    }
+                    else
+                    {
+                        targetElement = new TTarget();
+
+                        if (index < targetList.Count)
+                        {
+                            targetList[index] = targetElement;
+                        }
+                        else
+                        {
+                            targetList.Add(targetElement);
+                        }
+                    }
+
+                    _mappingService.ApplyDiffs(sourceElement!, targetElement);
+                    index++;
+                }
+
+                while (targetList.Count > sourceItems.Count)
+                {
+                    targetList.RemoveAt(targetList.Count - 1);
+                }
+
+                return targetList;
+            }
+
+            List<TTarget> resultCollection = new();
+
+            foreach (TSource sourceElement in sourceItems)
+            {
+                TTarget targetElem = new();
                 _mappingService.ApplyDiffs(sourceElement!, targetElem);
 
                 resultCollection.Add(targetElem);
@@ -196,4 +235,3 @@ namespace KObjectMapper
             return targets;
         }
     }
-}

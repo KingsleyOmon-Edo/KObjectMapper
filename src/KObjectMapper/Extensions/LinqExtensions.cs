@@ -1,5 +1,5 @@
-﻿namespace KObjectMapper.Extensions
-{
+namespace KObjectMapper.Extensions;
+
     public static class LinqExtensions
     {
         public static IEnumerable<T> Except<T>(this IEnumerable<T> leftList, IEnumerable<T> rightList, Func<T, T, bool> predicate)
@@ -29,4 +29,4 @@
         }
 
     }
-}
+

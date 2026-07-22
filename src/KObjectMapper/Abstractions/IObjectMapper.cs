@@ -1,5 +1,5 @@
-﻿namespace KObjectMapper.Abstractions
-{
+namespace KObjectMapper.Abstractions;
+
     public interface IObjectMapper
     {
         void MapTo(object source, object target);
@@ -13,4 +13,4 @@
             where TTarget : new()
             where TSource : new();
     }
-}
+

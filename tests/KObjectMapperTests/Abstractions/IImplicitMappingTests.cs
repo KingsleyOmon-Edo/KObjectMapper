@@ -1,5 +1,5 @@
-﻿namespace KObjectMapperTests.Abstractions
-{
+namespace KObjectMapperTests.Abstractions;
+
     public interface IImplicitMappingTests
     {
         void Implicit_forward_mapping_via_extensions_from_a_Customer_entity_to_a_customer_Dto_should_succeed();
@@ -18,4 +18,4 @@
         void
             Passing_a_null_target_object_in_implicit_mapping_via_extension_method_should_throw_ArgumentNullException();
     }
-}
+

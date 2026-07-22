@@ -1,9 +1,9 @@
-﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
 using KObjectMapper.Extensions;
 
-namespace KObjectMapperTests.ImplicitMapping
-{
+namespace KObjectMapperTests.ImplicitMapping;
+
     public class MapFromTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
@@ -81,4 +81,4 @@ namespace KObjectMapperTests.ImplicitMapping
             Assert.Throws<ArgumentNullException>(() => { customerDto!.MapFrom(customer); });
         }
     }
-}
+

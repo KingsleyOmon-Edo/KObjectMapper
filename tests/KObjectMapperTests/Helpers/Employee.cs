@@ -1,5 +1,5 @@
-﻿namespace KObjectMapperTests.Helpers
-{
+namespace KObjectMapperTests.Helpers;
+
     public class Employee
     {
         public long EmployeeId { get; set; }
@@ -8,4 +8,4 @@
         public decimal Salary { get; set; }
         public DateTimeOffset HireDate { get; set; }
     }
-}
+

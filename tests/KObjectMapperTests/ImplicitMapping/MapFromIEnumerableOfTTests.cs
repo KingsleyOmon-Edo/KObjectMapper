@@ -1,9 +1,9 @@
-﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
 using KObjectMapper.Extensions;
 
-namespace KObjectMapperTests.ImplicitMapping
-{
+namespace KObjectMapperTests.ImplicitMapping;
+
     public class MapFromIEnumerableOfTTests : IImplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
@@ -83,4 +83,4 @@ namespace KObjectMapperTests.ImplicitMapping
             });
         }
     }
-}
+

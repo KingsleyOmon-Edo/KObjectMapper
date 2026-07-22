@@ -1,7 +1,6 @@
-namespace ObjectMapper
-{
     using System.Reflection;
     using Extensions;
+namespace ObjectMapper;
 
     public static class InstanceService
     {
@@ -188,4 +187,4 @@ namespace ObjectMapper
         public static T AcceptPatch<T>(this T target, T source) => source.ApplyDiffsTo(target);
         public static T SendPatches<T>(this T source, T target) => source.ApplyDiffsTo(target);
     }
-}
+

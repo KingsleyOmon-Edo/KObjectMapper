@@ -1,5 +1,5 @@
-﻿namespace KObjectMapperTests
-{
+namespace KObjectMapperTests;
+
     public class TaskList
     {
         //  ToDo: Review all usages of NullCheckAll<T>() for correctness. Ensure no regressions.
@@ -11,4 +11,4 @@
         //  ------------------
         //  Todo: Before tacking details of immutable types, given that 
     }
-}
+

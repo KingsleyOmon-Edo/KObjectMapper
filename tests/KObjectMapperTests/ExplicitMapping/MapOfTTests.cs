@@ -1,10 +1,10 @@
-﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
 using KObjectMapper;
 using Microsoft.CSharp.RuntimeBinder;
 
-namespace KObjectMapperTests.ExplicitMapping
-{
+namespace KObjectMapperTests.ExplicitMapping;
+
     public class MapOfTTests : IExplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts;
@@ -112,4 +112,4 @@ namespace KObjectMapperTests.ExplicitMapping
             });
         }
     }
-}
+

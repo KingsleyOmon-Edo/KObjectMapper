@@ -1,9 +1,9 @@
 // ReSharper disable All
 
-namespace KObjectMapper.Extensions
+namespace KObjectMapper.Extensions;
+
+public static class MapperExtensions
 {
-    public static class MapperExtensions
-    {
         /// <summary>
         /// MapTo() reads property values from the object on which
         /// it is invoked, and writes them to the target object that is passed in as
@@ -127,16 +127,57 @@ namespace KObjectMapper.Extensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
 
-            var resultCollection = new List<TTarget>();
-            var mappingService = MappingService.Create();
-            foreach (var sourceElement in source)
+            List<TSource> sourceItems = source.ToList();
+            MappingService mappingService = MappingService.Create();
+
+            if (target is IList<TTarget> targetList && !targetList.IsReadOnly)
+            {
+                int index = 0;
+
+                foreach (TSource sourceElement in sourceItems)
+                {
+                    ArgumentNullException.ThrowIfNull(sourceElement);
+
+                    TTarget targetElement;
+
+                    if (index < targetList.Count && targetList[index] is not null)
+                    {
+                        targetElement = targetList[index]!;
+                    }
+                    else
+                    {
+                        targetElement = new TTarget();
+
+                        if (index < targetList.Count)
+                        {
+                            targetList[index] = targetElement;
+                        }
+                        else
+                        {
+                            targetList.Add(targetElement);
+                        }
+                    }
+
+                    mappingService.ApplyDiffs(sourceElement!, targetElement);
+                    index++;
+                }
+
+                while (targetList.Count > sourceItems.Count)
+                {
+                    targetList.RemoveAt(targetList.Count - 1);
+                }
+
+                return targetList;
+            }
+
+            List<TTarget> resultCollection = new();
+
+            foreach (TSource sourceElement in sourceItems)
             {
                 ArgumentNullException.ThrowIfNull(sourceElement);
 
-                var targetElement = new TTarget();
-                var safeSourceElement = sourceElement!;
-
-                mappingService.ApplyDiffs(safeSourceElement, targetElement);
+                TTarget targetElement = new();
+                mappingService.ApplyDiffs(sourceElement!, targetElement);
 
                 resultCollection.Add(targetElement);
             }
@@ -162,17 +203,57 @@ namespace KObjectMapper.Extensions
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
 
-            var resultCollection = new List<TTarget>();
-            var mappingService = MappingService.Create();
+            List<TSource> sourceItems = source.ToList();
+            MappingService mappingService = MappingService.Create();
 
-            foreach (var sourceElement in source)
+            if (target is IList<TTarget> targetList && !targetList.IsReadOnly)
+            {
+                int index = 0;
+
+                foreach (TSource sourceElement in sourceItems)
+                {
+                    ArgumentNullException.ThrowIfNull(sourceElement);
+
+                    TTarget targetElement;
+
+                    if (index < targetList.Count && targetList[index] is not null)
+                    {
+                        targetElement = targetList[index]!;
+                    }
+                    else
+                    {
+                        targetElement = new TTarget();
+
+                        if (index < targetList.Count)
+                        {
+                            targetList[index] = targetElement;
+                        }
+                        else
+                        {
+                            targetList.Add(targetElement);
+                        }
+                    }
+
+                    mappingService.ApplyDiffs(sourceElement!, targetElement);
+                    index++;
+                }
+
+                while (targetList.Count > sourceItems.Count)
+                {
+                    targetList.RemoveAt(targetList.Count - 1);
+                }
+
+                return targetList;
+            }
+
+            List<TTarget> resultCollection = new();
+
+            foreach (TSource sourceElement in sourceItems)
             {
                 ArgumentNullException.ThrowIfNull(sourceElement);
 
-                var targetElement = new TTarget();
-                var safeSourceElement = sourceElement!;
-
-                mappingService.ApplyDiffs(safeSourceElement, targetElement);
+                TTarget targetElement = new();
+                mappingService.ApplyDiffs(sourceElement!, targetElement);
 
                 resultCollection.Add(targetElement);
             }
@@ -180,4 +261,3 @@ namespace KObjectMapper.Extensions
             return resultCollection;
         }
     }
-}

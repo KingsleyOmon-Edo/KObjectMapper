@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace KObjectMapper.Extensions.EqualityComparers
-{
+namespace KObjectMapper.Extensions.EqualityComparers;
+
     public static partial class ObjectExtensions
     {
         public class PropertyValueComparer<PropertyInfo, TPropContainer> : IEqualityComparer<PropertyInfo>
@@ -38,4 +38,4 @@ namespace KObjectMapper.Extensions.EqualityComparers
             }
         }
     }
-}
+

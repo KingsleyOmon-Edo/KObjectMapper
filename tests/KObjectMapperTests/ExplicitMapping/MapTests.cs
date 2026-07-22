@@ -1,10 +1,10 @@
-﻿using KObjectMapperTests.Abstractions;
+using KObjectMapperTests.Abstractions;
 using KObjectMapperTests.Helpers;
 using KObjectMapper;
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapperTests.ExplicitMapping
-{
+namespace KObjectMapperTests.ExplicitMapping;
+
     public class MapTests : IExplicitMappingTests
     {
         private readonly CommonAsserts _commonAsserts = CommonAsserts.Create();
@@ -91,4 +91,4 @@ namespace KObjectMapperTests.ExplicitMapping
             Assert.Throws<ArgumentNullException>(() => { sut.Map(customer, customerDto!); });
         }
     }
-}
+

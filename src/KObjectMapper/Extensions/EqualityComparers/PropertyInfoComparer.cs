@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace KObjectMapper.Extensions.EqualityComparers
-{
+namespace KObjectMapper.Extensions.EqualityComparers;
+
     public static partial class ObjectExtensions
     {
         public class PropertyInfoComparer : EqualityComparer<PropertyInfo>
@@ -21,4 +21,4 @@ namespace KObjectMapper.Extensions.EqualityComparers
             }
         }
     }
-}
+

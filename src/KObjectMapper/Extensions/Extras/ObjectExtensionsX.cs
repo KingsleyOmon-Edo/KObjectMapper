@@ -1,6 +1,5 @@
-﻿namespace ObjectMapper.Extensions.Extras
-{
     using System.Reflection;
+namespace ObjectMapper.Extensions.Extras;
 
     public static partial class ObjectExtensions
     {
@@ -180,4 +179,4 @@
 
         public static T SendUpdates<T>(this T source, T target) => source.ApplyDiffs(target);
     }
-}
+

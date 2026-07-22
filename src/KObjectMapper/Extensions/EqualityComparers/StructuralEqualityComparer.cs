@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace KObjectMapper.Extensions.EqualityComparers
-{
+namespace KObjectMapper.Extensions.EqualityComparers;
+
     public static partial class ObjectExtensions
     {
         public class StructuralEqualityComparer<T> : IEqualityComparer<T>
@@ -19,4 +19,4 @@ namespace KObjectMapper.Extensions.EqualityComparers
             }
         }
     }
-}
+
