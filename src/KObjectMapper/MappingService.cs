@@ -6,6 +6,9 @@ using KObjectMapper.Extensions;
 
 namespace KObjectMapper;
 
+/// <summary>
+/// Performs object-to-object difference detection and property application.
+/// </summary>
 public class MappingService
 {
     private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyCache = new();
@@ -14,6 +17,9 @@ public class MappingService
     {
     }
 
+    /// <summary>
+    /// Creates a new <see cref="MappingService" /> instance.
+    /// </summary>
     public static MappingService Create() => new();
 
     private static void ValidateParameters<T>(T source, T target)
@@ -52,16 +58,60 @@ public class MappingService
         }
     }
 
+    /// <summary>
+    /// Determines whether the specified source and target property values differ.
+    /// </summary>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
+    /// <summary>
+    /// Determines whether the specified source and target property values differ.
+    /// </summary>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
     public void ArePropValuesDifferent(object sourceObject, PropertyInfo sourceProp, object targetObject,
         PropertyInfo targetProp)
     {
         _ = this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
     }
 
+    /// <summary>
+    /// Determines whether the specified source and target property values are equal.
+    /// </summary>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
+    /// <summary>
+    /// Determines whether the specified source and target property values are equal.
+    /// </summary>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
     public bool ArePropValuesSame(object sourceObject, PropertyInfo sourceProp, object targetObject,
         PropertyInfo targetProp)
         => this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
 
+    /// <summary>
+    /// Determines whether the specified source and target property values are equal.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
+    /// <summary>
+    /// Determines whether the specified source and target property values are equal.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
     public bool ArePropValuesSame<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
     {
@@ -90,10 +140,40 @@ public class MappingService
         return Equals(sourceValue, targetValue);
     }
 
+    /// <summary>
+    /// Determines whether the specified source and target property values differ.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
+    /// <summary>
+    /// Determines whether the specified source and target property values differ.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="sourceObject">The source object.</param>
+    /// <param name="sourceProp">The source property.</param>
+    /// <param name="targetObject">The target object.</param>
+    /// <param name="targetProp">The target property.</param>
     public bool ArePropValuesDifferent<T>(T sourceObject, PropertyInfo sourceProp, T targetObject,
         PropertyInfo targetProp)
         => !this.ArePropValuesSame(sourceObject, sourceProp, targetObject, targetProp);
 
+    /// <summary>
+    /// Returns the properties whose values differ between the source and target objects.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The differing properties.</returns>
+    /// <summary>
+    /// Returns the properties whose values differ between the source and target objects.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The differing properties.</returns>
     public List<PropertyInfo> GetPropertyDiffs<T>(T source, T target)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -108,6 +188,18 @@ public class MappingService
         return this.GetPropertyDiffsInternal(source, target);
     }
 
+    /// <summary>
+    /// Returns the properties whose values differ between the source and target objects.
+    /// </summary>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The differing properties.</returns>
+    /// <summary>
+    /// Returns the properties whose values differ between the source and target objects.
+    /// </summary>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The differing properties.</returns>
     public List<PropertyInfo> GetPropertyDiffs(object source, object target)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -129,6 +221,18 @@ public class MappingService
         PropertyInfo targetProp)
         => this.ArePropValuesSame<object>(sourceObject, sourceProp, targetObject, targetProp);
 
+    /// <summary>
+    /// Applies the source property values to the target object.
+    /// </summary>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The mapped target object.</returns>
+    /// <summary>
+    /// Applies the source property values to the target object.
+    /// </summary>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The mapped target object.</returns>
     public object ApplyDiffs(object source, object target)
     {
         ArgumentNullException.ThrowIfNull(source);
@@ -140,6 +244,20 @@ public class MappingService
         return target;
     }
 
+    /// <summary>
+    /// Applies the source property values to the target object.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The mapped target object.</returns>
+    /// <summary>
+    /// Applies the source property values to the target object.
+    /// </summary>
+    /// <typeparam name="T">The object type.</typeparam>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <returns>The mapped target object.</returns>
     public T ApplyDiffs<T>(T source, T target)
     {
         ArgumentNullException.ThrowIfNull(source);

@@ -3,12 +3,15 @@ using KObjectMapper.Abstractions;
 namespace KObjectMapper;
 
 /// <summary>
-/// The Mapper class that holds the core mapping algorithms
+/// The Mapper class that holds the core mapping algorithms.
 /// </summary>
-    public class Mapper : IObjectMapper
+public class Mapper : IObjectMapper
     {
         private readonly MappingService _mappingService = MappingService.Create();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Mapper" /> class.
+        /// </summary>
         public Mapper()
         {
         }
@@ -208,8 +211,18 @@ namespace KObjectMapper;
             return resultCollection;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="Mapper" /> instance.
+        /// </summary>
         public static Mapper Create() => new();
 
+        /// <summary>
+        /// Maps a source object into a newly created destination object.
+        /// </summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <returns>The mapped destination object.</returns>
         public TTarget Map<TSource, TTarget>(TSource source)
             where TTarget : new()
         {
@@ -220,6 +233,13 @@ namespace KObjectMapper;
             return target;
         }
 
+        /// <summary>
+        /// Maps a sequence of source objects into a newly created destination sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The source element type.</typeparam>
+        /// <typeparam name="TTarget">The destination element type.</typeparam>
+        /// <param name="sources">The source collection.</param>
+        /// <returns>The mapped destination collection.</returns>
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sources)
             where TTarget : new()
         {
