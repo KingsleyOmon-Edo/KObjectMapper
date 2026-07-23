@@ -3,13 +3,14 @@
 	<PropertyGroup>
 		<Title>KObjectMapper</Title>
 		<PackageId>KObjectMapper</PackageId>
-		<VersionPrefix>0.1.0</VersionPrefix>
+		<VersionPrefix>0.0.0</VersionPrefix>
 		<VersionSuffix Condition="'$(Configuration)' == 'Debug'">local</VersionSuffix>
 		<VersionSuffix Condition="'$(Configuration)' == 'Release'">preview</VersionSuffix>
 		<Author>Kingsley Omon-Edo</Author>
 		<Company>Techbiquity Inc.</Company>
-		<PackageDescription>An elegant and effective C# Object-to-Object Mapper</PackageDescription>
+		<PackageDescription>An elegant and effective C# object-to-object mapper.</PackageDescription>
 		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/KObjectMapper.git</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	</PropertyGroup>
 
@@ -25,6 +26,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="/" />
 	</ItemGroup>
 
 	<ItemGroup>
