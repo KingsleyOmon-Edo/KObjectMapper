@@ -1,124 +1,129 @@
 # KObjectMapper
 
-KObjectMapper is a simple, intuitive, yet effective, Open Source Object To object mapping library written in C# .NET.
+KObjectMapper is a simple, intuitive, and effective open-source object-to-object mapping library for C# and .NET.
 
-It is easy to set up, and may be used in two modes - **Implicit** and **Explicit** 
+It can be used in two modes: **Implicit** and **Explicit**.
 
-Implicit mode leverages C# extension methods, and performs object mappings transparently without the need for a mapping object instance.
-
-**_Please note that this project is in its early stages and I am not accepting contributions at this time. Also, the API is still in flux, so please do not use in production. Thanks_**
+**_Pre-release notice: KObjectMapper is currently published as a preview package. The API is still evolving and may include breaking changes between preview versions. Do not use in production workloads yet._**
 
 ## Installation
 
-```
-dotnet add package KObjectMapper --version 0.0.0-0.0.1.20230117061233
+```bash
+dotnet add package KObjectMapper --prerelease
 ```
 
 ## Usage scenarios
 
-### Implicit mapping
+### Implicit mapping (extension methods)
 
-***Implicit mapping***, also called ***Transparent mapping***, is intended to take all the ceremony and set up out of using an Object to Object mapper.
+Implicit mapping uses extension methods and does not require creating a mapper instance.
 
-The methods utilize **MapTo** and **MapFrom** semantics to make the directionality of the mapping obvious. For example, to map a "Customer" object to a "CustomerDto" one could use the _MapTo()_ method as shown below:
-
-<span style="font-size:1.15em">
-
+```csharp
+using KObjectMapper.Extensions;
 ```
+
+#### Map to an existing target
+
+```csharp
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 CustomerDto customerDto = new();
+
 customer.MapTo(customerDto);
 ```
-</span>
 
-Conversely, the _MapFrom()_ method may be used to achieve the same objective in the opposite direction. Hence, the preceeding code may be written as:
+#### Reverse direction with `MapFrom`
 
-```
+```csharp
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 CustomerDto customerDto = new();
+
 customerDto.MapFrom(customer);
 ```
 
-You may have noticed you could use one method to achieve both use cases. So, you may decide to stick with one method, and swap the source and target objects back and forht as necessary, when needed.
-Hence mapping a "Customer" to a "CustomerDto" could be done this way:
+You can also keep `MapTo` and swap source/target objects:
 
-```
+```csharp
 customer.MapTo(customerDto);
-```
-
-Mapping back from a CustomerDto to Customer would be:
-
-```
 customerDto.MapTo(customer);
 ```
 
-That is all there is folks! No need to manually instantiate or inject a Mapper via DI.
+### Explicit mapping (mapper instance)
 
-#### Explicit or conventional mapping
+Explicit mapping uses a `Mapper` instance directly.
 
-For completeness, I provided what I call "Explicit Mapping". Or what some may be used to as conventional mapping.
-
-This is the usual convention employed by Object To Object Mappers. Using either direct manual instantiation, or using a Dependency Injection container.
-
-Here is how to accomplish the above using manual instantiation of the KObjectMapper's Mapper class, with the provided factory method.
-
-###### 1. Instantiation by hand
-
-- Create a Mapper instance with the Create() factory method.
-
+```csharp
+using KObjectMapper;
 ```
+
+#### 1. Create mapper instance
+
+```csharp
 var mapper = Mapper.Create();
 ```
 
-- Setup the objects that need mapping.
+#### 2. Map to an existing target
 
-```
+```csharp
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 CustomerDto customerDto = new();
-```
 
-- Call the mapper's Map<TSource, TTarget>() with the right signature, to effect the mapping.
-
-```
 mapper.Map<Customer, CustomerDto>(customer, customerDto);
 ```
 
-###### 2. Instantiation using the ASP.NET Dependency Inversion container
+#### 3. Map to a new destination instance
 
-- Ensure the KObjectMapper Nuget package has been installed in your project as described above.
-- In Program.cs register the IObjectMapper interface as the "abstraction", and the concrete Mapper class as the "implementation". as shown below:
-
-```
-builder.Services.AddScoped<IObjectMapper, Mapper>();
+```csharp
+CustomerDto customerDto = mapper.Map<Customer, CustomerDto>(customer);
 ```
 
-- In the controller class, define a private readonly member variable of type IObjectMapper called \_mapper or anything you prefer, like so:
+#### 4. Map collections
 
-- Declare a private readonly member variable like so:
+Map source collection into an existing target collection:
 
+```csharp
+IEnumerable<Customer> customers = GetCustomers();
+List<CustomerDto> customerDtos = new();
+
+IEnumerable<CustomerDto> mapped = mapper.Map<Customer, CustomerDto>(customers, customerDtos);
 ```
+
+Map source collection to a newly created destination collection:
+
+```csharp
+IEnumerable<Customer> customers = GetCustomers();
+IEnumerable<CustomerDto> customerDtos = mapper.Map<Customer, CustomerDto>(customers);
+```
+
+### Dependency Injection
+
+If you use ASP.NET Core, register KObjectMapper with the provided service extension.
+
+```csharp
+using KObjectMapper;
+using KObjectMapper.Abstractions;
+
+builder.Services.AddKObjectMapper();
+```
+
+Then inject `IObjectMapper` where needed:
+
+```csharp
 private readonly IObjectMapper _mapper;
-```
 
-- Initialize the variable from the constructor, like so:
-
-```
-CustomersController(IObjectMapper mapper)
+public CustomersController(IObjectMapper mapper)
 {
     _mapper = mapper;
 }
 ```
 
-- Now, whenever an IObjectMapper instance is required within the class, in harmony with the Hollywood principle, the DI container will auto-instantiate, and make one available for you.
+Example usage:
 
-- You may then proceed to use the mapper as usual, like so:
-
-```
+```csharp
 var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
 CustomerDto customerDto = new();
+
 _mapper.Map<Customer, CustomerDto>(customer, customerDto);
 ```
-**_Please note that this project is in its early stages and I am not accepting contributions at this time. Also, the API is still in flux, so please do not use in production. Thanks_**
 
-Please see our contributing page for details.
+Please see the contributing guide for project status and contribution policy.
 
