@@ -4,13 +4,15 @@ KObjectMapper is a simple, intuitive, and effective open-source object-to-object
 
 It can be used in two modes: **Implicit** and **Explicit**.
 
-**_Pre-release notice: KObjectMapper is currently published as a preview package. The API is still evolving and may include breaking changes between preview versions. Do not use in production workloads yet._**
+**_Pre-release notice: KObjectMapper is currently published as an alpha package (`0.0.0-alpha-1`). The API is still evolving and may include breaking changes between alpha versions. Do not use in production workloads yet._**
 
 ## Installation
 
 ```bash
-dotnet add package KObjectMapper --prerelease
+dotnet add package KObjectMapper --version 0.0.0-alpha-1
 ```
+
+> For newer alpha drops, increment the suffix (for example: `0.0.0-alpha-2`, `0.0.0-alpha-3`).
 
 ## Usage scenarios
 
