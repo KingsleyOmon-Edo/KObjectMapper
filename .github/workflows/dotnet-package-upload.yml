@@ -3,7 +3,7 @@ name: Upload dotnet package
 on:
   workflow_dispatch:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   deploy:
@@ -28,7 +28,7 @@ jobs:
         run: dotnet test KObjectMapper.slnx --configuration Release --no-build --verbosity normal
 
       - name: Pack
-        run: dotnet pack src/KObjectMapper/KObjectMapper.csproj --configuration Release --no-build --output artifacts/packages
+        run: dotnet pack src/KObjectMapper/KObjectMapper.csproj --configuration Release --output artifacts/packages
 
       - name: Verify package exists
         run: |
