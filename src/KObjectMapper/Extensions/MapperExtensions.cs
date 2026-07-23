@@ -61,22 +61,22 @@ public static class MapperExtensions
         /// <param name="target">The object to which property data is written.</param>
         /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
         /// <returns></returns>
-        public static TTarget MapTo<TTarget>(this object source, TTarget target)
+        public static TTarget MapTo<TTarget>(this object source, object target)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
 
-            if (target is not null && target.GetType() != typeof(TTarget))
+            if (target.GetType() != typeof(TTarget))
             {
                 throw new ArgumentException($"Parameter {nameof(target)} has an incompatible type with {nameof(TTarget)}");
             }
 
             var mappingService = MappingService.Create();
-            var safeSource = source!;
-            var safeTarget = target!;
+            object safeSource = source;
+            object safeTarget = target;
             mappingService.ApplyDiffs(safeSource, safeTarget);
 
-            return safeTarget;
+            return (TTarget)safeTarget;
         }
 
         /// <summary>
@@ -88,19 +88,19 @@ public static class MapperExtensions
         /// <param name="source">The object whose property values are to be read</param>
         /// <typeparam name="TSource">The runtime type of source object</typeparam>
         /// <returns>Returns the already mapped target object instance</returns>
-        public static object MapFrom<TSource>(this object target, TSource source)
+        public static object MapFrom<TSource>(this object target, object source)
         {
             ArgumentNullException.ThrowIfNull(source);
             ArgumentNullException.ThrowIfNull(target);
 
-            if (source is not null && source.GetType() != typeof(TSource))
+            if (source.GetType() != typeof(TSource))
             {
                 throw new ArgumentException($"Parameter {nameof(source)} has an incompatible type with {nameof(TSource)}");
             }
 
             var mappingService = MappingService.Create();
-            var safeSource = source!;
-            var safeTarget = target!;
+            object safeSource = source;
+            object safeTarget = target;
             mappingService.ApplyDiffs(safeSource, safeTarget);
 
             return safeTarget;
