@@ -1,4 +1,8 @@
 <Solution>
-  <Project Path="src/KObjectMapper/KObjectMapper.csproj" />
-  <Project Path="tests/KObjectMapperTests/KObjectMapperTests.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/KObjectMapper/KObjectMapper.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/KObjectMapperTests/KObjectMapperTests.csproj" />
+  </Folder>
 </Solution>

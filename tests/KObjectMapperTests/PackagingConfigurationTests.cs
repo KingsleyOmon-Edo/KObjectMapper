@@ -13,15 +13,21 @@ public class PackagingConfigurationTests
 
         XElement? generatePackageOnBuild = projectFile.Descendants("GeneratePackageOnBuild").SingleOrDefault();
         XElement? versionPrefix = projectFile.Descendants("VersionPrefix").SingleOrDefault();
-        XElement? versionSuffix = projectFile.Descendants("VersionSuffix").SingleOrDefault();
+        IEnumerable<XElement> versionSuffixes = projectFile.Descendants("VersionSuffix");
 
         generatePackageOnBuild.ShouldNotBeNull();
         versionPrefix.ShouldNotBeNull();
-        versionSuffix.ShouldNotBeNull();
+        versionSuffixes.ShouldNotBeEmpty();
 
         generatePackageOnBuild!.Value.ShouldBe("False");
-        versionPrefix!.Value.ShouldBe("0.0.0");
-        versionSuffix!.Value.ShouldBe("local");
+        versionPrefix!.Value.ShouldMatch("^\\d+\\.\\d+\\.\\d+$");
+
+        foreach (XElement versionSuffix in versionSuffixes)
+        {
+            versionSuffix.Value.ShouldNotBeNullOrWhiteSpace();
+            versionSuffix.Value.ShouldNotContain("$(");
+        }
+
         File.ReadAllText(projectPath).ShouldNotContain("DateTime::Now");
     }
 }
