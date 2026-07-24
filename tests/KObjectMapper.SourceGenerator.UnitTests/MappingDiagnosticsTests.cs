@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Shouldly;
 using Xunit;
 
-namespace KObjectMapper.SourceGenerator.Tests;
+namespace KObjectMapper.SourceGenerator.UnitTests;
 
 public class MappingDiagnosticsTests
 {

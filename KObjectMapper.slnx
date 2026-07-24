@@ -4,7 +4,7 @@
     <Project Path="src/KObjectMapper.SourceGenerator/KObjectMapper.SourceGenerator.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/KObjectMapper.SourceGenerator.Tests/KObjectMapper.SourceGenerator.Tests.csproj" />
+    <Project Path="tests/KObjectMapper.SourceGenerator.UnitTests/KObjectMapper.SourceGenerator.UnitTests.csproj" />
     <Project Path="tests/KObjectMapper.UnitTests/KObjectMapper.UnitTests.csproj" />
   </Folder>
 </Solution>
