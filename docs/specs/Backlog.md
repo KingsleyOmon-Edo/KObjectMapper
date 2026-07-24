@@ -120,7 +120,7 @@
     - Circular-reference detection prevents infinite recursion.
     - Tests cover deep nesting and cyclical graphs.
 
-- [ ] **US-15: Cancellation and async mapping hooks**
+- [x] **US-15: Cancellation and async mapping hooks**
   - As a developer, I want async mapping hooks with cancellation support for expensive conversion pipelines so that requests can be cancelled cleanly.
   - **Acceptance criteria:**
     - Async mapping API supports `CancellationToken`.

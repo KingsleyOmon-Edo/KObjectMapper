@@ -22,6 +22,8 @@ public static class ServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services);
 
         services.AddTransient<IObjectMapper, Mapper>();
+        services.AddSingleton<IAsyncObjectMapper>(sp =>
+            new AsyncMapper(sp.GetRequiredService<IObjectMapper>(), []));
 
         return services;
     }
@@ -60,11 +62,19 @@ public static class ServiceCollectionExtensions
                 (MappingProfile)Activator.CreateInstance(profileType, nonPublic: true)!);
         }
 
+        IReadOnlyList<(Type, Type, object)> asyncConverters = options.GetAsyncConverters();
+
         services.AddTransient<IObjectMapper>(sp =>
         {
             IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
             IGeneratedMapperRegistry registry = sp.GetRequiredService<IGeneratedMapperRegistry>();
             return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration, onMappingError, onMappingCompleted);
+        });
+
+        services.AddSingleton<IAsyncObjectMapper>(sp =>
+        {
+            IObjectMapper mapper = sp.GetRequiredService<IObjectMapper>();
+            return new AsyncMapper(mapper, asyncConverters);
         });
 
         return services;

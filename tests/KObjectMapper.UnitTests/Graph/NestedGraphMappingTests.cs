@@ -17,21 +17,21 @@ public class NestedGraphMappingTests
 
     // ── model types ──────────────────────────────────────────────────────────
 
-    private class Level5 { public string? Value { get; set; } }
-    private class Level4 { public string? Value { get; set; } public Level5? Child { get; set; } }
-    private class Level3 { public string? Value { get; set; } public Level4? Child { get; set; } }
-    private class Level2 { public string? Value { get; set; } public Level3? Child { get; set; } }
-    private class Level1 { public string? Value { get; set; } public Level2? Child { get; set; } }
+    private sealed class Level5 { public string? Value { get; set; } }
+    private sealed class Level4 { public string? Value { get; set; } public Level5? Child { get; set; } }
+    private sealed class Level3 { public string? Value { get; set; } public Level4? Child { get; set; } }
+    private sealed class Level2 { public string? Value { get; set; } public Level3? Child { get; set; } }
+    private sealed class Level1 { public string? Value { get; set; } public Level2? Child { get; set; } }
 
-    private class NodeA { public string? Name { get; set; } public NodeB? B { get; set; } }
-    private class NodeB { public string? Name { get; set; } public NodeA? A { get; set; } }
+    private sealed class NodeA { public string? Name { get; set; } public NodeB? B { get; set; } }
+    private sealed class NodeB { public string? Name { get; set; } public NodeA? A { get; set; } }
 
-    private class SelfRef { public string? Name { get; set; } public SelfRef? Next { get; set; } }
+    private sealed class SelfRef { public string? Name { get; set; } public SelfRef? Next { get; set; } }
 
-    private class SharedChild { public string? Value { get; set; } }
-    private class SharedParent { public SharedChild? First { get; set; } public SharedChild? Second { get; set; } }
+    private sealed class SharedChild { public string? Value { get; set; } }
+    private sealed class SharedParent { public SharedChild? First { get; set; } public SharedChild? Second { get; set; } }
 
-    private class EmptyObj { }
+    private sealed class EmptyObj { }
 
     // ── deep nesting ─────────────────────────────────────────────────────────
 

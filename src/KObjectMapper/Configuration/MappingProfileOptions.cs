@@ -8,6 +8,7 @@ public sealed class MappingProfileOptions
     private readonly List<Type> _profileTypes = [];
     private readonly List<Assembly> _assemblies = [];
     private readonly List<ITypeConverterBox> _globalConverters = [];
+    private readonly List<(Type, Type, object)> _asyncConverters = [];
 
     public Action<MappingError>? OnMappingError { get; private set; }
     public Action<MappingResult>? OnMappingCompleted { get; private set; }
@@ -101,6 +102,15 @@ public sealed class MappingProfileOptions
     }
 
     internal IReadOnlyList<ITypeConverterBox> GetGlobalConverters() => _globalConverters.AsReadOnly();
+
+    public MappingProfileOptions AddAsyncConverter<TSource, TTarget>(IAsyncTypeConverter<TSource, TTarget> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _asyncConverters.Add((typeof(TSource), typeof(TTarget), converter));
+        return this;
+    }
+
+    internal IReadOnlyList<(Type, Type, object)> GetAsyncConverters() => _asyncConverters.AsReadOnly();
 
     internal IReadOnlyCollection<Type> GetProfileTypes()
     {
