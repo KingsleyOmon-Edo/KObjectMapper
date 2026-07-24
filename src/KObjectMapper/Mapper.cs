@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Abstractions;
+using KObjectMapper.Collections;
 using KObjectMapper.Configuration;
 using KObjectMapper.Internal;
 
@@ -419,6 +420,67 @@ public class Mapper : IObjectMapper
             }
 
             return resultCollection;
+        }
+
+        public IEnumerable<TTarget> Map<TSource, TTarget>(
+            IEnumerable<TSource> source,
+            IEnumerable<TTarget> target,
+            CollectionMappingOptions<TSource, TTarget> options)
+            where TTarget : new()
+            where TSource : new()
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+            ArgumentNullException.ThrowIfNull(options);
+
+            List<TSource> sourceList = source.ToList();
+            List<TTarget> targetList = target.ToList();
+
+            switch (options.MergeMode)
+            {
+                case CollectionMergeMode.Append:
+                {
+                    List<TTarget> result = new(targetList);
+                    foreach (TSource sourceElement in sourceList)
+                    {
+                        TTarget newItem = new();
+                        _mappingService.ApplyDiffs(sourceElement!, newItem);
+                        result.Add(newItem);
+                    }
+                    return result;
+                }
+
+                case CollectionMergeMode.MergeByKey:
+                {
+                    if (options.SourceKeySelector is null || options.TargetKeySelector is null)
+                        throw new InvalidOperationException(
+                            "SourceKeySelector and TargetKeySelector must be set when using MergeByKey mode.");
+
+                    Dictionary<object, TTarget> targetDict = targetList.ToDictionary(t => options.TargetKeySelector(t));
+                    List<TTarget> result = new();
+
+                    foreach (TSource sourceElement in sourceList)
+                    {
+                        object key = options.SourceKeySelector(sourceElement);
+                        if (targetDict.TryGetValue(key, out TTarget? existing))
+                        {
+                            _mappingService.ApplyDiffs(sourceElement!, existing!);
+                            result.Add(existing);
+                        }
+                        else
+                        {
+                            TTarget newItem = new();
+                            _mappingService.ApplyDiffs(sourceElement!, newItem);
+                            result.Add(newItem);
+                        }
+                    }
+
+                    return result;
+                }
+
+                default: // Replace
+                    return Map<TSource, TTarget>(sourceList, targetList);
+            }
         }
 
         /// <summary>

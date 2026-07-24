@@ -97,7 +97,7 @@
 
 ### Epic: Collections and Queryable Support
 
-- [ ] **US-12: Advanced collection mapping strategies**
+- [x] **US-12: Advanced collection mapping strategies**
   - As a developer, I want configurable collection merge strategies so that updates to existing collections can preserve identity and apply add/update/remove deterministically.
   - **Acceptance criteria:**
     - Supports replace, merge-by-key, and append modes.

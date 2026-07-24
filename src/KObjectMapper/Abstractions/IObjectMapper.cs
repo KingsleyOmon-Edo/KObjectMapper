@@ -1,3 +1,5 @@
+using KObjectMapper.Collections;
+
 namespace KObjectMapper.Abstractions;
 
     /// <summary>
@@ -49,6 +51,13 @@ namespace KObjectMapper.Abstractions;
         /// <param name="source">The source collection.</param>
         /// <param name="target">The destination collection.</param>
         IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)
+            where TTarget : new()
+            where TSource : new();
+
+        IEnumerable<TTarget> Map<TSource, TTarget>(
+            IEnumerable<TSource> source,
+            IEnumerable<TTarget> target,
+            CollectionMappingOptions<TSource, TTarget> options)
             where TTarget : new()
             where TSource : new();
 
