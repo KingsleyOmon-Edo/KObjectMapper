@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using KObjectMapper.Collections;
 
 namespace KObjectMapper.Abstractions;
@@ -64,5 +65,11 @@ namespace KObjectMapper.Abstractions;
         MappingResult TryMap(object source, object target);
 
         MappingResult TryMap<TSource, TTarget>(TSource source, TTarget target);
+
+        IQueryable<TTarget> ProjectTo<TSource, TTarget>(IQueryable<TSource> source)
+            where TTarget : new();
+
+        Expression<Func<TSource, TTarget>> GetProjectionExpression<TSource, TTarget>()
+            where TTarget : new();
     }
 

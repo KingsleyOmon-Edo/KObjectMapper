@@ -104,7 +104,7 @@
     - Merge-by-key supports custom key selectors.
     - Behavior is deterministic and tested for lists and read-only targets.
 
-- [ ] **US-13: Queryable projection support**
+- [x] **US-13: Queryable projection support**
   - As a developer, I want expression-based projection support for `IQueryable` so that ORM queries can be projected server-side efficiently.
   - **Acceptance criteria:**
     - API supports mapping expressions to destination types.

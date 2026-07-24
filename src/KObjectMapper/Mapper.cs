@@ -1,9 +1,11 @@
 using System.Globalization;
+using System.Linq.Expressions;
 using System.Reflection;
 using KObjectMapper.Abstractions;
 using KObjectMapper.Collections;
 using KObjectMapper.Configuration;
 using KObjectMapper.Internal;
+using KObjectMapper.Projections;
 
 namespace KObjectMapper;
 
@@ -13,6 +15,7 @@ namespace KObjectMapper;
 public class Mapper : IObjectMapper
 {
     private readonly MappingService _mappingService = MappingService.Create();
+    private readonly IQueryableMapper _queryableMapper = new QueryableMapper();
     private readonly IEnumerable<MappingProfile> _profiles;
     private readonly NullMappingPolicy? _globalNullPolicy;
     private readonly bool _isStrictMode;
@@ -643,6 +646,14 @@ public class Mapper : IObjectMapper
                 return MappingResult.Failure(error);
             }
         }
+
+        public IQueryable<TTarget> ProjectTo<TSource, TTarget>(IQueryable<TSource> source)
+            where TTarget : new()
+            => _queryableMapper.ProjectTo<TSource, TTarget>(source);
+
+        public Expression<Func<TSource, TTarget>> GetProjectionExpression<TSource, TTarget>()
+            where TTarget : new()
+            => _queryableMapper.GetProjectionExpression<TSource, TTarget>();
 
         private static bool TryConvertValue(object? sourceValue, Type targetType, out object? convertedValue)
         {
