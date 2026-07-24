@@ -285,7 +285,7 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(target);
 
-        if (depth > maxDepth)
+        if (depth >= maxDepth)
             throw new InvalidOperationException($"Maximum mapping depth of {maxDepth} exceeded.");
 
         if (visited.TryGetValue(source, out object? existing))
