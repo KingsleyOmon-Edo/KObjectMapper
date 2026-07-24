@@ -13,7 +13,6 @@ public class Mapper : IObjectMapper
     private readonly IEnumerable<MappingProfile> _profiles;
     private readonly NullMappingPolicy? _globalNullPolicy;
     private readonly bool _isStrictMode;
-    private readonly IReadOnlyList<ITypeConverterBox> _globalConverters = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -57,16 +56,6 @@ public class Mapper : IObjectMapper
         _profiles = profiles;
         _globalNullPolicy = globalNullPolicy;
         _isStrictMode = isStrictMode;
-    }
-
-    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode, IReadOnlyList<ITypeConverterBox> globalConverters)
-    {
-        ArgumentNullException.ThrowIfNull(profiles);
-        ArgumentNullException.ThrowIfNull(globalConverters);
-        _profiles = profiles;
-        _globalNullPolicy = globalNullPolicy;
-        _isStrictMode = isStrictMode;
-        _globalConverters = globalConverters;
     }
 
         /// <summary>
@@ -210,25 +199,6 @@ public class Mapper : IObjectMapper
             }
         }
 
-    private object? ApplyConverter(object? value, Type targetType, MappingTypeMap typeMap)
-    {
-        if (value is null) return null;
-
-        Type sourceType = value.GetType();
-
-        ITypeConverterBox? perMap = typeMap.Converters
-            .FirstOrDefault(c => c.SourceType.IsAssignableFrom(sourceType) && c.TargetType == targetType);
-
-        if (perMap is not null) return perMap.ConvertObject(value);
-
-        ITypeConverterBox? global = _globalConverters
-            .FirstOrDefault(c => c.SourceType.IsAssignableFrom(sourceType) && c.TargetType == targetType);
-
-        if (global is not null) return global.ConvertObject(value);
-
-        return value;
-    }
-
         private MappingTypeMap? FindTypeMap(Type sourceType, Type targetType)
         {
             return _profiles
@@ -301,8 +271,7 @@ public class Mapper : IObjectMapper
                             }
                         }
 
-                        object? convertedValue = ApplyConverter(sourceValue, targetProperty.PropertyType, typeMap);
-                        targetProperty.SetValue(target, convertedValue);
+                        targetProperty.SetValue(target, sourceValue);
                     }
                     catch (ArgumentException)
                     {

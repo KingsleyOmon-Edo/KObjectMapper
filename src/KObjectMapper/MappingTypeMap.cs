@@ -1,5 +1,3 @@
-using KObjectMapper.Abstractions;
-
 namespace KObjectMapper;
 
 /// <summary>
@@ -10,7 +8,6 @@ public sealed class MappingTypeMap
     private readonly Dictionary<string, string> _customMemberMappings = new();
     private readonly HashSet<string> _ignoredMembers = new();
     private readonly Dictionary<string, object?> _nullSubstitutes = new();
-    private readonly List<ITypeConverterBox> _converters = [];
 
     public MappingTypeMap(Type sourceType, Type targetType)
     {
@@ -66,17 +63,6 @@ public sealed class MappingTypeMap
         ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
 
         _nullSubstitutes[targetMemberName] = substituteValue;
-    }
-
-    /// <summary>
-    /// Gets the per-map type converters registered for this type map.
-    /// </summary>
-    internal IReadOnlyList<ITypeConverterBox> Converters => _converters.AsReadOnly();
-
-    internal void AddConverter(ITypeConverterBox converter)
-    {
-        ArgumentNullException.ThrowIfNull(converter);
-        _converters.Add(converter);
     }
 }
 

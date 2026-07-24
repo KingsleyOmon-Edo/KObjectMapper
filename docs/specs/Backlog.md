@@ -38,7 +38,7 @@
 
 ### Epic: Type System and Conversion Depth (Phase 1)
 
-- [x] **US-05: Pluggable type converters**
+- [ ] **US-05: Pluggable type converters**
   - As a developer, I want to register custom converters so that complex domain transformations are supported beyond `Convert.ChangeType`.
   - **Acceptance criteria:**
     - Converter interface and registration API are available.
