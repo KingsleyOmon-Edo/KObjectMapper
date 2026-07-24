@@ -56,7 +56,7 @@
 
 ### Epic: Compile-Time Mapping and Source Generators
 
-- [ ] **US-07: Source-generated mapping plans for configured type pairs**
+- [x] **US-07: Source-generated mapping plans for configured type pairs**
   - As a developer, I want mapping code generated at compile-time so that runtime reflection cost is reduced on hot paths.
   - **Acceptance criteria:**
     - Incremental source generator produces mapping implementations for registered source/target pairs.

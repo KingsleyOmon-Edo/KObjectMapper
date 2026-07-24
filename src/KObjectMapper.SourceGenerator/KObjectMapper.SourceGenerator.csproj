@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Title>KObjectMapper.SourceGenerator</Title>
+		<PackageId>KObjectMapper.SourceGenerator</PackageId>
+		<VersionPrefix>0.0.0</VersionPrefix>
+		<VersionSuffix Condition="'$(Configuration)' == 'Debug'">local</VersionSuffix>
+		<VersionSuffix Condition="'$(Configuration)' == 'Release'">alpha-1</VersionSuffix>
+		<Author>Kingsley Omon-Edo</Author>
+		<Company>Techbiquity Inc.</Company>
+		<PackageDescription>Compile-time source generator for KObjectMapper.</PackageDescription>
+		<RepositoryUrl>https://github.com/KingsleyOmon-Edo/KObjectMapper.git</RepositoryUrl>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<IsPackable>false</IsPackable>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+		<AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+	</ItemGroup>
+
+</Project>
