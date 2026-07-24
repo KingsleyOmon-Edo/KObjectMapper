@@ -360,6 +360,106 @@ builder.Services.AddKObjectMapper(options =>
 
 ---
 
+## Sensitive Data Guards
+
+Protect sensitive properties from being mapped by annotating them with `[Sensitive]` and configuring a `SensitiveMappingPolicy`.
+
+### `[Sensitive]` on a property
+
+```csharp
+using KObjectMapper.Configuration;
+
+public class UserDto
+{
+    public string Username { get; set; }
+
+    [Sensitive]
+    public string PasswordHash { get; set; }
+
+    [Sensitive]
+    public string SocialSecurityNumber { get; set; }
+}
+```
+
+### `[Sensitive]` on a class
+
+Marking an entire class `[Sensitive]` excludes **all** its properties from mapping:
+
+```csharp
+[Sensitive]
+public class AuditRecord
+{
+    public string Actor { get; set; }
+    public string Action { get; set; }
+}
+```
+
+### `SensitiveMappingPolicy.ExcludeMarked` (default)
+
+Only members explicitly annotated with `[Sensitive]` are excluded. All other members are mapped normally.
+
+```csharp
+builder.Services.AddKObjectMapper(options =>
+{
+    options.SetSensitivePolicy(SensitiveMappingPolicy.ExcludeMarked);
+    options.AddProfile<UserProfile>();
+});
+```
+
+### `SensitiveMappingPolicy.DefaultDeny`
+
+All members are excluded unless explicitly allowed with `AllowMember`. Use this for high-security contexts where you want an opt-in allowlist.
+
+```csharp
+builder.Services.AddKObjectMapper(options =>
+{
+    options.SetSensitivePolicy(SensitiveMappingPolicy.DefaultDeny);
+    options.AddProfile<UserProfile>();
+});
+```
+
+### `AllowMember` for `DefaultDeny` mode
+
+```csharp
+public class UserProfile : MappingProfile
+{
+    protected override void Configure()
+    {
+        CreateMap<User, UserDto>()
+            .AllowMember(tgt => tgt.Username)
+            .AllowMember(tgt => tgt.Email);
+        // PasswordHash and all other members remain excluded
+    }
+}
+```
+
+### Per-map sensitive policy
+
+Override the global policy for a specific map:
+
+```csharp
+CreateMap<User, PublicUserDto>()
+    .SetSensitivePolicy(SensitiveMappingPolicy.ExcludeMarked);
+```
+
+---
+
+## Failure Modes and Edge Cases
+
+| Scenario | Behaviour |
+|----------|-----------|
+| Strict mode on, no map registered for a type pair | `InvalidOperationException` thrown at the call site |
+| Source is `null` with `NullMappingPolicy.Propagate` (default) | `null` is written to the target member |
+| Source is `null` with `NullMappingPolicy.Ignore` | Target member retains its existing value |
+| Target type has no accessible parameterless constructor | `MappingProfileValidationException` thrown at startup validation before the app serves traffic |
+| `[Sensitive]` on a class | All properties of that class are excluded from mapping |
+| `MergeByKey` used without key selectors configured | `InvalidOperationException` thrown when the map is executed |
+| `ProjectTo` / `GetProjectionExpression` with no mappable properties | `ProjectionException` thrown with `SourceType` and `TargetType` context |
+| `MaxDepth` exceeded during graph mapping | `InvalidOperationException` thrown at the depth-limit node |
+| `MapAsync` called with an already-cancelled `CancellationToken` | `OperationCanceledException` thrown immediately |
+
+---
+
 ## Source Generator
 
 KObjectMapper includes an optional Roslyn source generator that produces static mapper classes at compile time, eliminating reflection overhead on hot paths.
@@ -422,6 +522,7 @@ builder.Services.AddKObjectMapper(options =>
 {
     options.EnableStrictMode();
     options.SetGlobalNullPolicy(NullMappingPolicy.Ignore);
+    options.SetSensitivePolicy(SensitiveMappingPolicy.ExcludeMarked);
     options.AddConverter<string, Status>(
         EnumConverter.FromString<Status>(ignoreCase: true).AsTypeConverter());
     options.EnableSourceGeneration();
