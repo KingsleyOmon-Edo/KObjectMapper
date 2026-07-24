@@ -1,8 +1,10 @@
 using System.Reflection;
+using KObjectMapper;
 using KObjectMapper.Abstractions;
+using KObjectMapper.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KObjectMapper;
+namespace KObjectMapper.DependencyInjection;
 
 /// <summary>
 /// Extension methods for registering KObjectMapper services in dependency injection containers.

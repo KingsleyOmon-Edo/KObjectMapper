@@ -1,4 +1,4 @@
-namespace KObjectMapper;
+namespace KObjectMapper.Configuration;
 
 public sealed class MappingProfileValidationException : InvalidOperationException
 {

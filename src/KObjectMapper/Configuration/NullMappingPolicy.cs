@@ -1,4 +1,4 @@
-namespace KObjectMapper;
+namespace KObjectMapper.Configuration;
 
 /// <summary>
 /// Defines how null source values are handled during mapping.

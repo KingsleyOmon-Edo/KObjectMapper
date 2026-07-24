@@ -1,5 +1,7 @@
 // ReSharper disable All
 
+using KObjectMapper.Internal;
+
 namespace KObjectMapper.Extensions;
 
 public static class MapperExtensions

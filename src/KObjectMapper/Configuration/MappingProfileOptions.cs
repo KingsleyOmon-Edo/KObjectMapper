@@ -1,7 +1,7 @@
 using System.Reflection;
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Configuration;
 
 public sealed class MappingProfileOptions
 {

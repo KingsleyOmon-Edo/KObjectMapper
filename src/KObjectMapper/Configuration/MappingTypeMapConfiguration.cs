@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Configuration;
 
 /// <summary>
 /// Provides fluent configuration for mapping between a source and target type.

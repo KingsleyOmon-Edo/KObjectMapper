@@ -1,6 +1,6 @@
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Configuration;
 
 /// <summary>
 /// Represents a mapping configuration between a source and target type.

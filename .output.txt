@@ -1,0 +1,863 @@
+Command finished with exit code 0.
+Command output:
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/23/2026   9:20 PM                KObjectMapperTests                                                   
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/21/2026  11:14 PM                Abstractions                                                         
+d-r---         7/23/2026  12:11 AM                bin                                                                  
+d-r---         7/22/2026   1:19 AM                CharacterizationTests                                                
+d-----         7/24/2026  12:37 AM                Configuration                                                        
+d-r---         7/22/2026   1:19 AM                ExplicitMapping                                                      
+d-r---         7/22/2026   1:19 AM                Helpers                                                              
+d-r---         7/23/2026   2:02 PM                ImplicitMapping                                                      
+d-r---         7/23/2026  11:31 PM                obj                                                                  
+-a----         7/21/2026   5:26 PM           5761 CommonAsserts.cs                                                     
+-a----         7/22/2026   1:19 AM           6328 EdgeCaseMappingTests.cs                                              
+-a----         7/23/2026   9:20 PM            816 KObjectMapperTests.csproj                                            
+-a----         7/22/2026  12:34 AM           1881 MapperConstructorConstraintTests.cs                                  
+-a----         7/21/2026   5:35 PM           1336 MappingServiceTests.cs                                               
+-a----         7/21/2026  11:14 PM            444 TaskList.cs                                                          
+-a----         7/24/2026  12:48 AM            300 Usings.cs                                                            
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\Abstractions
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/21/2026  11:14 PM            151 ICommonMappingTests.cs                                               
+-a----         7/21/2026  11:14 PM            893 IExplicitMappingTests.cs                                             
+-a----         7/21/2026  11:14 PM            863 IImplicitMappingTests.cs                                             
+-a----         7/21/2026  11:14 PM            297 ITypedMappingOfTTests.cs                                             
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          8/7/2024  10:20 AM                Debug                                                                
+d-----         7/23/2026  12:11 AM                Release                                                              
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/21/2026  12:34 AM                net6.0                                                               
+d-r---         7/24/2026  12:37 AM                net8.0                                                               
+d-r---          8/7/2024  10:20 AM                netcoreapp2.2                                                        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          8/7/2024  10:03 AM                cs                                                                   
+d-r---          8/7/2024  10:03 AM                de                                                                   
+d-r---          8/7/2024  10:03 AM                es                                                                   
+d-r---          8/7/2024  10:03 AM                fr                                                                   
+d-r---          8/7/2024  10:03 AM                it                                                                   
+d-r---          8/7/2024  10:03 AM                ja                                                                   
+d-r---          8/7/2024  10:03 AM                ko                                                                   
+d-r---          8/7/2024  10:03 AM                pl                                                                   
+d-r---          8/7/2024  10:03 AM                pt-BR                                                                
+d-r---          8/7/2024  10:03 AM                ru                                                                   
+d-r---         2/28/2024  11:57 PM                runtimes                                                             
+d-r---          8/7/2024  10:03 AM                tr                                                                   
+d-r---          8/7/2024  10:03 AM                zh-Hans                                                              
+d-r---          8/7/2024  10:03 AM                zh-Hant                                                              
+-a----        10/22/2022   1:27 PM         716800 FluentAssertions.dll                                                 
+-a----         7/21/2026  12:34 AM          15360 KObjectMapper.dll                                                    
+-a----         7/21/2026  12:34 AM          16644 KObjectMapper.pdb                                                    
+-a----         7/21/2026  12:34 AM          20381 KObjectMapperTests.deps.json                                         
+-a----         7/21/2026  12:34 AM          31232 KObjectMapperTests.dll                                               
+-a----         7/21/2026  12:34 AM          23588 KObjectMapperTests.pdb                                               
+-a----         7/21/2026  12:34 AM            147 KObjectMapperTests.runtimeconfig.json                                
+-a----         2/15/2022  10:15 PM          96656 Microsoft.TestPlatform.CommunicationUtilities.dll                    
+-a----         2/15/2022  10:09 PM          62864 Microsoft.TestPlatform.CoreUtilities.dll                             
+-a----         2/15/2022  10:15 PM         187280 Microsoft.TestPlatform.CrossPlatEngine.dll                           
+-a----         2/15/2022  10:15 PM          32680 Microsoft.TestPlatform.PlatformAbstractions.dll                      
+-a----         2/15/2022  10:15 PM          52624 Microsoft.TestPlatform.Utilities.dll                                 
+-a----        12/14/2021   3:24 AM          16248 Microsoft.VisualStudio.CodeCoverage.Shim.dll                         
+-a----         2/15/2022  10:15 PM         166320 Microsoft.VisualStudio.TestPlatform.Common.dll                       
+-a----         2/15/2022  10:10 PM         168336 Microsoft.VisualStudio.TestPlatform.ObjectModel.dll                  
+-a----         6/13/2016   7:06 PM         468480 Newtonsoft.Json.dll                                                  
+-a----          6/1/2021   4:46 PM         108920 NuGet.Frameworks.dll                                                 
+-a----         7/19/2017   6:01 AM         380360 System.Configuration.ConfigurationManager.dll                        
+-a----         7/19/2017   6:01 AM          24880 System.Security.Cryptography.ProtectedData.dll                       
+-a----         2/15/2022  10:15 PM          32168 testhost.dll                                                         
+-a----         2/15/2022   9:53 PM         143784 testhost.exe                                                         
+-a----         8/25/2018   3:54 PM          21928 xunit.abstractions.dll                                               
+-a----        10/29/2018  12:16 AM          73128 xunit.assert.dll                                                     
+-a----        10/29/2018  12:16 AM          55208 xunit.core.dll                                                       
+-a----        10/29/2018  12:17 AM         248232 xunit.execution.dotnet.dll                                           
+-a----        10/29/2018  12:17 AM          72616 xunit.runner.reporters.netcoreapp10.dll                              
+-a----        10/29/2018  12:17 AM         221096 xunit.runner.utility.netcoreapp10.dll                                
+-a----          8/3/2020   9:58 AM         157624 xunit.runner.visualstudio.dotnetcore.testadapter.dll                 
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\cs
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16296 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20368 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20392 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\de
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16272 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20392 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20400 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\es
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16272 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20904 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          19336 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\fr
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16808 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20904 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\it
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16784 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20880 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20904 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\ja
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16808 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          17296 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          21904 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          21392 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          24464 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\ko
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16784 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20904 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20904 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\pl
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16296 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20880 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          24464 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\pt-BR
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16272 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20368 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20392 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          23952 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\ru
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          17296 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          17296 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          22416 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          22952 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          24968 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\runtimes
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         2/28/2024  11:57 PM                win                                                                  
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\runtimes\win
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         2/28/2024  11:57 PM                lib                                                                  
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\runtimes\win\lib
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          8/7/2024  10:03 AM                netstandard2.0                                                       
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\runtimes\win\li
+    b\netstandard2.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/19/2017   6:01 AM          31688 System.Security.Cryptography.ProtectedData.dll                       
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\tr
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16296 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          20400 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          20368 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          22408 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\zh-Hans
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16304 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          19856 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          19880 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          22928 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net6.0\zh-Hant
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         2/15/2022  10:15 PM          16272 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         2/15/2022  10:09 PM          16784 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         2/15/2022  10:15 PM          19880 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         2/15/2022  10:15 PM          19856 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         2/15/2022  10:09 PM          22928 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/23/2026   9:47 PM                cs                                                                   
+d-r---         7/23/2026   9:47 PM                de                                                                   
+d-----         7/21/2026   5:30 PM                EmptyFiles                                                           
+d-r---         7/23/2026   9:47 PM                es                                                                   
+d-r---         7/23/2026   9:47 PM                fr                                                                   
+d-r---         7/23/2026   9:47 PM                it                                                                   
+d-r---         7/23/2026   9:47 PM                ja                                                                   
+d-r---         7/23/2026   9:47 PM                ko                                                                   
+d-r---         7/23/2026   9:47 PM                pl                                                                   
+d-r---         7/23/2026   9:47 PM                pt-BR                                                                
+d-r---         7/23/2026   9:47 PM                ru                                                                   
+d-r---          3/1/2024   7:11 PM                runtimes                                                             
+d-r---         7/23/2026   9:47 PM                tr                                                                   
+d-r---         7/23/2026   9:47 PM                zh-Hans                                                              
+d-r---         7/23/2026   9:47 PM                zh-Hant                                                              
+-a----         7/24/2026  12:37 AM           1120 .msCoverageSourceRootsMapping_KObjectMapperTests                     
+-a----         4/12/2023  10:17 AM         109568 DiffEngine.dll                                                       
+-a----         3/31/2023   7:26 AM          75264 EmptyFiles.dll                                                       
+-a----         7/24/2026  12:37 AM          43520 KObjectMapper.dll                                                    
+-a----         7/24/2026  12:37 AM          27196 KObjectMapper.pdb                                                    
+-a----         7/23/2026  11:36 PM          22281 KObjectMapperTests.deps.json                                         
+-a----         7/24/2026  12:37 AM          75776 KObjectMapperTests.dll                                               
+-a----         7/24/2026  12:37 AM          38604 KObjectMapperTests.pdb                                               
+-a----         7/23/2026  11:36 PM            268 KObjectMapperTests.runtimeconfig.json                                
+-a----        10/28/2024  10:41 PM          65288 Microsoft.Extensions.DependencyInjection.Abstractions.dll            
+-a----        10/28/2024  10:42 PM          92424 Microsoft.Extensions.DependencyInjection.dll                         
+-a----         5/22/2024   9:19 AM         137248 Microsoft.TestPlatform.CommunicationUtilities.dll                    
+-a----         5/22/2024   9:18 AM          97312 Microsoft.TestPlatform.CoreUtilities.dll                             
+-a----         5/22/2024   9:19 AM         315424 Microsoft.TestPlatform.CrossPlatEngine.dll                           
+-a----         5/22/2024   9:18 AM          53288 Microsoft.TestPlatform.PlatformAbstractions.dll                      
+-a----         5/22/2024   9:19 AM          67120 Microsoft.TestPlatform.Utilities.dll                                 
+-a----         3/12/2024   5:23 PM          17440 Microsoft.VisualStudio.CodeCoverage.Shim.dll                         
+-a----         5/22/2024   9:19 AM         247840 Microsoft.VisualStudio.TestPlatform.Common.dll                       
+-a----         5/22/2024   9:19 AM         332832 Microsoft.VisualStudio.TestPlatform.ObjectModel.dll                  
+-a----         3/17/2021   4:03 PM         695336 Newtonsoft.Json.dll                                                  
+-a----         4/24/2023   5:06 AM         310784 Shouldly.dll                                                         
+-a----        10/22/2021   7:47 PM         184944 System.CodeDom.dll                                                   
+-a----         3/23/2023   8:23 PM          72824 System.Management.dll                                                
+-a----         5/22/2024   9:19 AM          48680 testhost.dll                                                         
+-a----         5/22/2024   9:19 AM         169512 testhost.exe                                                         
+-a----         8/25/2018   3:54 PM          21928 xunit.abstractions.dll                                               
+-a----          1/8/2025  12:29 PM         187088 xunit.assert.dll                                                     
+-a----          1/8/2025  12:29 PM          70352 xunit.core.dll                                                       
+-a----          1/8/2025  12:30 PM         279760 xunit.execution.dotnet.dll                                           
+-a----          7/7/2024   3:47 PM          84176 xunit.runner.reporters.netcoreapp10.dll                              
+-a----          7/7/2024   3:47 PM         255184 xunit.runner.utility.netcoreapp10.dll                                
+-a----          7/7/2024   4:35 PM         180944 xunit.runner.visualstudio.testadapter.dll                            
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\cs
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16416 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20520 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23472 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\de
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16944 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          21024 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         7/23/2026   9:47 PM                archive                                                              
+d-----         7/23/2026   9:47 PM                document                                                             
+d-----         7/23/2026   9:47 PM                image                                                                
+d-----         7/23/2026   9:47 PM                sheet                                                                
+d-----         7/23/2026   9:47 PM                slide                                                                
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles\archive
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2023   7:26 AM             32 empty.7z                                                             
+-a----         3/31/2023   7:26 AM             14 empty.bz2                                                            
+-a----         3/31/2023   7:26 AM             29 empty.gz                                                             
+-a----         3/31/2023   7:26 AM           1536 empty.tar                                                            
+-a----         3/31/2023   7:26 AM             32 empty.xz                                                             
+-a----         3/31/2023   7:26 AM             22 empty.zip                                                            
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles\document
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2023   7:26 AM           1921 empty.docx                                                           
+-a----         3/31/2023   7:26 AM           2287 empty.odt                                                            
+-a----         3/31/2023   7:26 AM            280 empty.pdf                                                            
+-a----         3/31/2023   7:26 AM              6 empty.rtf                                                            
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles\image
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2023   7:26 AM            298 empty.avif                                                           
+-a----         3/31/2023   7:26 AM             58 empty.bmp                                                            
+-a----         3/31/2023   7:26 AM            136 empty.dds                                                            
+-a----         3/31/2023   7:26 AM             58 empty.dib                                                            
+-a----         3/31/2023   7:26 AM            620 empty.emf                                                            
+-a----         3/31/2023   7:26 AM            734 empty.exif                                                           
+-a----         3/31/2023   7:26 AM            799 empty.gif                                                            
+-a----         3/31/2023   7:26 AM           3242 empty.heic                                                           
+-a----         3/31/2023   7:26 AM            209 empty.heif                                                           
+-a----         3/31/2023   7:26 AM             70 empty.ico                                                            
+-a----         3/31/2023   7:26 AM            270 empty.j2c                                                            
+-a----         3/31/2023   7:26 AM            734 empty.jfif                                                           
+-a----         3/31/2023   7:26 AM            354 empty.jp2                                                            
+-a----         3/31/2023   7:26 AM            270 empty.jpc                                                            
+-a----         3/31/2023   7:26 AM            734 empty.jpe                                                            
+-a----         3/31/2023   7:26 AM            734 empty.jpg                                                            
+-a----         3/31/2023   7:26 AM            300 empty.jxr                                                            
+-a----         3/31/2023   7:26 AM              8 empty.pbm                                                            
+-a----         3/31/2023   7:26 AM            131 empty.pcx                                                            
+-a----         3/31/2023   7:26 AM             12 empty.pgm                                                            
+-a----         3/31/2023   7:26 AM            119 empty.png                                                            
+-a----         3/31/2023   7:26 AM             14 empty.ppm                                                            
+-a----         3/31/2023   7:26 AM             58 empty.rle                                                            
+-a----         3/31/2023   7:26 AM            543 empty.tga                                                            
+-a----         3/31/2023   7:26 AM            250 empty.tif                                                            
+-a----         3/31/2023   7:26 AM            300 empty.wdp                                                            
+-a----         3/31/2023   7:26 AM            228 empty.webp                                                           
+-a----         3/31/2023   7:26 AM            300 empty.wmp                                                            
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles\sheet
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2023   7:26 AM           2784 empty.ods                                                            
+-a----         3/31/2023   7:26 AM           4589 empty.xlsx                                                           
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\EmptyFiles\slide
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/31/2023   7:26 AM           7959 empty.odp                                                            
+-a----         3/31/2023   7:26 AM          13583 empty.pptx                                                           
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\es
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          21024 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          24000 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\fr
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21016 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          21024 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\it
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\ja
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16920 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          17448 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          22048 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          21424 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          24608 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\ko
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16944 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21552 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\pl
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21552 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\pt-BR
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16416 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20912 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23984 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\ru
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          17440 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          17440 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          23088 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          22960 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          26048 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\runtimes
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          3/1/2024   7:11 PM                win                                                                  
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\runtimes\win
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/21/2026   5:30 PM                lib                                                                  
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\runtimes\win\lib
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         7/23/2026   9:47 PM                net6.0                                                               
+d-r---         7/21/2026   5:30 PM                netstandard2.0                                                       
+
+
+    Directory: 
+    C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\runtimes\win\lib\net6.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         3/23/2023   8:23 PM         291960 System.Management.dll                                                
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\tr
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16928 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16936 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          21024 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          20400 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          23488 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\zh-Hans
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16424 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          20000 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          19888 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          22976 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Debug\net8.0\zh-Hant
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         5/22/2024   9:19 AM          16424 Microsoft.TestPlatform.CommunicationUtilities.resources.dll          
+-a----         5/22/2024   9:18 AM          16928 Microsoft.TestPlatform.CoreUtilities.resources.dll                   
+-a----         5/22/2024   9:19 AM          20504 Microsoft.TestPlatform.CrossPlatEngine.resources.dll                 
+-a----         5/22/2024   9:19 AM          19888 Microsoft.VisualStudio.TestPlatform.Common.resources.dll             
+-a----         5/22/2024   9:19 AM          22960 Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Release
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         7/23/2026  10:04 PM                net8.0                                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\bin\Release\net8.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/23/2026  10:04 PM           1120 .msCoverageSourceRootsMapping_KObjectMapperTests                     
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\CharacterizationTests
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/22/2026   1:19 AM           2558 CreationOverloadSadPathTests.cs                                      
+-a----         7/22/2026  12:53 AM            679 DependencyInjectionTests.cs                                          
+-a----         7/22/2026  12:34 AM           3124 ImmutableMappingTests.cs                                             
+-a----         7/21/2026   5:26 PM           1335 NewTypeTests.cs                                                      
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\Configuration
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/24/2026  12:37 AM           5353 EnumConversionTests.cs                                               
+-a----         7/23/2026   9:54 PM           3651 MappingProfileMemberRulesTests.cs                                    
+-a----         7/23/2026   9:20 PM           2332 MappingProfileTests.cs                                               
+-a----         7/23/2026  11:02 PM           6769 NullHandlingPolicyTests.cs                                           
+-a----         7/24/2026  12:37 AM           5357 StrictMappingModeTests.cs                                            
+-a----         7/24/2026  12:37 AM           5258 TypeConverterTests.cs                                                
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\ExplicitMapping
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/22/2026   1:19 AM           3862 MapFromOverloadTests.cs                                              
+-a----         7/21/2026   5:26 PM           3553 MapOfIEnumerableOfTTests.cs                                          
+-a----         7/21/2026  11:14 PM           4210 MapOfTTests.cs                                                       
+-a----         7/21/2026  11:14 PM           3207 MapTests.cs                                                          
+-a----         7/22/2026   1:19 AM           3626 MapToOverloadTests.cs                                                
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\Helpers
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/21/2026  11:14 PM            267 Customer.cs                                                          
+-a----         7/21/2026  11:14 PM            223 CustomerDto.cs                                                       
+-a----         7/22/2026   1:19 AM           1884 EdgeCaseModels.cs                                                    
+-a----         7/21/2026  11:14 PM            324 Employee.cs                                                          
+-a----         7/21/2026  11:14 PM            118 EmployeeDto.cs                                                       
+-a----         7/22/2026  12:34 AM            236 ImmutableModels.cs                                                   
+-a----         7/21/2026   4:51 PM           3145 ObjectMother.cs                                                      
+-a----         7/21/2026   4:48 PM            306 Product.cs                                                           
+-a----         7/21/2026  11:14 PM            251 Todo.cs                                                              
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\ImplicitMapping
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/21/2026  11:14 PM           3300 MapFromIEnumerableOfTTests.cs                                        
+-a----         7/21/2026  11:14 PM           2898 MapFromOfTExtensionTests.cs                                          
+-a----         7/21/2026  11:14 PM           2880 MapFromOfTTests.cs                                                   
+-a----         7/21/2026  11:14 PM           2912 MapFromTests.cs                                                      
+-a----         7/23/2026   2:02 PM            810 MapToIEnumerableOfTTests.cs                                          
+-a----         7/21/2026  11:14 PM           2866 MapToOfTExtensionTests.cs                                            
+-a----         7/21/2026  11:14 PM           2848 MapToOfTTests.cs                                                     
+-a----         7/21/2026  11:14 PM           2830 MapToTests.cs                                                        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          8/7/2024  10:20 AM                Debug                                                                
+d-----         7/23/2026  12:11 AM                Release                                                              
+-a----         7/23/2026  11:31 PM           8094 KObjectMapperTests.csproj.nuget.dgspec.json                          
+-a----         7/23/2026   8:55 PM           2818 KObjectMapperTests.csproj.nuget.g.props                              
+-a----         7/23/2026   8:55 PM           1297 KObjectMapperTests.csproj.nuget.g.targets                            
+-a----         7/23/2026  11:31 PM          61489 project.assets.json                                                  
+-a----         7/23/2026  11:31 PM           2799 project.nuget.cache                                                  
+-a----         7/23/2026  11:31 PM           2651 project.packagespec.json                                             
+-a----         7/23/2026  11:45 PM             20 rider.project.model.nuget.info                                       
+-a----         7/23/2026  11:45 PM             20 rider.project.restore.info                                           
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/21/2026   2:48 AM                net6.0                                                               
+d-r---         7/24/2026  12:37 AM                net8.0                                                               
+d-r---          8/7/2024  10:20 AM                netcoreapp2.2                                                        
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net6.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---          8/7/2024  10:05 AM                ref                                                                  
+d-r---          8/7/2024  10:03 AM                refint                                                               
+-a----         7/21/2026  12:17 AM            198 .NETCoreApp,Version=v6.0.AssemblyAttributes.cs                       
+-a----         7/21/2026  12:34 AM              0 KObjectM.AA728E6C.Up2Date                                            
+-a----         7/21/2026   2:48 AM           1068 KObjectMapperTests.AssemblyInfo.cs                                   
+-a----         7/21/2026   2:48 AM             66 KObjectMapperTests.AssemblyInfoInputs.cache                          
+-a----         7/21/2026   3:01 AM          73523 KObjectMapperTests.assets.cache                                      
+-a----         7/21/2026  12:34 AM          12863 KObjectMapperTests.csproj.AssemblyReference.cache                    
+-a----         6/10/2026  11:54 PM              0 KObjectMapperTests.csproj.BuildWithSkipAnalyzers                     
+-a----        11/11/2025   5:48 PM             66 KObjectMapperTests.csproj.CoreCompileInputs.cache                    
+-a----          8/7/2024  10:05 AM          14804 KObjectMapperTests.csproj.FileListAbsolute.txt                       
+-a----         7/21/2026  12:34 AM          31232 KObjectMapperTests.dll                                               
+-a----         6/10/2026  11:51 PM            860 KObjectMapperTests.GeneratedMSBuildEditorConfig.editorconfig         
+-a----          8/7/2024  10:05 AM             66 KObjectMapperTests.genruntimeconfig.cache                            
+-a----        11/11/2025   5:37 PM            239 KObjectMapperTests.GlobalUsings.g.cs                                 
+-a----         7/21/2026  12:34 AM          23588 KObjectMapperTests.pdb                                               
+-a----          8/7/2024  10:03 AM            181 KObjectMapperTests.sourcelink.json                                   
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net6.0\ref
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----        11/11/2025   5:48 PM          16896 KObjectMapperTests.dll                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net6.0\refint
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/21/2026  12:34 AM          16896 KObjectMapperTests.dll                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net8.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-r---         7/23/2026   9:47 PM                ref                                                                  
+d-r---         7/23/2026   9:47 PM                refint                                                               
+-a----         7/21/2026   3:24 AM            198 .NETCoreApp,Version=v8.0.AssemblyAttributes.cs                       
+-a----         7/24/2026  12:37 AM              0 KObjectM.AA728E6C.Up2Date                                            
+-a----         7/24/2026  12:37 AM           1028 KObjectMapperTests.AssemblyInfo.cs                                   
+-a----         7/24/2026  12:37 AM             66 KObjectMapperTests.AssemblyInfoInputs.cache                          
+-a----         7/23/2026  11:31 PM          37361 KObjectMapperTests.assets.cache                                      
+-a----         7/24/2026  12:37 AM          15454 KObjectMapperTests.csproj.AssemblyReference.cache                    
+-a----         7/24/2026  12:33 AM             66 KObjectMapperTests.csproj.CoreCompileInputs.cache                    
+-a----         7/23/2026   9:47 PM          40256 KObjectMapperTests.csproj.FileListAbsolute.txt                       
+-a----         7/24/2026  12:37 AM          75776 KObjectMapperTests.dll                                               
+-a----         7/23/2026   9:47 PM            862 KObjectMapperTests.GeneratedMSBuildEditorConfig.editorconfig         
+-a----         7/23/2026   9:47 PM             66 KObjectMapperTests.genruntimeconfig.cache                            
+-a----         7/21/2026   3:24 AM            239 KObjectMapperTests.GlobalUsings.g.cs                                 
+-a----         7/24/2026  12:37 AM          38604 KObjectMapperTests.pdb                                               
+-a----         7/24/2026  12:37 AM            182 KObjectMapperTests.sourcelink.json                                   
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net8.0\ref
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/24/2026  12:37 AM          35328 KObjectMapperTests.dll                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\net8.0\refint
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----         7/24/2026  12:37 AM          35328 KObjectMapperTests.dll                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Debug\netcoreapp2.2
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+-a----          8/7/2024  10:20 AM          73777 KObjectMapperTests.assets.cache                                      
+-a----          8/7/2024  10:20 AM              0 KObjectMapperTests.csproj.FileListAbsolute.txt                       
+-a----          8/7/2024  10:20 AM            295 KObjectMapperTests.GlobalUsings.g.cs                                 
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Release
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         7/23/2026  10:04 PM                net8.0                                                               
+
+
+    Directory: C:\Users\omone\Projects\Projects\KObjectMapper\tests\KObjectMapperTests\obj\Release\net8.0
+
+
+Mode                 LastWriteTime         Length Name                                                                 
+----                 -------------         ------ ----                                                                 
+d-----         7/23/2026  12:11 AM                ref                                                                  
+d-----         7/23/2026  12:11 AM                refint                                                               
+-a----         7/23/2026  12:11 AM            198 .NETCoreApp,Version=v8.0.AssemblyAttributes.cs                       
+-a----         7/23/2026  10:04 PM           1070 KObjectMapperTests.AssemblyInfo.cs                                   
+-a----         7/23/2026  10:04 PM             66 KObjectMapperTests.AssemblyInfoInputs.cache                          
+-a----         7/23/2026  10:04 PM          37361 KObjectMapperTests.assets.cache                                      
+-a----         7/23/2026  10:04 PM          14518 KObjectMapperTests.csproj.AssemblyReference.cache                    
+-a----         7/23/2026  10:04 PM            862 KObjectMapperTests.GeneratedMSBuildEditorConfig.editorconfig         
+-a----         7/23/2026  12:11 AM            239 KObjectMapperTests.GlobalUsings.g.cs

@@ -1,6 +1,6 @@
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Converters;
 
 /// <summary>
 /// Provides factory methods for creating safe enum converters.

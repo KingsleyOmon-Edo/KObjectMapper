@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Extensions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Internal;
 
 /// <summary>
 /// Performs object-to-object difference detection and property application.

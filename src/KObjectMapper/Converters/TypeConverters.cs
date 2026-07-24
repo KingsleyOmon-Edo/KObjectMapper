@@ -1,7 +1,7 @@
 using System.Globalization;
 using KObjectMapper.Abstractions;
 
-namespace KObjectMapper;
+namespace KObjectMapper.Converters;
 
 /// <summary>
 /// Provides built-in <see cref="ITypeConverter{TSource,TTarget}"/> instances for common type conversions.

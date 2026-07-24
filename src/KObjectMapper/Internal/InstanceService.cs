@@ -1,6 +1,7 @@
     using System.Reflection;
-    using Extensions;
-namespace ObjectMapper;
+    using System.Globalization;
+    using KObjectMapper.Extensions;
+namespace KObjectMapper.Internal;
 
     public static class InstanceService
     {
@@ -63,8 +64,8 @@ namespace ObjectMapper;
             Type sourcePropType, targetPropType;
             InstanceService.ComparePropertyTypes(sourceProp, targetProp, out sourcePropType, out targetPropType);
 
-            var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType);
-            var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType);
+            var sourcePropValue = Convert.ChangeType(sourceProp.GetValue(sourceObject), sourcePropType, CultureInfo.InvariantCulture);
+            var targetPropValue = Convert.ChangeType(targetProp.GetValue(targetObject), targetPropType, CultureInfo.InvariantCulture);
 
             if (object.Equals(sourcePropValue, targetPropValue))
             {
@@ -102,8 +103,8 @@ namespace ObjectMapper;
 
         private static List<PropertyInfo> ComputeDiffs<T>(T source, T target)
         {
-            var sourceProps = source.GetType().GetProperties().ToList();
-            var targetProps = target.GetType().GetProperties().ToList();
+            var sourceProps = source!.GetType().GetProperties().ToList();
+            var targetProps = target!.GetType().GetProperties().ToList();
 
             return sourceProps.Except(targetProps, (
                     object sourceObject,
@@ -120,8 +121,8 @@ namespace ObjectMapper;
         {
             InstanceService.NullChecks(source, target);
 
-            var diffs = source.GetPropertyDiffs(target);
-            var sourceProps = source.GetType().GetProperties();
+            var diffs = source!.GetPropertyDiffs(target!);
+            var sourceProps = source!.GetType().GetProperties();
 
             InstanceService.WriteToProperties(source, target, diffs);
 
@@ -132,8 +133,8 @@ namespace ObjectMapper;
         {
             InstanceService.ValidateParameters(source, target);
 
-            var diffs = source.GetPropertyDiffs(target);
-            var sourceProps = source.GetType().GetProperties();
+            var diffs = source!.GetPropertyDiffs(target!);
+            var sourceProps = source!.GetType().GetProperties();
             InstanceService.WriteToProperties(source, target, diffs);
 
             return target;
@@ -169,7 +170,7 @@ namespace ObjectMapper;
 
             foreach (var sourceProp in diffs)
             {
-                foreach (var targetProp in target.GetType().GetProperties())
+                foreach (var targetProp in target!.GetType().GetProperties())
                 {
                     if (sourceProp.Name == targetProp.Name
                         && sourceProp.GetValue(source) != targetProp.GetValue(target))

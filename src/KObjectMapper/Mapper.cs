@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Abstractions;
+using KObjectMapper.Configuration;
+using KObjectMapper.Internal;
 
 namespace KObjectMapper;
 
