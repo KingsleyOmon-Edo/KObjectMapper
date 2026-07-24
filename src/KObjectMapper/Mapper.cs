@@ -11,6 +11,7 @@ public class Mapper : IObjectMapper
 {
     private readonly MappingService _mappingService = MappingService.Create();
     private readonly IEnumerable<MappingProfile> _profiles;
+    private readonly NullMappingPolicy? _globalNullPolicy;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -28,6 +29,18 @@ public class Mapper : IObjectMapper
     {
         ArgumentNullException.ThrowIfNull(profiles);
         _profiles = profiles;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with profiles and a global null policy.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    /// <param name="globalNullPolicy">The global null mapping policy.</param>
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
     }
 
         /// <summary>
@@ -174,13 +187,15 @@ public class Mapper : IObjectMapper
                     typeMap.TargetType == targetType);
         }
 
-        private static void ApplyProfileBasedMapping<TSource, TTarget>(TSource source, TTarget target, MappingTypeMap typeMap)
+        private void ApplyProfileBasedMapping<TSource, TTarget>(TSource source, TTarget target, MappingTypeMap typeMap)
         {
             Type sourceType = typeof(TSource);
             Type targetType = typeof(TTarget);
 
             PropertyInfo[] sourceProperties = sourceType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             PropertyInfo[] targetProperties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            NullMappingPolicy effectiveNullPolicy = typeMap.NullPolicy ?? _globalNullPolicy ?? NullMappingPolicy.Propagate;
 
             foreach (PropertyInfo targetProperty in targetProperties)
             {
@@ -220,6 +235,21 @@ public class Mapper : IObjectMapper
                     try
                     {
                         object? sourceValue = sourceProperty.GetValue(source);
+
+                        if (sourceValue is null)
+                        {
+                            if (typeMap.NullSubstitutes.TryGetValue(targetProperty.Name, out object? substitute))
+                            {
+                                targetProperty.SetValue(target, substitute);
+                                continue;
+                            }
+
+                            if (effectiveNullPolicy == NullMappingPolicy.Ignore)
+                            {
+                                continue;
+                            }
+                        }
+
                         targetProperty.SetValue(target, sourceValue);
                     }
                     catch (ArgumentException)

@@ -43,13 +43,19 @@ public static class ServiceCollectionExtensions
         IReadOnlyCollection<Type> profileTypes = options.GetProfileTypes();
         ValidateProfiles(profileTypes);
 
-        services.AddTransient<IObjectMapper, Mapper>();
+        NullMappingPolicy? globalNullPolicy = options.GlobalNullPolicy;
 
         foreach (Type profileType in profileTypes)
         {
             services.AddTransient(typeof(MappingProfile), _ =>
                 (MappingProfile)Activator.CreateInstance(profileType, nonPublic: true)!);
         }
+
+        services.AddTransient<IObjectMapper>(sp =>
+        {
+            IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
+            return new Mapper(profiles, globalNullPolicy);
+        });
 
         return services;
     }

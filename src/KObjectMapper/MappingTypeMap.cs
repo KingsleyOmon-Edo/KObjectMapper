@@ -7,6 +7,7 @@ public sealed class MappingTypeMap
 {
     private readonly Dictionary<string, string> _customMemberMappings = new();
     private readonly HashSet<string> _ignoredMembers = new();
+    private readonly Dictionary<string, object?> _nullSubstitutes = new();
 
     public MappingTypeMap(Type sourceType, Type targetType)
     {
@@ -20,6 +21,16 @@ public sealed class MappingTypeMap
     public Type SourceType { get; }
 
     public Type TargetType { get; }
+
+    /// <summary>
+    /// Gets or sets the null mapping policy for this type map.
+    /// </summary>
+    public NullMappingPolicy? NullPolicy { get; internal set; }
+
+    /// <summary>
+    /// Gets the per-member null substitute values keyed by target member name.
+    /// </summary>
+    public IReadOnlyDictionary<string, object?> NullSubstitutes => _nullSubstitutes;
 
     /// <summary>
     /// Gets the custom member mappings where the key is the source member name
@@ -45,6 +56,13 @@ public sealed class MappingTypeMap
         ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
 
         _ignoredMembers.Add(targetMemberName);
+    }
+
+    internal void AddNullSubstitute(string targetMemberName, object? substituteValue)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
+
+        _nullSubstitutes[targetMemberName] = substituteValue;
     }
 }
 

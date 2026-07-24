@@ -14,7 +14,7 @@ dotnet add package KObjectMapper --version 0.0.0-alpha-1
 
 > For newer alpha drops, increment the suffix (for example: `0.0.0-alpha-2`, `0.0.0-alpha-3`).
 
-## Usage scenarios
+## Usage scenario
 
 ### Implicit mapping (extension methods)
 

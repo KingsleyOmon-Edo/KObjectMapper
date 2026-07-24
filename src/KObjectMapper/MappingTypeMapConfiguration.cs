@@ -54,6 +54,35 @@ public sealed class MappingTypeMapConfiguration<TSource, TTarget>
         return this;
     }
 
+    /// <summary>
+    /// Sets the null mapping policy for this type map.
+    /// </summary>
+    /// <param name="policy">The null mapping policy to apply.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> WithNullPolicy(NullMappingPolicy policy)
+    {
+        _typeMap.NullPolicy = policy;
+        return this;
+    }
+
+    /// <summary>
+    /// Configures a substitute value to use when the source value for a target member is null.
+    /// </summary>
+    /// <param name="targetMember">Expression selecting the target property.</param>
+    /// <param name="substituteValue">The value to use when the source is null.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> SubstituteNullWith(
+        Expression<Func<TTarget, object?>> targetMember,
+        object? substituteValue)
+    {
+        ArgumentNullException.ThrowIfNull(targetMember);
+
+        string targetMemberName = ExtractMemberName(targetMember);
+        _typeMap.AddNullSubstitute(targetMemberName, substituteValue);
+
+        return this;
+    }
+
     private static string ExtractMemberName<T>(Expression<Func<T, object?>> expression)
     {
         ArgumentNullException.ThrowIfNull(expression);

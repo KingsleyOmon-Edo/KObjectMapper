@@ -22,7 +22,7 @@
     - Configure `Ignore` per member.
     - Unmapped required members are reported by validation.
 
-- [ ] **US-03: Null-handling policy configuration**
+- [x] **US-03: Null-handling policy configuration**
   - As a developer, I want configurable null behavior (propagate, ignore, substitute) so that mapping behavior is predictable across services.
   - **Acceptance criteria:**
     - Global and per-map null policy options exist.
