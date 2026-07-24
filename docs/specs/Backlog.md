@@ -45,7 +45,7 @@
     - Converters can be global and per-map.
     - Built-in converters cover common primitives, enums, GUID, and DateTimeOffset patterns.
 
-- [x] **US-06: Enum and string conversion safety**
+- [ ] **US-06: Enum and string conversion safety**
   - As a developer, I want safe enum conversion with validation so that invalid enum values do not silently corrupt data.
   - **Acceptance criteria:**
     - Supports numeric-to-enum and string-to-enum conversions.
