@@ -15,7 +15,7 @@
     - Profile registration supports assembly scanning.
     - Profile validation reports invalid/missing rules at startup.
 
-- [ ] **US-02: Custom member mapping and ignore rules**
+- [x] **US-02: Custom member mapping and ignore rules**
   - As a developer, I want to map members with different names and ignore specific members so that DTO/domain shape differences are supported safely.
   - **Acceptance criteria:**
     - Configure `ForMember` mapping from differently named source properties.
