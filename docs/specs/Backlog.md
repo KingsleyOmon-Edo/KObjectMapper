@@ -29,7 +29,7 @@
     - Optional null substitution values can be configured per member.
     - Behavior is verified by tests for object and collection mappings.
 
-- [ ] **US-04: Strict mapping mode and startup validation**
+- [x] **US-04: Strict mapping mode and startup validation**
   - As a platform engineer, I want strict mode and startup validation so that mapping defects fail fast before runtime traffic.
   - **Acceptance criteria:**
     - Strict mode fails when no valid map exists.

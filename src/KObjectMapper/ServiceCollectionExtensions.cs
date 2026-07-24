@@ -44,6 +44,7 @@ public static class ServiceCollectionExtensions
         ValidateProfiles(profileTypes);
 
         NullMappingPolicy? globalNullPolicy = options.GlobalNullPolicy;
+        bool isStrictMode = options.IsStrictMode;
 
         foreach (Type profileType in profileTypes)
         {
@@ -54,7 +55,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IObjectMapper>(sp =>
         {
             IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
-            return new Mapper(profiles, globalNullPolicy);
+            return new Mapper(profiles, globalNullPolicy, isStrictMode);
         });
 
         return services;
@@ -98,6 +99,8 @@ public static class ServiceCollectionExtensions
 
     private static void ValidateTypeMapCompleteness(Type profileType, MappingTypeMap typeMap, List<string> errors)
     {
+        ValidateTargetConstructor(profileType, typeMap, errors);
+
         PropertyInfo[] targetProperties = typeMap.TargetType
             .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
             .Where(p => p.CanWrite)
@@ -131,6 +134,21 @@ public static class ServiceCollectionExtensions
                     $"has no mapping configured for required target member '{targetProperty.Name}'. " +
                     $"Either configure a custom mapping using ForMember, ignore it using Ignore, or ensure a source property with the same name exists.");
             }
+        }
+    }
+
+    private static void ValidateTargetConstructor(Type profileType, MappingTypeMap typeMap, List<string> errors)
+    {
+        bool hasParameterlessConstructor = typeMap.TargetType
+            .GetConstructors(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Any(ctor => ctor.GetParameters().Length == 0);
+
+        if (!hasParameterlessConstructor)
+        {
+            errors.Add(
+                $"Profile '{profileType.FullName}' type map '{typeMap.SourceType.Name}' -> '{typeMap.TargetType.Name}' " +
+                $"has an ambiguous constructor binding: target type '{typeMap.TargetType.Name}' does not have a public parameterless constructor. " +
+                $"Ensure the target type exposes a public parameterless constructor or configure explicit constructor mapping.");
         }
     }
 }

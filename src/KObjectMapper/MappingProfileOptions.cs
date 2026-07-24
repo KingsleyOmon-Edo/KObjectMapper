@@ -13,6 +13,23 @@ public sealed class MappingProfileOptions
     public NullMappingPolicy? GlobalNullPolicy { get; private set; }
 
     /// <summary>
+    /// Gets a value indicating whether strict mapping mode is enabled.
+    /// When enabled, mapping a type pair with no registered type map throws at runtime.
+    /// </summary>
+    public bool IsStrictMode { get; private set; }
+
+    /// <summary>
+    /// Enables strict mapping mode. In strict mode, calling Map for a type pair that has no
+    /// registered type map throws an <see cref="InvalidOperationException"/> immediately.
+    /// </summary>
+    /// <returns>The options instance for fluent chaining.</returns>
+    public MappingProfileOptions EnableStrictMode()
+    {
+        IsStrictMode = true;
+        return this;
+    }
+
+    /// <summary>
     /// Sets the global null mapping policy for all type maps.
     /// </summary>
     /// <param name="policy">The null mapping policy to apply globally.</param>

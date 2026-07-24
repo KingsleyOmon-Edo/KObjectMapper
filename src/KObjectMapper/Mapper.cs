@@ -12,6 +12,7 @@ public class Mapper : IObjectMapper
     private readonly MappingService _mappingService = MappingService.Create();
     private readonly IEnumerable<MappingProfile> _profiles;
     private readonly NullMappingPolicy? _globalNullPolicy;
+    private readonly bool _isStrictMode;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -41,6 +42,20 @@ public class Mapper : IObjectMapper
         ArgumentNullException.ThrowIfNull(profiles);
         _profiles = profiles;
         _globalNullPolicy = globalNullPolicy;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with profiles, a global null policy, and strict mode.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    /// <param name="globalNullPolicy">The global null mapping policy.</param>
+    /// <param name="isStrictMode">When true, mapping a type pair with no registered type map throws.</param>
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
     }
 
         /// <summary>
@@ -171,6 +186,12 @@ public class Mapper : IObjectMapper
             if (typeMap is not null)
             {
                 ApplyProfileBasedMapping(source!, target!, typeMap);
+            }
+            else if (_isStrictMode)
+            {
+                throw new InvalidOperationException(
+                    $"Strict mode is enabled but no type map is registered for '{typeof(TSource).FullName}' -> '{typeof(TTarget).FullName}'. " +
+                    $"Register a mapping profile that defines this type pair.");
             }
             else
             {
