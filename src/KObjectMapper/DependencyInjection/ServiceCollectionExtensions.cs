@@ -47,7 +47,10 @@ public static class ServiceCollectionExtensions
 
         NullMappingPolicy? globalNullPolicy = options.GlobalNullPolicy;
         bool isStrictMode = options.IsStrictMode;
+        bool useSourceGeneration = options.UseSourceGeneration;
         IReadOnlyList<ITypeConverterBox> globalConverters = options.GetGlobalConverters();
+
+        services.AddSingleton<IGeneratedMapperRegistry, GeneratedMapperRegistry>();
 
         foreach (Type profileType in profileTypes)
         {
@@ -58,7 +61,8 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IObjectMapper>(sp =>
         {
             IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
-            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters);
+            IGeneratedMapperRegistry registry = sp.GetRequiredService<IGeneratedMapperRegistry>();
+            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration);
         });
 
         return services;

@@ -98,6 +98,12 @@ public sealed class MappingTypeMapConfiguration<TSource, TTarget>
         return this;
     }
 
+    public MappingTypeMapConfiguration<TSource, TTarget> UseSourceGeneration()
+    {
+        _typeMap.UseSourceGeneration = true;
+        return this;
+    }
+
     private static string ExtractMemberName<T>(Expression<Func<T, object?>> expression)
     {
         ArgumentNullException.ThrowIfNull(expression);

@@ -1,659 +1,995 @@
 Command finished with exit code 0.
 Command output:
+using KObjectMapper.Abstractions;
 
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect 
-to the input files.
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input 
-files.
-       _GenerateSourceLinkFile:
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input 
-files.
-       CopyFilesToOutputDirectory:
-       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect 
-to the input files.
-       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input 
-files.
-       _GenerateSourceLinkFile:
-         C:\Program Files\dotnet\sdk\10.0.302\Roslyn\bincore\csc.exe /noconfig /unsafe- /checked- 
-/nowarn:IDE0073,NU1608,1701,1702,8002 /fullpaths /nostdlib+ /errorreport:prompt /warn:8 /define:TRACE;DEBUG;NET;NET8_0;
-NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1
-_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCO
-REAPP3_1_OR_GREATER /highentropyva+ /nullable:enable 
-/reference:C:\Users\omone\.nuget\packages\diffengine\11.3.0\lib\net7.0\DiffEngine.dll 
-/reference:C:\Users\omone\.nuget\packages\emptyfiles\4.4.0\lib\net7.0\EmptyFiles.dll /reference:C:\Users\omone\Projects
-\Projects\KObjectMapper\src\KObjectMapper.SourceGenerator\bin\Debug\netstandard2.0\KObjectMapper.SourceGenerator.dll /r
-eference:C:\Users\omone\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.1\ref\netstandard2.1\Microsoft.Bcl.AsyncInter
-faces.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzer.testing\1.1.2\lib\netcoreapp3.1\Mic
-rosoft.CodeAnalysis.Analyzer.Testing.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp\4.8.0\
-lib\net7.0\Microsoft.CodeAnalysis.CSharp.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp.so
-urcegenerators.testing\1.1.2\lib\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.dll /reference:C:
-\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp.sourcegenerators.testing.xunit\1.1.2\lib\netcoreapp3.1\Micro
-soft.CodeAnalysis.CSharp.SourceGenerators.Testing.XUnit.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeana
-lysis.csharp.workspaces\3.8.0\lib\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll 
-/reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.common\4.8.0\lib\net7.0\Microsoft.CodeAnalysis.dll /re
-ference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.sourcegenerators.testing\1.1.2\lib\netcoreapp3.1\Microsof
-t.CodeAnalysis.SourceGenerators.Testing.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.testing.ve
-rifiers.xunit\1.1.2\lib\netcoreapp3.1\Microsoft.CodeAnalysis.Testing.Verifiers.XUnit.dll /reference:C:\Users\omone\.nug
-et\packages\microsoft.codeanalysis.workspaces.common\3.8.0\lib\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.CSharp.dll" /reference:
-C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.Communi
-cationUtilities.dll /reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1
-\Microsoft.TestPlatform.CoreUtilities.dll /reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.
-10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.CrossPlatEngine.dll /reference:C:\Users\omone\.nuget\packages\microsoft.t
-estplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll /reference:C:\Users\omon
-e\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.Utilities.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.VisualBasic.Core.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.VisualBasic.dll" /refer
-ence:C:\Users\omone\.nuget\packages\microsoft.codecoverage\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverag
-e.Shim.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.composition\16.1.8\lib\netcoreapp2.0\Micros
-oft.VisualStudio.Composition.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.composition.netfxattr
-ibutes\16.1.8\lib\netstandard2.0\Microsoft.VisualStudio.Composition.NetFxAttributes.dll /reference:C:\Users\omone\.nuge
-t\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.Common.dll /re
-ference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio
-.TestPlatform.ObjectModel.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.validation\15.0.82\lib\n
-etstandard1.0\Microsoft.VisualStudio.Validation.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.Win32.Primitives.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.Win32.Registry.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\mscorlib.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\netstandard.dll" 
-/reference:C:\Users\omone\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll 
-/reference:C:\Users\omone\.nuget\packages\shouldly\4.2.1\lib\net5.0\Shouldly.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.AppContext.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Buffers.dll" 
-/reference:C:\Users\omone\.nuget\packages\system.codedom\6.0.0\lib\net6.0\System.CodeDom.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Concurrent.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Immutable.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.NonGeneric.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Specialized.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.Annotations.dll" /reference:C:\Use
-rs\omone\.nuget\packages\system.componentmodel.composition\4.5.0\ref\netstandard2.0\System.ComponentModel.Composition.d
-ll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.DataAnnotations.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.EventBasedAsync.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.TypeConverter.dll" /reference:C:\U
-sers\omone\.nuget\packages\system.composition.attributedmodel\1.0.31\lib\netstandard1.0\System.Composition.AttributedMo
-del.dll /reference:C:\Users\omone\.nuget\packages\system.composition.convention\1.0.31\lib\netstandard1.0\System.Compos
-ition.Convention.dll /reference:C:\Users\omone\.nuget\packages\system.composition.hosting\1.0.31\lib\netstandard1.0\Sys
-tem.Composition.Hosting.dll /reference:C:\Users\omone\.nuget\packages\system.composition.runtime\1.0.31\lib\netstandard
-1.0\System.Composition.Runtime.dll /reference:C:\Users\omone\.nuget\packages\system.composition.typedparts\1.0.31\lib\n
-etstandard1.0\System.Composition.TypedParts.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Configuration.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Console.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Core.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.Common.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.DataSetExtensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Contracts.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Debug.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.DiagnosticSource.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.FileVersionInfo.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Process.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.StackTrace.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.TextWriterTraceListener.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Tools.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.TraceSource.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Tracing.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Drawing.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Drawing.Primitives.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Dynamic.Runtime.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Formats.Asn1.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Formats.Tar.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.Calendars.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.Extensions.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.Brotli.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.FileSystem.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.ZipFile.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.DriveInfo.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.Watcher.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.IsolatedStorage.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.MemoryMappedFiles.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Pipes.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Pipes.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.UnmanagedMemoryStream.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Expressions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Parallel.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Queryable.dll" 
-/reference:C:\Users\omone\.nuget\packages\system.management\6.0.1\lib\net6.0\System.Management.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Memory.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Http.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Http.Json.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.HttpListener.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Mail.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.NameResolution.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.NetworkInformation.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Ping.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Primitives.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Quic.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Requests.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Security.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.ServicePoint.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Sockets.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebClient.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebHeaderCollection.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebProxy.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebSockets.Client.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebSockets.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Numerics.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Numerics.Vectors.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ObjectModel.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.DispatchProxy.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.ILGeneration.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.Lightweight.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Metadata.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.TypeExtensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.Reader.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.ResourceManager.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.Writer.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.CompilerServices.Unsafe.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.CompilerServices.VisualC.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Handles.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.JavaScript.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.RuntimeInformation.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Intrinsics.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Loader.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Numerics.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Formatters.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Json.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Xml.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Claims.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Algorithms.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Cng.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Csp.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Encoding.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.OpenSsl.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.X509Certificates.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Principal.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Principal.Windows.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.SecureString.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ServiceModel.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ServiceProcess.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.CodePages.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encodings.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Json.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.RegularExpressions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Channels.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Overlapped.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Dataflow.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Extensions.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Parallel.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Thread.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.ThreadPool.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Timer.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Transactions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Transactions.Local.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ValueTuple.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Web.HttpUtility.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Windows.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.Linq.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.ReaderWriter.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.Serialization.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XDocument.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XmlDocument.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XmlSerializer.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XPath.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XPath.XDocument.dll" 
-/reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\testhost.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\WindowsBase.dll" 
-/reference:C:\Users\omone\.nuget\packages\xunit.abstractions\2.0.3\lib\netstandard2.0\xunit.abstractions.dll 
-/reference:C:\Users\omone\.nuget\packages\xunit.assert\2.9.3\lib\net6.0\xunit.assert.dll 
-/reference:C:\Users\omone\.nuget\packages\xunit.extensibility.core\2.9.3\lib\netstandard1.1\xunit.core.dll /reference:C
-:\Users\omone\.nuget\packages\xunit.extensibility.execution\2.9.3\lib\netstandard1.1\xunit.execution.dotnet.dll 
-/debug+ /debug:portable /filealign:512 /optimize- /out:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.dll 
-/refout:obj\Debug\net8.0\refint\KObjectMapper.SourceGenerator.Tests.dll /target:exe /warnaserror+ /utf8output 
-/deterministic+ /sourcelink:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.sourcelink.json /langversion:latest /e
-mbed:C:\Users\omone\.nuget\packages\microsoft.net.test.sdk\17.10.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.c
-s /embed:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GlobalUsings.g.cs 
-/embed:"obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" 
-/embed:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.AssemblyInfo.cs 
-/analyzerconfig:C:\Users\omone\Projects\Projects\KObjectMapper\.editorconfig 
-/analyzerconfig:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GeneratedMSBuildEditorConfig.editorconfig 
-/analyzerconfig:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\analyzers\build\config\analysislevel_10_default.globalconfig" 
-/analyzer:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.NetAnalyzers.dll" /analyze
-r:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Anal
-yzers.dll /analyzer:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.4\analyzers\dotnet\cs\Microsoft
-.CodeAnalysis.CSharp.Analyzers.dll 
-/analyzer:C:\Users\omone\.nuget\packages\xunit.analyzers\1.18.0\analyzers\dotnet\cs\xunit.analyzers.dll 
-/analyzer:C:\Users\omone\.nuget\packages\xunit.analyzers\1.18.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll" 
-/analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.JavaScr
-ipt.JSImportGenerator.dll" /analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll" 
-GeneratorDiagnosticTests.cs MappingPlanGeneratorTests.cs 
-C:\Users\omone\.nuget\packages\microsoft.net.test.sdk\17.10.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs 
-obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GlobalUsings.g.cs 
-"obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" 
-obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011
-         BuildResponseFile = '/unsafe- /checked- /nowarn:IDE0073,NU1608,1701,1702,8002 /fullpaths /nostdlib+ 
-/errorreport:prompt /warn:8 /define:TRACE;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GRE
-ATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREA
-TER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER /highentropyva+ /nullable:enable 
-/reference:C:\Users\omone\.nuget\packages\diffengine\11.3.0\lib\net7.0\DiffEngine.dll 
-/reference:C:\Users\omone\.nuget\packages\emptyfiles\4.4.0\lib\net7.0\EmptyFiles.dll /reference:C:\Users\omone\Projects
-\Projects\KObjectMapper\src\KObjectMapper.SourceGenerator\bin\Debug\netstandard2.0\KObjectMapper.SourceGenerator.dll /r
-eference:C:\Users\omone\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.1\ref\netstandard2.1\Microsoft.Bcl.AsyncInter
-faces.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzer.testing\1.1.2\lib\netcoreapp3.1\Mic
-rosoft.CodeAnalysis.Analyzer.Testing.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp\4.8.0\
-lib\net7.0\Microsoft.CodeAnalysis.CSharp.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp.so
-urcegenerators.testing\1.1.2\lib\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.dll /reference:C:
-\Users\omone\.nuget\packages\microsoft.codeanalysis.csharp.sourcegenerators.testing.xunit\1.1.2\lib\netcoreapp3.1\Micro
-soft.CodeAnalysis.CSharp.SourceGenerators.Testing.XUnit.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeana
-lysis.csharp.workspaces\3.8.0\lib\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll 
-/reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.common\4.8.0\lib\net7.0\Microsoft.CodeAnalysis.dll /re
-ference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.sourcegenerators.testing\1.1.2\lib\netcoreapp3.1\Microsof
-t.CodeAnalysis.SourceGenerators.Testing.dll /reference:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.testing.ve
-rifiers.xunit\1.1.2\lib\netcoreapp3.1\Microsoft.CodeAnalysis.Testing.Verifiers.XUnit.dll /reference:C:\Users\omone\.nug
-et\packages\microsoft.codeanalysis.workspaces.common\3.8.0\lib\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.CSharp.dll" /reference:
-C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.Communi
-cationUtilities.dll /reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1
-\Microsoft.TestPlatform.CoreUtilities.dll /reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.
-10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.CrossPlatEngine.dll /reference:C:\Users\omone\.nuget\packages\microsoft.t
-estplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.PlatformAbstractions.dll /reference:C:\Users\omon
-e\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.TestPlatform.Utilities.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.VisualBasic.Core.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.VisualBasic.dll" /refer
-ence:C:\Users\omone\.nuget\packages\microsoft.codecoverage\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverag
-e.Shim.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.composition\16.1.8\lib\netcoreapp2.0\Micros
-oft.VisualStudio.Composition.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.composition.netfxattr
-ibutes\16.1.8\lib\netstandard2.0\Microsoft.VisualStudio.Composition.NetFxAttributes.dll /reference:C:\Users\omone\.nuge
-t\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.Common.dll /re
-ference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\Microsoft.VisualStudio
-.TestPlatform.ObjectModel.dll /reference:C:\Users\omone\.nuget\packages\microsoft.visualstudio.validation\15.0.82\lib\n
-etstandard1.0\Microsoft.VisualStudio.Validation.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.Win32.Primitives.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\Microsoft.Win32.Registry.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\mscorlib.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\netstandard.dll" 
-/reference:C:\Users\omone\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll 
-/reference:C:\Users\omone\.nuget\packages\shouldly\4.2.1\lib\net5.0\Shouldly.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.AppContext.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Buffers.dll" 
-/reference:C:\Users\omone\.nuget\packages\system.codedom\6.0.0\lib\net6.0\System.CodeDom.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Concurrent.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Immutable.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.NonGeneric.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Collections.Specialized.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.Annotations.dll" /reference:C:\Use
-rs\omone\.nuget\packages\system.componentmodel.composition\4.5.0\ref\netstandard2.0\System.ComponentModel.Composition.d
-ll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.DataAnnotations.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.EventBasedAsync.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ComponentModel.TypeConverter.dll" /reference:C:\U
-sers\omone\.nuget\packages\system.composition.attributedmodel\1.0.31\lib\netstandard1.0\System.Composition.AttributedMo
-del.dll /reference:C:\Users\omone\.nuget\packages\system.composition.convention\1.0.31\lib\netstandard1.0\System.Compos
-ition.Convention.dll /reference:C:\Users\omone\.nuget\packages\system.composition.hosting\1.0.31\lib\netstandard1.0\Sys
-tem.Composition.Hosting.dll /reference:C:\Users\omone\.nuget\packages\system.composition.runtime\1.0.31\lib\netstandard
-1.0\System.Composition.Runtime.dll /reference:C:\Users\omone\.nuget\packages\system.composition.typedparts\1.0.31\lib\n
-etstandard1.0\System.Composition.TypedParts.dll /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Configuration.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Console.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Core.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.Common.dll" /reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.DataSetExtensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Data.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Contracts.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Debug.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.DiagnosticSource.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.FileVersionInfo.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Process.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.StackTrace.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.TextWriterTraceListener.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Tools.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.TraceSource.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Diagnostics.Tracing.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Drawing.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Drawing.Primitives.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Dynamic.Runtime.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Formats.Asn1.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Formats.Tar.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.Calendars.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Globalization.Extensions.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.Brotli.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.FileSystem.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Compression.ZipFile.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.DriveInfo.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.FileSystem.Watcher.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.IsolatedStorage.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.MemoryMappedFiles.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Pipes.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.Pipes.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.IO.UnmanagedMemoryStream.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Expressions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Parallel.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Linq.Queryable.dll" 
-/reference:C:\Users\omone\.nuget\packages\system.management\6.0.1\lib\net6.0\System.Management.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Memory.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Http.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Http.Json.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.HttpListener.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Mail.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.NameResolution.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.NetworkInformation.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Ping.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Primitives.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Quic.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Requests.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Security.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.ServicePoint.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.Sockets.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebClient.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebHeaderCollection.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebProxy.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebSockets.Client.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Net.WebSockets.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Numerics.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Numerics.Vectors.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ObjectModel.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.DispatchProxy.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.ILGeneration.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Emit.Lightweight.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Metadata.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Reflection.TypeExtensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.Reader.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.ResourceManager.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Resources.Writer.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.CompilerServices.Unsafe.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.CompilerServices.VisualC.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Handles.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.JavaScript.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.InteropServices.RuntimeInformation.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Intrinsics.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Loader.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Numerics.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Formatters.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Json.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Runtime.Serialization.Xml.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.AccessControl.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Claims.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Algorithms.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Cng.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Csp.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Encoding.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.OpenSsl.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.Primitives.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Cryptography.X509Certificates.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Principal.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.Principal.Windows.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Security.SecureString.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ServiceModel.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ServiceProcess.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.CodePages.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encoding.Extensions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Encodings.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.Json.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Text.RegularExpressions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Channels.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Overlapped.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Dataflow.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Extensions.dll" 
-/reference:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Tasks.Parallel.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Thread.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.ThreadPool.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Threading.Timer.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Transactions.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Transactions.Local.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.ValueTuple.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Web.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Web.HttpUtility.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Windows.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.Linq.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.ReaderWriter.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.Serialization.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XDocument.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XmlDocument.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XmlSerializer.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XPath.dll" 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\System.Xml.XPath.XDocument.dll" 
-/reference:C:\Users\omone\.nuget\packages\microsoft.testplatform.testhost\17.10.0\lib\netcoreapp3.1\testhost.dll 
-/reference:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\ref\net8.0\WindowsBase.dll" 
-/reference:C:\Users\omone\.nuget\packages\xunit.abstractions\2.0.3\lib\netstandard2.0\xunit.abstractions.dll 
-/reference:C:\Users\omone\.nuget\packages\xunit.assert\2.9.3\lib\net6.0\xunit.assert.dll 
-/reference:C:\Users\omone\.nuget\packages\xunit.extensibility.core\2.9.3\lib\netstandard1.1\xunit.core.dll /reference:C
-:\Users\omone\.nuget\packages\xunit.extensibility.execution\2.9.3\lib\netstandard1.1\xunit.execution.dotnet.dll 
-/debug+ /debug:portable /filealign:512 /optimize- /out:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.dll 
-/refout:obj\Debug\net8.0\refint\KObjectMapper.SourceGenerator.Tests.dll /target:exe /warnaserror+ /utf8output 
-/deterministic+ /sourcelink:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.sourcelink.json /langversion:latest /e
-mbed:C:\Users\omone\.nuget\packages\microsoft.net.test.sdk\17.10.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.c
-s /embed:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GlobalUsings.g.cs 
-/embed:"obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" 
-/embed:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.AssemblyInfo.cs 
-/analyzerconfig:C:\Users\omone\Projects\Projects\KObjectMapper\.editorconfig 
-/analyzerconfig:obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GeneratedMSBuildEditorConfig.editorconfig 
-/analyzerconfig:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\analyzers\build\config\analysislevel_10_default.globalconfig" 
-/analyzer:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\sdk\10.0.302\Sdks\Microsoft.NET.Sdk\targets\..\analyzers\Microsoft.CodeAnalysis.NetAnalyzers.dll" /analyze
-r:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.4\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Anal
-yzers.dll /analyzer:C:\Users\omone\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.4\analyzers\dotnet\cs\Microsoft
-.CodeAnalysis.CSharp.Analyzers.dll 
-/analyzer:C:\Users\omone\.nuget\packages\xunit.analyzers\1.18.0\analyzers\dotnet\cs\xunit.analyzers.dll 
-/analyzer:C:\Users\omone\.nuget\packages\xunit.analyzers\1.18.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.ComInterfaceGenerator.dll" 
-/analyzer:"C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.JavaScr
-ipt.JSImportGenerator.dll" /analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.LibraryImportGenerator.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/Microsoft.Interop.SourceGeneration.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/System.Text.Json.SourceGeneration.dll" 
-/analyzer:"C:\Program 
-Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.29\analyzers/dotnet/cs/System.Text.RegularExpressions.Generator.dll" 
-GeneratorDiagnosticTests.cs MappingPlanGeneratorTests.cs 
-C:\Users\omone\.nuget\packages\microsoft.net.test.sdk\17.10.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.cs 
-obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.GlobalUsings.g.cs 
-"obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" 
-obj\Debug\net8.0\KObjectMapper.SourceGenerator.Tests.AssemblyInfo.cs /warnaserror+:NU1605,SYSLIB0011'
-       _CopyOutOfDateSourceItemsToOutputDirectory:
-       Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with 
-respect to the input files.
-       GenerateBuildDependencyFile:
-       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input 
-files.
-       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect 
-to the input files.
-       CopyFilesToOutputDirectory:
-  Passed KObjectMapper.SourceGenerator.Tests.GeneratorDiagnosticTests.Generator_ShowsActualOutput_ForSimpleProfile [1 
-s]
-  Standard Output Messages:
- Generator: IncrementalGeneratorWrapper
- Generated sources count: 0
-   Diagnostic: CS8785 Generator 'MappingPlanGenerator' failed to generate source. It will not contribute to the output 
-and compilation errors may occur as a result. Exception was of type 'ArgumentException' with message 'The SourceText 
-with hintName 'SourceToTargetMapper.g.cs' must have an explicit encoding set. (Parameter 'source')'.
-     Passed: 1
+namespace KObjectMapper.Configuration;
+
+/// <summary>
+/// Represents a mapping configuration between a source and target type.
+/// </summary>
+public sealed class MappingTypeMap
+{
+    private readonly Dictionary<string, string> _customMemberMappings = new();
+    private readonly HashSet<string> _ignoredMembers = new();
+    private readonly Dictionary<string, object?> _nullSubstitutes = new();
+    private readonly List<ITypeConverterBox> _converters = [];
+
+    public MappingTypeMap(Type sourceType, Type targetType)
+    {
+        ArgumentNullException.ThrowIfNull(sourceType);
+        ArgumentNullException.ThrowIfNull(targetType);
+
+        SourceType = sourceType;
+        TargetType = targetType;
+    }
+
+    public Type SourceType { get; }
+
+    public Type TargetType { get; }
+
+    /// <summary>
+    /// Gets or sets the null mapping policy for this type map.
+    /// </summary>
+    public NullMappingPolicy? NullPolicy { get; internal set; }
+
+    /// <summary>
+    /// Gets the per-member null substitute values keyed by target member name.
+    /// </summary>
+    public IReadOnlyDictionary<string, object?> NullSubstitutes => _nullSubstitutes;
+
+    /// <summary>
+    /// Gets the custom member mappings where the key is the source member name
+    /// and the value is the target member name.
+    /// </summary>
+    public IReadOnlyDictionary<string, string> CustomMemberMappings => _customMemberMappings;
+
+    /// <summary>
+    /// Gets the set of target member names that should be ignored during mapping.
+    /// </summary>
+    public IReadOnlySet<string> IgnoredMembers => _ignoredMembers;
+
+    internal void AddCustomMemberMapping(string sourceMemberName, string targetMemberName)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourceMemberName);
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
+
+        _customMemberMappings[sourceMemberName] = targetMemberName;
+    }
+
+    internal void AddIgnoredMember(string targetMemberName)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
+
+        _ignoredMembers.Add(targetMemberName);
+    }
+
+    internal void AddNullSubstitute(string targetMemberName, object? substituteValue)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(targetMemberName);
+
+        _nullSubstitutes[targetMemberName] = substituteValue;
+    }
+
+    /// <summary>
+    /// Gets the per-map type converters registered for this type map.
+    /// </summary>
+    internal IReadOnlyList<ITypeConverterBox> Converters => _converters.AsReadOnly();
+
+    internal void AddConverter(ITypeConverterBox converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _converters.Add(converter);
+    }
+}
+
+---
+using System.Linq.Expressions;
+using KObjectMapper.Abstractions;
+
+namespace KObjectMapper.Configuration;
+
+/// <summary>
+/// Provides fluent configuration for mapping between a source and target type.
+/// </summary>
+public sealed class MappingTypeMapConfiguration<TSource, TTarget>
+{
+    private readonly MappingTypeMap _typeMap;
+
+    internal MappingTypeMapConfiguration(MappingTypeMap typeMap)
+    {
+        ArgumentNullException.ThrowIfNull(typeMap);
+        _typeMap = typeMap;
+    }
+
+    internal MappingTypeMap TypeMap => _typeMap;
+
+    /// <summary>
+    /// Configures a custom member mapping from a source property to a differently named target property.
+    /// </summary>
+    /// <param name="sourceMember">Expression selecting the source property.</param>
+    /// <param name="targetMember">Expression selecting the target property.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> ForMember(
+        Expression<Func<TSource, object?>> sourceMember,
+        Expression<Func<TTarget, object?>> targetMember)
+    {
+        ArgumentNullException.ThrowIfNull(sourceMember);
+        ArgumentNullException.ThrowIfNull(targetMember);
+
+        string sourceMemberName = ExtractMemberName(sourceMember);
+        string targetMemberName = ExtractMemberName(targetMember);
+
+        _typeMap.AddCustomMemberMapping(sourceMemberName, targetMemberName);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Configures a target member to be ignored during mapping.
+    /// </summary>
+    /// <param name="targetMember">Expression selecting the target property to ignore.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> Ignore(
+        Expression<Func<TTarget, object?>> targetMember)
+    {
+        ArgumentNullException.ThrowIfNull(targetMember);
+
+        string targetMemberName = ExtractMemberName(targetMember);
+        _typeMap.AddIgnoredMember(targetMemberName);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the null mapping policy for this type map.
+    /// </summary>
+    /// <param name="policy">The null mapping policy to apply.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> WithNullPolicy(NullMappingPolicy policy)
+    {
+        _typeMap.NullPolicy = policy;
+        return this;
+    }
+
+    /// <summary>
+    /// Configures a substitute value to use when the source value for a target member is null.
+    /// </summary>
+    /// <param name="targetMember">Expression selecting the target property.</param>
+    /// <param name="substituteValue">The value to use when the source is null.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> SubstituteNullWith(
+        Expression<Func<TTarget, object?>> targetMember,
+        object? substituteValue)
+    {
+        ArgumentNullException.ThrowIfNull(targetMember);
+
+        string targetMemberName = ExtractMemberName(targetMember);
+        _typeMap.AddNullSubstitute(targetMemberName, substituteValue);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Registers a type converter for this type map, applied when converting property values.
+    /// </summary>
+    /// <typeparam name="TFrom">The source value type.</typeparam>
+    /// <typeparam name="TTo">The target value type.</typeparam>
+    /// <param name="converter">The converter instance.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> AddConverter<TFrom, TTo>(ITypeConverter<TFrom, TTo> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _typeMap.AddConverter(new TypeConverterBox<TFrom, TTo>(converter));
+        return this;
+    }
+
+    private static string ExtractMemberName<T>(Expression<Func<T, object?>> expression)
+    {
+        ArgumentNullException.ThrowIfNull(expression);
+
+        Expression body = expression.Body;
+
+        if (body is UnaryExpression unaryExpression && unaryExpression.NodeType == ExpressionType.Convert)
+        {
+            body = unaryExpression.Operand;
+        }
+
+        if (body is MemberExpression memberExpression)
+        {
+            return memberExpression.Member.Name;
+        }
+
+        throw new ArgumentException(
+            $"Expression '{expression}' must be a member access expression.",
+            nameof(expression));
+    }
+}
+---
+using System.Reflection;
+using KObjectMapper.Abstractions;
+
+namespace KObjectMapper.Configuration;
+
+public sealed class MappingProfileOptions
+{
+    private readonly List<Type> _profileTypes = [];
+    private readonly List<Assembly> _assemblies = [];
+    private readonly List<ITypeConverterBox> _globalConverters = [];
+
+    /// <summary>
+    /// Gets the global null mapping policy applied to all type maps that do not define their own policy.
+    /// </summary>
+    public NullMappingPolicy? GlobalNullPolicy { get; private set; }
+
+    /// <summary>
+    /// Gets a value indicating whether strict mapping mode is enabled.
+    /// When enabled, mapping a type pair with no registered type map throws at runtime.
+    /// </summary>
+    public bool IsStrictMode { get; private set; }
+
+    /// <summary>
+    /// Enables strict mapping mode. In strict mode, calling Map for a type pair that has no
+    /// registered type map throws an <see cref="InvalidOperationException"/> immediately.
+    /// </summary>
+    /// <returns>The options instance for fluent chaining.</returns>
+    public MappingProfileOptions EnableStrictMode()
+    {
+        IsStrictMode = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the global null mapping policy for all type maps.
+    /// </summary>
+    /// <param name="policy">The null mapping policy to apply globally.</param>
+    /// <returns>The options instance for fluent chaining.</returns>
+    public MappingProfileOptions SetGlobalNullPolicy(NullMappingPolicy policy)
+    {
+        GlobalNullPolicy = policy;
+        return this;
+    }
+
+    public MappingProfileOptions AddProfile<TProfile>()
+        where TProfile : MappingProfile
+    {
+        _profileTypes.Add(typeof(TProfile));
+
+        return this;
+    }
+
+    public MappingProfileOptions ScanAssembly(Assembly assembly)
+    {
+        ArgumentNullException.ThrowIfNull(assembly);
+
+        _assemblies.Add(assembly);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Registers a global type converter available to all type maps.
+    /// </summary>
+    public MappingProfileOptions AddConverter<TSource, TTarget>(ITypeConverter<TSource, TTarget> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _globalConverters.Add(new TypeConverterBox<TSource, TTarget>(converter));
+        return this;
+    }
+
+    internal IReadOnlyList<ITypeConverterBox> GetGlobalConverters() => _globalConverters.AsReadOnly();
+
+    internal IReadOnlyCollection<Type> GetProfileTypes()
+    {
+        HashSet<Type> profileTypes = new(_profileTypes);
+
+        foreach (Assembly assembly in _assemblies)
+        {
+            Type[] assemblyTypes = assembly.GetTypes();
+
+            foreach (Type assemblyType in assemblyTypes)
+            {
+                if (!typeof(MappingProfile).IsAssignableFrom(assemblyType) ||
+                    assemblyType.IsAbstract ||
+                    !assemblyType.IsClass ||
+                    (!assemblyType.IsPublic && !assemblyType.IsNestedPublic))
+                {
+                    continue;
+                }
+
+                profileTypes.Add(assemblyType);
+            }
+        }
+
+        return profileTypes.ToArray();
+    }
+}
+---
+using System.Reflection;
+using KObjectMapper;
+using KObjectMapper.Abstractions;
+using KObjectMapper.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace KObjectMapper.DependencyInjection;
+
+/// <summary>
+/// Extension methods for registering KObjectMapper services in dependency injection containers.
+/// </summary>
+public static class ServiceCollectionExtensions
+{
+    /// <summary>
+    /// Registers the default object mapper services.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
+    /// <returns>The same service collection instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="services"/> is null.</exception>
+    public static IServiceCollection AddKObjectMapper(this IServiceCollection services)
+    {
+        ArgumentNullException.ThrowIfNull(services);
+
+        services.AddTransient<IObjectMapper, Mapper>();
+
+        return services;
+    }
+
+    /// <summary>
+    /// Registers the default object mapper services and validates the configured mapping profiles.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
+    /// <param name="configure">Configures the mapping profile options.</param>
+    /// <returns>The same service collection instance.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="services"/> or <paramref name="configure"/> is null.</exception>
+    /// <exception cref="MappingProfileValidationException">Thrown when a profile is missing type maps or declares duplicate maps.</exception>
+    public static IServiceCollection AddKObjectMapper(this IServiceCollection services, Action<MappingProfileOptions> configure)
+    {
+        ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(configure);
+
+        MappingProfileOptions options = new();
+        configure(options);
+
+        IReadOnlyCollection<Type> profileTypes = options.GetProfileTypes();
+        ValidateProfiles(profileTypes);
+
+        NullMappingPolicy? globalNullPolicy = options.GlobalNullPolicy;
+        bool isStrictMode = options.IsStrictMode;
+        IReadOnlyList<ITypeConverterBox> globalConverters = options.GetGlobalConverters();
+
+        foreach (Type profileType in profileTypes)
+        {
+            services.AddTransient(typeof(MappingProfile), _ =>
+                (MappingProfile)Activator.CreateInstance(profileType, nonPublic: true)!);
+        }
+
+        services.AddTransient<IObjectMapper>(sp =>
+        {
+            IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
+            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters);
+        });
+
+        return services;
+    }
+
+    private static void ValidateProfiles(IReadOnlyCollection<Type> profileTypes)
+    {
+        List<string> errors = [];
+
+        foreach (Type profileType in profileTypes)
+        {
+            MappingProfile profile = (MappingProfile)Activator.CreateInstance(profileType, nonPublic: true)!;
+
+            if (profile.TypeMaps.Count == 0)
+            {
+                errors.Add($"Profile '{profileType.FullName}' does not define any type maps.");
+                continue;
+            }
+
+            IEnumerable<IGrouping<(Type SourceType, Type TargetType), MappingTypeMap>> duplicateMaps = profile.TypeMaps
+                .GroupBy(typeMap => (typeMap.SourceType, typeMap.TargetType))
+                .Where(group => group.Count() > 1);
+
+            foreach (IGrouping<(Type SourceType, Type TargetType), MappingTypeMap> duplicateMap in duplicateMaps)
+            {
+                errors.Add(
+                    $"Profile '{profileType.FullName}' declares duplicate type map '{duplicateMap.Key.SourceType.FullName}' -> '{duplicateMap.Key.TargetType.FullName}'.");
+            }
+
+            foreach (MappingTypeMap typeMap in profile.TypeMaps)
+            {
+                ValidateTypeMapCompleteness(profileType, typeMap, errors);
+            }
+        }
+
+        if (errors.Count != 0)
+        {
+            throw new MappingProfileValidationException(errors);
+        }
+    }
+
+    private static void ValidateTypeMapCompleteness(Type profileType, MappingTypeMap typeMap, List<string> errors)
+    {
+        ValidateTargetConstructor(profileType, typeMap, errors);
+
+        PropertyInfo[] targetProperties = typeMap.TargetType
+            .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Where(p => p.CanWrite)
+            .ToArray();
+
+        PropertyInfo[] sourceProperties = typeMap.SourceType
+            .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Where(p => p.CanRead)
+            .ToArray();
+
+        foreach (PropertyInfo targetProperty in targetProperties)
+        {
+            if (typeMap.IgnoredMembers.Contains(targetProperty.Name))
+            {
+                continue;
+            }
+
+            bool hasCustomMapping = typeMap.CustomMemberMappings.Values.Contains(targetProperty.Name);
+
+            if (hasCustomMapping)
+            {
+                continue;
+            }
+
+            bool hasConventionMapping = sourceProperties.Any(sp => sp.Name == targetProperty.Name);
+
+            if (!hasConventionMapping)
+            {
+                errors.Add(
+                    $"Profile '{profileType.FullName}' type map '{typeMap.SourceType.Name}' -> '{typeMap.TargetType.Name}' " +
+                    $"has no mapping configured for required target member '{targetProperty.Name}'. " +
+                    $"Either configure a custom mapping using ForMember, ignore it using Ignore, or ensure a source property with the same name exists.");
+            }
+        }
+    }
+
+    private static void ValidateTargetConstructor(Type profileType, MappingTypeMap typeMap, List<string> errors)
+    {
+        bool hasParameterlessConstructor = typeMap.TargetType
+            .GetConstructors(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Any(ctor => ctor.GetParameters().Length == 0);
+
+        if (!hasParameterlessConstructor)
+        {
+            errors.Add(
+                $"Profile '{profileType.FullName}' type map '{typeMap.SourceType.Name}' -> '{typeMap.TargetType.Name}' " +
+                $"has an ambiguous constructor binding: target type '{typeMap.TargetType.Name}' does not have a public parameterless constructor. " +
+                $"Ensure the target type exposes a public parameterless constructor or configure explicit constructor mapping.");
+        }
+    }
+}
+---
+using System.Globalization;
+using System.Reflection;
+using KObjectMapper.Abstractions;
+using KObjectMapper.Configuration;
+using KObjectMapper.Internal;
+
+namespace KObjectMapper;
+
+/// <summary>
+/// The Mapper class that holds the core mapping algorithms.
+/// </summary>
+public class Mapper : IObjectMapper
+{
+    private readonly MappingService _mappingService = MappingService.Create();
+    private readonly IEnumerable<MappingProfile> _profiles;
+    private readonly NullMappingPolicy? _globalNullPolicy;
+    private readonly bool _isStrictMode;
+    private readonly IReadOnlyList<ITypeConverterBox> _globalConverters = [];
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class.
+    /// </summary>
+    public Mapper()
+    {
+        _profiles = [];
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with the provided profiles.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    public Mapper(IEnumerable<MappingProfile> profiles)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with profiles and a global null policy.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    /// <param name="globalNullPolicy">The global null mapping policy.</param>
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with profiles, a global null policy, and strict mode.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    /// <param name="globalNullPolicy">The global null mapping policy.</param>
+    /// <param name="isStrictMode">When true, mapping a type pair with no registered type map throws.</param>
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
+    }
+
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode, IReadOnlyList<ITypeConverterBox> globalConverters)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        ArgumentNullException.ThrowIfNull(globalConverters);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
+        _globalConverters = globalConverters;
+    }
+
+        /// <summary>
+        /// Reads identical public, mutable properties from a source object to the target object
+        /// </summary>
+        /// <param name="source">The object from which identical properties will be read</param>
+        /// <param name="target">The object to which identical properties will be written</param>
+        public void MapTo(object source, object target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            var safeSource = source!;
+            var safeTarget = target!;
+
+            Map(safeSource, safeTarget);
+        }
+
+        /// <summary>
+        /// This generic overload writes compatible public writable properties from the source object to the target object
+        /// </summary>
+        /// <param name="source">The object from which identical properties are to be read</param>
+        /// <param name="target">The object to which identical properties are to be written</param>
+        /// <typeparam name="TSource">The runtime type of the source object</typeparam>
+        /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
+        public void MapTo<TSource, TTarget>(TSource source, TTarget target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            object safeSource = source!;
+            object safeTarget = target!;
+
+            if (safeSource.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeSource)} has an incompatible type with {nameof(TSource)}");
+            }
+
+            if (safeTarget.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeTarget)} has an incompatible type with {nameof(TTarget)}");
+            }
+
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
+        }
+
+        /// <summary>
+        /// Maps or read property data from a specified source object to a specified target object.
+        /// </summary>
+        /// <param name="source">The object from which property values are to be read</param>
+        /// <param name="target">The target object to which property values are to be written</param>
+        public void MapFrom(object source, object target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            var safeSource = source!;
+            var safeTarget = target!;
+
+            Map(safeTarget, safeSource);
+        }
+
+        /// <summary>
+        /// Reads identical, public, mutable properties from a source object to a target object
+        /// </summary>
+        /// <param name="source">The object from which property values are read</param>
+        /// <param name="target">The object to which property values are written</param>
+        /// <typeparam name="TSource">The runtime type of the source object</typeparam>
+        /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
+        public void MapFrom<TSource, TTarget>(TSource source, TTarget target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            object safeSource = source!;
+            object safeTarget = target!;
+
+            if (safeSource.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeSource)} has an incompatible type with {nameof(TSource)}");
+            }
+
+            if (safeTarget.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(safeTarget)} has an incompatible type with {nameof(TTarget)}");
+            }
+
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
+        }
+
+        /// <summary>
+        /// Writes identical, public, mutable properties from a source object to a target object
+        /// </summary>
+        /// <param name="source">The object from which property values are read</param>
+        /// <param name="target">The object to which property values are written</param>
+        public void Map(object source, object target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            _mappingService.ApplyDiffs(source!, target!);
+        }
+
+        /// <summary>
+        /// A generic overload that reads identical properties from a source object and writes them to a target object
+        /// </summary>
+        /// <param name="source">The object from which property values are read</param>
+        /// <param name="target">The object to which property values are written</param>
+        /// <typeparam name="TSource">The runtime type of the source object</typeparam>
+        /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
+        public void Map<TSource, TTarget>(TSource source, TTarget target)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(target);
+
+            if (source is not null && source.GetType() != typeof(TSource))
+            {
+                throw new ArgumentException($"Parameter {nameof(source)} has an incompatible type with {nameof(TSource)}");
+            }
+
+            if (target is not null && target.GetType() != typeof(TTarget))
+            {
+                throw new ArgumentException($"Parameter {nameof(target)} has an incompatible type with {nameof(TTarget)}");
+            }
+
+            MappingTypeMap? typeMap = FindTypeMap(typeof(TSource), typeof(TTarget));
+
+            if (typeMap is not null)
+            {
+                ApplyProfileBasedMapping(source!, target!, typeMap);
+            }
+            else if (_isStrictMode)
+            {
+                throw new InvalidOperationException(
+                    $"Strict mode is enabled but no type map is registered for '{typeof(TSource).FullName}' -> '{typeof(TTarget).FullName}'. " +
+                    $"Register a mapping profile that defines this type pair.");
+            }
+            else
+            {
+                _mappingService.ApplyDiffs(source!, target!);
+            }
+        }
+
+    private object? ApplyConverter(object? value, Type targetType, MappingTypeMap typeMap)
+    {
+        if (value is null) return null;
+
+        Type sourceType = value.GetType();
+
+        ITypeConverterBox? perMap = typeMap.Converters
+            .FirstOrDefault(c => c.SourceType.IsAssignableFrom(sourceType) && c.TargetType == targetType);
+
+        if (perMap is not null) return perMap.ConvertObject(value);
+
+        ITypeConverterBox? global = _globalConverters
+            .FirstOrDefault(c => c.SourceType.IsAssignableFrom(sourceType) && c.TargetType == targetType);
+
+        if (global is not null) return global.ConvertObject(value);
+
+        return value;
+    }
+
+        private MappingTypeMap? FindTypeMap(Type sourceType, Type targetType)
+        {
+            return _profiles
+                .SelectMany(profile => profile.TypeMaps)
+                .FirstOrDefault(typeMap =>
+                    typeMap.SourceType == sourceType &&
+                    typeMap.TargetType == targetType);
+        }
+
+        private void ApplyProfileBasedMapping<TSource, TTarget>(TSource source, TTarget target, MappingTypeMap typeMap)
+        {
+            Type sourceType = typeof(TSource);
+            Type targetType = typeof(TTarget);
+
+            PropertyInfo[] sourceProperties = sourceType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] targetProperties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            NullMappingPolicy effectiveNullPolicy = typeMap.NullPolicy ?? _globalNullPolicy ?? NullMappingPolicy.Propagate;
+
+            foreach (PropertyInfo targetProperty in targetProperties)
+            {
+                if (!targetProperty.CanWrite)
+                {
+                    continue;
+                }
+
+                if (typeMap.IgnoredMembers.Contains(targetProperty.Name))
+                {
+                    continue;
+                }
+
+                PropertyInfo? sourceProperty = null;
+
+                string? customSourceMember = typeMap.CustomMemberMappings
+                    .Where(kvp => kvp.Value == targetProperty.Name)
+                    .Select(kvp => kvp.Key)
+                    .FirstOrDefault();
+
+                if (customSourceMember is not null)
+                {
+                    sourceProperty = sourceProperties.FirstOrDefault(p => p.Name == customSourceMember);
+                }
+                else
+                {
+                    bool isTargetOfCustomMapping = typeMap.CustomMemberMappings.Values.Contains(targetProperty.Name);
+
+                    if (!isTargetOfCustomMapping)
+                    {
+                        sourceProperty = sourceProperties.FirstOrDefault(p => p.Name == targetProperty.Name);
+                    }
+                }
+
+                if (sourceProperty is not null && sourceProperty.CanRead)
+                {
+                    try
+                    {
+                        object? sourceValue = sourceProperty.GetValue(source);
+
+                        if (sourceValue is null)
+                        {
+                            if (typeMap.NullSubstitutes.TryGetValue(targetProperty.Name, out object? substitute))
+                            {
+                                targetProperty.SetValue(target, substitute);
+                                continue;
+                            }
+
+                            if (effectiveNullPolicy == NullMappingPolicy.Ignore)
+                            {
+                                continue;
+                            }
+                        }
+
+                        object? convertedValue = ApplyConverter(sourceValue, targetProperty.PropertyType, typeMap);
+                        targetProperty.SetValue(target, convertedValue);
+                    }
+                    catch (ArgumentException)
+                    {
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The generic overload of Map, that reads property values from a source object and writes them to a target object
+        /// </summary>
+        /// <param name="source">The object whose property values are read</param>
+        /// <param name="target">The object to which property values are written</param>
+        /// <typeparam name="TSource">The runtime type of the source object</typeparam>
+        /// <typeparam name="TTarget">The runtime type of the target object</typeparam>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)
+            where TTarget : new()
+            where TSource : new()
+        {
+            source = source ?? throw new ArgumentNullException(nameof(source));
+            target = target ?? throw new ArgumentNullException(nameof(target));
+
+            List<TSource> sourceItems = source.ToList();
+
+            if (target is IList<TTarget> targetList && !targetList.IsReadOnly)
+            {
+                int index = 0;
+
+                foreach (TSource sourceElement in sourceItems)
+                {
+                    TTarget targetElement;
+
+                    if (index < targetList.Count && targetList[index] is not null)
+                    {
+                        targetElement = targetList[index]!;
+                    }
+                    else
+                    {
+                        targetElement = new TTarget();
+
+                        if (index < targetList.Count)
+                        {
+                            targetList[index] = targetElement;
+                        }
+                        else
+                        {
+                            targetList.Add(targetElement);
+                        }
+                    }
+
+                    _mappingService.ApplyDiffs(sourceElement!, targetElement);
+                    index++;
+                }
+
+                while (targetList.Count > sourceItems.Count)
+                {
+                    targetList.RemoveAt(targetList.Count - 1);
+                }
+
+                return targetList;
+            }
+
+            List<TTarget> resultCollection = new();
+
+            foreach (TSource sourceElement in sourceItems)
+            {
+                TTarget targetElem = new();
+                _mappingService.ApplyDiffs(sourceElement!, targetElem);
+
+                resultCollection.Add(targetElem);
+            }
+
+            return resultCollection;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Mapper" /> instance.
+        /// </summary>
+        public static Mapper Create() => new();
+
+        /// <summary>
+        /// Maps a source object into a newly created destination object.
+        /// </summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <returns>The mapped destination object.</returns>
+        public TTarget Map<TSource, TTarget>(TSource source)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+
+            TTarget target = CreateTargetInstance<TSource, TTarget>(source);
+            object safeSource = source;
+            object safeTarget = target!;
+            _mappingService.ApplyDiffs(safeSource, safeTarget);
+            return target;
+        }
+
+        /// <summary>
+        /// Maps a sequence of source objects into a newly created destination sequence.
+        /// </summary>
+        /// <typeparam name="TSource">The source element type.</typeparam>
+        /// <typeparam name="TTarget">The destination element type.</typeparam>
+        /// <param name="sources">The source collection.</param>
+        /// <returns>The mapped destination collection.</returns>
+        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> sources)
+        {
+            ArgumentNullException.ThrowIfNull(sources);
+
+            List<TTarget> targets = new();
+            foreach (TSource source in sources)
+            {
+                ArgumentNullException.ThrowIfNull(source);
+
+                TTarget newTargetInstance = Map<TSource, TTarget>(source);
+                targets.Add(newTargetInstance);
+            }
+
+            return targets;
+        }
+
+        private static TTarget CreateTargetInstance<TSource, TTarget>(TSource source)
+        {
+            Type targetType = typeof(TTarget);
+            ConstructorInfo? parameterlessConstructor = targetType.GetConstructor(Type.EmptyTypes);
+
+            if (parameterlessConstructor is not null)
+            {
+                return (TTarget)parameterlessConstructor.Invoke(null);
+            }
+
+            object instance = CreateTargetFromConstructor(source!, targetType);
+            return (TTarget)instance;
+        }
+
+        private static object CreateTargetFromConstructor<TSource>(TSource source, Type targetType)
+        {
+            ConstructorInfo[] constructors = targetType.GetConstructors()
+                .OrderByDescending(constructor => constructor.GetParameters().Length)
+                .ToArray();
+
+            foreach (ConstructorInfo constructor in constructors)
+            {
+                ParameterInfo[] parameters = constructor.GetParameters();
+                if (parameters.Length == 0)
+                {
+                    continue;
+                }
+
+                if (TryBuildConstructorArguments(source, parameters, out object?[] arguments))
+                {
+                    return constructor.Invoke(arguments);
+                }
+            }
+
+            throw new InvalidOperationException(
+                $"Could not create an instance of '{targetType.Name}'. Ensure it has either a public parameterless constructor or a public constructor whose parameter names and types are mappable from the source object.");
+        }
+
+        private static bool TryBuildConstructorArguments<TSource>(
+            TSource source,
+            IReadOnlyList<ParameterInfo> parameters,
+            out object?[] arguments)
+        {
+            Dictionary<string, PropertyInfo> sourceProperties = source!.GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .ToDictionary(property => property.Name, StringComparer.OrdinalIgnoreCase);
+
+            arguments = new object?[parameters.Count];
+
+            for (int index = 0; index < parameters.Count; index++)
+            {
+                ParameterInfo parameter = parameters[index];
+                if (parameter.Name is null || !sourceProperties.TryGetValue(parameter.Name, out PropertyInfo? sourceProperty))
+                {
+                    return false;
+                }
+
+                object? sourceValue = sourceProperty.GetValue(source);
+                if (!TryConvertValue(sourceValue, parameter.ParameterType, out object? convertedValue))
+                {
+                    return false;
+                }
+
+                arguments[index] = convertedValue;
+            }
+
+            return true;
+        }
+
+        private static bool TryConvertValue(object? sourceValue, Type targetType, out object? convertedValue)
+        {
+            if (sourceValue is null)
+            {
+                if (!targetType.IsValueType || Nullable.GetUnderlyingType(targetType) is not null)
+                {
+                    convertedValue = null;
+                    return true;
+                }
+
+                convertedValue = null;
+                return false;
+            }
+
+            if (targetType.IsInstanceOfType(sourceValue))
+            {
+                convertedValue = sourceValue;
+                return true;
+            }
+
+            try
+            {
+                convertedValue = Convert.ChangeType(sourceValue, targetType, CultureInfo.InvariantCulture);
+                return true;
+            }
+            catch
+            {
+                convertedValue = null;
+                return false;
+            }
+        }
+    }

@@ -56,14 +56,14 @@
 
 ### Epic: Compile-Time Mapping and Source Generators
 
-- [x] **US-07: Source-generated mapping plans for configured type pairs**
+- [ ] **US-07: Source-generated mapping plans for configured type pairs**
   - As a developer, I want mapping code generated at compile-time so that runtime reflection cost is reduced on hot paths.
   - **Acceptance criteria:**
     - Incremental source generator produces mapping implementations for registered source/target pairs.
     - Generated mappers compile without requiring consumer-written partial methods.
     - Build diagnostics identify unsupported member patterns with clear error or warning messages.
 
-- [ ] **US-08: Runtime fallback and feature flags for generator adoption**
+- [x] **US-08: Runtime fallback and feature flags for generator adoption**
   - As a maintainer, I want source generation to be opt-in with safe fallback so that existing consumers can upgrade incrementally.
   - **Acceptance criteria:**
     - Configuration flag allows enabling/disabling generated mapping per profile or globally.
