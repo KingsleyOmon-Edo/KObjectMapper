@@ -13,8 +13,12 @@ public abstract class MappingProfile
 
     protected abstract void Configure();
 
-    protected void CreateMap<TSource, TTarget>()
+    protected MappingTypeMapConfiguration<TSource, TTarget> CreateMap<TSource, TTarget>()
     {
-        _typeMaps.Add(new MappingTypeMap(typeof(TSource), typeof(TTarget)));
+        MappingTypeMap typeMap = new(typeof(TSource), typeof(TTarget));
+        _typeMaps.Add(typeMap);
+
+        return new MappingTypeMapConfiguration<TSource, TTarget>(typeMap);
     }
 }
+

@@ -1,3 +1,4 @@
+using System.Reflection;
 using KObjectMapper.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -76,11 +77,54 @@ public static class ServiceCollectionExtensions
                 errors.Add(
                     $"Profile '{profileType.FullName}' declares duplicate type map '{duplicateMap.Key.SourceType.FullName}' -> '{duplicateMap.Key.TargetType.FullName}'.");
             }
+
+            foreach (MappingTypeMap typeMap in profile.TypeMaps)
+            {
+                ValidateTypeMapCompleteness(profileType, typeMap, errors);
+            }
         }
 
         if (errors.Count != 0)
         {
             throw new MappingProfileValidationException(errors);
+        }
+    }
+
+    private static void ValidateTypeMapCompleteness(Type profileType, MappingTypeMap typeMap, List<string> errors)
+    {
+        PropertyInfo[] targetProperties = typeMap.TargetType
+            .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Where(p => p.CanWrite)
+            .ToArray();
+
+        PropertyInfo[] sourceProperties = typeMap.SourceType
+            .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
+            .Where(p => p.CanRead)
+            .ToArray();
+
+        foreach (PropertyInfo targetProperty in targetProperties)
+        {
+            if (typeMap.IgnoredMembers.Contains(targetProperty.Name))
+            {
+                continue;
+            }
+
+            bool hasCustomMapping = typeMap.CustomMemberMappings.Values.Contains(targetProperty.Name);
+
+            if (hasCustomMapping)
+            {
+                continue;
+            }
+
+            bool hasConventionMapping = sourceProperties.Any(sp => sp.Name == targetProperty.Name);
+
+            if (!hasConventionMapping)
+            {
+                errors.Add(
+                    $"Profile '{profileType.FullName}' type map '{typeMap.SourceType.Name}' -> '{typeMap.TargetType.Name}' " +
+                    $"has no mapping configured for required target member '{targetProperty.Name}'. " +
+                    $"Either configure a custom mapping using ForMember, ignore it using Ignore, or ensure a source property with the same name exists.");
+            }
         }
     }
 }

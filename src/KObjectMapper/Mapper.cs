@@ -8,15 +8,27 @@ namespace KObjectMapper;
 /// The Mapper class that holds the core mapping algorithms.
 /// </summary>
 public class Mapper : IObjectMapper
-    {
-        private readonly MappingService _mappingService = MappingService.Create();
+{
+    private readonly MappingService _mappingService = MappingService.Create();
+    private readonly IEnumerable<MappingProfile> _profiles;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Mapper" /> class.
-        /// </summary>
-        public Mapper()
-        {
-        }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class.
+    /// </summary>
+    public Mapper()
+    {
+        _profiles = [];
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Mapper" /> class with the provided profiles.
+    /// </summary>
+    /// <param name="profiles">The mapping profiles to use.</param>
+    public Mapper(IEnumerable<MappingProfile> profiles)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles;
+    }
 
         /// <summary>
         /// Reads identical public, mutable properties from a source object to the target object
@@ -141,7 +153,80 @@ public class Mapper : IObjectMapper
                 throw new ArgumentException($"Parameter {nameof(target)} has an incompatible type with {nameof(TTarget)}");
             }
 
-            _mappingService.ApplyDiffs(source!, target!);
+            MappingTypeMap? typeMap = FindTypeMap(typeof(TSource), typeof(TTarget));
+
+            if (typeMap is not null)
+            {
+                ApplyProfileBasedMapping(source!, target!, typeMap);
+            }
+            else
+            {
+                _mappingService.ApplyDiffs(source!, target!);
+            }
+        }
+
+        private MappingTypeMap? FindTypeMap(Type sourceType, Type targetType)
+        {
+            return _profiles
+                .SelectMany(profile => profile.TypeMaps)
+                .FirstOrDefault(typeMap =>
+                    typeMap.SourceType == sourceType &&
+                    typeMap.TargetType == targetType);
+        }
+
+        private static void ApplyProfileBasedMapping<TSource, TTarget>(TSource source, TTarget target, MappingTypeMap typeMap)
+        {
+            Type sourceType = typeof(TSource);
+            Type targetType = typeof(TTarget);
+
+            PropertyInfo[] sourceProperties = sourceType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] targetProperties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo targetProperty in targetProperties)
+            {
+                if (!targetProperty.CanWrite)
+                {
+                    continue;
+                }
+
+                if (typeMap.IgnoredMembers.Contains(targetProperty.Name))
+                {
+                    continue;
+                }
+
+                PropertyInfo? sourceProperty = null;
+
+                string? customSourceMember = typeMap.CustomMemberMappings
+                    .Where(kvp => kvp.Value == targetProperty.Name)
+                    .Select(kvp => kvp.Key)
+                    .FirstOrDefault();
+
+                if (customSourceMember is not null)
+                {
+                    sourceProperty = sourceProperties.FirstOrDefault(p => p.Name == customSourceMember);
+                }
+                else
+                {
+                    bool isTargetOfCustomMapping = typeMap.CustomMemberMappings.Values.Contains(targetProperty.Name);
+
+                    if (!isTargetOfCustomMapping)
+                    {
+                        sourceProperty = sourceProperties.FirstOrDefault(p => p.Name == targetProperty.Name);
+                    }
+                }
+
+                if (sourceProperty is not null && sourceProperty.CanRead)
+                {
+                    try
+                    {
+                        object? sourceValue = sourceProperty.GetValue(source);
+                        targetProperty.SetValue(target, sourceValue);
+                    }
+                    catch (ArgumentException)
+                    {
+                    }
+                }
+            }
         }
 
         /// <summary>
