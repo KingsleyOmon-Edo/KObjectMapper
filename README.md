@@ -108,12 +108,10 @@ public class CustomersController(IObjectMapper mapper)
 Control how null source values are handled — globally or per map.
 
 ```csharp
-using KObjectMapper.Configuration;
-
 // Global policy
 builder.Services.AddKObjectMapper(options =>
 {
-    options.WithNullPolicy(NullMappingPolicy.Ignore); // skip null source props
+    options.WithNullPolicy(NullMappingPolicy.Ignore);
 });
 
 // Per-map policy with a null substitute
@@ -121,8 +119,6 @@ CreateMap<Order, OrderDto>()
     .WithNullPolicy(NullMappingPolicy.Ignore)
     .SubstituteNullWith(tgt => tgt.Status, "Unknown");
 ```
-
-Available policies:
 
 | Policy | Behaviour |
 |--------|-----------|
@@ -219,39 +215,148 @@ CreateMap<OrderDto, Order>()
 
 ---
 
-## Dependency Injection — Full Example
+## Structured Mapping Results
+
+Use the non-throwing `TryMap` API to get a structured result instead of an exception on mapping failure.
 
 ```csharp
-using KObjectMapper.DependencyInjection;
-using KObjectMapper.Configuration;
-using KObjectMapper.Converters;
+MappingResult result = mapper.TryMap(source, target);
 
+if (!result.IsSuccess)
+{
+    foreach (MappingError error in result.Errors)
+        Console.WriteLine($"{error.MemberPath}: {error.Reason}");
+}
+```
+
+Each `MappingError` includes `MemberPath`, `SourceType`, `TargetType`, and `Reason`.
+
+### Observability hooks
+
+Register callbacks for logging and metrics without coupling your mapping code to a specific logging framework:
+
+```csharp
 builder.Services.AddKObjectMapper(options =>
 {
-    options.EnableStrictMode();
-    options.WithNullPolicy(NullMappingPolicy.Ignore);
-    options.AddConverter<string, Status>(
-        EnumConverter.FromString<Status>(ignoreCase: true).AsTypeConverter());
-    options.AddProfilesFromAssembly(typeof(CustomerProfile).Assembly);
+    options.WithOnMappingError(err => logger.LogError("Mapping failed: {Reason}", err.Reason));
+    options.WithOnMappingCompleted(result => metrics.Record(result));
 });
 ```
 
 ---
 
-## Namespace Reference
+## Collection Mapping Strategies
 
-| Namespace | Contents |
-|-----------|----------|
-| `KObjectMapper` | `Mapper` — main entry point |
-| `KObjectMapper.Abstractions` | `IObjectMapper`, `ITypeConverter<,>`, `IEnumConverter<,>`, `EnumConversionResult<>` |
-| `KObjectMapper.Configuration` | `MappingProfile`, `MappingProfileOptions`, `MappingTypeMapConfiguration`, `NullMappingPolicy`, `MappingProfileValidationException` |
-| `KObjectMapper.Converters` | `TypeConverters`, `EnumConverter` |
-| `KObjectMapper.DependencyInjection` | `ServiceCollectionExtensions` (`AddKObjectMapper`) |
-| `KObjectMapper.Extensions` | Implicit mapping extension methods |
+The collection `Map` overload supports three merge modes via `CollectionMappingOptions`.
+
+```csharp
+using KObjectMapper.Collections;
+
+// Replace (default) — replaces target collection with source items
+mapper.Map<Source, Target>(sourceList, targetList);
+
+// Append — adds source items after existing target items
+var options = new CollectionMappingOptions<Source, Target>()
+    .WithMergeMode(CollectionMergeMode.Append);
+mapper.Map(sourceList, targetList, options);
+
+// MergeByKey — add/update/remove by key selector
+var options = new CollectionMappingOptions<Source, Target>()
+    .WithMergeMode(CollectionMergeMode.MergeByKey)
+    .WithKeySelector(src => src.Id, tgt => tgt.Id);
+mapper.Map(sourceList, targetList, options);
+```
+
+| Mode | Behaviour |
+|------|-----------|
+| `Replace` | Target collection is replaced by source items (default) |
+| `Append` | Source items are appended after existing target items |
+| `MergeByKey` | Matched items are updated; unmatched target items are removed; new source items are added |
+
+`MergeByKey` throws `InvalidOperationException` when key selectors are not configured.
 
 ---
 
-Please see the [contributing guide](CONTRIBUTING.md) for project status and contribution policy.
+## Queryable Projection
+
+Project `IQueryable<TSource>` to `IQueryable<TTarget>` using EF Core translation-friendly `Expression<Func<TSource, TTarget>>` expressions built via `Expression.MemberInit`.
+
+```csharp
+using KObjectMapper.Abstractions;
+
+// Project a queryable (e.g. EF Core DbSet)
+IQueryable<CustomerDto> query = mapper.ProjectTo<Customer, CustomerDto>(dbContext.Customers);
+
+// Compose with LINQ
+var results = await query.Where(d => d.IsActive).ToListAsync();
+
+// Retrieve the raw expression for manual use
+Expression<Func<Customer, CustomerDto>> expr =
+    mapper.GetProjectionExpression<Customer, CustomerDto>();
+```
+
+Expressions are cached per type pair. A `ProjectionException` (with `SourceType` and `TargetType` context) is thrown when no mappable properties exist or the source is null.
+
+---
+
+## Nested Graph and Circular Reference Handling
+
+Map deep object graphs safely with configurable reference preservation and depth limits.
+
+```csharp
+using KObjectMapper.Configuration;
+
+var options = new GraphMappingOptions()
+    .WithReferencePreservation()   // reuse already-mapped target instances
+    .WithMaxDepth(32);             // throw InvalidOperationException beyond this depth
+
+mapper.Map(source, target, options);
+```
+
+- **Circular reference detection** — objects already in the visited set are not re-entered, preventing `StackOverflowException`.
+- **Reference preservation** — when the same source instance appears multiple times in the graph, the same target instance is reused.
+- **MaxDepth** — defaults to 64; throws `InvalidOperationException` when exceeded.
+
+---
+
+## Async Mapping and Cancellation
+
+Use `IAsyncObjectMapper` for async pipelines with `CancellationToken` support.
+
+```csharp
+using KObjectMapper.Abstractions;
+
+IAsyncObjectMapper asyncMapper = serviceProvider.GetRequiredService<IAsyncObjectMapper>();
+
+// Async map (throws OperationCanceledException if token is already cancelled)
+await asyncMapper.MapAsync(source, target, cancellationToken);
+
+// Non-throwing async variant
+MappingResult result = await asyncMapper.TryMapAsync(source, target, cancellationToken);
+```
+
+### Custom async converters
+
+Implement `IAsyncTypeConverter<TSource, TTarget>` for expensive async transformations:
+
+```csharp
+public class PriceLookupConverter : IAsyncTypeConverter<ProductId, ProductDto>
+{
+    public async Task<ProductDto> ConvertAsync(ProductId source, CancellationToken ct)
+    {
+        var price = await _priceService.GetAsync(source.Id, ct);
+        return new ProductDto { Price = price };
+    }
+}
+
+// Register
+builder.Services.AddKObjectMapper(options =>
+{
+    options.AddAsyncConverter<ProductId, ProductDto>(new PriceLookupConverter(_priceService));
+});
+```
+
+`IAsyncObjectMapper` is registered as a singleton in the DI container automatically when `AddKObjectMapper` is called.
 
 ---
 
@@ -269,7 +374,7 @@ Add an `<Analyzer>` reference to `KObjectMapper.SourceGenerator` in your project
 </ItemGroup>
 ```
 
-### Enabling Source Generation
+### Enabling source generation
 
 Enable globally via DI registration:
 
@@ -287,6 +392,8 @@ Enable per map inside a profile:
 CreateMap<Customer, CustomerDto>().UseSourceGeneration();
 ```
 
+When generation is unavailable for a type pair, the runtime mapper falls back to the reflection pipeline automatically.
+
 ### Constraints
 
 - Only public, non-static, non-indexer properties with matching names are mapped.
@@ -299,5 +406,46 @@ To view the generated files on disk, see [docs/specs/GeneratorDebugging.md](docs
 
 | Diagnostic | Meaning |
 |------------|---------|
-| `KOM001` | A source property has no matching property on the target type and will not be mapped. The diagnostic message includes the source property name. |
-| `KOM002` | A property exists on both types but the source type is not assignable to the target type. The diagnostic message includes the member name, source type, and target type. |
+| `KOM001` | A source property has no matching property on the target type and will not be mapped. |
+| `KOM002` | A property exists on both types but the source type is not assignable to the target type. |
+
+---
+
+## Dependency Injection — Full Example
+
+```csharp
+using KObjectMapper.DependencyInjection;
+using KObjectMapper.Configuration;
+using KObjectMapper.Converters;
+
+builder.Services.AddKObjectMapper(options =>
+{
+    options.EnableStrictMode();
+    options.SetGlobalNullPolicy(NullMappingPolicy.Ignore);
+    options.AddConverter<string, Status>(
+        EnumConverter.FromString<Status>(ignoreCase: true).AsTypeConverter());
+    options.EnableSourceGeneration();
+    options.ConfigureGraph(g => g.WithReferencePreservation().WithMaxDepth(32));
+    options.WithOnMappingError(err => logger.LogError("Mapping failed: {Reason}", err.Reason));
+    options.AddProfilesFromAssembly(typeof(CustomerProfile).Assembly);
+});
+```
+
+---
+
+## Namespace Reference
+
+| Namespace | Contents |
+|-----------|----------|
+| `KObjectMapper` | `Mapper`, `AsyncMapper` |
+| `KObjectMapper.Abstractions` | `IObjectMapper`, `IAsyncObjectMapper`, `ITypeConverter<,>`, `IAsyncTypeConverter<,>`, `IQueryableMapper` |
+| `KObjectMapper.Collections` | `CollectionMergeMode`, `CollectionMappingOptions<,>` |
+| `KObjectMapper.Configuration` | `MappingProfile`, `MappingProfileOptions`, `MappingTypeMapConfiguration`, `NullMappingPolicy`, `GraphMappingOptions`, `MappingProfileValidationException` |
+| `KObjectMapper.Converters` | `TypeConverters`, `EnumConverter` |
+| `KObjectMapper.DependencyInjection` | `ServiceCollectionExtensions` (`AddKObjectMapper`) |
+| `KObjectMapper.Extensions` | Implicit mapping extension methods |
+| `KObjectMapper.Projections` | `ProjectionException` |
+
+---
+
+Please see the [contributing guide](CONTRIBUTING.md) for project status and contribution policy.
