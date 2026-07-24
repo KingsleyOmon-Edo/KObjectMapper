@@ -86,7 +86,7 @@
     - Errors include member path, source/target types, and failure reason.
     - Optional integration hooks for logging and metrics.
 
-- [ ] **US-11: Thread-safety and performance hardening**
+- [x] **US-11: Thread-safety and performance hardening**
   - As a platform engineer, I want thread-safe caching and precompiled mapping delegates so that mapping throughput is stable under high concurrency.
   - **Acceptance criteria:**
     - Thread-safe cache for map plans/delegates.
