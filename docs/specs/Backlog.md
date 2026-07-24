@@ -113,7 +113,7 @@
 
 ### Epic: Type System and Conversion Depth (Phase 2)
 
-- [ ] **US-14: Nested graph and circular reference handling**
+- [x] **US-14: Nested graph and circular reference handling**
   - As a developer, I want robust nested-object graph mapping with circular reference handling so that large object graphs map without stack overflow or duplicated nodes.
   - **Acceptance criteria:**
     - Reference-preservation option exists.

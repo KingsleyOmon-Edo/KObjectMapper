@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using KObjectMapper.Collections;
+using KObjectMapper.Configuration;
 
 namespace KObjectMapper.Abstractions;
 
@@ -61,6 +62,20 @@ namespace KObjectMapper.Abstractions;
             CollectionMappingOptions<TSource, TTarget> options)
             where TTarget : new()
             where TSource : new();
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" /> using graph options.</summary>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        /// <param name="options">The graph mapping options.</param>
+        void Map(object source, object target, GraphMappingOptions options);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" /> using graph options.</summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        /// <param name="options">The graph mapping options.</param>
+        void Map<TSource, TTarget>(TSource source, TTarget target, GraphMappingOptions options);
 
         MappingResult TryMap(object source, object target);
 

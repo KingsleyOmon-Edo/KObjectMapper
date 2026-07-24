@@ -92,6 +92,14 @@ public sealed class MappingProfileOptions
         return this;
     }
 
+    public GraphMappingOptions GraphOptions { get; private set; } = new();
+
+    public MappingProfileOptions ConfigureGraph(Action<GraphMappingOptions> configure)
+    {
+        configure(GraphOptions);
+        return this;
+    }
+
     internal IReadOnlyList<ITypeConverterBox> GetGlobalConverters() => _globalConverters.AsReadOnly();
 
     internal IReadOnlyCollection<Type> GetProfileTypes()

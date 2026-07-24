@@ -271,6 +271,98 @@ public class MappingService
         return target;
     }
 
+    /// <summary>
+    /// Applies the source property values to the target object with circular reference and depth tracking.
+    /// </summary>
+    /// <param name="source">The source object.</param>
+    /// <param name="target">The target object.</param>
+    /// <param name="visited">Tracks already-visited source objects to detect circular references.</param>
+    /// <param name="depth">The current recursion depth.</param>
+    /// <param name="maxDepth">The maximum allowed recursion depth.</param>
+    /// <returns>The mapped target object.</returns>
+    public object ApplyDiffs(object source, object target, Dictionary<object, object> visited, int depth, int maxDepth)
+    {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(target);
+
+        if (depth > maxDepth)
+            throw new InvalidOperationException($"Maximum mapping depth of {maxDepth} exceeded.");
+
+        if (visited.TryGetValue(source, out object? existing))
+            return existing;
+
+        visited[source] = target;
+
+        var diffs = this.GetPropertyDiffsInternal(source, target);
+        this.WriteToPropertiesWithGraph(source, target, diffs, visited, depth, maxDepth);
+
+        return target;
+    }
+
+    private void WriteToPropertiesWithGraph<T>(T source, T target, List<PropertyInfo> diffs,
+        Dictionary<object, object> visited, int depth, int maxDepth)
+    {
+        ArgumentNullException.ThrowIfNull(source);
+        ArgumentNullException.ThrowIfNull(target);
+
+        PropertyInfo[] targetProperties = MappingService.GetCachedProperties(target!.GetType());
+
+        foreach (PropertyInfo sourceProp in diffs)
+        {
+            PropertyInfo? targetProp = GetMatchingTargetProperty(sourceProp, targetProperties);
+
+            if (targetProp is null)
+            {
+                continue;
+            }
+
+            this.WritePropertyValueWithGraph(source, sourceProp, target, targetProp, visited, depth, maxDepth);
+        }
+    }
+
+    private void WritePropertyValueWithGraph(object source, PropertyInfo sourceProp, object target,
+        PropertyInfo targetProp, Dictionary<object, object> visited, int depth, int maxDepth)
+    {
+        object? sourceValue = sourceProp.GetValue(source);
+        object? targetValue = targetProp.GetValue(target);
+
+        if (sourceValue is null)
+        {
+            if (targetValue is not null)
+            {
+                targetProp.SetValue(target, null);
+            }
+
+            return;
+        }
+
+        if (CanMapNestedObjects(sourceProp.PropertyType, targetProp.PropertyType))
+        {
+            if (visited.TryGetValue(sourceValue, out object? alreadyMapped))
+            {
+                targetProp.SetValue(target, alreadyMapped);
+                return;
+            }
+
+            object nestedTarget = targetValue ?? CreateNestedTarget(targetProp.PropertyType);
+            this.ApplyDiffs(sourceValue, nestedTarget, visited, depth + 1, maxDepth);
+
+            if (targetValue is null)
+            {
+                targetProp.SetValue(target, nestedTarget);
+            }
+
+            return;
+        }
+
+        object mappedValue = ConvertValue(sourceValue, targetProp.PropertyType);
+
+        if (!Equals(mappedValue, targetValue))
+        {
+            targetProp.SetValue(target, mappedValue);
+        }
+    }
+
     private void WriteToProperties<T>(T source, T target, List<PropertyInfo> diffs)
     {
         ArgumentNullException.ThrowIfNull(source);

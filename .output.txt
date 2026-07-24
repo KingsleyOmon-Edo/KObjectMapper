@@ -1,3 +1,5 @@
+Command finished with exit code 0.
+Command output:
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -254,40 +256,6 @@ public class Mapper : IObjectMapper
                 _mappingService.ApplyDiffs(source!, target!);
             }
         }
-
-    /// <summary>
-    /// Maps properties from source to target using graph mapping options for circular reference and depth tracking.
-    /// </summary>
-    /// <param name="source">The source object.</param>
-    /// <param name="target">The destination object.</param>
-    /// <param name="options">The graph mapping options.</param>
-    public void Map(object source, object target, GraphMappingOptions options)
-    {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(target);
-        ArgumentNullException.ThrowIfNull(options);
-
-        var visited = new Dictionary<object, object>(ReferenceEqualityComparer.Instance);
-        _mappingService.ApplyDiffs(source, target, visited, depth: 0, maxDepth: options.MaxDepth);
-    }
-
-    /// <summary>
-    /// Maps properties from source to target using graph mapping options for circular reference and depth tracking.
-    /// </summary>
-    /// <typeparam name="TSource">The source type.</typeparam>
-    /// <typeparam name="TTarget">The destination type.</typeparam>
-    /// <param name="source">The source object.</param>
-    /// <param name="target">The destination object.</param>
-    /// <param name="options">The graph mapping options.</param>
-    public void Map<TSource, TTarget>(TSource source, TTarget target, GraphMappingOptions options)
-    {
-        ArgumentNullException.ThrowIfNull(source);
-        ArgumentNullException.ThrowIfNull(target);
-        ArgumentNullException.ThrowIfNull(options);
-
-        var visited = new Dictionary<object, object>(ReferenceEqualityComparer.Instance);
-        _mappingService.ApplyDiffs(source!, target!, visited, depth: 0, maxDepth: options.MaxDepth);
-    }
 
     private object? ApplyConverter(object? value, Type targetType, MappingTypeMap typeMap)
     {
@@ -721,3 +689,210 @@ public class Mapper : IObjectMapper
             }
         }
     }
+---
+using System.Linq.Expressions;
+using KObjectMapper.Collections;
+
+namespace KObjectMapper.Abstractions;
+
+    /// <summary>
+    /// Defines the mapping operations supported by the object mapper.
+    /// </summary>
+    public interface IObjectMapper
+    {
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void MapTo(object source, object target);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void MapTo<TSource, TTarget>(TSource source, TTarget target);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void MapFrom(object source, object target);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void MapFrom<TSource, TTarget>(TSource source, TTarget target);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void Map(object source, object target);
+
+        /// <summary>Maps the readable properties from <paramref name="source" /> to <paramref name="target" />.</summary>
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The destination type.</typeparam>
+        /// <param name="source">The source object.</param>
+        /// <param name="target">The destination object.</param>
+        void Map<TSource, TTarget>(TSource source, TTarget target);
+
+        /// <summary>
+        /// Maps a source collection into a destination collection, reusing the destination elements when possible.
+        /// </summary>
+        /// <typeparam name="TSource">The source element type.</typeparam>
+        /// <typeparam name="TTarget">The destination element type.</typeparam>
+        /// <param name="source">The source collection.</param>
+        /// <param name="target">The destination collection.</param>
+        IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)
+            where TTarget : new()
+            where TSource : new();
+
+        IEnumerable<TTarget> Map<TSource, TTarget>(
+            IEnumerable<TSource> source,
+            IEnumerable<TTarget> target,
+            CollectionMappingOptions<TSource, TTarget> options)
+            where TTarget : new()
+            where TSource : new();
+
+        MappingResult TryMap(object source, object target);
+
+        MappingResult TryMap<TSource, TTarget>(TSource source, TTarget target);
+
+        IQueryable<TTarget> ProjectTo<TSource, TTarget>(IQueryable<TSource> source)
+            where TTarget : new();
+
+        Expression<Func<TSource, TTarget>> GetProjectionExpression<TSource, TTarget>()
+            where TTarget : new();
+    }
+
+---
+using System.Reflection;
+using KObjectMapper.Abstractions;
+
+namespace KObjectMapper.Configuration;
+
+public sealed class MappingProfileOptions
+{
+    private readonly List<Type> _profileTypes = [];
+    private readonly List<Assembly> _assemblies = [];
+    private readonly List<ITypeConverterBox> _globalConverters = [];
+
+    public Action<MappingError>? OnMappingError { get; private set; }
+    public Action<MappingResult>? OnMappingCompleted { get; private set; }
+
+    public MappingProfileOptions WithOnMappingError(Action<MappingError> hook)
+    {
+        OnMappingError = hook;
+        return this;
+    }
+
+    public MappingProfileOptions WithOnMappingCompleted(Action<MappingResult> hook)
+    {
+        OnMappingCompleted = hook;
+        return this;
+    }
+
+    /// <summary>
+    /// Gets the global null mapping policy applied to all type maps that do not define their own policy.
+    /// </summary>
+    public NullMappingPolicy? GlobalNullPolicy { get; private set; }
+
+    /// <summary>
+    /// Gets a value indicating whether strict mapping mode is enabled.
+    /// When enabled, mapping a type pair with no registered type map throws at runtime.
+    /// </summary>
+    public bool IsStrictMode { get; private set; }
+
+    public bool UseSourceGeneration { get; private set; }
+
+    /// <summary>
+    /// Enables strict mapping mode. In strict mode, calling Map for a type pair that has no
+    /// registered type map throws an <see cref="InvalidOperationException"/> immediately.
+    /// </summary>
+    /// <returns>The options instance for fluent chaining.</returns>
+    public MappingProfileOptions EnableStrictMode()
+    {
+        IsStrictMode = true;
+        return this;
+    }
+
+    public MappingProfileOptions EnableSourceGeneration()
+    {
+        UseSourceGeneration = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the global null mapping policy for all type maps.
+    /// </summary>
+    /// <param name="policy">The null mapping policy to apply globally.</param>
+    /// <returns>The options instance for fluent chaining.</returns>
+    public MappingProfileOptions SetGlobalNullPolicy(NullMappingPolicy policy)
+    {
+        GlobalNullPolicy = policy;
+        return this;
+    }
+
+    public MappingProfileOptions AddProfile<TProfile>()
+        where TProfile : MappingProfile
+    {
+        _profileTypes.Add(typeof(TProfile));
+
+        return this;
+    }
+
+    public MappingProfileOptions ScanAssembly(Assembly assembly)
+    {
+        ArgumentNullException.ThrowIfNull(assembly);
+
+        _assemblies.Add(assembly);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Registers a global type converter available to all type maps.
+    /// </summary>
+    public MappingProfileOptions AddConverter<TSource, TTarget>(ITypeConverter<TSource, TTarget> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _globalConverters.Add(new TypeConverterBox<TSource, TTarget>(converter));
+        return this;
+    }
+
+    internal IReadOnlyList<ITypeConverterBox> GetGlobalConverters() => _globalConverters.AsReadOnly();
+
+    internal IReadOnlyCollection<Type> GetProfileTypes()
+    {
+        HashSet<Type> profileTypes = new(_profileTypes);
+
+        foreach (Assembly assembly in _assemblies)
+        {
+            Type[] assemblyTypes = assembly.GetTypes();
+
+            foreach (Type assemblyType in assemblyTypes)
+            {
+                if (!typeof(MappingProfile).IsAssignableFrom(assemblyType) ||
+                    assemblyType.IsAbstract ||
+                    !assemblyType.IsClass ||
+                    (!assemblyType.IsPublic && !assemblyType.IsNestedPublic))
+                {
+                    continue;
+                }
+
+                profileTypes.Add(assemblyType);
+            }
+        }
+
+        return profileTypes.ToArray();
+    }
+}
+---
+global using KObjectMapper;
+global using KObjectMapper.Configuration;
+global using KObjectMapper.Converters;
+global using KObjectMapper.DependencyInjection;
+global using KObjectMapper.Internal;
+global using Microsoft.Extensions.DependencyInjection;
+global using Shouldly;
+global using Xunit;
