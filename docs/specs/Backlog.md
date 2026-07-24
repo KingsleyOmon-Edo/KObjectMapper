@@ -138,7 +138,7 @@
     - Policy supports default-deny mode for marked types.
     - Tests verify excluded fields are never copied.
 
-- [ ] **US-17: Public API stabilization and versioning policy**
+- [x] **US-17: Public API stabilization and versioning policy**
   - As a maintainer, I want a stable API contract and semantic versioning policy so that consumers can upgrade safely.
   - **Acceptance criteria:**
     - Public API baseline is generated and tracked.
