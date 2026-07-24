@@ -49,6 +49,8 @@ public static class ServiceCollectionExtensions
         bool isStrictMode = options.IsStrictMode;
         bool useSourceGeneration = options.UseSourceGeneration;
         IReadOnlyList<ITypeConverterBox> globalConverters = options.GetGlobalConverters();
+        Action<MappingError>? onMappingError = options.OnMappingError;
+        Action<MappingResult>? onMappingCompleted = options.OnMappingCompleted;
 
         services.AddSingleton<IGeneratedMapperRegistry, GeneratedMapperRegistry>();
 
@@ -62,7 +64,7 @@ public static class ServiceCollectionExtensions
         {
             IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
             IGeneratedMapperRegistry registry = sp.GetRequiredService<IGeneratedMapperRegistry>();
-            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration);
+            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration, onMappingError, onMappingCompleted);
         });
 
         return services;

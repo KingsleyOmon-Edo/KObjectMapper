@@ -9,6 +9,21 @@ public sealed class MappingProfileOptions
     private readonly List<Assembly> _assemblies = [];
     private readonly List<ITypeConverterBox> _globalConverters = [];
 
+    public Action<MappingError>? OnMappingError { get; private set; }
+    public Action<MappingResult>? OnMappingCompleted { get; private set; }
+
+    public MappingProfileOptions WithOnMappingError(Action<MappingError> hook)
+    {
+        OnMappingError = hook;
+        return this;
+    }
+
+    public MappingProfileOptions WithOnMappingCompleted(Action<MappingResult> hook)
+    {
+        OnMappingCompleted = hook;
+        return this;
+    }
+
     /// <summary>
     /// Gets the global null mapping policy applied to all type maps that do not define their own policy.
     /// </summary>

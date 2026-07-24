@@ -79,7 +79,7 @@
 
 ### Epic: Diagnostics, Resilience, and Operability (Phase 1)
 
-- [ ] **US-10: Structured mapping result and diagnostics**
+- [x] **US-10: Structured mapping result and diagnostics**
   - As an operator, I want structured mapping diagnostics so that failed mappings are observable and debuggable in production.
   - **Acceptance criteria:**
     - Non-throwing API variant returns success/failure result with error details.

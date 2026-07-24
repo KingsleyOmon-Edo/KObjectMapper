@@ -18,6 +18,8 @@ public class Mapper : IObjectMapper
     private readonly IReadOnlyList<ITypeConverterBox> _globalConverters = [];
     private readonly IGeneratedMapperRegistry? _generatedMapperRegistry;
     private readonly bool _useSourceGenerationGlobally;
+    private readonly Action<MappingError>? _onMappingError;
+    private readonly Action<MappingResult>? _onMappingCompleted;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -83,6 +85,20 @@ public class Mapper : IObjectMapper
         _globalConverters = globalConverters;
         _generatedMapperRegistry = generatedMapperRegistry;
         _useSourceGenerationGlobally = useSourceGenerationGlobally;
+    }
+
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode, IReadOnlyList<ITypeConverterBox> globalConverters, IGeneratedMapperRegistry? generatedMapperRegistry, bool useSourceGenerationGlobally, Action<MappingError>? onMappingError, Action<MappingResult>? onMappingCompleted)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        ArgumentNullException.ThrowIfNull(globalConverters);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
+        _globalConverters = globalConverters;
+        _generatedMapperRegistry = generatedMapperRegistry;
+        _useSourceGenerationGlobally = useSourceGenerationGlobally;
+        _onMappingError = onMappingError;
+        _onMappingCompleted = onMappingCompleted;
     }
 
         /// <summary>
@@ -518,6 +534,52 @@ public class Mapper : IObjectMapper
             }
 
             return true;
+        }
+
+        public MappingResult TryMap(object source, object target)
+        {
+            try
+            {
+                Map(source, target);
+                MappingResult result = MappingResult.Success();
+                _onMappingCompleted?.Invoke(result);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MappingError error = new()
+                {
+                    MemberPath = source?.GetType().Name ?? string.Empty,
+                    SourceType = source?.GetType(),
+                    TargetType = target?.GetType(),
+                    Reason = ex.Message
+                };
+                _onMappingError?.Invoke(error);
+                return MappingResult.Failure(error);
+            }
+        }
+
+        public MappingResult TryMap<TSource, TTarget>(TSource source, TTarget target)
+        {
+            try
+            {
+                Map<TSource, TTarget>(source, target);
+                MappingResult result = MappingResult.Success();
+                _onMappingCompleted?.Invoke(result);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MappingError error = new()
+                {
+                    MemberPath = typeof(TSource).Name,
+                    SourceType = typeof(TSource),
+                    TargetType = typeof(TTarget),
+                    Reason = ex.Message
+                };
+                _onMappingError?.Invoke(error);
+                return MappingResult.Failure(error);
+            }
         }
 
         private static bool TryConvertValue(object? sourceValue, Type targetType, out object? convertedValue)

@@ -51,5 +51,9 @@ namespace KObjectMapper.Abstractions;
         IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, IEnumerable<TTarget> target)
             where TTarget : new()
             where TSource : new();
+
+        MappingResult TryMap(object source, object target);
+
+        MappingResult TryMap<TSource, TTarget>(TSource source, TTarget target);
     }
 
