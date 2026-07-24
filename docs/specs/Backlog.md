@@ -8,7 +8,7 @@
 
 ### Epic: Configuration and Mapping Contracts
 
-- [ ] **US-01: Configurable mapping profiles**
+- [x] **US-01: Configurable mapping profiles**
   - As a developer, I want to define mapping profiles per source/target pair so that mapping rules are explicit, reusable, and versionable.
   - **Acceptance criteria:**
     - Profile API exists for registering type maps.
