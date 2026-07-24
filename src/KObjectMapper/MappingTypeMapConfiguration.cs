@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using KObjectMapper.Abstractions;
 
 namespace KObjectMapper;
 
@@ -80,6 +81,20 @@ public sealed class MappingTypeMapConfiguration<TSource, TTarget>
         string targetMemberName = ExtractMemberName(targetMember);
         _typeMap.AddNullSubstitute(targetMemberName, substituteValue);
 
+        return this;
+    }
+
+    /// <summary>
+    /// Registers a type converter for this type map, applied when converting property values.
+    /// </summary>
+    /// <typeparam name="TFrom">The source value type.</typeparam>
+    /// <typeparam name="TTo">The target value type.</typeparam>
+    /// <param name="converter">The converter instance.</param>
+    /// <returns>The configuration instance for fluent chaining.</returns>
+    public MappingTypeMapConfiguration<TSource, TTarget> AddConverter<TFrom, TTo>(ITypeConverter<TFrom, TTo> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _typeMap.AddConverter(new TypeConverterBox<TFrom, TTo>(converter));
         return this;
     }
 
