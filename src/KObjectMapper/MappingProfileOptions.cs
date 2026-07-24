@@ -1,4 +1,5 @@
 using System.Reflection;
+using KObjectMapper.Abstractions;
 
 namespace KObjectMapper;
 
@@ -6,6 +7,7 @@ public sealed class MappingProfileOptions
 {
     private readonly List<Type> _profileTypes = [];
     private readonly List<Assembly> _assemblies = [];
+    private readonly List<ITypeConverterBox> _globalConverters = [];
 
     /// <summary>
     /// Gets the global null mapping policy applied to all type maps that do not define their own policy.
@@ -56,6 +58,18 @@ public sealed class MappingProfileOptions
 
         return this;
     }
+
+    /// <summary>
+    /// Registers a global type converter available to all type maps.
+    /// </summary>
+    public MappingProfileOptions AddConverter<TSource, TTarget>(ITypeConverter<TSource, TTarget> converter)
+    {
+        ArgumentNullException.ThrowIfNull(converter);
+        _globalConverters.Add(new TypeConverterBox<TSource, TTarget>(converter));
+        return this;
+    }
+
+    internal IReadOnlyList<ITypeConverterBox> GetGlobalConverters() => _globalConverters.AsReadOnly();
 
     internal IReadOnlyCollection<Type> GetProfileTypes()
     {
