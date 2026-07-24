@@ -145,7 +145,7 @@
     - Breaking-change checks are part of CI.
     - Upgrade guidance is documented in changelog/release notes.
 
-- [ ] **US-18: Documentation completeness and production guidance**
+- [x] **US-18: Documentation completeness and production guidance**
   - As a consumer, I want complete production usage guidance so that I can adopt the mapper safely.
   - **Acceptance criteria:**
     - Document configuration patterns, failure modes, and edge-case behavior.
