@@ -2,24 +2,23 @@ using Microsoft.CodeAnalysis;
 
 namespace KObjectMapper.SourceGenerator;
 
-/// <summary>
-/// Diagnostic descriptors emitted by the KObjectMapper source generator.
-/// </summary>
-public static class MappingDiagnostics
+internal static class MappingDiagnostics
 {
     private const string Category = "KObjectMapper";
 
-    /// <summary>
-    /// KOM001: Emitted when a source property has no matching writable property on the target,
-    /// or when a type mismatch prevents direct assignment.
-    /// </summary>
-    public static readonly DiagnosticDescriptor UnsupportedMemberPattern = new DiagnosticDescriptor(
+    public static readonly DiagnosticDescriptor MissingTargetProperty = new(
         id: "KOM001",
-        title: "Unsupported member mapping pattern",
-        messageFormat: "{0}",
+        title: "Missing target property",
+        messageFormat: "Source property '{0}' on '{1}' has no matching target property on '{2}' and will not be mapped",
         category: Category,
         defaultSeverity: DiagnosticSeverity.Warning,
-        isEnabledByDefault: true,
-        description: "The source generator identified a member that cannot be directly mapped. " +
-                     "Consider adding a type converter or an explicit ForMember configuration.");
+        isEnabledByDefault: true);
+
+    public static readonly DiagnosticDescriptor TypeMismatch = new(
+        id: "KOM002",
+        title: "Type mismatch",
+        messageFormat: "Member '{0}': source type '{1}' is not assignable to target type '{2}' and will not be mapped",
+        category: Category,
+        defaultSeverity: DiagnosticSeverity.Warning,
+        isEnabledByDefault: true);
 }
