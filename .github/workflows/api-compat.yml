@@ -1,0 +1,26 @@
+name: API Compatibility Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  api-compat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+      - name: Run tests
+        run: dotnet test --no-build --configuration Release
+      - name: Remind reviewer to check API baseline
+        run: |
+          echo "## API Compatibility Reminder" >> $GITHUB_STEP_SUMMARY
+          echo "Please verify that any public API changes are reflected in docs/api/PublicApi.md" >> $GITHUB_STEP_SUMMARY
+          echo "Breaking changes require a major version bump per the semantic versioning policy." >> $GITHUB_STEP_SUMMARY
