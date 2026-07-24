@@ -2,6 +2,7 @@ using System.Reflection;
 using KObjectMapper;
 using KObjectMapper.Abstractions;
 using KObjectMapper.Configuration;
+using KObjectMapper.Security;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace KObjectMapper.DependencyInjection;
@@ -53,6 +54,7 @@ public static class ServiceCollectionExtensions
         IReadOnlyList<ITypeConverterBox> globalConverters = options.GetGlobalConverters();
         Action<MappingError>? onMappingError = options.OnMappingError;
         Action<MappingResult>? onMappingCompleted = options.OnMappingCompleted;
+        SensitiveMappingPolicy sensitivePolicy = options.SensitivePolicy;
 
         services.AddSingleton<IGeneratedMapperRegistry, GeneratedMapperRegistry>();
 
@@ -68,7 +70,7 @@ public static class ServiceCollectionExtensions
         {
             IEnumerable<MappingProfile> profiles = sp.GetServices<MappingProfile>();
             IGeneratedMapperRegistry registry = sp.GetRequiredService<IGeneratedMapperRegistry>();
-            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration, onMappingError, onMappingCompleted);
+            return new Mapper(profiles, globalNullPolicy, isStrictMode, globalConverters, registry, useSourceGeneration, onMappingError, onMappingCompleted, sensitivePolicy);
         });
 
         services.AddSingleton<IAsyncObjectMapper>(sp =>

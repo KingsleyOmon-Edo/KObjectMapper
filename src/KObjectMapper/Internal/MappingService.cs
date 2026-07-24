@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
 using KObjectMapper.Extensions;
+using KObjectMapper.Security;
 
 namespace KObjectMapper.Internal;
 
@@ -239,6 +240,7 @@ public class MappingService
         ArgumentNullException.ThrowIfNull(target);
 
         var diffs = this.GetPropertyDiffsInternal(source, target);
+        diffs = diffs.Where(p => !SensitiveDataGuard.IsExcluded(p, source.GetType(), SensitiveMappingPolicy.ExcludeMarked, new HashSet<string>())).ToList();
         this.WriteToProperties(source, target, diffs);
 
         return target;
@@ -266,6 +268,7 @@ public class MappingService
         ValidateParameters(source, target);
 
         var diffs = this.GetPropertyDiffsInternal(source, target);
+        diffs = diffs.Where(p => !SensitiveDataGuard.IsExcluded(p, source!.GetType(), SensitiveMappingPolicy.ExcludeMarked, new HashSet<string>())).ToList();
         this.WriteToProperties(source, target, diffs);
 
         return target;
