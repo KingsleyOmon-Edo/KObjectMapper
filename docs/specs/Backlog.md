@@ -63,14 +63,14 @@
     - Generated mappers compile without requiring consumer-written partial methods.
     - Build diagnostics identify unsupported member patterns with clear error or warning messages.
 
-- [x] **US-08: Runtime fallback and feature flags for generator adoption**
+- [ ] **US-08: Runtime fallback and feature flags for generator adoption**
   - As a maintainer, I want source generation to be opt-in with safe fallback so that existing consumers can upgrade incrementally.
   - **Acceptance criteria:**
     - Configuration flag allows enabling/disabling generated mapping per profile or globally.
     - When generation is unavailable, runtime mapper falls back to current reflection/delegate pipeline.
     - Behavior parity tests verify equivalent mapping outputs between generated and runtime modes.
 
-- [ ] **US-09: Source generator debugging, diagnostics, and docs**
+- [x] **US-09: Source generator debugging, diagnostics, and docs**
   - As a developer, I want actionable diagnostics and documentation for generated code so that I can troubleshoot mapping issues quickly.
   - **Acceptance criteria:**
     - Generator emits deterministic diagnostics with member path and type details.

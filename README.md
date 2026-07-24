@@ -252,3 +252,52 @@ builder.Services.AddKObjectMapper(options =>
 ---
 
 Please see the [contributing guide](CONTRIBUTING.md) for project status and contribution policy.
+
+---
+
+## Source Generator
+
+KObjectMapper includes an optional Roslyn source generator that produces static mapper classes at compile time, eliminating reflection overhead on hot paths.
+
+### Setup
+
+Add an `<Analyzer>` reference to `KObjectMapper.SourceGenerator` in your project file:
+
+```xml
+<ItemGroup>
+  <Analyzer Include="path/to/KObjectMapper.SourceGenerator.dll" />
+</ItemGroup>
+```
+
+### Enabling Source Generation
+
+Enable globally via DI registration:
+
+```csharp
+builder.Services.AddKObjectMapper(options =>
+{
+    options.EnableSourceGeneration();
+    options.AddProfile<CustomerProfile>();
+});
+```
+
+Enable per map inside a profile:
+
+```csharp
+CreateMap<Customer, CustomerDto>().UseSourceGeneration();
+```
+
+### Constraints
+
+- Only public, non-static, non-indexer properties with matching names are mapped.
+- Source and target property types must be directly assignable.
+- Unsupported members emit `KOM001` or `KOM002` warnings at build time and are excluded from the generated mapper.
+
+### Troubleshooting
+
+To view the generated files on disk, see [docs/specs/GeneratorDebugging.md](docs/specs/GeneratorDebugging.md).
+
+| Diagnostic | Meaning |
+|------------|---------|
+| `KOM001` | A source property has no matching property on the target type and will not be mapped. The diagnostic message includes the source property name. |
+| `KOM002` | A property exists on both types but the source type is not assignable to the target type. The diagnostic message includes the member name, source type, and target type. |

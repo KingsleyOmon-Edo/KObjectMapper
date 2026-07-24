@@ -20,8 +20,6 @@ public sealed class MappingProfileOptions
     /// </summary>
     public bool IsStrictMode { get; private set; }
 
-    public bool UseSourceGeneration { get; private set; }
-
     /// <summary>
     /// Enables strict mapping mode. In strict mode, calling Map for a type pair that has no
     /// registered type map throws an <see cref="InvalidOperationException"/> immediately.
@@ -30,12 +28,6 @@ public sealed class MappingProfileOptions
     public MappingProfileOptions EnableStrictMode()
     {
         IsStrictMode = true;
-        return this;
-    }
-
-    public MappingProfileOptions EnableSourceGeneration()
-    {
-        UseSourceGeneration = true;
         return this;
     }
 
