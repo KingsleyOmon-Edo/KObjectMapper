@@ -2,7 +2,7 @@
 
 KObjectMapper is a simple, intuitive, and effective open-source object-to-object mapping library for C# and .NET.
 
-It can be used in two modes: **Implicit** and **Explicit**.
+It supports two mapping modes — **Implicit** (extension methods, zero configuration) and **Explicit** (mapper instance) — and a rich **profile-based configuration** system for production-grade mapping pipelines.
 
 **_Pre-release notice: KObjectMapper is currently published as an alpha package (`0.0.0-alpha-1`). The API is still evolving and may include breaking changes between alpha versions. Do not use in production workloads yet._**
 
@@ -14,118 +14,241 @@ dotnet add package KObjectMapper --version 0.0.0-alpha-1
 
 > For newer alpha drops, increment the suffix (for example: `0.0.0-alpha-2`, `0.0.0-alpha-3`).
 
-## Usage scenario
+---
+
+## Quick Start
 
 ### Implicit mapping (extension methods)
 
-Implicit mapping uses extension methods and does not require creating a mapper instance.
+Implicit mapping uses extension methods and requires no mapper instance or configuration.
 
 ```csharp
 using KObjectMapper.Extensions;
-```
 
-#### Map to an existing target
+var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith" };
+CustomerDto dto = new();
 
-```csharp
-var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
-CustomerDto customerDto = new();
-
-customer.MapTo(customerDto);
-```
-
-#### Reverse direction with `MapFrom`
-
-```csharp
-var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
-CustomerDto customerDto = new();
-
-customerDto.MapFrom(customer);
-```
-
-You can also keep `MapTo` and swap source/target objects:
-
-```csharp
-customer.MapTo(customerDto);
-customerDto.MapTo(customer);
+customer.MapTo(dto);       // customer → dto
+dto.MapFrom(customer);     // equivalent reverse direction
 ```
 
 ### Explicit mapping (mapper instance)
 
-Explicit mapping uses a `Mapper` instance directly.
-
 ```csharp
 using KObjectMapper;
-```
 
-#### 1. Create mapper instance
-
-```csharp
 var mapper = Mapper.Create();
+
+// Map into an existing instance
+mapper.Map<Customer, CustomerDto>(customer, dto);
+
+// Map to a new instance
+CustomerDto dto = mapper.Map<Customer, CustomerDto>(customer);
+
+// Map collections
+IEnumerable<CustomerDto> dtos = mapper.Map<Customer, CustomerDto>(customers);
 ```
 
-#### 2. Map to an existing target
+---
+
+## Profile-Based Configuration
+
+Profiles give you explicit, reusable, and versionable mapping rules per source/target pair.
+
+### Defining a profile
 
 ```csharp
-var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
-CustomerDto customerDto = new();
+using KObjectMapper.Configuration;
 
-mapper.Map<Customer, CustomerDto>(customer, customerDto);
-```
-
-#### 3. Map to a new destination instance
-
-```csharp
-CustomerDto customerDto = mapper.Map<Customer, CustomerDto>(customer);
-```
-
-#### 4. Map collections
-
-Map source collection into an existing target collection:
-
-```csharp
-IEnumerable<Customer> customers = GetCustomers();
-List<CustomerDto> customerDtos = new();
-
-IEnumerable<CustomerDto> mapped = mapper.Map<Customer, CustomerDto>(customers, customerDtos);
-```
-
-Map source collection to a newly created destination collection:
-
-```csharp
-IEnumerable<Customer> customers = GetCustomers();
-IEnumerable<CustomerDto> customerDtos = mapper.Map<Customer, CustomerDto>(customers);
-```
-
-### Dependency Injection
-
-If you use ASP.NET Core, register KObjectMapper with the provided service extension.
-
-```csharp
-using KObjectMapper;
-using KObjectMapper.Abstractions;
-
-builder.Services.AddKObjectMapper();
-```
-
-Then inject `IObjectMapper` where needed:
-
-```csharp
-private readonly IObjectMapper _mapper;
-
-public CustomersController(IObjectMapper mapper)
+public class CustomerProfile : MappingProfile
 {
-    _mapper = mapper;
+    protected override void Configure()
+    {
+        CreateMap<Customer, CustomerDto>()
+            .ForMember(src => src.FullName, tgt => tgt.Name)   // rename
+            .Ignore(tgt => tgt.InternalCode);                  // skip member
+    }
 }
 ```
 
-Example usage:
+### Registering profiles
 
 ```csharp
-var customer = new Customer { Id = 25, FirstName = "Will", LastName = "Smith", PhoneNumber = "5555234432" };
-CustomerDto customerDto = new();
+using KObjectMapper.DependencyInjection;
 
-_mapper.Map<Customer, CustomerDto>(customer, customerDto);
+// Register individual profiles
+builder.Services.AddKObjectMapper(options =>
+{
+    options.AddProfile<CustomerProfile>();
+});
+
+// Or scan an assembly for all profiles
+builder.Services.AddKObjectMapper(options =>
+{
+    options.AddProfilesFromAssembly(typeof(CustomerProfile).Assembly);
+});
 ```
 
-Please see the contributing guide for project status and contribution policy.
+Inject and use `IObjectMapper` anywhere:
 
+```csharp
+using KObjectMapper.Abstractions;
+
+public class CustomersController(IObjectMapper mapper)
+{
+    public CustomerDto Get(Customer customer)
+        => mapper.Map<Customer, CustomerDto>(customer);
+}
+```
+
+---
+
+## Null-Handling Policy
+
+Control how null source values are handled — globally or per map.
+
+```csharp
+using KObjectMapper.Configuration;
+
+// Global policy
+builder.Services.AddKObjectMapper(options =>
+{
+    options.WithNullPolicy(NullMappingPolicy.Ignore); // skip null source props
+});
+
+// Per-map policy with a null substitute
+CreateMap<Order, OrderDto>()
+    .WithNullPolicy(NullMappingPolicy.Ignore)
+    .SubstituteNullWith(tgt => tgt.Status, "Unknown");
+```
+
+Available policies:
+
+| Policy | Behaviour |
+|--------|-----------|
+| `Propagate` (default) | Null source value is written to the target |
+| `Ignore` | Null source values are skipped; target retains its value |
+
+---
+
+## Strict Mode and Startup Validation
+
+Enable strict mode to fail fast when no type map is registered for a requested pair.
+
+```csharp
+builder.Services.AddKObjectMapper(options =>
+{
+    options.EnableStrictMode();
+    options.AddProfile<CustomerProfile>();
+});
+```
+
+With strict mode on, calling `mapper.Map<A, B>(...)` for an unregistered pair throws `InvalidOperationException` at the call site rather than silently falling back to reflection-based mapping.
+
+Startup validation also catches structural problems — such as target types with no accessible parameterless constructor — and surfaces them as a structured `MappingProfileValidationException` with an `Errors` collection before the application starts serving traffic.
+
+---
+
+## Type Converters
+
+Register custom converters for complex domain transformations that go beyond `Convert.ChangeType`.
+
+### Built-in converters
+
+`TypeConverters` provides ready-made converters for common patterns:
+
+```csharp
+using KObjectMapper.Converters;
+
+// string → int, long, double, decimal, bool, Guid, DateTime, DateTimeOffset
+// string → enum (with optional case-insensitive parsing)
+// int    → enum
+TypeConverters.StringToInt32
+TypeConverters.StringToGuid
+TypeConverters.StringToDateTimeOffset
+TypeConverters.StringToEnum<MyEnum>()
+TypeConverters.Int32ToEnum<MyEnum>()
+```
+
+### Custom converters
+
+Implement `ITypeConverter<TSource, TTarget>`:
+
+```csharp
+using KObjectMapper.Abstractions;
+
+public class MoneyConverter : ITypeConverter<decimal, string>
+{
+    public string Convert(decimal source) => source.ToString("C2");
+}
+```
+
+Register globally or per map:
+
+```csharp
+// Global — applies to all maps
+options.AddConverter<decimal, string>(new MoneyConverter());
+
+// Per map — takes precedence over global
+CreateMap<Invoice, InvoiceDto>()
+    .AddConverter<decimal, string>(new MoneyConverter());
+```
+
+---
+
+## Enum Conversion Safety
+
+Use `EnumConverter` for safe, validated enum conversions that surface failures explicitly instead of silently corrupting data.
+
+```csharp
+using KObjectMapper.Converters;
+
+// String → enum (case-insensitive)
+var converter = EnumConverter.FromString<Status>(ignoreCase: true);
+
+// Int → enum
+var converter = EnumConverter.FromInt32<Status>();
+
+// Wrap as ITypeConverter and register
+CreateMap<OrderDto, Order>()
+    .AddConverter<string, Status>(
+        EnumConverter.FromString<Status>(ignoreCase: true).AsTypeConverter());
+```
+
+`AsTypeConverter()` throws `InvalidOperationException` with a descriptive message when the source value cannot be mapped to a valid enum member. Use `EnumConverter` directly when you need the structured `EnumConversionResult<TEnum>` (with `IsSuccess`, `Value`, and `Error` properties) for non-throwing error handling.
+
+---
+
+## Dependency Injection — Full Example
+
+```csharp
+using KObjectMapper.DependencyInjection;
+using KObjectMapper.Configuration;
+using KObjectMapper.Converters;
+
+builder.Services.AddKObjectMapper(options =>
+{
+    options.EnableStrictMode();
+    options.WithNullPolicy(NullMappingPolicy.Ignore);
+    options.AddConverter<string, Status>(
+        EnumConverter.FromString<Status>(ignoreCase: true).AsTypeConverter());
+    options.AddProfilesFromAssembly(typeof(CustomerProfile).Assembly);
+});
+```
+
+---
+
+## Namespace Reference
+
+| Namespace | Contents |
+|-----------|----------|
+| `KObjectMapper` | `Mapper` — main entry point |
+| `KObjectMapper.Abstractions` | `IObjectMapper`, `ITypeConverter<,>`, `IEnumConverter<,>`, `EnumConversionResult<>` |
+| `KObjectMapper.Configuration` | `MappingProfile`, `MappingProfileOptions`, `MappingTypeMapConfiguration`, `NullMappingPolicy`, `MappingProfileValidationException` |
+| `KObjectMapper.Converters` | `TypeConverters`, `EnumConverter` |
+| `KObjectMapper.DependencyInjection` | `ServiceCollectionExtensions` (`AddKObjectMapper`) |
+| `KObjectMapper.Extensions` | Implicit mapping extension methods |
+
+---
+
+Please see the [contributing guide](CONTRIBUTING.md) for project status and contribution policy.
