@@ -1,5 +1,6 @@
 using System.Reflection;
 using KObjectMapper.Abstractions;
+using KObjectMapper.Security;
 
 namespace KObjectMapper.Configuration;
 
@@ -37,6 +38,14 @@ public sealed class MappingProfileOptions
     public bool IsStrictMode { get; private set; }
 
     public bool UseSourceGeneration { get; private set; }
+
+    public SensitiveMappingPolicy SensitivePolicy { get; private set; } = SensitiveMappingPolicy.ExcludeMarked;
+
+    public MappingProfileOptions SetSensitivePolicy(SensitiveMappingPolicy policy)
+    {
+        SensitivePolicy = policy;
+        return this;
+    }
 
     /// <summary>
     /// Enables strict mapping mode. In strict mode, calling Map for a type pair that has no

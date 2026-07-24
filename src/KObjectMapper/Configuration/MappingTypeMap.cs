@@ -1,4 +1,5 @@
 using KObjectMapper.Abstractions;
+using KObjectMapper.Security;
 
 namespace KObjectMapper.Configuration;
 
@@ -11,6 +12,7 @@ public sealed class MappingTypeMap
     private readonly HashSet<string> _ignoredMembers = new();
     private readonly Dictionary<string, object?> _nullSubstitutes = new();
     private readonly List<ITypeConverterBox> _converters = [];
+    private readonly HashSet<string> _allowedMembers = new();
 
     public MappingTypeMap(Type sourceType, Type targetType)
     {
@@ -80,5 +82,15 @@ public sealed class MappingTypeMap
     }
 
     public bool UseSourceGeneration { get; internal set; }
+
+    public SensitiveMappingPolicy? PerMapSensitivePolicy { get; internal set; }
+
+    public IReadOnlySet<string> AllowedMembers => _allowedMembers;
+
+    internal void AddAllowedMember(string memberName)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(memberName);
+        _allowedMembers.Add(memberName);
+    }
 }
 

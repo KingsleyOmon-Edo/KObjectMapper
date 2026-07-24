@@ -131,7 +131,7 @@
 
 ### Epic: Security and API Stability
 
-- [ ] **US-16: Sensitive data mapping guards**
+- [x] **US-16: Sensitive data mapping guards**
   - As a security-conscious developer, I want member-level opt-out for sensitive fields so that secrets and PII are not accidentally mapped.
   - **Acceptance criteria:**
     - Attribute- and configuration-based sensitive member exclusion.
@@ -151,3 +151,21 @@
     - Document configuration patterns, failure modes, and edge-case behavior.
     - Include DI usage through the provided registration extension.
     - Include migration notes for API contract changes.
+
+### Epic: DDD and Immutability Support
+
+- [ ] **US-19: Immutable and constructor-based mapping**
+  - As a developer, I want to map into immutable types and `init`-only properties via constructor parameter matching so that DDD value objects and C# records are supported safely.
+  - **Acceptance criteria:**
+    - Opt-in via `AllowConstructorMapping()` on the profile or per-map configuration.
+    - Constructor parameters are matched by name to source properties.
+    - Unmatched constructor parameters use their default values or `default(T)`.
+    - Tests cover records, value objects with `init`-only properties, and partial constructor matches.
+
+- [ ] **US-20: Private setter support**
+  - As a developer, I want to map into properties with private setters so that DDD entities that encapsulate state via private setters can be populated by the mapper.
+  - **Acceptance criteria:**
+    - Opt-in via `AllowPrivateSetters()` globally on `MappingProfileOptions` or per-map on `MappingTypeMapConfiguration`.
+    - When opted in, `PropertyInfo.SetValue` is used to bypass access modifiers (no additional reflection overhead).
+    - When not opted in, private-setter properties are silently skipped (existing behavior preserved).
+    - Tests verify private-setter properties are mapped when opted in and skipped when not.

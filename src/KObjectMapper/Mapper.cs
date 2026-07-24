@@ -6,6 +6,7 @@ using KObjectMapper.Collections;
 using KObjectMapper.Configuration;
 using KObjectMapper.Internal;
 using KObjectMapper.Projections;
+using KObjectMapper.Security;
 
 namespace KObjectMapper;
 
@@ -24,6 +25,7 @@ public class Mapper : IObjectMapper
     private readonly bool _useSourceGenerationGlobally;
     private readonly Action<MappingError>? _onMappingError;
     private readonly Action<MappingResult>? _onMappingCompleted;
+    private readonly SensitiveMappingPolicy _globalSensitivePolicy = SensitiveMappingPolicy.ExcludeMarked;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -103,6 +105,21 @@ public class Mapper : IObjectMapper
         _useSourceGenerationGlobally = useSourceGenerationGlobally;
         _onMappingError = onMappingError;
         _onMappingCompleted = onMappingCompleted;
+    }
+
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode, IReadOnlyList<ITypeConverterBox> globalConverters, IGeneratedMapperRegistry? generatedMapperRegistry, bool useSourceGenerationGlobally, Action<MappingError>? onMappingError, Action<MappingResult>? onMappingCompleted, SensitiveMappingPolicy globalSensitivePolicy)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        ArgumentNullException.ThrowIfNull(globalConverters);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
+        _globalConverters = globalConverters;
+        _generatedMapperRegistry = generatedMapperRegistry;
+        _useSourceGenerationGlobally = useSourceGenerationGlobally;
+        _onMappingError = onMappingError;
+        _onMappingCompleted = onMappingCompleted;
+        _globalSensitivePolicy = globalSensitivePolicy;
     }
 
         /// <summary>
@@ -326,6 +343,7 @@ public class Mapper : IObjectMapper
             PropertyInfo[] targetProperties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             NullMappingPolicy effectiveNullPolicy = typeMap.NullPolicy ?? _globalNullPolicy ?? NullMappingPolicy.Propagate;
+            SensitiveMappingPolicy effectiveSensitivePolicy = typeMap.PerMapSensitivePolicy ?? _globalSensitivePolicy;
 
             foreach (PropertyInfo targetProperty in targetProperties)
             {
@@ -339,7 +357,14 @@ public class Mapper : IObjectMapper
                     continue;
                 }
 
-                PropertyInfo? sourceProperty = null;
+                PropertyInfo? sourceProperty = sourceProperties.FirstOrDefault(p => p.Name == targetProperty.Name);
+
+                if (sourceProperty is not null && SensitiveDataGuard.IsExcluded(sourceProperty, sourceType, effectiveSensitivePolicy, typeMap.AllowedMembers))
+                {
+                    continue;
+                }
+
+                sourceProperty = null;
 
                 string? customSourceMember = typeMap.CustomMemberMappings
                     .Where(kvp => kvp.Value == targetProperty.Name)

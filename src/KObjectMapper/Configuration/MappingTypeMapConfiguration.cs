@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using KObjectMapper.Abstractions;
+using KObjectMapper.Security;
 
 namespace KObjectMapper.Configuration;
 
@@ -101,6 +102,20 @@ public sealed class MappingTypeMapConfiguration<TSource, TTarget>
     public MappingTypeMapConfiguration<TSource, TTarget> UseSourceGeneration()
     {
         _typeMap.UseSourceGeneration = true;
+        return this;
+    }
+
+    public MappingTypeMapConfiguration<TSource, TTarget> SetSensitivePolicy(SensitiveMappingPolicy policy)
+    {
+        _typeMap.PerMapSensitivePolicy = policy;
+        return this;
+    }
+
+    public MappingTypeMapConfiguration<TSource, TTarget> AllowMember(Expression<Func<TTarget, object?>> targetMember)
+    {
+        ArgumentNullException.ThrowIfNull(targetMember);
+        string memberName = ExtractMemberName(targetMember);
+        _typeMap.AddAllowedMember(memberName);
         return this;
     }
 
