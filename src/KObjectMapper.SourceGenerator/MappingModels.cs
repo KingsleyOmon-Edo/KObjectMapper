@@ -1,27 +1,23 @@
+using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
+
 namespace KObjectMapper.SourceGenerator;
 
-internal sealed class MappingPair
-{
-    public MappingPair(string sourceTypeName, string targetTypeName, string @namespace)
-    {
-        SourceTypeName = sourceTypeName;
-        TargetTypeName = targetTypeName;
-        Namespace = @namespace;
-    }
+/// <summary>Describes all mapping plans extracted from a single MappingProfile subclass.</summary>
+internal sealed record MappingPlanDescriptor(
+    string ProfileClassName,
+    string ProfileNamespace,
+    List<MappingTypePair> TypePairs);
 
-    public string SourceTypeName { get; }
-    public string TargetTypeName { get; }
-    public string Namespace { get; }
-}
+/// <summary>Describes a single source-to-target type pair with resolved property mappings.</summary>
+internal sealed record MappingTypePair(
+    ITypeSymbol SourceType,
+    ITypeSymbol TargetType,
+    List<PropertyMapping> PropertyMappings,
+    List<string> DiagnosticMessages);
 
-internal sealed class MappableProperty
-{
-    public MappableProperty(string name, string typeName)
-    {
-        Name = name;
-        TypeName = typeName;
-    }
-
-    public string Name { get; }
-    public string TypeName { get; }
-}
+/// <summary>Describes a single property-level mapping between source and target.</summary>
+internal sealed record PropertyMapping(
+    string SourcePropertyName,
+    string TargetPropertyName,
+    string PropertyTypeName);

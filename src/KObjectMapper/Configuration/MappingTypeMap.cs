@@ -78,5 +78,7 @@ public sealed class MappingTypeMap
         ArgumentNullException.ThrowIfNull(converter);
         _converters.Add(converter);
     }
+
+    public bool UseSourceGeneration { get; internal set; }
 }
 

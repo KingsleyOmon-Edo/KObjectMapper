@@ -16,6 +16,8 @@ public class Mapper : IObjectMapper
     private readonly NullMappingPolicy? _globalNullPolicy;
     private readonly bool _isStrictMode;
     private readonly IReadOnlyList<ITypeConverterBox> _globalConverters = [];
+    private readonly IGeneratedMapperRegistry? _generatedMapperRegistry;
+    private readonly bool _useSourceGenerationGlobally;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Mapper" /> class.
@@ -69,6 +71,18 @@ public class Mapper : IObjectMapper
         _globalNullPolicy = globalNullPolicy;
         _isStrictMode = isStrictMode;
         _globalConverters = globalConverters;
+    }
+
+    internal Mapper(IEnumerable<MappingProfile> profiles, NullMappingPolicy? globalNullPolicy, bool isStrictMode, IReadOnlyList<ITypeConverterBox> globalConverters, IGeneratedMapperRegistry? generatedMapperRegistry, bool useSourceGenerationGlobally)
+    {
+        ArgumentNullException.ThrowIfNull(profiles);
+        ArgumentNullException.ThrowIfNull(globalConverters);
+        _profiles = profiles;
+        _globalNullPolicy = globalNullPolicy;
+        _isStrictMode = isStrictMode;
+        _globalConverters = globalConverters;
+        _generatedMapperRegistry = generatedMapperRegistry;
+        _useSourceGenerationGlobally = useSourceGenerationGlobally;
     }
 
         /// <summary>
@@ -198,6 +212,15 @@ public class Mapper : IObjectMapper
 
             if (typeMap is not null)
             {
+                bool shouldUseGenerated = typeMap.UseSourceGeneration || _useSourceGenerationGlobally;
+
+                if (shouldUseGenerated &&
+                    _generatedMapperRegistry is not null &&
+                    _generatedMapperRegistry.TryMap(typeof(TSource), typeof(TTarget), source!, target!))
+                {
+                    return;
+                }
+
                 ApplyProfileBasedMapping(source!, target!, typeMap);
             }
             else if (_isStrictMode)
